@@ -27,17 +27,20 @@ async function main() {
 
   const date = new Date().toISOString().split("T")[0];
 
-  console.log("🎨 Generating cover image...");
-  const imageUrl = await generateCoverImage(article.title, article.description);
-
-  // Download image
-  const imagesDir = path.join(process.cwd(), "public/images/blog");
-  if (!fs.existsSync(imagesDir)) {
-    fs.mkdirSync(imagesDir, { recursive: true });
+  let imagePath = "";
+  try {
+    console.log("🎨 Generating cover image...");
+    const imageUrl = await generateCoverImage(article.title, article.description);
+    const imagesDir = path.join(process.cwd(), "public/images/blog");
+    if (!fs.existsSync(imagesDir)) {
+      fs.mkdirSync(imagesDir, { recursive: true });
+    }
+    imagePath = `/images/blog/${slug}.png`;
+    await downloadImage(imageUrl, path.join(process.cwd(), "public", imagePath));
+    console.log("🖼️ Cover image saved");
+  } catch (err) {
+    console.warn("⚠️ Cover image generation failed, continuing without image:", (err as Error).message);
   }
-  const imagePath = `/images/blog/${slug}.png`;
-  await downloadImage(imageUrl, path.join(process.cwd(), "public", imagePath));
-  console.log("🖼️ Cover image saved");
 
   // Create MDX file
   const mdxContent = `---
