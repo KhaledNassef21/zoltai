@@ -31,5 +31,6 @@ jobs:
         run: |
           git config user.name "Zoltai Bot"
           git config user.email "bot@zoltai.ai"
-          git add src/content/blog/ public/images/blog/
+          git add src/content/blog/
+          git add public/images/blog/ 2>/dev/null || true
           git diff --staged --quiet || (git commit -m "feat: add daily article $(date +%Y-%m-%d)" && git push)
