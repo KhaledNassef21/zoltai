@@ -1,18 +1,15 @@
-name: Generate Daily Article
-
-on:
-  schedule:
-    - cron: '0 8 * * *'
-  workflow_dispatch:  # ✅ يسمح بالتشغيل اليدوي للتجربة
-
+# .github/workflows/generate-article.yml
 jobs:
   generate:
     runs-on: ubuntu-latest
     env:
-      # ✅ يجب أن تكون MOCK_MODE هنا، داخل job > env
-      MOCK_MODE: true
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      # ✅ OpenAI (مُفعّل مؤقتاً)
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: "gpt-4o-mini"  # رخيص وسريع (~$0.15/1M tokens)
+      
+      # ❌ Anthropic (معطل مؤقتاً - لا تحذفه، فقط لن يُستخدم)
+      # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      
       # ... باقي المتغيرات
     steps:
       - name: Checkout code
