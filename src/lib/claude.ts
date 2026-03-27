@@ -1,16 +1,19 @@
 // src/lib/claude.ts
 import Anthropic from "@anthropic-ai/sdk";
 
-// ✅ تحقق من وضع التجربة أولاً
-const MOCK_MODE = process.env.MOCK_MODE === 'true';
+// ✅ قراءة وضع التجربة مع طباعة للتصحيح (Debug)
+const MOCK_MODE_RAW = process.env.MOCK_MODE;
+const MOCK_MODE = MOCK_MODE_RAW === 'true' || MOCK_MODE_RAW === '1' || MOCK_MODE_RAW === 'yes';
 
-// تهيئة Anthropic فقط إذا لم نكن في وضع التجربة
+console.log(`[DEBUG] MOCK_MODE_RAW: "${MOCK_MODE_RAW}" | MOCK_MODE: ${MOCK_MODE}`);
+
+// تهيئة Anthropic فقط إذا لزم الأمر
 const anthropic = !MOCK_MODE && process.env.ANTHROPIC_API_KEY 
   ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY }) 
   : null;
 
 // =====================================================
-// 🧪 MOCK DATA - للتجربة المجانية
+// 🧪 MOCK DATA - بيانات تجريبية مجانية
 // =====================================================
 
 const MOCK_TOPICS = [
@@ -65,12 +68,12 @@ const MOCK_ARTICLE = {
 const MOCK_SEO = {
   title: "AI Productivity Hacks: 5 Tools to Save 10 Hours/Week",
   description: "Boost your workflow with these 5 AI-powered productivity tools. Tested, reviewed, and ready to implement in 2026.",
-  content: MOCK_ARTICLE.content, // نرجع نفس المحتوى في الوضع التجريبي
+  content: MOCK_ARTICLE.content,
   keywords: ["AI productivity", "automation tools", "AI workflow", "time saving", "AI for work"]
 };
 
 // =====================================================
-// 🤖 الدوال الرئيسية (مع دعم Mock Mode)
+// 🤖 الدوال الرئيسية
 // =====================================================
 
 export async function generateArticle(topic: string): Promise<{
@@ -79,25 +82,24 @@ export async function generateArticle(topic: string): Promise<{
   content: string;
   tags: string[];
 }> {
-  // ✅ وضع التجربة
+  console.log(`[generateArticle] MOCK_MODE=${MOCK_MODE}, topic="${topic}"`);
+  
   if (MOCK_MODE) {
-    console.log('🧪 [MOCK MODE] Generating sample article for:', topic);
-    await new Promise(resolve => setTimeout(resolve, 1000)); // محاكاة تأخير الشبكة
+    console.log('🧪 [MOCK MODE] Returning sample article');
+    await new Promise(resolve => setTimeout(resolve, 1000));
     return MOCK_ARTICLE;
   }
 
-  // 🔐 الكود الأصلي (Anthropic)
   if (!anthropic) {
-    throw new Error('Anthropic API key not configured and MOCK_MODE is false');
+    throw new Error('❌ Anthropic not initialized: API key missing AND MOCK_MODE=false');
   }
 
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4000,
-    messages: [
-      {
-        role: "user",
-        content: `You are an expert AI & technology writer for "Zoltai", a website about AI tools and productivity.
+    messages: [{
+      role: "user",
+      content: `You are an expert AI & technology writer for "Zoltai", a website about AI tools and productivity.
 
 Write a comprehensive, SEO-optimized blog article about: "${topic}"
 
@@ -119,8 +121,7 @@ Return your response in this exact JSON format:
 }
 
 Return ONLY the JSON, no other text.`,
-      },
-    ],
+    }],
   });
 
   const text = response.content[0].type === "text" ? response.content[0].text : "";
@@ -128,25 +129,24 @@ Return ONLY the JSON, no other text.`,
 }
 
 export async function researchTrendingTopics(): Promise<string[]> {
-  // ✅ وضع التجربة
+  console.log(`[researchTrendingTopics] MOCK_MODE=${MOCK_MODE}`);
+  
   if (MOCK_MODE) {
     console.log('🧪 [MOCK MODE] Returning sample trending topics');
     await new Promise(resolve => setTimeout(resolve, 800));
     return MOCK_TOPICS;
   }
 
-  // 🔐 الكود الأصلي
   if (!anthropic) {
-    throw new Error('Anthropic API key not configured and MOCK_MODE is false');
+    throw new Error('❌ Anthropic not initialized: API key missing AND MOCK_MODE=false');
   }
 
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 1000,
-    messages: [
-      {
-        role: "user",
-        content: `You are an AI content strategist for "Zoltai", a website about AI tools and productivity.
+    messages: [{
+      role: "user",
+      content: `You are an AI content strategist for "Zoltai", a website about AI tools and productivity.
 
 Suggest 5 trending, high-search-volume article topics about AI tools and productivity that would perform well in search engines right now.
 
@@ -158,8 +158,7 @@ Focus on:
 - How-to guides for AI tools
 
 Return a JSON array of 5 topic strings. Return ONLY the JSON array, no other text.`,
-      },
-    ],
+    }],
   });
 
   const text = response.content[0].type === "text" ? response.content[0].text : "";
@@ -175,25 +174,24 @@ export async function optimizeForSEO(
   content: string;
   keywords: string[];
 }> {
-  // ✅ وضع التجربة
+  console.log(`[optimizeForSEO] MOCK_MODE=${MOCK_MODE}`);
+  
   if (MOCK_MODE) {
     console.log('🧪 [MOCK MODE] Returning mock SEO optimization');
     await new Promise(resolve => setTimeout(resolve, 600));
     return MOCK_SEO;
   }
 
-  // 🔐 الكود الأصلي
   if (!anthropic) {
-    throw new Error('Anthropic API key not configured and MOCK_MODE is false');
+    throw new Error('❌ Anthropic not initialized: API key missing AND MOCK_MODE=false');
   }
 
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4000,
-    messages: [
-      {
-        role: "user",
-        content: `You are an SEO expert. Optimize this blog article for search engines.
+    messages: [{
+      role: "user",
+      content: `You are an SEO expert. Optimize this blog article for search engines.
 
 Current title: "${currentTitle}"
 
@@ -215,8 +213,7 @@ Return in JSON format:
 }
 
 Return ONLY the JSON.`,
-      },
-    ],
+    }],
   });
 
   const text = response.content[0].type === "text" ? response.content[0].text : "";
