@@ -1,8 +1,77 @@
+// src/lib/claude.ts
 import Anthropic from "@anthropic-ai/sdk";
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+// ✅ تحقق من وضع التجربة أولاً
+const MOCK_MODE = process.env.MOCK_MODE === 'true';
+
+// تهيئة Anthropic فقط إذا لم نكن في وضع التجربة
+const anthropic = !MOCK_MODE && process.env.ANTHROPIC_API_KEY 
+  ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY }) 
+  : null;
+
+// =====================================================
+// 🧪 MOCK DATA - للتجربة المجانية
+// =====================================================
+
+const MOCK_TOPICS = [
+  "AI Agents in 2026: The Rise of Autonomous Workflows",
+  "How Small Teams Are Using AI to Compete with Enterprises", 
+  "The Hidden Costs of Free AI Tools (And How to Avoid Them)",
+  "Prompt Engineering Is Dead? What's Next in AI Interaction",
+  "Local AI Models: Running LLMs on Your Laptop in 2026"
+];
+
+const MOCK_ARTICLE = {
+  title: "AI Productivity Hacks: 5 Tools to Save 10 Hours/Week [2026 Guide]",
+  description: "Discover 5 powerful AI tools that automate repetitive tasks and boost your productivity. Practical guide for beginners and pros.",
+  content: `## مقدمة
+
+في عالم يتسارع فيه التطور التكنولوجي، أصبح الذكاء الاصطناعي حليفاً أساسياً لزيادة الإنتاجية.
+
+## 🚀 الأداة الأولى: أدوات أتمتة المهام
+
+أدوات مثل **Zapier** و **Make** تتيح لك ربط التطبيقات وأتمتة سير العمل دون كتابة سطر كود واحد.
+
+### مثال عملي:
+1. استقبال إيميل جديد → 2. استخراج المرفقات → 3. حفظها في Google Drive → 4. إرسال تنبيه في Slack
+
+## 🧠 الأداة الثانية: مساعدو الكتابة بالذكاء الاصطناعي
+
+أدوات مثل **Claude** و **Gemini** تساعدك في:
+- كتابة المسودات الأولية
+- تحسين النصوص للـ SEO
+- توليد أفكار محتوى جديدة
+
+## 🎨 الأداة الثالثة: توليد الصور والفيديو
+
+منصات مثل **DALL-E 3** و **Midjourney** تمكنك من إنشاء محتوى بصري احترافي في ثوانٍ.
+
+## 📊 الأداة الرابعة: تحليل البيانات بالذكاء الاصطناعي
+
+أدوات مثل **Julius AI** و **Akkio** تحول البيانات المعقدة إلى رؤى قابلة للتنفيذ.
+
+## 🔗 الأداة الخامسة: مساعدو البرمجة بالذكاء الاصطناعي
+
+**GitHub Copilot** و **Cursor** يسرّعون عملية التطوير ويقللون الأخطاء.
+
+## خاتمة
+
+الذكاء الاصطناعي ليس مستقبل العمل فحسب، بل هو حاضرنا. ابدأ بتجربة أداة واحدة هذا الأسبوع وراقب الفرق.
+
+> 💡 **نصيحة**: لا تحاول تبني كل الأدوات دفعة واحدة. اختر ما يناسب احتياجك وتعمق فيه.`,
+  tags: ["AI Tools", "Productivity", "Automation", "2026 Guide", "Work Smarter"]
+};
+
+const MOCK_SEO = {
+  title: "AI Productivity Hacks: 5 Tools to Save 10 Hours/Week",
+  description: "Boost your workflow with these 5 AI-powered productivity tools. Tested, reviewed, and ready to implement in 2026.",
+  content: MOCK_ARTICLE.content, // نرجع نفس المحتوى في الوضع التجريبي
+  keywords: ["AI productivity", "automation tools", "AI workflow", "time saving", "AI for work"]
+};
+
+// =====================================================
+// 🤖 الدوال الرئيسية (مع دعم Mock Mode)
+// =====================================================
 
 export async function generateArticle(topic: string): Promise<{
   title: string;
@@ -10,6 +79,18 @@ export async function generateArticle(topic: string): Promise<{
   content: string;
   tags: string[];
 }> {
+  // ✅ وضع التجربة
+  if (MOCK_MODE) {
+    console.log('🧪 [MOCK MODE] Generating sample article for:', topic);
+    await new Promise(resolve => setTimeout(resolve, 1000)); // محاكاة تأخير الشبكة
+    return MOCK_ARTICLE;
+  }
+
+  // 🔐 الكود الأصلي (Anthropic)
+  if (!anthropic) {
+    throw new Error('Anthropic API key not configured and MOCK_MODE is false');
+  }
+
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4000,
@@ -42,12 +123,23 @@ Return ONLY the JSON, no other text.`,
     ],
   });
 
-  const text =
-    response.content[0].type === "text" ? response.content[0].text : "";
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
   return JSON.parse(text);
 }
 
 export async function researchTrendingTopics(): Promise<string[]> {
+  // ✅ وضع التجربة
+  if (MOCK_MODE) {
+    console.log('🧪 [MOCK MODE] Returning sample trending topics');
+    await new Promise(resolve => setTimeout(resolve, 800));
+    return MOCK_TOPICS;
+  }
+
+  // 🔐 الكود الأصلي
+  if (!anthropic) {
+    throw new Error('Anthropic API key not configured and MOCK_MODE is false');
+  }
+
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 1000,
@@ -70,8 +162,7 @@ Return a JSON array of 5 topic strings. Return ONLY the JSON array, no other tex
     ],
   });
 
-  const text =
-    response.content[0].type === "text" ? response.content[0].text : "";
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
   return JSON.parse(text);
 }
 
@@ -84,6 +175,18 @@ export async function optimizeForSEO(
   content: string;
   keywords: string[];
 }> {
+  // ✅ وضع التجربة
+  if (MOCK_MODE) {
+    console.log('🧪 [MOCK MODE] Returning mock SEO optimization');
+    await new Promise(resolve => setTimeout(resolve, 600));
+    return MOCK_SEO;
+  }
+
+  // 🔐 الكود الأصلي
+  if (!anthropic) {
+    throw new Error('Anthropic API key not configured and MOCK_MODE is false');
+  }
+
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 4000,
@@ -116,7 +219,6 @@ Return ONLY the JSON.`,
     ],
   });
 
-  const text =
-    response.content[0].type === "text" ? response.content[0].text : "";
+  const text = response.content[0].type === "text" ? response.content[0].text : "";
   return JSON.parse(text);
 }
