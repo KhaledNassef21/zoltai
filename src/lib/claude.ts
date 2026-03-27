@@ -5,7 +5,8 @@ const anthropic = new Anthropic({
 });
 
 function extractJSON(text: string): string {
-  return text.replace(/^```(?:json)?\s*\n?/i, "").replace(/\n?```\s*$/i, "").trim();
+  const match = text.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
+  return match ? match[1].trim() : text.trim();
 }
 
 export async function generateArticle(topic: string): Promise<{
