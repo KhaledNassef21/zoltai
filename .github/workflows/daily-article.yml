@@ -1,35 +1,30 @@
-name: Daily Article Generation
+name: Generate Daily Article
 
 on:
   schedule:
-    - cron: "0 6 * * *" # Every day at 6:00 AM UTC
-  workflow_dispatch: # Manual trigger
-
-permissions:
-  contents: write
+    - cron: '0 8 * * *'
+  workflow_dispatch:  # ✅ يسمح بالتشغيل اليدوي للتجربة
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      # ✅ يجب أن تكون MOCK_MODE هنا، داخل job > env
+      MOCK_MODE: true
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      # ... باقي المتغيرات
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: '20'
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
       - name: Generate article
         run: npx tsx scripts/generate-article.ts
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
-      - name: Commit and push
-        run: |
-          git config user.name "Zoltai Bot"
-          git config user.email "bot@zoltai.ai"
-          git add src/content/blog/ public/images/blog/
-          git diff --staged --quiet || (git commit -m "feat: add daily article $(date +%Y-%m-%d)" && git push)
