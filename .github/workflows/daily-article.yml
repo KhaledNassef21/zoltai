@@ -1,0 +1,35 @@
+name: Daily Article Generation
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # Every day at 6:00 AM UTC
+  workflow_dispatch: # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Generate article
+        run: npx tsx scripts/generate-article.ts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "Zoltai Bot"
+          git config user.email "bot@zoltai.ai"
+          git add src/content/blog/ public/images/blog/
+          git diff --staged --quiet || (git commit -m "feat: add daily article $(date +%Y-%m-%d)" && git push)
