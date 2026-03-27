@@ -4,6 +4,10 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+function extractJSON(text: string): string {
+  return text.replace(/^```(?:json)?\s*\n?/i, "").replace(/\n?```\s*$/i, "").trim();
+}
+
 export async function generateArticle(topic: string): Promise<{
   title: string;
   description: string;
@@ -44,7 +48,7 @@ Return ONLY the JSON, no other text.`,
 
   const text =
     response.content[0].type === "text" ? response.content[0].text : "";
-  return JSON.parse(text);
+  return JSON.parse(extractJSON(text));
 }
 
 export async function researchTrendingTopics(): Promise<string[]> {
@@ -72,7 +76,7 @@ Return a JSON array of 5 topic strings. Return ONLY the JSON array, no other tex
 
   const text =
     response.content[0].type === "text" ? response.content[0].text : "";
-  return JSON.parse(text);
+  return JSON.parse(extractJSON(text));
 }
 
 export async function optimizeForSEO(
@@ -118,5 +122,5 @@ Return ONLY the JSON.`,
 
   const text =
     response.content[0].type === "text" ? response.content[0].text : "";
-  return JSON.parse(text);
+  return JSON.parse(extractJSON(text));
 }
