@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { generateArticle, researchTrendingTopics } from "../src/lib/claude";
-import { generateCoverImage } from "../src/lib/openai-image";
+import { generateImage } from "../src/lib/image-provider";
 
 async function downloadImage(url: string, filepath: string): Promise<void> {
   const response = await fetch(url);
@@ -30,14 +30,26 @@ async function main() {
   let imagePath = "";
   try {
     console.log("🎨 Generating cover image...");
-    const imageUrl = await generateCoverImage(article.title, article.description);
-    const imagesDir = path.join(process.cwd(), "public/images/blog");
-    if (!fs.existsSync(imagesDir)) {
-      fs.mkdirSync(imagesDir, { recursive: true });
+    const imageUrl = await generateImage(article.title, article.description);
+    if (imageUrl && !imageUrl.startsWith("data:")) {
+      const imagesDir = path.join(process.cwd(), "public/images/blog");
+      if (!fs.existsSync(imagesDir)) {
+        fs.mkdirSync(imagesDir, { recursive: true });
+      }
+      imagePath = `/images/blog/${slug}.png`;
+      await downloadImage(imageUrl, path.join(process.cwd(), "public", imagePath));
+      console.log("🖼️ Cover image saved");
+    } else if (imageUrl) {
+      // base64 data URL - save directly
+      const imagesDir = path.join(process.cwd(), "public/images/blog");
+      if (!fs.existsSync(imagesDir)) {
+        fs.mkdirSync(imagesDir, { recursive: true });
+      }
+      imagePath = `/images/blog/${slug}.png`;
+      const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, "");
+      fs.writeFileSync(path.join(process.cwd(), "public", imagePath), Buffer.from(base64Data, "base64"));
+      console.log("🖼️ Cover image saved (base64)");
     }
-    imagePath = `/images/blog/${slug}.png`;
-    await downloadImage(imageUrl, path.join(process.cwd(), "public", imagePath));
-    console.log("🖼️ Cover image saved");
   } catch (err) {
     console.warn("⚠️ Cover image generation failed, continuing without image:", (err as Error).message);
   }

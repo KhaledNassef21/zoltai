@@ -45,13 +45,21 @@ async function main() {
     .map((t: string) => `#${t.replace(/\s+/g, "")}`)
     .join(" ");
 
+  const slug = latestFile.replace(".mdx", "");
+  const articleUrl = `https://zoltai.ai/blog/${slug}`;
+
   const caption = `🤖 ${data.title}
 
 ${data.description}
 
 💡 Swipe to learn more!
 
-${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai`;
+📖 Read the full guide with tool links & free trials:
+👉 ${articleUrl}
+
+🔗 Explore all AI tools: zoltai.ai/tools
+
+${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsReview #TechTips`;
 
   // Publish carousel
   console.log("📤 Publishing to Instagram...");

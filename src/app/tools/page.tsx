@@ -1,80 +1,56 @@
 import type { Metadata } from "next";
+import { tools, toolCategories } from "@/data/tools";
+import { ToolsDirectory } from "./tools-directory";
 
 export const metadata: Metadata = {
-  title: "AI Tools",
-  description: "Curated collection of the best AI tools for productivity.",
+  title: "Best AI Tools Directory 2026 — Curated & Reviewed",
+  description:
+    "Discover the best AI tools for writing, coding, image generation, SEO, and productivity. Curated reviews with pricing and free trials.",
+  keywords: [
+    "best AI tools",
+    "AI tools directory",
+    "AI writing tools",
+    "AI image generators",
+    "AI coding tools",
+    "free AI tools",
+  ],
 };
-
-const tools = [
-  {
-    name: "ChatGPT",
-    category: "Chatbot",
-    description: "OpenAI's conversational AI for writing, coding, and more.",
-    url: "https://chat.openai.com",
-  },
-  {
-    name: "Claude",
-    category: "Chatbot",
-    description: "Anthropic's AI assistant for analysis, writing, and coding.",
-    url: "https://claude.ai",
-  },
-  {
-    name: "Midjourney",
-    category: "Image Generation",
-    description: "AI art generator creating stunning visuals from text prompts.",
-    url: "https://midjourney.com",
-  },
-  {
-    name: "Notion AI",
-    category: "Productivity",
-    description: "AI-powered workspace for notes, docs, and project management.",
-    url: "https://notion.so",
-  },
-  {
-    name: "Cursor",
-    category: "Coding",
-    description: "AI-first code editor that helps you write code faster.",
-    url: "https://cursor.sh",
-  },
-  {
-    name: "Perplexity",
-    category: "Research",
-    description: "AI-powered search engine with real-time web access.",
-    url: "https://perplexity.ai",
-  },
-];
 
 export default function ToolsPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-      <div className="mb-12">
+      {/* Header */}
+      <div className="mb-6">
         <h1 className="text-3xl sm:text-4xl font-bold">
-          <span className="gradient-text">AI Tools</span>
+          Best <span className="gradient-text">AI Tools</span> in 2026
         </h1>
-        <p className="mt-3 text-zinc-400 text-lg">
-          Curated collection of the best AI tools to boost your productivity.
+        <p className="mt-3 text-zinc-400 text-lg max-w-2xl">
+          Hand-picked AI tools to supercharge your productivity. Honest reviews,
+          real pricing, and free trials.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tools.map((tool) => (
-          <a
-            key={tool.name}
-            href={tool.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block p-6 rounded-xl border border-card-border bg-card-bg hover:border-accent/40 transition-all"
-          >
-            <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent-light">
-              {tool.category}
-            </span>
-            <h3 className="mt-3 font-semibold text-lg group-hover:text-accent-light transition-colors">
-              {tool.name}
-            </h3>
-            <p className="mt-2 text-sm text-zinc-500">{tool.description}</p>
-          </a>
-        ))}
+      {/* Stats bar */}
+      <div className="flex items-center gap-6 mb-10 text-sm text-zinc-500">
+        <span>
+          <strong className="text-white">{tools.length}</strong> tools listed
+        </span>
+        <span>
+          <strong className="text-white">
+            {tools.filter((t) => t.pricing === "Free" || t.pricing === "Freemium").length}
+          </strong>{" "}
+          with free plans
+        </span>
+        <span>
+          <strong className="text-white">
+            {toolCategories.length - 1}
+          </strong>{" "}
+          categories
+        </span>
       </div>
+
+      {/* Client-side filterable directory */}
+      <ToolsDirectory />
     </div>
   );
 }

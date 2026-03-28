@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { AffiliateCTA } from "@/components/affiliate-cta";
+import { NewsletterSignup } from "@/components/newsletter-signup";
+import { getFeaturedTools } from "@/data/tools";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -42,6 +45,12 @@ export default async function BlogPost({ params }: Props) {
   if (!post) {
     notFound();
   }
+
+  // Pick 2 random featured tools for inline CTAs
+  const featured = getFeaturedTools();
+  const shuffled = [...featured].sort(() => Math.random() - 0.5);
+  const topPick = shuffled[0];
+  const secondPick = shuffled[1];
 
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
@@ -84,8 +93,68 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
+      {/* Mid-article CTA */}
+      {topPick && (
+        <AffiliateCTA
+          toolName={topPick.name}
+          description={topPick.description}
+          ctaText="Try Now — Free"
+          ctaUrl={topPick.affiliateUrl || topPick.url}
+          variant="banner"
+          badge="Editor's Pick"
+        />
+      )}
+
       <div className="prose">
         <MDXRemote source={post.content} />
+      </div>
+
+      {/* Post-article CTA */}
+      {secondPick && (
+        <AffiliateCTA
+          toolName={secondPick.name}
+          description={secondPick.description}
+          ctaText="Start Free Trial"
+          ctaUrl={secondPick.affiliateUrl || secondPick.url}
+          variant="default"
+          badge="Recommended"
+        />
+      )}
+
+      {/* Newsletter CTA */}
+      <div className="mt-12">
+        <NewsletterSignup
+          variant="card"
+          title="Enjoyed this article?"
+          description="Get more AI insights, tool reviews, and productivity hacks delivered to your inbox every week."
+        />
+      </div>
+
+      {/* Related tools suggestion */}
+      <div className="mt-10 p-6 rounded-xl border border-card-border bg-card-bg">
+        <h3 className="font-bold text-lg mb-2">Explore More AI Tools</h3>
+        <p className="text-sm text-zinc-500 mb-4">
+          Discover {featured.length}+ curated AI tools in our directory.
+        </p>
+        <a
+          href="/tools"
+          className="inline-flex items-center gap-2 text-accent-light text-sm font-medium hover:underline"
+        >
+          Browse Tools Directory
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
+        </a>
       </div>
     </article>
   );
