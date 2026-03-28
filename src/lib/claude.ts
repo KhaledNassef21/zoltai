@@ -21,7 +21,7 @@ export async function generateArticle(topic: string): Promise<{
     messages: [
       {
         role: "user",
-        content: `You are an expert AI & technology writer for "Zoltai", a website about AI tools and productivity.
+        content: `You are an expert AI & technology writer for "Zoltai", an affiliate website about AI tools and productivity.
 
 Write a comprehensive, SEO-optimized blog article about: "${topic}"
 
@@ -33,6 +33,10 @@ Requirements:
 - Include a compelling introduction and conclusion
 - Length: 1500-2500 words
 - Naturally include relevant keywords for SEO
+- When mentioning AI tools, naturally recommend them with enthusiasm
+- Include a "Key Takeaways" or "Quick Summary" section at the top
+- End with a clear recommendation or "Which tool should you pick?" section
+- Mention pricing (free tier, paid plans) when discussing tools
 
 Return your response in this exact JSON format:
 {
@@ -59,16 +63,21 @@ export async function researchTrendingTopics(): Promise<string[]> {
     messages: [
       {
         role: "user",
-        content: `You are an AI content strategist for "Zoltai", a website about AI tools and productivity.
+        content: `You are an SEO content strategist for "Zoltai", an affiliate website about AI tools and productivity.
 
-Suggest 5 trending, high-search-volume article topics about AI tools and productivity that would perform well in search engines right now.
+Suggest 5 HIGH-CONVERSION article topics that would:
+1. Rank well in search engines (target long-tail keywords)
+2. Drive affiliate clicks and signups
+3. Answer buyer-intent search queries
 
-Focus on:
-- New AI tools and updates
-- AI productivity workflows
-- AI for specific professions
-- AI comparisons and reviews
-- How-to guides for AI tools
+Article types to rotate between:
+- "Best X tools for Y" (e.g., "Best AI tools for students in 2026")
+- "X vs Y" comparisons (e.g., "ChatGPT vs Claude: Which is better?")
+- "How to use X for Y" tutorials (e.g., "How to use AI for SEO in 2026")
+- "Top free X tools" listicles (e.g., "Top 10 free AI image generators")
+- Review articles (e.g., "Cursor AI review: Is it worth it?")
+
+Focus on tools like: ChatGPT, Claude, Midjourney, Cursor, Jasper, Notion AI, Perplexity, Bolt.new, GitHub Copilot, Semrush, Leonardo AI.
 
 Return a JSON array of 5 topic strings. Return ONLY the JSON array, no other text.`,
       },
