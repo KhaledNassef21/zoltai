@@ -181,28 +181,49 @@ ${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsRevie
   const creationId = carouselData.id;
   console.log(`   ✅ Creation ID: ${creationId}`);
 
-  // Publish
-  console.log(`\n📢 Publishing post...`);
+  // Wait for media to be ready, then publish with retry
+  console.log(`\n📢 Publishing post (waiting for media to be ready)...`);
   const publishUrl = `https://graph.facebook.com/v18.0/${instagramUserId}/media_publish`;
   const publishParams = new URLSearchParams({
     creation_id: creationId,
     access_token: instagramAccessToken,
   });
 
-  const publishResponse = await fetch(`${publishUrl}?${publishParams}`, {
-    method: "POST",
-  });
+  let published = false;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    // Wait before each attempt (Instagram needs time to process media)
+    const waitSeconds = attempt * 10;
+    console.log(`   ⏳ Waiting ${waitSeconds}s before attempt ${attempt}/5...`);
+    await new Promise((r) => setTimeout(r, waitSeconds * 1000));
 
-  const publishData = await publishResponse.json();
+    const publishResponse = await fetch(`${publishUrl}?${publishParams}`, {
+      method: "POST",
+    });
 
-  if (!publishResponse.ok || publishData.error) {
+    const publishData = await publishResponse.json();
+
+    if (publishResponse.ok && !publishData.error) {
+      console.log("\n✅ Instagram post published successfully!");
+      console.log("🔗 Post ID:", publishData.id);
+      published = true;
+      break;
+    }
+
+    // If "Media not ready" error, retry
+    if (publishData.error?.error_subcode === 2207027) {
+      console.log(`   ⚠️ Media not ready yet, retrying...`);
+      continue;
+    }
+
+    // Other errors - fail immediately
     throw new Error(
       `Failed to publish: ${JSON.stringify(publishData.error || publishData)}`
     );
   }
 
-  console.log("\n✅ Instagram post published successfully!");
-  console.log("🔗 Post ID:", publishData.id);
+  if (!published) {
+    throw new Error("Failed to publish after 5 attempts - media never became ready");
+  }
 }
 
 main().catch((err) => {

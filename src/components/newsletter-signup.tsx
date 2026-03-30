@@ -13,6 +13,7 @@ export function NewsletterSignup({
   title = "Get Weekly AI Insights",
   description = "The best AI tools, productivity hacks, and guides — delivered to your inbox every week. Free.",
 }: NewsletterSignupProps) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -26,12 +27,13 @@ export function NewsletterSignup({
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ name, email }),
       });
 
       if (res.ok) {
         setStatus("success");
         setMessage("You're in! Check your inbox.");
+        setName("");
         setEmail("");
       } else {
         const data = await res.json();
@@ -48,6 +50,13 @@ export function NewsletterSignup({
     return (
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your name"
+          className="w-32 px-4 py-2.5 rounded-lg bg-card-bg border border-card-border text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+        />
+        <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -62,9 +71,6 @@ export function NewsletterSignup({
         >
           {status === "loading" ? "..." : "Subscribe"}
         </button>
-        {status === "success" && (
-          <span className="text-emerald-400 text-xs self-center">{message}</span>
-        )}
       </form>
     );
   }
@@ -77,14 +83,21 @@ export function NewsletterSignup({
             <h3 className="font-bold text-lg text-white">{title}</h3>
             <p className="text-sm text-zinc-400 mt-1">{description}</p>
           </div>
-          <form onSubmit={handleSubmit} className="flex gap-2 w-full md:w-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              className="w-full sm:w-32 px-4 py-2.5 rounded-lg bg-background border border-card-border text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+            />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
-              className="flex-1 md:w-56 px-4 py-2.5 rounded-lg bg-background border border-card-border text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+              className="flex-1 md:w-48 px-4 py-2.5 rounded-lg bg-background border border-card-border text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
             />
             <button
               type="submit"
@@ -96,11 +109,7 @@ export function NewsletterSignup({
           </form>
         </div>
         {status !== "idle" && (
-          <p
-            className={`text-xs mt-3 ${
-              status === "success" ? "text-emerald-400" : status === "error" ? "text-red-400" : "text-zinc-500"
-            }`}
-          >
+          <p className={`text-xs mt-3 ${status === "success" ? "text-emerald-400" : status === "error" ? "text-red-400" : "text-zinc-500"}`}>
             {message}
           </p>
         )}
@@ -111,47 +120,41 @@ export function NewsletterSignup({
   // Default: card variant
   return (
     <div className="p-8 rounded-xl border border-card-border bg-card-bg text-center">
-      <div className="text-3xl mb-3">
-        <span role="img" aria-label="mail">
-          &#9993;
-        </span>
-      </div>
+      <div className="text-3xl mb-3">&#9993;</div>
       <h3 className="font-bold text-xl text-white mb-2">{title}</h3>
-      <p className="text-sm text-zinc-500 mb-6 max-w-md mx-auto">
-        {description}
-      </p>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-      >
+      <p className="text-sm text-zinc-500 mb-6 max-w-md mx-auto">{description}</p>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md mx-auto">
         <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
-          required
-          className="flex-1 px-4 py-3 rounded-lg bg-background border border-card-border text-white placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Your name"
+          className="px-4 py-3 rounded-lg bg-background border border-card-border text-white placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
         />
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold transition-all hover:scale-[1.02] disabled:opacity-50 whitespace-nowrap"
-        >
-          {status === "loading" ? "Subscribing..." : "Subscribe Free"}
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            required
+            className="flex-1 px-4 py-3 rounded-lg bg-background border border-card-border text-white placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold transition-all hover:scale-[1.02] disabled:opacity-50 whitespace-nowrap"
+          >
+            {status === "loading" ? "Subscribing..." : "Subscribe Free"}
+          </button>
+        </div>
       </form>
       {status !== "idle" && (
-        <p
-          className={`text-sm mt-4 ${
-            status === "success" ? "text-emerald-400" : status === "error" ? "text-red-400" : "text-zinc-500"
-          }`}
-        >
+        <p className={`text-sm mt-4 ${status === "success" ? "text-emerald-400" : status === "error" ? "text-red-400" : "text-zinc-500"}`}>
           {message}
         </p>
       )}
-      <p className="text-xs text-zinc-700 mt-4">
-        No spam. Unsubscribe anytime.
-      </p>
+      <p className="text-xs text-zinc-700 mt-4">No spam. Unsubscribe anytime.</p>
     </div>
   );
 }

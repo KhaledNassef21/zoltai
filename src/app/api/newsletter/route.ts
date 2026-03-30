@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const { name, email } = await req.json();
 
     if (!email || !email.includes("@")) {
       return NextResponse.json(
@@ -13,6 +13,8 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    const firstName = name?.trim()?.split(" ")[0] || "there";
 
     // Send welcome email via Resend if configured
     const resendApiKey = process.env.RESEND_API_KEY;
@@ -33,6 +35,8 @@ export async function POST(req: NextRequest) {
             },
             body: JSON.stringify({
               email,
+              first_name: firstName !== "there" ? firstName : undefined,
+              last_name: name?.trim()?.split(" ").slice(1).join(" ") || undefined,
               unsubscribed: false,
             }),
           });
@@ -51,7 +55,7 @@ export async function POST(req: NextRequest) {
             subject: "Welcome to Zoltai — Your AI Journey Starts Here",
             html: `
               <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ededed; padding: 32px; border-radius: 12px;">
-                <h1 style="color: #7c3aed; font-size: 28px; margin-bottom: 16px;">Welcome to Zoltai!</h1>
+                <h1 style="color: #7c3aed; font-size: 28px; margin-bottom: 16px;">Welcome to Zoltai, ${firstName}!</h1>
                 <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px;">
                   You're now part of a growing community of AI enthusiasts and productivity hackers.
                 </p>

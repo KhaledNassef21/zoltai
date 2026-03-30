@@ -1,36 +1,38 @@
 /**
- * Mock Image Generator - Free SVG-based placeholder images
+ * Mock Image Generator - Free placeholder images
  *
- * Generates blog cover images as SVGs without any external API.
+ * Generates blog cover images using free services.
  * Used as the default free image provider.
+ *
+ * For blog covers: uses picsum.photos with deterministic seeds
+ * so the same title always gets the same image.
  */
 
 export async function generateMockImage(title: string): Promise<string> {
-  // Use a free placeholder service that doesn't require API keys
-  // These services generate real images based on keywords
-  const encodedTitle = encodeURIComponent(title.slice(0, 60));
-
-  // Option 1: Use placehold.co (free, no API key)
   const width = 1792;
   const height = 1024;
-  const bgColor = "0a0a0a";
-  const textColor = "7c3aed";
 
-  const url = `https://placehold.co/${width}x${height}/${bgColor}/${textColor}/png?text=${encodedTitle}`;
+  // Generate a deterministic seed from the title
+  const seed = title
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "")
+    .slice(0, 20);
 
-  // Verify the URL is reachable
+  // picsum.photos - high quality stock photos, free, no API key
+  // Use seed for deterministic images
+  const picsumUrl = `https://picsum.photos/seed/${seed}/${width}/${height}`;
+
+  // Resolve the redirect to get the direct URL
   try {
-    const response = await fetch(url, { method: "HEAD" });
+    const response = await fetch(picsumUrl, { redirect: "follow" });
     if (response.ok) {
-      return url;
+      return response.url; // Returns the direct fastly.picsum.photos URL
     }
   } catch {
     // Fall through to fallback
   }
 
-  // Fallback: picsum.photos (random high-quality images, free)
-  const seed = title
-    .split("")
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return `https://picsum.photos/seed/${seed}/${width}/${height}`;
+  // Fallback: placehold.co with title text
+  const encodedTitle = encodeURIComponent(title.slice(0, 40));
+  return `https://placehold.co/${width}x${height}/0a0a0a/7c3aed/png?text=${encodedTitle}`;
 }
