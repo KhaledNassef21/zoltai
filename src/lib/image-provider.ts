@@ -1,21 +1,20 @@
 // src/lib/image-provider.ts
-import { generateImageWithPollinations } from "./pollinations-image";
+import { generateMockImage } from "./mock-image";
 import { generateCoverImage as openaiCoverImage } from "./openai-image";
 
-export type ImageProvider = "pollinations" | "openai";
+export type ImageProvider = "mock" | "openai";
 
 function getProvider(): ImageProvider {
   const env = process.env.IMAGE_PROVIDER?.toLowerCase();
   if (env === "openai") return "openai";
-  return "pollinations"; // Default to free option
+  return "mock"; // Default to mock (free & stable)
 }
 
-async function generateWithPollinations(
+async function generateWithMock(
   title: string,
   description: string
 ): Promise<string> {
-  const prompt = `Modern blog cover image for: ${title}. ${description}. Minimalist, tech-focused, dark theme with purple and cyan accent colors. No text in image.`;
-  return generateImageWithPollinations(prompt);
+  return generateMockImage(title);
 }
 
 async function generateWithOpenAI(
@@ -29,13 +28,13 @@ const providers: Record<
   ImageProvider,
   (title: string, desc: string) => Promise<string>
 > = {
-  pollinations: generateWithPollinations,
+  mock: generateWithMock,
   openai: generateWithOpenAI,
 };
 
 const fallbackOrder: Record<ImageProvider, ImageProvider[]> = {
-  pollinations: ["pollinations", "openai"],
-  openai: ["openai", "pollinations"],
+  mock: ["mock", "openai"],
+  openai: ["openai", "mock"],
 };
 
 export async function generateImage(
