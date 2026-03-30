@@ -2,17 +2,24 @@
 import { generateArticle } from "../src/lib/claude";
 
 // ✅ دالة Mock Image مدمجة (بدون ملف خارجي)
+// ✅ دالة Mock Image - صور من مصدر يقبله Instagram
 async function generateMockImage(topic: string, slideNumber?: number): Promise<string> {
-  const encodedTopic = encodeURIComponent(topic.substring(0, 30));
-  const slide = slideNumber ? `+${slideNumber}` : '';
+  const slide = slideNumber ? `-${slideNumber}` : '';
   
-  // ألوان متناسقة مع ثيم Zoltai (purple/cyan)
-  const colors = ['7c3aed', '06b6d4', '8b5cf6', '14b8a6', '6366f1'];
-  const color = colors[Math.floor(Math.random() * colors.length)];
+  // ✅ استخدام صور حقيقية من GitHub CDN (مقبول من Instagram)
+  // أو استخدم أي صور مجانية من Unsplash
+  const imageUrls = [
+    'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1080&fit=crop',
+    'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=1080&h=1080&fit=crop',
+    'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1080&h=1080&fit=crop',
+    'https://images.unsplash.com/photo-1677442135137-4cd0e49a0e92?w=1080&h=1080&fit=crop',
+  ];
   
-  const imageUrl = `https://via.placeholder.com/1080x1080/${color}/ffffff?text=${encodedTopic}${slide}`;
+  // اختار صورة بناءً على رقم السلايد
+  const index = (slideNumber || 1) - 1;
+  const imageUrl = imageUrls[index % imageUrls.length];
   
-  console.log('🧪 [Mock] Image URL generated:', imageUrl);
+  console.log('🖼️ [Unsplash] Image URL generated:', imageUrl);
   return imageUrl;
 }
 
