@@ -23,9 +23,26 @@ const AI_IMAGES = [
   "https://picsum.photos/seed/aitools2/1080/1080.jpg",
 ];
 
-function getRandomImages(count: number): string[] {
+async function resolveRedirect(url: string): Promise<string> {
+  const res = await fetch(url, { redirect: "follow" });
+  return res.url;
+}
+
+async function getRandomImages(count: number): Promise<string[]> {
   const shuffled = [...AI_IMAGES].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
+  const selected = shuffled.slice(0, count);
+  // Resolve redirects - Instagram needs direct image URLs
+  const resolved: string[] = [];
+  for (const url of selected) {
+    try {
+      const direct = await resolveRedirect(url);
+      resolved.push(direct);
+      console.log(`   🔗 Resolved: ${direct.slice(0, 80)}...`);
+    } catch {
+      console.warn(`   ⚠️ Failed to resolve: ${url}`);
+    }
+  }
+  return resolved;
 }
 
 async function main() {
@@ -98,8 +115,8 @@ ${articleDescription}
 
 ${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsReview #TechTips`;
 
-  // Get random images (4 slides)
-  const imageUrls = getRandomImages(4);
+  // Get random images (4 slides) - resolve redirects for Instagram
+  const imageUrls = await getRandomImages(4);
   console.log(`📋 Total images: ${imageUrls.length}`);
 
   // Create media containers
