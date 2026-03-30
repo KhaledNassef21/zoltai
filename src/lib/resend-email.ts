@@ -13,14 +13,14 @@ interface WeeklyReport {
 
 export async function sendWeeklyReport(report: WeeklyReport): Promise<void> {
   const emailTo = process.env.REPORT_EMAIL_TO;
-  const emailFrom = process.env.RESEND_FROM_EMAIL || "Zoltai <reports@zoltai.ai>";
+  const emailFrom = process.env.RESEND_FROM_EMAIL || "Zoltai <onboarding@resend.dev>";
 
   if (!emailTo) {
     throw new Error("REPORT_EMAIL_TO not configured");
   }
 
   const topPostsHtml = report.topPosts
-    .map((p) => `<li><a href="https://zoltai.ai/blog/${p.slug}">${p.title}</a></li>`)
+    .map((p) => `<li><a href="https://zoltai.vercel.app/blog/${p.slug}">${p.title}</a></li>`)
     .join("\n");
 
   await resend.emails.send({
