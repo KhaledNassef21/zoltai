@@ -1,58 +1,130 @@
-// scripts/post-instagram.ts
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+/**
+ * Instagram Carousel Post Script
+ *
+ * Reads the latest blog article and posts a carousel to Instagram
+ * using free Unsplash images (no OpenAI needed).
+ *
+ * Funnel: Instagram → Article on Website → Affiliate CTAs
+ */
+
+// Free AI/tech themed images from Unsplash (no API key needed)
+const AI_IMAGES = [
+  "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1677442135137-4cd0e49a0e92?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1684163762442-59931e5aa3a3?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1696446702183-cbd13d78e1e7?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1675271591211-126ad94e495d?w=1080&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1686191128892-3b37add4c844?w=1080&h=1080&fit=crop",
+];
+
+function getRandomImages(count: number): string[] {
+  const shuffled = [...AI_IMAGES].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
 
 async function main() {
   console.log("📸 Creating Instagram carousel...");
 
-  // ✅ تحقق من الـ Credentials
   const instagramUserId = process.env.INSTAGRAM_USER_ID;
   const instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
 
-  console.log('🔑 Instagram User ID:', instagramUserId ? '✅ Exists' : '❌ Missing');
-  console.log('🔑 Instagram Access Token:', instagramAccessToken ? '✅ Exists' : '❌ Missing');
+  console.log(
+    "🔑 Instagram User ID:",
+    instagramUserId ? "✅ Exists" : "❌ Missing"
+  );
+  console.log(
+    "🔑 Instagram Access Token:",
+    instagramAccessToken ? "✅ Exists" : "❌ Missing"
+  );
 
   if (!instagramUserId || !instagramAccessToken) {
     throw new Error("Instagram credentials not configured");
   }
 
-  // ✅ صور Unsplash حقيقية
-  const imageUrls = [
-    'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1080&fit=crop',
-    'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=1080&h=1080&fit=crop',
-    'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1080&h=1080&fit=crop',
-    'https://images.unsplash.com/photo-1677442135137-4cd0e49a0e92?w=1080&h=1080&fit=crop',
-  ];
+  // Read latest article for the caption
+  const contentDir = path.join(process.cwd(), "src/content/blog");
+  let articleTitle = "AI Tools & Productivity Tips";
+  let articleDescription = "Discover the best AI tools to boost your workflow.";
+  let articleSlug = "";
+  let articleTags: string[] = [];
 
+  if (fs.existsSync(contentDir)) {
+    const files = fs
+      .readdirSync(contentDir)
+      .filter((f) => f.endsWith(".mdx"))
+      .sort()
+      .reverse();
+
+    if (files.length > 0) {
+      const latestFile = files[0];
+      const fileContent = fs.readFileSync(
+        path.join(contentDir, latestFile),
+        "utf-8"
+      );
+      const { data } = matter(fileContent);
+      articleTitle = data.title || articleTitle;
+      articleDescription = data.description || articleDescription;
+      articleSlug = latestFile.replace(".mdx", "");
+      articleTags = data.tags || [];
+      console.log(`📰 Latest article: ${articleTitle}`);
+    }
+  }
+
+  // Build caption with website funnel
+  const tags = articleTags
+    .map((t: string) => `#${t.replace(/\s+/g, "")}`)
+    .join(" ");
+
+  const articleUrl = articleSlug
+    ? `https://zoltai.vercel.app/blog/${articleSlug}`
+    : "https://zoltai.vercel.app";
+
+  const caption = `🤖 ${articleTitle}
+
+${articleDescription}
+
+💡 Swipe to learn more!
+
+📖 Read the full guide with tool links & free trials:
+👉 ${articleUrl}
+
+🔗 Explore all AI tools: zoltai.vercel.app/tools
+
+${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsReview #TechTips`;
+
+  // Get random images (4 slides)
+  const imageUrls = getRandomImages(4);
   console.log(`📋 Total images: ${imageUrls.length}`);
 
-  // ✅ إنشاء Media Container لكل صورة
+  // Create media containers
   const containerIds: string[] = [];
-  
+
   for (let i = 0; i < imageUrls.length; i++) {
     const imageUrl = imageUrls[i];
     console.log(`📤 Creating container ${i + 1}/${imageUrls.length}...`);
-    console.log(`   Image URL: ${imageUrl}`);
-    
+
     const containerUrl = `https://graph.facebook.com/v18.0/${instagramUserId}/media`;
     const containerParams = new URLSearchParams({
       image_url: imageUrl,
-      media_type: 'IMAGE',
+      is_carousel_item: "true",
       access_token: instagramAccessToken,
     });
 
-    console.log(`   POST ${containerUrl}?${containerParams.toString().replace(instagramAccessToken, '***')}`);
-
-    const containerResponse = await fetch(`${containerUrl}?${containerParams}`, { 
-      method: "POST" 
+    const containerResponse = await fetch(`${containerUrl}?${containerParams}`, {
+      method: "POST",
     });
 
     const containerData = await containerResponse.json();
-    console.log(`   Response Status: ${containerResponse.status} ${containerResponse.statusText}`);
-    console.log(`   Response Body:`, JSON.stringify(containerData, null, 2));
 
-    if (!containerResponse.ok) {
+    if (!containerResponse.ok || containerData.error) {
       throw new Error(
-        `Failed to create media container ${i + 1}: ${containerResponse.statusText}\n` +
-        `Error Details: ${JSON.stringify(containerData, null, 2)}`
+        `Failed to create media container ${i + 1}: ${JSON.stringify(containerData.error || containerData)}`
       );
     }
 
@@ -62,33 +134,32 @@ async function main() {
 
   console.log(`\n📦 All containers created: ${containerIds.length}`);
 
-  // ✅ إنشاء Carousel
+  // Create carousel
   console.log(`\n🔄 Creating carousel...`);
   const carouselUrl = `https://graph.facebook.com/v18.0/${instagramUserId}/media`;
   const carouselParams = new URLSearchParams({
-    media_type: 'carousel',
-    children: containerIds.join(','),
+    media_type: "CAROUSEL",
+    children: containerIds.join(","),
+    caption,
     access_token: instagramAccessToken,
   });
 
-  console.log(`   POST ${carouselUrl}?${carouselParams.toString().replace(instagramAccessToken, '***')}`);
-
-  const carouselResponse = await fetch(`${carouselUrl}?${carouselParams}`, { 
-    method: "POST" 
+  const carouselResponse = await fetch(`${carouselUrl}?${carouselParams}`, {
+    method: "POST",
   });
 
   const carouselData = await carouselResponse.json();
-  console.log(`   Response Status: ${carouselResponse.status} ${carouselResponse.statusText}`);
-  console.log(`   Response Body:`, JSON.stringify(carouselData, null, 2));
 
-  if (!carouselResponse.ok) {
-    throw new Error(`Failed to create carousel: ${carouselResponse.statusText}`);
+  if (!carouselResponse.ok || carouselData.error) {
+    throw new Error(
+      `Failed to create carousel: ${JSON.stringify(carouselData.error || carouselData)}`
+    );
   }
 
   const creationId = carouselData.id;
   console.log(`   ✅ Creation ID: ${creationId}`);
 
-  // ✅ نشر البوست
+  // Publish
   console.log(`\n📢 Publishing post...`);
   const publishUrl = `https://graph.facebook.com/v18.0/${instagramUserId}/media_publish`;
   const publishParams = new URLSearchParams({
@@ -96,16 +167,16 @@ async function main() {
     access_token: instagramAccessToken,
   });
 
-  const publishResponse = await fetch(`${publishUrl}?${publishParams}`, { 
-    method: "POST" 
+  const publishResponse = await fetch(`${publishUrl}?${publishParams}`, {
+    method: "POST",
   });
 
   const publishData = await publishResponse.json();
-  console.log(`   Response Status: ${publishResponse.status} ${publishResponse.statusText}`);
-  console.log(`   Response Body:`, JSON.stringify(publishData, null, 2));
 
-  if (!publishResponse.ok) {
-    throw new Error(`Failed to publish: ${publishResponse.statusText}`);
+  if (!publishResponse.ok || publishData.error) {
+    throw new Error(
+      `Failed to publish: ${JSON.stringify(publishData.error || publishData)}`
+    );
   }
 
   console.log("\n✅ Instagram post published successfully!");
