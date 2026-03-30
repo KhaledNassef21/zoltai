@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLang } from "./providers";
 
 export function Footer() {
+  const { t } = useLang();
+
   return (
     <footer className="border-t border-card-border py-12 mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -8,32 +13,28 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg gradient-text mb-3">Zoltai</h3>
             <p className="text-zinc-500 text-sm leading-relaxed">
-              Your guide to AI tools and productivity. Smart content, daily.
+              {t("footer.desc")}
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-sm text-zinc-300 mb-3">Links</h4>
+            <h4 className="font-semibold text-sm text-zinc-300 mb-3">
+              {t("footer.links")}
+            </h4>
             <div className="flex flex-col gap-2 text-sm text-zinc-500">
-              <Link href="/blog" className="hover:text-white transition-colors">
-                Blog
+              <Link href="/blog" className="hover:text-foreground transition-colors">
+                {t("nav.blog")}
               </Link>
-              <Link
-                href="/tools"
-                className="hover:text-white transition-colors"
-              >
-                Tools
+              <Link href="/tools" className="hover:text-foreground transition-colors">
+                {t("nav.tools")}
               </Link>
-              <Link
-                href="/about"
-                className="hover:text-white transition-colors"
-              >
-                About
+              <Link href="/about" className="hover:text-foreground transition-colors">
+                {t("nav.about")}
               </Link>
             </div>
           </div>
           <div>
             <h4 className="font-semibold text-sm text-zinc-300 mb-3">
-              Follow Us
+              {t("footer.follow")}
             </h4>
             <div className="flex flex-col gap-2 text-sm text-zinc-500">
               <span>Instagram: @zoltai</span>

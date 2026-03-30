@@ -1,12 +1,28 @@
 @import "tailwindcss";
 
-:root {
+/* Dark theme (default) */
+:root,
+[data-theme="dark"] {
   --background: #0a0a0a;
   --foreground: #ededed;
   --accent: #7c3aed;
   --accent-light: #a78bfa;
   --card-bg: #111111;
   --card-border: #1e1e1e;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --background: #fafafa;
+  --foreground: #111111;
+  --accent: #7c3aed;
+  --accent-light: #6d28d9;
+  --card-bg: #ffffff;
+  --card-border: #e4e4e7;
+  --text-secondary: #52525b;
+  --text-muted: #a1a1aa;
 }
 
 @theme inline {
@@ -24,6 +40,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background 0.3s, color 0.3s;
 }
 
 ::selection {
@@ -42,17 +59,18 @@ body {
   box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
 }
 
+/* Prose (articles) */
 .prose {
   max-width: 72ch;
 }
 
 .prose h1, .prose h2, .prose h3 {
-  color: #ededed;
+  color: var(--foreground);
   font-weight: 700;
 }
 
 .prose p {
-  color: #a1a1aa;
+  color: var(--text-secondary);
   line-height: 1.8;
 }
 
@@ -62,15 +80,15 @@ body {
 }
 
 .prose code {
-  background: #1e1e1e;
+  background: var(--card-border);
   padding: 0.15em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
 }
 
 .prose pre {
-  background: #111111;
-  border: 1px solid #1e1e1e;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 1em;
   overflow-x: auto;
@@ -82,5 +100,14 @@ body {
 }
 
 .prose ul, .prose ol {
-  color: #a1a1aa;
+  color: var(--text-secondary);
+}
+
+/* RTL support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
 }
