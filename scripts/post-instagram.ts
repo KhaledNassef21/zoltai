@@ -11,16 +11,16 @@ import matter from "gray-matter";
  * Funnel: Instagram → Article on Website → Affiliate CTAs
  */
 
-// Free AI/tech themed images from Unsplash (no API key needed)
+// Free AI/tech themed images - direct JPEG URLs that Instagram accepts
 const AI_IMAGES = [
-  "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1677442135137-4cd0e49a0e92?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1684163762442-59931e5aa3a3?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1696446702183-cbd13d78e1e7?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1675271591211-126ad94e495d?w=1080&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1686191128892-3b37add4c844?w=1080&h=1080&fit=crop",
+  "https://picsum.photos/seed/zoltai1/1080/1080.jpg",
+  "https://picsum.photos/seed/zoltai2/1080/1080.jpg",
+  "https://picsum.photos/seed/zoltai3/1080/1080.jpg",
+  "https://picsum.photos/seed/zoltai4/1080/1080.jpg",
+  "https://picsum.photos/seed/zoltai5/1080/1080.jpg",
+  "https://picsum.photos/seed/zoltai6/1080/1080.jpg",
+  "https://picsum.photos/seed/aitools1/1080/1080.jpg",
+  "https://picsum.photos/seed/aitools2/1080/1080.jpg",
 ];
 
 function getRandomImages(count: number): string[] {
@@ -123,16 +123,21 @@ ${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsRevie
     const containerData = await containerResponse.json();
 
     if (!containerResponse.ok || containerData.error) {
-      throw new Error(
-        `Failed to create media container ${i + 1}: ${JSON.stringify(containerData.error || containerData)}`
+      console.warn(
+        `   ⚠️ Container ${i + 1} failed, skipping: ${containerData.error?.message || "Unknown error"}`
       );
+      continue;
     }
 
     containerIds.push(containerData.id);
     console.log(`   ✅ Container ID: ${containerData.id}`);
   }
 
-  console.log(`\n📦 All containers created: ${containerIds.length}`);
+  console.log(`\n📦 Containers created: ${containerIds.length}`);
+
+  if (containerIds.length < 2) {
+    throw new Error("Need at least 2 images for a carousel. Only got " + containerIds.length);
+  }
 
   // Create carousel
   console.log(`\n🔄 Creating carousel...`);
