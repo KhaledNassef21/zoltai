@@ -1,27 +1,19 @@
-import OpenAI from "openai";
+// src/lib/openai-image.ts
+import { generateImage } from "./image-provider";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
+/**
+ * Generate cover image using the provider adapter (Puter/OpenAI with fallback)
+ */
 export async function generateCoverImage(
   title: string,
   description: string
 ): Promise<string> {
-  const response = await openai.images.generate({
-    model: "dall-e-3",
-    prompt: `Create a modern, clean blog cover image for an article titled "${title}".
-Description: ${description}.
-Style: Minimalist, tech-focused, dark theme with purple and cyan accent colors.
-No text in the image. Professional, suitable for a tech blog about AI.`,
-    n: 1,
-    size: "1792x1024",
-    quality: "standard",
-  });
-
-  return response.data?.[0]?.url || "";
+  return generateImage(title, description);
 }
 
+/**
+ * Generate Instagram carousel slides using the provider adapter
+ */
 export async function generateInstagramSlides(
   title: string,
   keyPoints: string[]
@@ -29,32 +21,29 @@ export async function generateInstagramSlides(
   const urls: string[] = [];
 
   // Slide 1: Title slide
-  const titleResponse = await openai.images.generate({
-    model: "dall-e-3",
-    prompt: `Create a bold, eye-catching Instagram carousel title slide.
-Topic: "${title}".
-Style: Dark background (#0a0a0a), purple gradient accents, modern typography feel.
-Clean and minimal. No actual text - just a visual representation of the topic.
-Square format, 1080x1080.`,
-    n: 1,
-    size: "1024x1024",
-    quality: "standard",
-  });
-  urls.push(titleResponse.data?.[0]?.url || "");
+  try {
+    const titleUrl = await generateImage(
+      `${title} - Instagram carousel title slide`,
+      "Bold, eye-catching social media title slide. Dark background with purple gradient accents, modern typography feel. Clean and minimal."
+    );
+    urls.push(titleUrl || "");
+  } catch (err) {
+    console.warn("⚠️ Title slide generation failed:", (err as Error).message);
+    urls.push("");
+  }
 
   // Content slides (max 3 to save API calls)
   for (const point of keyPoints.slice(0, 3)) {
-    const slideResponse = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: `Create a clean Instagram carousel content slide visual.
-Key point: "${point}".
-Style: Dark background, purple/cyan accents, tech/AI themed, abstract and modern.
-No text. Square format.`,
-      n: 1,
-      size: "1024x1024",
-      quality: "standard",
-    });
-    urls.push(slideResponse.data?.[0]?.url || "");
+    try {
+      const slideUrl = await generateImage(
+        `Instagram slide: ${point}`,
+        "Clean Instagram carousel content slide visual. Dark background, purple/cyan accents, tech/AI themed, abstract and modern. No text. Square format."
+      );
+      urls.push(slideUrl || "");
+    } catch (err) {
+      console.warn("⚠️ Slide generation failed:", (err as Error).message);
+      urls.push("");
+    }
   }
 
   return urls;
