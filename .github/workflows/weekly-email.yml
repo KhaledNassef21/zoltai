@@ -22,7 +22,7 @@ jobs:
         run: npx tsx scripts/weekly-report.ts
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
+          RESEND_FROM_EMAIL: "Zoltai <onboarding@resend.dev>"
           REPORT_EMAIL_TO: ${{ secrets.REPORT_EMAIL_TO }}
           GSC_CLIENT_EMAIL: ${{ secrets.GSC_CLIENT_EMAIL }}
           GSC_PRIVATE_KEY: ${{ secrets.GSC_PRIVATE_KEY }}
