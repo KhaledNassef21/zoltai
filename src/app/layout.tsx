@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     "AI for beginners",
     "AI automation",
   ],
+  
+  // ✅ إضافة Google Search Console Verification
+  other: {
+    "google-site-verification": "FSKh_zkNE5wDnpiVBiML628oT11QR2FF_2w5ejfJYF4",
+  },
+  
   openGraph: {
     title: "Zoltai - AI Tools & Productivity",
     description:
