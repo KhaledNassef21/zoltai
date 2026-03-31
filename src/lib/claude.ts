@@ -14,10 +14,13 @@ export async function generateArticle(topic: string): Promise<{
   description: string;
   content: string;
   tags: string[];
+  imagePrompt: string;
+  instagramCaption: string;
+  instagramHook: string;
 }> {
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
-    max_tokens: 4000,
+    max_tokens: 5000,
     messages: [
       {
         role: "user",
@@ -44,12 +47,20 @@ CRITICAL REQUIREMENTS:
 Available tools to recommend (use these names exactly):
 ChatGPT, Claude, Midjourney, Jasper, Copy.ai, Cursor, GitHub Copilot, Bolt.new, Canva AI, ElevenLabs, Runway, Leonardo AI, Perplexity, Notion AI, Zapier, Semrush, Surfer SEO, Writesonic
 
+ALSO GENERATE:
+1. A featured image prompt for AI image generation — must be DIRECTLY related to the article topic. Style: modern tech, SaaS dashboard, laptop scene, AI tools interface. 16:9 aspect ratio. NO random stock photos.
+2. An Instagram caption (short, value-driven, money-angle, ends with CTA to read the full article)
+3. An Instagram hook (first line that grabs attention, about making money with AI)
+
 Return your response in this exact JSON format:
 {
   "title": "Article title (60 chars max, SEO-friendly, include year)",
   "description": "Meta description (155 chars max, include money angle)",
   "content": "Full article in markdown",
-  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"]
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
+  "imagePrompt": "Detailed image generation prompt, photorealistic, modern tech, SaaS UI, 16:9, related to article topic",
+  "instagramCaption": "Short engaging caption with emoji, value bullets, CTA to article link",
+  "instagramHook": "Attention-grabbing first line for Instagram post"
 }
 
 Return ONLY the JSON, no other text.`,

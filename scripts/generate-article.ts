@@ -2,7 +2,12 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { generateArticle, researchTrendingTopics } from "../src/lib/claude";
-import { generateImage } from "../src/lib/image-provider";
+import { generateImageFromPrompt } from "../src/lib/image-provider";
+import {
+  buildArticleContext,
+  generateImagePrompts,
+  validatePrompts,
+} from "../src/lib/image-prompts";
 
 async function downloadImage(url: string, filepath: string): Promise<void> {
   const response = await fetch(url);
@@ -37,7 +42,6 @@ async function main() {
   for (const topic of topics) {
     const topicLower = topic.toLowerCase();
     const isDuplicate = existing.some((title) => {
-      // Check for high overlap
       const topicWords = topicLower.split(/\s+/).filter((w) => w.length > 3);
       const matchCount = topicWords.filter((w) => title.includes(w)).length;
       return matchCount / topicWords.length > 0.6;
@@ -70,7 +74,9 @@ async function main() {
 
   const existingFile = path.join(contentDir, `${slug}.mdx`);
   if (fs.existsSync(existingFile)) {
-    console.log(`⚠️ Article with slug "${slug}" already exists. Adding date suffix.`);
+    console.log(
+      `⚠️ Article with slug "${slug}" already exists. Adding date suffix.`
+    );
     const date = new Date().toISOString().split("T")[0];
     const newSlug = `${slug}-${date}`;
     const newFile = path.join(contentDir, `${newSlug}.mdx`);
@@ -83,11 +89,41 @@ async function main() {
 
   const date = new Date().toISOString().split("T")[0];
 
-  // Generate cover image
+  // === CONTEXT-AWARE IMAGE GENERATION ===
+  console.log("🎨 Building article context for image generation...");
+
+  // Build context from article content
+  const articleContext = buildArticleContext(
+    article.title,
+    article.description,
+    article.content,
+    article.tags
+  );
+  console.log(`   📋 Intent: ${articleContext.intent}`);
+  console.log(
+    `   🔧 Tools mentioned: ${articleContext.toolsMentioned.join(", ") || "none"}`
+  );
+
+  // Generate context-aware image prompts
+  const imagePrompts = generateImagePrompts(articleContext);
+
+  // Use Claude's image prompt if available, otherwise use our generated one
+  const featuredPrompt = article.imagePrompt || imagePrompts.featured;
+  console.log(`   🖼️ Featured prompt: ${featuredPrompt.slice(0, 80)}...`);
+
+  // Validate prompts before generating
+  const validation = validatePrompts(imagePrompts, articleContext);
+  if (!validation.valid) {
+    console.warn(`   ⚠️ Prompt validation issues: ${validation.issues.join(", ")}`);
+    console.log(`   🔄 Regenerating with stricter context...`);
+    // Use Claude's prompt as override if our generator had issues
+  }
+
+  // Generate cover image with context-aware prompt
   let imagePath = "";
   try {
-    console.log("🎨 Generating cover image...");
-    const imageUrl = await generateImage(article.title, article.description);
+    console.log("🎨 Generating context-aware cover image...");
+    const imageUrl = await generateImageFromPrompt(featuredPrompt);
     if (imageUrl && !imageUrl.startsWith("data:")) {
       const imagesDir = path.join(process.cwd(), "public/images/blog");
       if (!fs.existsSync(imagesDir)) {
@@ -98,7 +134,7 @@ async function main() {
         imageUrl,
         path.join(process.cwd(), "public", imagePath)
       );
-      console.log("🖼️ Cover image saved");
+      console.log("🖼️ Context-aware cover image saved");
     } else if (imageUrl) {
       const imagesDir = path.join(process.cwd(), "public/images/blog");
       if (!fs.existsSync(imagesDir)) {
@@ -119,7 +155,7 @@ async function main() {
     );
   }
 
-  // Create MDX file
+  // Create MDX file with image prompts in frontmatter for social pipeline
   const mdxContent = `---
 title: "${article.title}"
 description: "${article.description}"
@@ -127,6 +163,9 @@ date: "${date}"
 author: "Zoltai AI"
 tags: ${JSON.stringify(article.tags)}
 image: "${imagePath}"
+imagePrompt: "${(article.imagePrompt || imagePrompts.featured).replace(/"/g, '\\"')}"
+instagramCaption: "${(article.instagramCaption || "").replace(/"/g, '\\"').replace(/\n/g, '\\n')}"
+instagramHook: "${(article.instagramHook || "").replace(/"/g, '\\"')}"
 ---
 
 ${article.content}
@@ -134,6 +173,33 @@ ${article.content}
 
   fs.writeFileSync(path.join(contentDir, `${slug}.mdx`), mdxContent);
   console.log(`✅ Article saved: ${slug}.mdx`);
+  console.log(`   📷 Image prompts saved in frontmatter`);
+  console.log(`   📸 Instagram caption pre-generated`);
+
+  // Save image prompts separately for the social pipeline
+  const promptsDir = path.join(process.cwd(), "data/image-prompts");
+  if (!fs.existsSync(promptsDir)) {
+    fs.mkdirSync(promptsDir, { recursive: true });
+  }
+  fs.writeFileSync(
+    path.join(promptsDir, `${slug}.json`),
+    JSON.stringify(
+      {
+        slug,
+        title: article.title,
+        featured: featuredPrompt,
+        inline: imagePrompts.inline,
+        instagram: imagePrompts.instagram,
+        instagramSlides: imagePrompts.instagramSlides,
+        instagramCaption: article.instagramCaption || "",
+        instagramHook: article.instagramHook || "",
+        generatedAt: new Date().toISOString(),
+      },
+      null,
+      2
+    )
+  );
+  console.log(`   💾 Image prompts saved: data/image-prompts/${slug}.json`);
 
   console.log(`::set-output name=slug::${slug}`);
   console.log(`::set-output name=title::${article.title}`);

@@ -1,4 +1,4 @@
-name: Daily Instagram Post
+name: Daily Instagram + Facebook Post
 
 on:
   schedule:
@@ -18,8 +18,10 @@ jobs:
 
       - run: npm ci
 
-      - name: Post to Instagram
+      - name: Post to Instagram + Facebook
         run: npx tsx scripts/post-instagram.ts
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}

@@ -1,28 +1,26 @@
-// src/app/api/newsletter/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 
 // Email validation function
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) return false;
-  
+
   const trimmed = email.trim().toLowerCase();
-  
+
   // Common typos
   const commonTypos: Record<string, string> = {
-    'gmial.com': 'gmail.com',
-    'gmai.com': 'gmail.com',
-    'yahooo.com': 'yahoo.com',
-    'hotmial.com': 'hotmail.com',
-    'outlok.com': 'outlook.com',
+    "gmial.com": "gmail.com",
+    "gmai.com": "gmail.com",
+    "yahooo.com": "yahoo.com",
+    "hotmial.com": "hotmail.com",
+    "outlok.com": "outlook.com",
   };
-  
-  const domain = trimmed.split('@')[1];
+
+  const domain = trimmed.split("@")[1];
   if (commonTypos[domain]) {
     console.warn(`Common typo detected: ${domain} → ${commonTypos[domain]}`);
   }
-  
+
   return true;
 }
 
@@ -31,8 +29,8 @@ export async function POST(req: NextRequest) {
     const { name, email } = await req.json();
 
     // Clean input
-    const cleanEmail = email?.trim()?.toLowerCase() || '';
-    const cleanName = name?.trim() || '';
+    const cleanEmail = email?.trim()?.toLowerCase() || "";
+    const cleanName = name?.trim() || "";
 
     // Validate email
     if (!isValidEmail(cleanEmail)) {
@@ -45,7 +43,8 @@ export async function POST(req: NextRequest) {
     const firstName = cleanName.split(" ")[0] || "there";
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "Zoltai <noreply@zoltai.org>";
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL || "Zoltai <noreply@zoltai.org>";
     const adminEmail = process.env.REPORT_EMAIL_TO || "";
 
     if (!resendApiKey) {
@@ -56,10 +55,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Add to Resend Audience
+    // 1. Add to Resend Audience (primary subscriber store)
     const audienceId = process.env.RESEND_AUDIENCE_ID;
     let subscriberAdded = false;
-    
+
     if (audienceId) {
       try {
         const audienceRes = await fetch(
@@ -84,7 +83,10 @@ export async function POST(req: NextRequest) {
         if (audienceRes.ok) {
           subscriberAdded = true;
           console.log("✅ Subscriber added to Resend Audience:", cleanEmail);
-        } else if (audienceData.statusCode === 400 && audienceData.message?.includes("already exists")) {
+        } else if (
+          audienceData.statusCode === 400 &&
+          audienceData.message?.includes("already exists")
+        ) {
           subscriberAdded = true;
           console.log("ℹ️ Subscriber already exists:", cleanEmail);
         } else {
@@ -112,6 +114,9 @@ export async function POST(req: NextRequest) {
             <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px;">
               You just unlocked your guide to <strong style="color: #ededed;">making money with AI tools</strong> — no coding required.
             </p>
+            <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px;">
+              Over the next week, I'll send you:
+            </p>
             <ul style="color: #a1a1aa; line-height: 2; font-size: 16px;">
               <li>💰 Top 5 AI tools to start earning today</li>
               <li>📝 Step-by-step guide to make your first $100</li>
@@ -123,6 +128,9 @@ export async function POST(req: NextRequest) {
                 🔥 Explore AI Tools Now
               </a>
             </div>
+            <p style="color: #71717a; font-size: 14px; line-height: 1.6;">
+              P.S. Check your inbox tomorrow — I'll send you the Top 5 tools that are making people real money right now.
+            </p>
             <hr style="border-color: #1e1e1e; margin: 24px 0;" />
             <p style="color: #666; font-size: 12px; text-align: center;">
               Zoltai — Make Money Using AI Tools | <a href="https://zoltai.org" style="color: #666;">zoltai.org</a>
@@ -135,14 +143,14 @@ export async function POST(req: NextRequest) {
     if (!welcomeRes.ok) {
       const err = await welcomeRes.json();
       console.error("Welcome email error:", err);
-      
+
       // Handle bounce errors
-      if (err.statusCode === 400 && err.message?.includes('recipient')) {
+      if (err.statusCode === 400 && err.message?.includes("recipient")) {
         return NextResponse.json(
-          { 
+          {
             error: "Invalid email address. Please check and try again.",
-            code: 'INVALID_RECIPIENT',
-            details: err.message
+            code: "INVALID_RECIPIENT",
+            details: err.message,
           },
           { status: 400 }
         );
@@ -181,7 +189,47 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 4. Return Success
+    // 4. Save to local file (for drip campaign - only works locally/CI, not Vercel)
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const SUBSCRIBERS_FILE = path.join(
+        process.cwd(),
+        "data/subscribers.json"
+      );
+
+      let subscribers: Array<{
+        email: string;
+        name: string;
+        subscribedAt: string;
+        emailsSent: number[];
+      }> = [];
+
+      if (fs.existsSync(SUBSCRIBERS_FILE)) {
+        subscribers = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, "utf-8"));
+      }
+
+      const existing = subscribers.find((s) => s.email === cleanEmail);
+      if (!existing) {
+        subscribers.push({
+          email: cleanEmail,
+          name: cleanName,
+          subscribedAt: new Date().toISOString(),
+          emailsSent: [0],
+        });
+
+        const dir = path.dirname(SUBSCRIBERS_FILE);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(
+          SUBSCRIBERS_FILE,
+          JSON.stringify(subscribers, null, 2)
+        );
+      }
+    } catch {
+      // Expected to fail on Vercel (read-only filesystem) — that's OK
+      // Drip emails will use Resend audience contacts instead
+    }
+
     return NextResponse.json({
       success: true,
       message: "Successfully subscribed!",
