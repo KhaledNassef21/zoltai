@@ -1,49 +1,132 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn about Zoltai — your daily source for AI tools and productivity insights.",
+  title: "About Zoltai - Make Money with AI Tools",
+  description:
+    "Zoltai helps you discover the best AI tools to earn money online, boost productivity, and build your side hustle. No coding required.",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Zoltai",
+  url: "https://zoltai.vercel.app",
+  description:
+    "Discover the best AI tools to earn money online. No coding required.",
+  sameAs: [
+    "https://www.instagram.com/zoltai.ai/",
+    "https://www.facebook.com/zoltai.community",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "info.zoltai@gmail.com",
+    contactType: "customer service",
+  },
 };
 
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">
         About <span className="gradient-text">Zoltai</span>
       </h1>
 
       <div className="prose">
         <p>
-          Zoltai is your daily source for AI tools, productivity tips, and
-          artificial intelligence insights. We publish fresh, research-backed
-          content every day to help you stay ahead in the rapidly evolving world
-          of AI.
+          Zoltai is your guide to <strong>making money using AI tools</strong> —
+          no coding required. We publish daily articles, honest reviews, and
+          step-by-step tutorials to help you earn money online using the best
+          artificial intelligence tools available today.
         </p>
 
         <h2>Our Mission</h2>
         <p>
-          We believe AI should be accessible to everyone — from beginners taking
-          their first steps to professionals looking to optimize their workflows.
-          Our goal is to bridge the gap between complex AI technology and
-          practical, everyday use.
+          We believe everyone can earn from AI — whether you&apos;re a complete
+          beginner or a seasoned professional. Our mission is to bridge the gap
+          between powerful AI technology and real income opportunities, making it
+          accessible to anyone with an internet connection.
         </p>
 
         <h2>What We Cover</h2>
         <ul>
-          <li>In-depth AI tool reviews and comparisons</li>
-          <li>Productivity hacks using artificial intelligence</li>
-          <li>Step-by-step tutorials and guides</li>
-          <li>Industry trends and breaking AI news</li>
-          <li>Workflow automation strategies</li>
+          <li>
+            <strong>AI Tool Reviews &amp; Comparisons</strong> — Honest, in-depth
+            reviews with free trials and deals
+          </li>
+          <li>
+            <strong>Money-Making Strategies</strong> — Step-by-step guides to
+            earn with AI (freelancing, content creation, automation)
+          </li>
+          <li>
+            <strong>Productivity Hacks</strong> — Automate your work and 10x
+            your output using AI
+          </li>
+          <li>
+            <strong>Beginner-Friendly Tutorials</strong> — Start from zero, no
+            technical skills needed
+          </li>
+          <li>
+            <strong>Weekly Newsletter</strong> — The best AI tools and strategies
+            delivered to your inbox
+          </li>
         </ul>
 
-        <h2>Powered by AI</h2>
+        <h2>How It Works</h2>
         <p>
-          In true AI fashion, our content pipeline is powered by artificial
-          intelligence. We use AI to research trending topics, generate initial
-          drafts, create cover images, and optimize for SEO — all while
-          maintaining quality and accuracy through careful curation.
+          Our content pipeline is powered by AI itself. We use Claude to research
+          trending topics and generate high-quality articles, optimize for SEO
+          automatically, and publish daily — ensuring you always have fresh,
+          actionable content to learn from.
         </p>
+
+        <h2>Join the Community</h2>
+        <p>
+          Follow us on{" "}
+          <a
+            href="https://www.instagram.com/zoltai.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram (@zoltai.ai)
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.facebook.com/zoltai.community"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook
+          </a>{" "}
+          for daily AI tips. Have a question? Email us at{" "}
+          <a href="mailto:info.zoltai@gmail.com">info.zoltai@gmail.com</a>.
+        </p>
+      </div>
+
+      <div className="mt-12 flex flex-col sm:flex-row gap-4">
+        <Link
+          href="/tools"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-medium transition-colors"
+        >
+          Explore AI Tools
+        </Link>
+        <Link
+          href="/blog"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-card-border text-zinc-300 hover:bg-card-bg transition-colors"
+        >
+          Read the Blog
+        </Link>
+        <Link
+          href="/contact"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-card-border text-zinc-300 hover:bg-card-bg transition-colors"
+        >
+          Contact Us
+        </Link>
       </div>
     </div>
   );

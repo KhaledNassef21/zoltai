@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zoltai.vercel.app"),
   title: {
-    default: "Zoltai - Make Money Using AI Tools",
+    default: "Zoltai - Make Money Using AI Tools (No Coding Required)",
     template: "%s | Zoltai",
   },
   description:
@@ -31,6 +32,9 @@ export const metadata: Metadata = {
     "AI for beginners",
     "AI automation",
     "best AI tools",
+    "make money online",
+    "passive income AI",
+    "AI freelancing",
   ],
   other: {
     "google-site-verification": "FSKh_zkNE5wDnpiVBiML628oT11QR2FF_2w5ejfJYF4",
@@ -42,6 +46,7 @@ export const metadata: Metadata = {
     siteName: "Zoltai",
     locale: "en_US",
     type: "website",
+    url: "https://zoltai.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
@@ -52,6 +57,34 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://zoltai.vercel.app",
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Zoltai",
+  url: "https://zoltai.vercel.app",
+  description:
+    "Discover the best AI tools to earn money online, boost productivity, and build your side hustle. No coding required.",
+  publisher: {
+    "@type": "Organization",
+    name: "Zoltai",
+    url: "https://zoltai.vercel.app",
+    sameAs: [
+      "https://www.instagram.com/zoltai.ai/",
+      "https://www.facebook.com/zoltai.community",
+    ],
   },
 };
 
@@ -66,6 +99,12 @@ export default function RootLayout({
       data-theme="dark"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <Providers>
           <Header />

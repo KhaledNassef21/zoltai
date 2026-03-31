@@ -26,7 +26,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier available. Plus plan $20/month.",
     url: "https://chat.openai.com",
-    affiliateUrl: "https://chat.openai.com",
+    affiliateUrl: "https://chat.openai.com/?ref=zoltai",
     featured: true,
     rating: 5,
   },
@@ -40,7 +40,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier available. Pro plan $20/month.",
     url: "https://claude.ai",
-    affiliateUrl: "https://claude.ai",
+    affiliateUrl: "https://claude.ai/?ref=zoltai",
     featured: true,
     rating: 5,
   },
@@ -54,7 +54,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier available. Advanced $20/month.",
     url: "https://gemini.google.com",
-    affiliateUrl: "https://gemini.google.com",
+    affiliateUrl: "https://gemini.google.com/?ref=zoltai",
     rating: 4,
   },
 
@@ -69,7 +69,7 @@ export const tools: Tool[] = [
     pricing: "Free Trial",
     pricingDetail: "7-day free trial. Plans from $49/month.",
     url: "https://jasper.ai",
-    affiliateUrl: "https://jasper.ai",
+    affiliateUrl: "https://jasper.ai?fpr=zoltai",
     rating: 4,
   },
   {
@@ -82,7 +82,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free plan with 2000 words/month. Pro from $49/month.",
     url: "https://copy.ai",
-    affiliateUrl: "https://copy.ai",
+    affiliateUrl: "https://www.copy.ai?via=zoltai",
     rating: 4,
   },
   {
@@ -95,7 +95,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free trial available. Plans from $16/month.",
     url: "https://writesonic.com",
-    affiliateUrl: "https://writesonic.com",
+    affiliateUrl: "https://writesonic.com?ref=zoltai",
     rating: 4,
   },
 
@@ -110,7 +110,7 @@ export const tools: Tool[] = [
     pricing: "Paid",
     pricingDetail: "Plans from $10/month.",
     url: "https://midjourney.com",
-    affiliateUrl: "https://midjourney.com",
+    affiliateUrl: "https://midjourney.com/?ref=zoltai",
     featured: true,
     rating: 5,
   },
@@ -124,7 +124,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "150 free tokens/day. Plans from $12/month.",
     url: "https://leonardo.ai",
-    affiliateUrl: "https://leonardo.ai",
+    affiliateUrl: "https://app.leonardo.ai/?ref=zoltai",
     rating: 4,
   },
   {
@@ -137,7 +137,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier with daily generations. Plus from $8/month.",
     url: "https://ideogram.ai",
-    affiliateUrl: "https://ideogram.ai",
+    affiliateUrl: "https://ideogram.ai/?ref=zoltai",
     rating: 4,
   },
 
@@ -152,7 +152,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free hobby plan. Pro $20/month.",
     url: "https://cursor.sh",
-    affiliateUrl: "https://cursor.sh",
+    affiliateUrl: "https://cursor.sh/?ref=zoltai",
     featured: true,
     rating: 5,
   },
@@ -166,7 +166,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free for students/OSS. Individual $10/month.",
     url: "https://github.com/features/copilot",
-    affiliateUrl: "https://github.com/features/copilot",
+    affiliateUrl: "https://github.com/features/copilot?ref=zoltai",
     rating: 5,
   },
   {
@@ -179,7 +179,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier available. Pro from $20/month.",
     url: "https://bolt.new",
-    affiliateUrl: "https://bolt.new",
+    affiliateUrl: "https://bolt.new/?ref=zoltai",
     rating: 4,
   },
 
@@ -194,7 +194,7 @@ export const tools: Tool[] = [
     pricing: "Free Trial",
     pricingDetail: "7-day trial. Plans from $89/month.",
     url: "https://surferseo.com",
-    affiliateUrl: "https://surferseo.com",
+    affiliateUrl: "https://surferseo.com/?fpr=zoltai",
     rating: 4,
   },
   {
@@ -207,7 +207,7 @@ export const tools: Tool[] = [
     pricing: "Free Trial",
     pricingDetail: "7-day free trial. Plans from $129/month.",
     url: "https://semrush.com",
-    affiliateUrl: "https://semrush.com",
+    affiliateUrl: "https://www.semrush.com/lp/affiliate/?ref=zoltai",
     rating: 5,
   },
 
@@ -222,7 +222,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free plan available. AI add-on $10/member/month.",
     url: "https://notion.so",
-    affiliateUrl: "https://notion.so",
+    affiliateUrl: "https://affiliate.notion.so/zoltai",
     rating: 5,
   },
   {
@@ -235,7 +235,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free plan with 100 tasks/month. Starter $19.99/month.",
     url: "https://zapier.com",
-    affiliateUrl: "https://zapier.com",
+    affiliateUrl: "https://zapier.com/?ref=zoltai",
     rating: 4,
   },
 
@@ -250,7 +250,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier available. Pro $20/month.",
     url: "https://perplexity.ai",
-    affiliateUrl: "https://perplexity.ai",
+    affiliateUrl: "https://perplexity.ai/?ref=zoltai",
     featured: true,
     rating: 5,
   },
@@ -266,8 +266,49 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Generous free tier. Pro $20/month.",
     url: "https://vercel.com",
-    affiliateUrl: "https://vercel.com",
+    affiliateUrl: "https://vercel.com/?ref=zoltai",
     rating: 5,
+  },
+
+  // === NEW TOOLS ===
+  {
+    name: "ElevenLabs",
+    slug: "elevenlabs",
+    description:
+      "AI voice generation and cloning. Create realistic voiceovers for videos, podcasts, and audiobooks.",
+    category: "AI Writing",
+    useCase: "AI voiceovers and text-to-speech",
+    pricing: "Freemium",
+    pricingDetail: "Free tier with 10K chars/month. Plans from $5/month.",
+    url: "https://elevenlabs.io",
+    affiliateUrl: "https://elevenlabs.io/?ref=zoltai",
+    rating: 5,
+  },
+  {
+    name: "Canva AI",
+    slug: "canva-ai",
+    description:
+      "Design platform with AI-powered tools. Magic Write, text-to-image, background remover, and more.",
+    category: "AI Image",
+    useCase: "Social media graphics, presentations, and marketing materials",
+    pricing: "Freemium",
+    pricingDetail: "Free plan available. Pro $12.99/month.",
+    url: "https://canva.com",
+    affiliateUrl: "https://partner.canva.com/zoltai",
+    rating: 5,
+  },
+  {
+    name: "Runway",
+    slug: "runway",
+    description:
+      "AI video generation and editing. Text-to-video, image-to-video, and advanced video editing with Gen-3.",
+    category: "AI Image",
+    useCase: "AI video creation and editing for creators",
+    pricing: "Freemium",
+    pricingDetail: "Limited free tier. Plans from $12/month.",
+    url: "https://runwayml.com",
+    affiliateUrl: "https://runwayml.com/?ref=zoltai",
+    rating: 4,
   },
 ];
 

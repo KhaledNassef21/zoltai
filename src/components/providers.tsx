@@ -33,7 +33,8 @@ const translations: Record<string, Record<Lang, string>> = {
   // Nav
   "nav.blog": { en: "Blog", ar: "\u0645\u062f\u0648\u0646\u0629" },
   "nav.tools": { en: "Tools", ar: "\u0623\u062f\u0648\u0627\u062a" },
-  "nav.about": { en: "About", ar: "\u0639\u0646\u0627" },
+  "nav.about": { en: "About", ar: "عنا" },
+  "nav.contact": { en: "Contact", ar: "تواصل" },
 
   // Hero
   "hero.title1": { en: "Make Money Using", ar: "\u0627\u0631\u0628\u062d \u0641\u0644\u0648\u0633 \u0628\u0627\u0633\u062a\u062e\u062f\u0627\u0645" },

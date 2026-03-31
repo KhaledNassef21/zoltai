@@ -33,6 +33,12 @@ export function Header() {
           >
             {t("nav.about")}
           </Link>
+          <Link
+            href="/contact"
+            className="text-zinc-400 hover:text-foreground transition-colors hidden sm:block"
+          >
+            {t("nav.contact")}
+          </Link>
 
           {/* Language Toggle */}
           <button

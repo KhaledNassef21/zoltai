@@ -52,8 +52,39 @@ export default async function BlogPost({ params }: Props) {
   const topPick = shuffled[0];
   const secondPick = shuffled[1];
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: post.image
+      ? `https://zoltai.vercel.app${post.image}`
+      : undefined,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Organization",
+      name: post.author || "Zoltai",
+      url: "https://zoltai.vercel.app",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Zoltai",
+      url: "https://zoltai.vercel.app",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://zoltai.vercel.app/blog/${slug}`,
+    },
+  };
+
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="mb-10">
         <div className="flex items-center gap-2 mb-4">
           {post.tags.map((tag) => (
@@ -89,6 +120,9 @@ export default async function BlogPost({ params }: Props) {
             src={post.image}
             alt={post.title}
             className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
       )}
