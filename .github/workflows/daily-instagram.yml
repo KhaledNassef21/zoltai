@@ -25,3 +25,11 @@ jobs:
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+
+      - name: Save post log (prevent duplicate posts)
+        run: |
+          git config user.name "zoltai-bot"
+          git config user.email "bot@zoltai.org"
+          git add data/posted-slugs.json || true
+          git diff --staged --quiet || git commit -m "chore: update posted slugs log"
+          git push || true

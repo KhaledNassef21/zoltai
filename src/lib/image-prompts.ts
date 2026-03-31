@@ -237,74 +237,53 @@ function buildInstagramPrompt(ctx: ArticleContext): string {
   return `${STYLE_INSTAGRAM}, square format 1:1. Bold text overlay: "${shortTitle}". Background: abstract tech grid with glowing nodes, subtle AI circuit pattern. Purple gradient accent bar at bottom. Zoltai branding. High contrast, Instagram-optimized, eye-catching`;
 }
 
+/**
+ * Build 4 Instagram slide prompts that are SHORT and COMPLETELY DIFFERENT.
+ *
+ * IMPORTANT: Pollinations works best with SHORT prompts (~60-80 chars).
+ * Long prompts get truncated and produce generic/duplicate results.
+ *
+ * Each slide has a different SUBJECT + SCENE + MOOD.
+ */
 function buildInstagramSlides(
   ctx: ArticleContext,
   toolVisuals: string[]
 ): string[] {
-  const slides: string[] = [];
-  const topTools = ctx.toolsMentioned.slice(0, 4);
-  const topicShort = ctx.title.slice(0, 45);
+  const mainTool = ctx.toolsMentioned[0] || "AI";
+  const secondTool = ctx.toolsMentioned[1] || "chatbot";
 
-  // === SLIDE 1: Hero/Topic Overview ===
-  // Wide establishing shot — what this article is about
-  const slide1Scenes: Record<string, string> = {
-    "make-money": `Overhead bird-eye view of a modern desk with laptop showing a revenue dashboard with green upward graphs, coffee cup, smartphone with notification "$500 earned", scattered dollar bills, warm golden lamp light, cozy entrepreneur workspace`,
-    productivity: `Flat lay top-down photo of organized desk: laptop with multiple app windows open, tablet with calendar, wireless mouse, sticky notes with checkmarks, plant, clean minimal aesthetic, bright daylight`,
-    comparison: `Split-screen laptop display: left side shows one AI tool interface in blue theme, right side shows another in green theme, "VS" text between them, modern glass desk, dramatic side lighting`,
-    tutorial: `Over-the-shoulder shot of person following step-by-step guide on laptop screen, screen shows numbered instructions with progress bar at 60%, notepad with handwritten notes beside laptop, warm desk lamp`,
-    review: `Close-up of laptop screen showing a detailed product review page with 5-star rating, pros/cons list visible, modern home office background blurred, ring light reflection on screen`,
+  // SLIDE 1: Topic overview — aerial/flat lay desk shot
+  const slide1Options: Record<string, string> = {
+    "make-money": `flat lay desk with laptop showing revenue dashboard, dollar bills, coffee cup, golden warm light`,
+    productivity: `organized desk flat lay, laptop with apps open, tablet, sticky notes, bright daylight`,
+    comparison: `two phones side by side showing different apps, marble desk, studio lighting`,
+    tutorial: `person following tutorial on laptop, notepad with notes, warm desk lamp`,
+    review: `laptop showing product review with star rating, modern home office, ring light`,
   };
-  slides.push(
-    `${slide1Scenes[ctx.intent] || slide1Scenes["make-money"]}. Topic: "${topicShort}". Square 1:1, photorealistic, 8K, sharp focus, no text overlay`
-  );
+  const slide1 = slide1Options[ctx.intent] || slide1Options["make-money"];
 
-  // === SLIDE 2: Specific Tool in Action ===
-  // Tight shot of ONE specific tool being used
-  if (toolVisuals.length > 0) {
-    const tool = topTools[0];
-    const visual = toolVisuals[0];
-    slides.push(
-      `Tight close-up screenshot-style image of ${visual}. The screen fills 80% of the frame, slight angle tilt, laptop bezel visible at edges, fingers on keyboard at bottom edge. Shallow depth of field, ambient purple LED desk lighting from the side. Square 1:1, ultra detailed, realistic monitor glow`
-    );
-  } else {
-    slides.push(
-      `Macro close-up of laptop screen showing a modern AI chatbot conversation interface, dark mode UI, the AI is generating a long detailed response with typing indicator, screen glow illuminating keyboard in dark room, dramatic moody lighting. Square 1:1, photorealistic, cinematic`
-    );
-  }
+  // SLIDE 2: Tool in action — close up screen shot
+  const slide2 = `close-up ${mainTool} interface on laptop screen, dark room, purple LED ambient light, keyboard visible`;
 
-  // === SLIDE 3: Results / Benefit / Second Tool ===
-  // Different visual angle — show the OUTCOME or a DIFFERENT tool
-  if (ctx.intent === "make-money") {
-    slides.push(
-      `Smartphone screen showing a payment notification app: "You received $1,247.00" with green checkmark, hand holding phone, blurred laptop with analytics in background, confetti particles in air, celebratory warm lighting, bokeh effect. Square 1:1, photorealistic, vibrant colors`
-    );
-  } else if (toolVisuals.length > 1) {
-    const visual2 = toolVisuals[1];
-    slides.push(
-      `Wide shot of ultrawide curved monitor displaying ${visual2}, modern standing desk setup, RGB LED strip glowing blue behind monitor, wireless keyboard and trackpad, small succulent plant on desk corner, evening ambient light. Square 1:1, photorealistic, tech lifestyle aesthetic`
-    );
-  } else if (ctx.intent === "comparison") {
-    slides.push(
-      `Creative flat lay: two smartphones side by side on marble surface, each showing different AI app interface, one with blue accent one with orange accent, stylus pen between them, comparison checklist paper partially visible, bright even studio lighting. Square 1:1, product photography style`
-    );
-  } else {
-    slides.push(
-      `Person at standing desk celebrating with arms slightly raised, laptop screen shows completed task with green checkmark and "All Done!" message, modern minimalist office with large window showing city skyline, golden hour sunlight streaming in. Square 1:1, photorealistic, aspirational`
-    );
-  }
-
-  // === SLIDE 4: CTA / Action Shot ===
-  // Energetic, forward-looking, drives action
-  const ctaScenes = [
-    `Dramatic close-up of finger about to tap a glowing purple "Start Now" button on tablet screen, dark background, the button emits a soft purple light glow on the finger, futuristic tech feel, shallow depth of field. Square 1:1, cinematic, high contrast`,
-    `Laptop on desk open to a tools comparison page, cursor hovering over "Try Free" button, screen brightness illuminating dark room, purple and blue interface colors, coffee steam rising from cup in foreground, late night hustle energy. Square 1:1, moody photorealistic`,
-    `Aerial view of workspace transformation: left half is messy cluttered desk (old way), right half is clean organized setup with AI tools on screen (new way), clear dividing line between chaos and order, bright lighting on clean side. Square 1:1, creative concept photography`,
+  // SLIDE 3: Results/outcome — completely different scene
+  const slide3Options = [
+    `hand holding smartphone with payment notification $1000, blurred laptop background, celebratory mood`,
+    `person at standing desk smiling, laptop shows green checkmark done, city skyline window, golden hour`,
+    `ultrawide monitor showing ${secondTool} dashboard, RGB lights, standing desk, evening mood`,
+    `coffee shop table, open laptop with analytics graphs, cappuccino, natural window light, cozy`,
   ];
-  slides.push(
-    ctaScenes[Math.floor(Math.random() * ctaScenes.length)]
-  );
+  const slide3 = slide3Options[Math.floor(Math.random() * slide3Options.length)];
 
-  return slides;
+  // SLIDE 4: Action/CTA — energetic different angle
+  const slide4Options = [
+    `finger tapping glowing purple Start button on tablet, dark background, futuristic glow`,
+    `rocket launching from laptop screen, sparks and light trails, dark tech background, epic`,
+    `before and after desk: messy left side vs clean organized right side with AI on screen`,
+    `multiple floating holographic app screens around laptop, futuristic workspace, blue purple glow`,
+  ];
+  const slide4 = slide4Options[Math.floor(Math.random() * slide4Options.length)];
+
+  return [slide1, slide2, slide3, slide4];
 }
 
 /**

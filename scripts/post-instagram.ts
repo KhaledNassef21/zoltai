@@ -27,15 +27,18 @@ import { getHostedImageUrl } from "../src/lib/image-host";
 // ==================== IMAGE GENERATION ====================
 
 /**
- * Generate context-aware images and host them on a direct URL service.
+ * Generate context-aware images and host them for Instagram.
  *
- * Flow: Pollinations (AI generation) → catbox.moe (hosting) → Direct URL for Instagram
- * Fallback: picsum.photos with context-aware seeds → Direct CDN URL
+ * Flow: Pollinations (AI gen) → catbox.moe (host) → Direct URL → Instagram API
  *
- * Instagram API REQUIRES direct image URLs with proper content-type headers.
- * Pollinations URLs are generation endpoints and get rejected with:
- * "Only photo or video can be accepted as media type"
+ * KEY FIXES for duplicate images:
+ * 1. Each slide uses a WIDELY SEPARATED seed (1000, 30000, 60000, 90000)
+ * 2. Prompts are SHORT (~80 chars) — Pollinations ignores long prompts
+ * 3. Each prompt describes a COMPLETELY DIFFERENT scene
+ * 4. Fallback uses DIFFERENT picsum seeds per slide
  */
+const SLIDE_SEEDS = [1111, 33333, 66666, 99999]; // Widely separated seeds
+
 async function generateContextAwareImages(
   prompts: string[],
   count: number,
@@ -45,30 +48,33 @@ async function generateContextAwareImages(
 
   for (let i = 0; i < Math.min(prompts.length, count); i++) {
     try {
-      console.log(`   🎨 Generating + hosting slide ${i + 1}/${count}...`);
+      console.log(`   🎨 Slide ${i + 1}/${count} — seed=${SLIDE_SEEDS[i]}`);
+      console.log(`   📝 Prompt: "${prompts[i].slice(0, 70)}..."`);
 
-      // Generate with Pollinations
-      const pollinationsUrl = await generateInstagramImageWithPollinations(prompts[i]);
+      // Generate with Pollinations using EXPLICIT different seed per slide
+      const pollinationsUrl = await generateInstagramImageWithPollinations(
+        prompts[i],
+        SLIDE_SEEDS[i]
+      );
 
       // Download from Pollinations → Upload to free host → Get direct URL
       const hostedUrl = await getHostedImageUrl(
         pollinationsUrl,
-        `${fallbackSeed}-slide${i}`,
+        `${fallbackSeed}-s${i}`,
         i
       );
 
       if (hostedUrl) {
         urls.push(hostedUrl);
-        console.log(`   ✅ Slide ${i + 1} ready: ${hostedUrl.slice(0, 60)}...`);
+        console.log(`   ✅ Slide ${i + 1} hosted: ${hostedUrl.slice(0, 60)}...`);
       }
     } catch (err) {
-      console.warn(
-        `   ⚠️ Slide ${i + 1} failed: ${(err as Error).message}`
-      );
+      console.warn(`   ⚠️ Slide ${i + 1} failed: ${(err as Error).message}`);
 
-      // Last resort fallback: picsum with unique seed
+      // Fallback: picsum with UNIQUE seed per slide
       try {
-        const fallbackUrl = `https://picsum.photos/seed/${fallbackSeed}${i}/1080/1080.jpg`;
+        const uniqueSeed = `${fallbackSeed}${i}${Date.now() % 1000}`;
+        const fallbackUrl = `https://picsum.photos/seed/${uniqueSeed}/1080/1080.jpg`;
         const res = await fetch(fallbackUrl, { redirect: "follow" });
         if (res.ok) {
           urls.push(res.url);
@@ -399,6 +405,17 @@ async function main() {
     throw new Error("Instagram credentials not configured");
   }
 
+  // ===== DUPLICATE POST CHECK =====
+  const postLogFile = path.join(process.cwd(), "data/posted-slugs.json");
+  let postedSlugs: string[] = [];
+  try {
+    if (fs.existsSync(postLogFile)) {
+      postedSlugs = JSON.parse(fs.readFileSync(postLogFile, "utf-8"));
+    }
+  } catch {
+    postedSlugs = [];
+  }
+
   // ===== STEP 1: Read latest article =====
   const contentDir = path.join(process.cwd(), "src/content/blog");
   let articleTitle = "AI Tools & Money Making Tips";
@@ -434,6 +451,34 @@ async function main() {
       savedInstagramCaption = data.instagramCaption || "";
       savedInstagramHook = data.instagramHook || "";
       console.log(`📰 Latest article: ${articleTitle}`);
+
+      // Check if already posted about this article
+      if (postedSlugs.includes(articleSlug)) {
+        // Find next unposted article
+        console.log(`⚠️ Already posted: ${articleSlug}`);
+        for (const file of files.slice(1)) {
+          const slug = file.replace(".mdx", "");
+          if (!postedSlugs.includes(slug)) {
+            const fc = fs.readFileSync(path.join(contentDir, file), "utf-8");
+            const { data: d, content: c } = matter(fc);
+            articleTitle = d.title || articleTitle;
+            articleDescription = d.description || articleDescription;
+            articleSlug = slug;
+            articleTags = d.tags || [];
+            articleContent = c;
+            savedInstagramCaption = d.instagramCaption || "";
+            savedInstagramHook = d.instagramHook || "";
+            console.log(`📰 Switched to unposted article: ${articleTitle}`);
+            break;
+          }
+        }
+
+        // If all articles have been posted
+        if (postedSlugs.includes(articleSlug)) {
+          console.log("✅ All articles already posted. Nothing new to post.");
+          process.exit(0);
+        }
+      }
     }
   }
 
@@ -453,36 +498,11 @@ async function main() {
   // ===== STEP 3: Generate context-aware images =====
   console.log("\n🎨 Generating context-aware images...");
 
-  // Check for saved prompts first
-  const promptsFile = path.join(
-    process.cwd(),
-    `data/image-prompts/${articleSlug}.json`
-  );
-  let slidePrompts: string[];
-
-  if (fs.existsSync(promptsFile)) {
-    const saved = JSON.parse(fs.readFileSync(promptsFile, "utf-8"));
-    slidePrompts = saved.instagramSlides || [];
-    console.log(`   📂 Using saved image prompts from generate-article`);
-  } else {
-    // Generate fresh prompts
-    const imagePrompts = generateImagePrompts(ctx);
-    slidePrompts = imagePrompts.instagramSlides;
-    console.log(`   🆕 Generated fresh image prompts`);
-  }
-
-  // Ensure we have enough slide prompts — each one MUST be visually different
-  const diverseFallbacks = [
-    `Overhead flat lay of modern workspace: laptop showing AI dashboard, wireless earbuds, notebook with pen, coffee latte art, smartphone with notifications, bright natural daylight, organized minimal desk. Square 1:1, photorealistic, lifestyle`,
-    `Close-up of hands typing on backlit keyboard, laptop screen shows ${ctx.toolsMentioned[0] || "AI chatbot"} interface with colorful data visualization, purple LED ambient light from behind monitor, bokeh background. Square 1:1, cinematic, moody`,
-    `Smartphone held in hand showing AI app with earnings summary "$847 this month", blurred laptop with charts in background, modern cafe setting with warm lighting, shallow depth of field. Square 1:1, photorealistic, aspirational`,
-    `Split screen creative: left side shows clock with "4 hours" text, right side shows same task with AI tool completed in "10 minutes", futuristic minimal design, high contrast purple and white. Square 1:1, infographic style, bold`,
-  ];
-  let fallbackIdx = 0;
-  while (slidePrompts.length < 4) {
-    slidePrompts.push(diverseFallbacks[fallbackIdx % diverseFallbacks.length]);
-    fallbackIdx++;
-  }
+  // ALWAYS generate fresh prompts — old saved prompts caused duplicate images
+  const imagePrompts = generateImagePrompts(ctx);
+  const slidePrompts = imagePrompts.instagramSlides;
+  console.log(`   🆕 Generated 4 unique slide prompts`);
+  slidePrompts.forEach((p, i) => console.log(`   [${i + 1}] "${p.slice(0, 70)}..."`));
 
   // Generate images with Pollinations → Host on catbox.moe → Get direct URLs
   // Fallback: picsum.photos with article slug as seed
@@ -534,6 +554,19 @@ async function main() {
   // ===== STEP 7: Cross-post to Facebook =====
   if (postId) {
     await crossPostToFacebook(imageUrls, caption, articleUrl);
+  }
+
+  // ===== STEP 8: Log posted slug to prevent duplicates =====
+  if (postId && articleSlug) {
+    try {
+      postedSlugs.push(articleSlug);
+      const logDir = path.dirname(postLogFile);
+      if (!fs.existsSync(logDir)) fs.mkdirSync(logDir, { recursive: true });
+      fs.writeFileSync(postLogFile, JSON.stringify(postedSlugs, null, 2));
+      console.log(`📝 Logged: ${articleSlug} (won't be posted again)`);
+    } catch (err) {
+      console.warn(`⚠️ Couldn't save post log: ${(err as Error).message}`);
+    }
   }
 
   console.log("\n🎉 Social pipeline complete!");

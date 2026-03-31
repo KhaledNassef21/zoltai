@@ -4,7 +4,8 @@
  * 100% Free - No API Key Required!
  * https://pollinations.ai
  *
- * Now supports context-aware prompts for relevant images.
+ * IMPORTANT: Short prompts (under 100 chars) produce MUCH better results.
+ * Long prompts get truncated/ignored and produce generic images.
  */
 
 export interface PollinationsOptions {
@@ -15,7 +16,8 @@ export interface PollinationsOptions {
 }
 
 /**
- * Generate image with Pollinations AI from a detailed prompt
+ * Generate image with Pollinations AI from a prompt
+ * Uses explicit seed to guarantee different images per call
  */
 export async function generateImageWithPollinations(
   prompt: string,
@@ -25,25 +27,29 @@ export async function generateImageWithPollinations(
     width = 1792,
     height = 1024,
     nologo = true,
-    seed = Math.floor(Math.random() * 10000),
+    seed = Math.floor(Math.random() * 100000),
   } = options;
 
-  const encodedPrompt = encodeURIComponent(prompt);
+  // Pollinations works best with SHORT prompts — truncate to ~150 chars
+  const shortPrompt = prompt.slice(0, 150);
+  const encodedPrompt = encodeURIComponent(shortPrompt);
   const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${width}&height=${height}&nologo=${nologo}&seed=${seed}`;
 
-  console.log("✅ [Pollinations] Image URL generated");
+  console.log(`✅ [Pollinations] seed=${seed}, prompt="${shortPrompt.slice(0, 60)}..."`);
   return imageUrl;
 }
 
 /**
- * Generate a square Instagram image (1080x1080)
+ * Generate a square Instagram image (1080x1080) with explicit seed
  */
 export async function generateInstagramImageWithPollinations(
-  prompt: string
+  prompt: string,
+  seed?: number
 ): Promise<string> {
   return generateImageWithPollinations(prompt, {
     width: 1080,
     height: 1080,
+    seed: seed ?? Math.floor(Math.random() * 100000),
   });
 }
 
