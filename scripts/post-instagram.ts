@@ -471,11 +471,17 @@ async function main() {
     console.log(`   🆕 Generated fresh image prompts`);
   }
 
-  // Ensure we have enough slide prompts
+  // Ensure we have enough slide prompts — each one MUST be visually different
+  const diverseFallbacks = [
+    `Overhead flat lay of modern workspace: laptop showing AI dashboard, wireless earbuds, notebook with pen, coffee latte art, smartphone with notifications, bright natural daylight, organized minimal desk. Square 1:1, photorealistic, lifestyle`,
+    `Close-up of hands typing on backlit keyboard, laptop screen shows ${ctx.toolsMentioned[0] || "AI chatbot"} interface with colorful data visualization, purple LED ambient light from behind monitor, bokeh background. Square 1:1, cinematic, moody`,
+    `Smartphone held in hand showing AI app with earnings summary "$847 this month", blurred laptop with charts in background, modern cafe setting with warm lighting, shallow depth of field. Square 1:1, photorealistic, aspirational`,
+    `Split screen creative: left side shows clock with "4 hours" text, right side shows same task with AI tool completed in "10 minutes", futuristic minimal design, high contrast purple and white. Square 1:1, infographic style, bold`,
+  ];
+  let fallbackIdx = 0;
   while (slidePrompts.length < 4) {
-    slidePrompts.push(
-      `Modern AI tools dashboard on laptop, ${ctx.toolsMentioned[0] || "productivity"} interface, dark theme, purple accents, clean SaaS design, square 1:1, professional`
-    );
+    slidePrompts.push(diverseFallbacks[fallbackIdx % diverseFallbacks.length]);
+    fallbackIdx++;
   }
 
   // Generate images with Pollinations → Host on catbox.moe → Get direct URLs
