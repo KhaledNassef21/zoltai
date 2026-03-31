@@ -30,7 +30,7 @@ async function main() {
   console.log(`📚 Existing articles: ${existing.length}`);
 
   console.log("🔍 Researching trending AI topics...");
-  const topics = await researchTrendingTopics();
+  const topics = await researchTrendingTopics(existing);
 
   // Pick a topic that's not too similar to existing articles
   let selectedTopic = topics[0];

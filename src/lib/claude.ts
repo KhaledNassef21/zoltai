@@ -56,30 +56,39 @@ Return ONLY the JSON, no other text.`,
   return JSON.parse(extractJSON(text));
 }
 
-export async function researchTrendingTopics(): Promise<string[]> {
+export async function researchTrendingTopics(existingTitles: string[] = []): Promise<string[]> {
+  const existingList = existingTitles.length > 0
+    ? `\n\nIMPORTANT - These articles ALREADY EXIST on the site. Do NOT suggest similar topics:\n${existingTitles.map((t, i) => `${i + 1}. ${t}`).join("\n")}\n\nYour suggestions must cover COMPLETELY DIFFERENT tools, niches, or angles than the above.`
+    : "";
+
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-20250514",
     max_tokens: 1000,
     messages: [
       {
         role: "user",
-        content: `You are an SEO content strategist for "Zoltai", an affiliate website about AI tools and productivity.
+        content: `You are an SEO content strategist for "Zoltai", a website about making money using AI tools (no coding required).
 
 Suggest 5 HIGH-CONVERSION article topics that would:
 1. Rank well in search engines (target long-tail keywords)
 2. Drive affiliate clicks and signups
 3. Answer buyer-intent search queries
+4. Help people MAKE MONEY using AI tools
 
 Article types to rotate between:
-- "Best X tools for Y" (e.g., "Best AI tools for students in 2026")
-- "X vs Y" comparisons (e.g., "ChatGPT vs Claude: Which is better?")
-- "How to use X for Y" tutorials (e.g., "How to use AI for SEO in 2026")
-- "Top free X tools" listicles (e.g., "Top 10 free AI image generators")
-- Review articles (e.g., "Cursor AI review: Is it worth it?")
+- "Best X tools for Y" (e.g., "Best AI tools for freelancers to earn $5K/month")
+- "X vs Y" comparisons (e.g., "Jasper vs Copy.ai: Which makes you more money?")
+- "How to make money with X" tutorials (e.g., "How to make $1000/month with AI art")
+- "Top free X tools" listicles (e.g., "Top 10 free AI tools to start earning today")
+- Review articles (e.g., "Midjourney review: Can you really sell AI art?")
+- Income guides (e.g., "5 ways to earn passive income with ChatGPT")
 
-Focus on tools like: ChatGPT, Claude, Midjourney, Cursor, Jasper, Notion AI, Perplexity, Bolt.new, GitHub Copilot, Semrush, Leonardo AI.
+Cover DIVERSE niches: writing, design, video, coding, marketing, SEO, social media, e-commerce, freelancing, education, music, data analysis.
 
-Return a JSON array of 5 topic strings. Return ONLY the JSON array, no other text.`,
+Tools to cover: ChatGPT, Claude, Midjourney, Cursor, Jasper, Copy.ai, Notion AI, Perplexity, Bolt.new, GitHub Copilot, Semrush, Leonardo AI, Runway, ElevenLabs, Canva AI, Descript, Synthesia, Pictory, Writesonic, Grammarly AI, Otter.ai, Murf AI.
+${existingList}
+
+Return a JSON array of 5 topic strings. Each topic MUST be unique and different from the others AND from existing articles. Return ONLY the JSON array, no other text.`,
       },
     ],
   });

@@ -77,7 +77,18 @@ const translations: Record<string, Record<Lang, string>> = {
     ar: "\u0623\u0641\u0636\u0644 \u0623\u062f\u0648\u0627\u062a AI \u0648\u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u0627\u062a \u0627\u0644\u0631\u0628\u062d \u2014 \u062a\u0648\u0635\u0644\u0643 \u0643\u0644 \u0623\u0633\u0628\u0648\u0639 \u0645\u062c\u0627\u0646\u0627\u064b.",
   },
 
+  // Testimonials
+  "testimonials.title": { en: "What Our Readers Say", ar: "ماذا يقول قراؤنا" },
+
+  // Community
+  "community.title": { en: "Join Our Community", ar: "انضم لمجتمعنا" },
+  "community.desc": {
+    en: "Connect with thousands of AI enthusiasts making money online.",
+    ar: "تواصل مع آلاف المهتمين بالذكاء الاصطناعي والربح من الإنترنت.",
+  },
+
   // Footer
+  "footer.community": { en: "Community", ar: "المجتمع" },
   "footer.desc": {
     en: "Your guide to making money with AI tools. Smart content, daily.",
     ar: "\u062f\u0644\u064a\u0644\u0643 \u0644\u0644\u0631\u0628\u062d \u0645\u0646 \u0623\u062f\u0648\u0627\u062a \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a. \u0645\u062d\u062a\u0648\u0649 \u0630\u0643\u064a \u064a\u0648\u0645\u064a\u0627\u064b.",
