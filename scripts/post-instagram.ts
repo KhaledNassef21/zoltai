@@ -113,7 +113,9 @@ ${articleDescription}
 
 🔗 Explore all AI tools: zoltai.vercel.app/tools
 
-${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsReview #TechTips`;
+${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsReview #TechTips #MakeMoneyOnline #SideHustle
+
+Follow us: @zoltai.ai`;
 
   // Get random images (4 slides) - resolve redirects for Instagram
   const imageUrls = await getRandomImages(4);

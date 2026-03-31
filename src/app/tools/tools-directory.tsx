@@ -61,7 +61,7 @@ export function ToolsDirectory() {
           see next.
         </p>
         <a
-          href="mailto:hello@zoltai.ai"
+          href="mailto:info.zoltai@gmail.com"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-accent text-accent-light hover:bg-accent/10 font-medium text-sm transition-all"
         >
           Suggest a Tool

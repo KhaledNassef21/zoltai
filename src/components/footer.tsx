@@ -38,20 +38,20 @@ export function Footer() {
             </h4>
             <div className="flex flex-col gap-2 text-sm text-zinc-500">
               <a
-                href="https://t.me/zoltai"
+                href="https://www.facebook.com/zoltai.community"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
-                Telegram
+                Facebook
               </a>
               <a
-                href="https://discord.gg/zoltai"
+                href="https://www.instagram.com/zoltai.ai/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
-                Discord
+                Instagram
               </a>
             </div>
           </div>
@@ -61,20 +61,10 @@ export function Footer() {
             </h4>
             <div className="flex flex-col gap-2 text-sm text-zinc-500">
               <a
-                href="https://instagram.com/zoltai"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:info.zoltai@gmail.com"
                 className="hover:text-foreground transition-colors"
               >
-                Instagram
-              </a>
-              <a
-                href="https://twitter.com/zoltai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                Twitter/X
+                info.zoltai@gmail.com
               </a>
             </div>
           </div>
