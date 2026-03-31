@@ -7,6 +7,7 @@ import {
   validatePrompts,
 } from "../src/lib/image-prompts";
 import { generateInstagramImageWithPollinations } from "../src/lib/pollinations-image";
+import { getHostedImageUrl } from "../src/lib/image-host";
 
 /**
  * Instagram + Facebook Unified Social Pipeline
@@ -25,24 +26,57 @@ import { generateInstagramImageWithPollinations } from "../src/lib/pollinations-
 
 // ==================== IMAGE GENERATION ====================
 
+/**
+ * Generate context-aware images and host them on a direct URL service.
+ *
+ * Flow: Pollinations (AI generation) → catbox.moe (hosting) → Direct URL for Instagram
+ * Fallback: picsum.photos with context-aware seeds → Direct CDN URL
+ *
+ * Instagram API REQUIRES direct image URLs with proper content-type headers.
+ * Pollinations URLs are generation endpoints and get rejected with:
+ * "Only photo or video can be accepted as media type"
+ */
 async function generateContextAwareImages(
   prompts: string[],
-  count: number
+  count: number,
+  fallbackSeed: string
 ): Promise<string[]> {
   const urls: string[] = [];
 
   for (let i = 0; i < Math.min(prompts.length, count); i++) {
     try {
-      console.log(`   🎨 Generating slide ${i + 1}/${count}...`);
-      const url = await generateInstagramImageWithPollinations(prompts[i]);
-      if (url) {
-        urls.push(url);
-        console.log(`   ✅ Slide ${i + 1} ready`);
+      console.log(`   🎨 Generating + hosting slide ${i + 1}/${count}...`);
+
+      // Generate with Pollinations
+      const pollinationsUrl = await generateInstagramImageWithPollinations(prompts[i]);
+
+      // Download from Pollinations → Upload to free host → Get direct URL
+      const hostedUrl = await getHostedImageUrl(
+        pollinationsUrl,
+        `${fallbackSeed}-slide${i}`,
+        i
+      );
+
+      if (hostedUrl) {
+        urls.push(hostedUrl);
+        console.log(`   ✅ Slide ${i + 1} ready: ${hostedUrl.slice(0, 60)}...`);
       }
     } catch (err) {
       console.warn(
         `   ⚠️ Slide ${i + 1} failed: ${(err as Error).message}`
       );
+
+      // Last resort fallback: picsum with unique seed
+      try {
+        const fallbackUrl = `https://picsum.photos/seed/${fallbackSeed}${i}/1080/1080.jpg`;
+        const res = await fetch(fallbackUrl, { redirect: "follow" });
+        if (res.ok) {
+          urls.push(res.url);
+          console.log(`   🔄 Fallback slide ${i + 1}: ${res.url.slice(0, 60)}...`);
+        }
+      } catch {
+        console.warn(`   ❌ Even fallback failed for slide ${i + 1}`);
+      }
     }
   }
 
@@ -444,8 +478,14 @@ async function main() {
     );
   }
 
-  const imageUrls = await generateContextAwareImages(slidePrompts, 4);
-  console.log(`📋 Total images generated: ${imageUrls.length}`);
+  // Generate images with Pollinations → Host on catbox.moe → Get direct URLs
+  // Fallback: picsum.photos with article slug as seed
+  const imageUrls = await generateContextAwareImages(
+    slidePrompts,
+    4,
+    articleSlug || "zoltai"
+  );
+  console.log(`📋 Total hosted images: ${imageUrls.length}`);
 
   // ===== STEP 4: Build caption =====
   const articleUrl = articleSlug
