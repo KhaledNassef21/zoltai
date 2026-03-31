@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLang } from "@/components/providers";
 import { BlogCard } from "@/components/blog-card";
-import { NewsletterSignup } from "@/components/newsletter-signup";
+import { LeadMagnet } from "@/components/lead-magnet";
 import type { Post } from "@/lib/blog";
 
 interface Tool {
@@ -278,9 +278,9 @@ export function HomeContent({
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="max-w-2xl mx-auto px-4 sm:px-6 py-16">
-        <NewsletterSignup />
+      {/* Lead Magnet / Newsletter Section */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+        <LeadMagnet />
       </section>
     </>
   );

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://zoltai.vercel.app";
+  const baseUrl = "https://zoltai.org";
   const posts = getAllPosts();
 
   const blogEntries = posts.map((post) => ({

@@ -21,29 +21,35 @@ export async function generateArticle(topic: string): Promise<{
     messages: [
       {
         role: "user",
-        content: `You are an expert AI & technology writer for "Zoltai", an affiliate website about AI tools and productivity.
+        content: `You are an expert AI & money-making writer for "Zoltai" (zoltai.org), a website that helps people make money using AI tools — no coding required.
 
 Write a comprehensive, SEO-optimized blog article about: "${topic}"
 
-Requirements:
-- Write in an engaging, educational tone
-- Target both beginners and professionals
-- Include practical examples and actionable tips
+CRITICAL REQUIREMENTS:
+- Every article MUST have a MONEY-MAKING ANGLE — show readers how to EARN with AI
+- Write in an engaging, motivating tone — make readers feel they can start TODAY
+- Include SPECIFIC earning potential (e.g., "$500-2000/month", "freelancers earn $50-100/hour")
+- Include practical, step-by-step examples anyone can follow
 - Use proper markdown formatting with headers (##, ###)
-- Include a compelling introduction and conclusion
 - Length: 1500-2500 words
 - Naturally include relevant keywords for SEO
-- When mentioning AI tools, naturally recommend them with enthusiasm
-- Include a "Key Takeaways" or "Quick Summary" section at the top
-- End with a clear recommendation or "Which tool should you pick?" section
-- Mention pricing (free tier, paid plans) when discussing tools
+- When mentioning AI tools, ENTHUSIASTICALLY recommend them with affiliate-friendly language:
+  - "I highly recommend X" / "The best tool for this is X" / "Start with X (it's free)"
+- Include a "Quick Summary" section at the top with key takeaways
+- Include a "How Much Can You Earn?" section
+- End with a clear "Which Tool Should You Start With?" recommendation section
+- ALWAYS mention pricing (free tier, paid plans) when discussing tools
+- Include a call-to-action: "Check out our full tools directory at zoltai.org/tools"
+
+Available tools to recommend (use these names exactly):
+ChatGPT, Claude, Midjourney, Jasper, Copy.ai, Cursor, GitHub Copilot, Bolt.new, Canva AI, ElevenLabs, Runway, Leonardo AI, Perplexity, Notion AI, Zapier, Semrush, Surfer SEO, Writesonic
 
 Return your response in this exact JSON format:
 {
-  "title": "Article title (60 chars max, SEO-friendly)",
-  "description": "Meta description (155 chars max)",
+  "title": "Article title (60 chars max, SEO-friendly, include year)",
+  "description": "Meta description (155 chars max, include money angle)",
   "content": "Full article in markdown",
-  "tags": ["tag1", "tag2", "tag3"]
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"]
 }
 
 Return ONLY the JSON, no other text.`,

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://zoltai.vercel.app/sitemap.xml",
+    sitemap: "https://zoltai.org/sitemap.xml",
   };
 }

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { AffiliateCTA } from "@/components/affiliate-cta";
-import { NewsletterSignup } from "@/components/newsletter-signup";
-import { getFeaturedTools } from "@/data/tools";
+import { LeadMagnet } from "@/components/lead-magnet";
+import { getFeaturedTools, tools } from "@/data/tools";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -38,6 +39,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// Match tools to article based on tags/title keywords
+function getRelevantTools(title: string, tags: string[]) {
+  const text = `${title} ${tags.join(" ")}`.toLowerCase();
+  const matched = tools.filter((tool) => {
+    const keywords = [
+      tool.name.toLowerCase(),
+      tool.category.toLowerCase(),
+      ...tool.description.toLowerCase().split(/\s+/).slice(0, 5),
+    ];
+    return keywords.some((k) => text.includes(k));
+  });
+
+  if (matched.length >= 3) return matched.slice(0, 3);
+
+  // Fallback to featured
+  const featured = getFeaturedTools();
+  const combined = [...matched, ...featured.filter((f) => !matched.includes(f))];
+  return combined.slice(0, 3);
+}
+
+// Get related articles by tag overlap
+function getRelatedPosts(currentSlug: string, currentTags: string[]) {
+  const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
+
+  const scored = allPosts.map((post) => {
+    const overlap = post.tags.filter((t) => currentTags.includes(t)).length;
+    return { post, score: overlap };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 3).map((s) => s.post);
+}
+
 export default async function BlogPost({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -46,36 +80,31 @@ export default async function BlogPost({ params }: Props) {
     notFound();
   }
 
-  // Pick 2 random featured tools for inline CTAs
-  const featured = getFeaturedTools();
-  const shuffled = [...featured].sort(() => Math.random() - 0.5);
-  const topPick = shuffled[0];
-  const secondPick = shuffled[1];
+  const relevantTools = getRelevantTools(post.title, post.tags);
+  const relatedPosts = getRelatedPosts(slug, post.tags);
 
-  // JSON-LD structured data for SEO
+  // JSON-LD
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description,
-    image: post.image
-      ? `https://zoltai.vercel.app${post.image}`
-      : undefined,
+    image: post.image ? `https://zoltai.org${post.image}` : undefined,
     datePublished: post.date,
     dateModified: post.date,
     author: {
       "@type": "Organization",
       name: post.author || "Zoltai",
-      url: "https://zoltai.vercel.app",
+      url: "https://zoltai.org",
     },
     publisher: {
       "@type": "Organization",
       name: "Zoltai",
-      url: "https://zoltai.vercel.app",
+      url: "https://zoltai.org",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://zoltai.vercel.app/blog/${slug}`,
+      "@id": `https://zoltai.org/blog/${slug}`,
     },
   };
 
@@ -127,15 +156,15 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
-      {/* Mid-article CTA */}
-      {topPick && (
+      {/* Top Tool CTA - Smart */}
+      {relevantTools[0] && (
         <AffiliateCTA
-          toolName={topPick.name}
-          description={topPick.description}
-          ctaText="Try Now — Free"
-          ctaUrl={topPick.affiliateUrl || topPick.url}
+          toolName={relevantTools[0].name}
+          description={relevantTools[0].description}
+          ctaText={`🔥 Start Earning with ${relevantTools[0].name}`}
+          ctaUrl={relevantTools[0].affiliateUrl || relevantTools[0].url}
           variant="banner"
-          badge="Editor's Pick"
+          badge="Top Pick for This Topic"
         />
       )}
 
@@ -143,51 +172,102 @@ export default async function BlogPost({ params }: Props) {
         <MDXRemote source={post.content} />
       </div>
 
+      {/* Top Tools for This Topic */}
+      {relevantTools.length > 1 && (
+        <div className="my-10 p-6 rounded-xl border border-accent/20 bg-gradient-to-br from-accent/5 via-card-bg to-card-bg">
+          <h3 className="font-bold text-lg mb-4">
+            🛠️ Top Tools for This Topic
+          </h3>
+          <div className="space-y-3">
+            {relevantTools.map((tool) => (
+              <a
+                key={tool.slug}
+                href={tool.affiliateUrl || tool.url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="flex items-center justify-between p-4 rounded-lg border border-card-border bg-card-bg hover:border-accent/30 transition-all group"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold group-hover:text-accent-light transition-colors">
+                      {tool.name}
+                    </span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent-light">
+                      {tool.pricing}
+                    </span>
+                  </div>
+                  <p className="text-xs text-zinc-500 mt-1 truncate">
+                    {tool.description}
+                  </p>
+                </div>
+                <span className="text-accent-light text-sm font-medium whitespace-nowrap ml-4">
+                  Try Free →
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Post-article CTA */}
-      {secondPick && (
+      {relevantTools[1] && (
         <AffiliateCTA
-          toolName={secondPick.name}
-          description={secondPick.description}
-          ctaText="Start Free Trial"
-          ctaUrl={secondPick.affiliateUrl || secondPick.url}
+          toolName={relevantTools[1].name}
+          description={`Use ${relevantTools[1].name} to start earning. ${relevantTools[1].pricingDetail}`}
+          ctaText="Use This Tool to Earn Online →"
+          ctaUrl={relevantTools[1].affiliateUrl || relevantTools[1].url}
           variant="default"
-          badge="Recommended"
+          badge="Recommended for You"
         />
       )}
 
-      {/* Newsletter CTA */}
+      {/* Lead Magnet */}
       <div className="mt-12">
-        <NewsletterSignup
-          variant="card"
-          title="Enjoyed this article?"
-          description="Get more AI insights, tool reviews, and productivity hacks delivered to your inbox every week."
-        />
+        <LeadMagnet />
       </div>
 
-      {/* Related tools suggestion */}
+      {/* Related Articles */}
+      {relatedPosts.length > 0 && (
+        <div className="mt-12">
+          <h3 className="font-bold text-xl mb-6">📖 Related Articles</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {relatedPosts.map((related) => (
+              <Link
+                key={related.slug}
+                href={`/blog/${related.slug}`}
+                className="p-4 rounded-xl border border-card-border bg-card-bg hover:border-accent/30 transition-all group"
+              >
+                <h4 className="font-semibold text-sm leading-snug group-hover:text-accent-light transition-colors line-clamp-2">
+                  {related.title}
+                </h4>
+                <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600">
+                  <time>
+                    {new Date(related.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <span>&middot;</span>
+                  <span>{related.readingTime}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Explore more */}
       <div className="mt-10 p-6 rounded-xl border border-card-border bg-card-bg">
-        <h3 className="font-bold text-lg mb-2">Explore More AI Tools</h3>
+        <h3 className="font-bold text-lg mb-2">Explore All AI Tools</h3>
         <p className="text-sm text-zinc-500 mb-4">
-          Discover {featured.length}+ curated AI tools in our directory.
+          Discover {tools.length}+ curated AI tools to help you earn money
+          online.
         </p>
         <a
           href="/tools"
           className="inline-flex items-center gap-2 text-accent-light text-sm font-medium hover:underline"
         >
-          Browse Tools Directory
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M14 5l7 7m0 0l-7 7m7-7H3"
-            />
-          </svg>
+          Browse Tools Directory →
         </a>
       </div>
     </article>

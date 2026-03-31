@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zoltai.vercel.app"),
+  metadataBase: new URL("https://zoltai.org"),
   title: {
     default: "Zoltai - Make Money Using AI Tools (No Coding Required)",
     template: "%s | Zoltai",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "Zoltai",
     locale: "en_US",
     type: "website",
-    url: "https://zoltai.vercel.app",
+    url: "https://zoltai.org",
   },
   twitter: {
     card: "summary_large_image",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://zoltai.vercel.app",
+    canonical: "https://zoltai.org",
   },
 };
 
@@ -74,13 +74,13 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Zoltai",
-  url: "https://zoltai.vercel.app",
+  url: "https://zoltai.org",
   description:
     "Discover the best AI tools to earn money online, boost productivity, and build your side hustle. No coding required.",
   publisher: {
     "@type": "Organization",
     name: "Zoltai",
-    url: "https://zoltai.vercel.app",
+    url: "https://zoltai.org",
     sameAs: [
       "https://www.instagram.com/zoltai.ai/",
       "https://www.facebook.com/zoltai.community",

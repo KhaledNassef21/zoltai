@@ -11,7 +11,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Zoltai",
-  url: "https://zoltai.vercel.app",
+  url: "https://zoltai.org",
   description:
     "Discover the best AI tools to earn money online. No coding required.",
   sameAs: [

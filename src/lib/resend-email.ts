@@ -20,7 +20,7 @@ export async function sendWeeklyReport(report: WeeklyReport): Promise<void> {
   }
 
   const topPostsHtml = report.topPosts
-    .map((p) => `<li><a href="https://zoltai.vercel.app/blog/${p.slug}">${p.title}</a></li>`)
+    .map((p) => `<li><a href="https://zoltai.org/blog/${p.slug}">${p.title}</a></li>`)
     .join("\n");
 
   await resend.emails.send({

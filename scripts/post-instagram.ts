@@ -93,29 +93,45 @@ async function main() {
     }
   }
 
-  // Build caption with website funnel
+  // Build caption with money-angle hook
   const tags = articleTags
     .map((t: string) => `#${t.replace(/\s+/g, "")}`)
     .join(" ");
 
   const articleUrl = articleSlug
-    ? `https://zoltai.vercel.app/blog/${articleSlug}`
-    : "https://zoltai.vercel.app";
+    ? `https://zoltai.org/blog/${articleSlug}`
+    : "https://zoltai.org";
 
-  const caption = `🤖 ${articleTitle}
+  const hooks = [
+    "These AI tools can make you money 💰",
+    "Stop scrolling. Start earning with AI 💸",
+    "3 AI tools that are changing the game 🚀",
+    "People are making $1000+/month with these tools 💰",
+    "AI tools you NEED to know about 🔥",
+    "Your side hustle starts here 💡",
+  ];
+  const hook = hooks[Math.floor(Math.random() * hooks.length)];
+
+  const caption = `${hook}
+
+🤖 ${articleTitle}
 
 ${articleDescription}
 
-💡 Swipe to learn more!
+💡 Key takeaways:
+• Save hours of work with AI
+• No coding skills needed
+• Free tools available to start today
 
-📖 Read the full guide with tool links & free trials:
+📖 Full guide with free trials & tool links:
 👉 ${articleUrl}
 
-🔗 Explore all AI tools: zoltai.vercel.app/tools
+🔗 Browse 24+ AI tools: zoltai.org/tools
+📩 Free AI money guide: zoltai.org
 
-${tags} #AI #ArtificialIntelligence #AITools #Productivity #Zoltai #AIToolsReview #TechTips #MakeMoneyOnline #SideHustle
+${tags} #AI #AITools #MakeMoneyOnline #SideHustle #PassiveIncome #Zoltai #AIToolsReview #TechTips #EarnOnline #Freelancing
 
-Follow us: @zoltai.ai`;
+Follow @zoltai.ai for daily AI money tips 💰`;
 
   // Get random images (4 slides) - resolve redirects for Instagram
   const imageUrls = await getRandomImages(4);
