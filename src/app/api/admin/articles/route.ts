@@ -16,8 +16,8 @@ async function isAuthenticated(): Promise<boolean> {
   return token.value === expected;
 }
 
-// GET: List all articles
-export async function GET() {
+// GET: List all articles, or get single article content
+export async function GET(req: NextRequest) {
   if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -26,16 +26,40 @@ export async function GET() {
     return NextResponse.json({ articles: [] });
   }
 
+  // Single article content request
+  const { searchParams } = new URL(req.url);
+  const slug = searchParams.get("slug");
+
+  if (slug) {
+    const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
+    if (!fs.existsSync(filePath)) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const { data, content: body } = matter(raw);
+    return NextResponse.json({
+      slug,
+      title: data.title || "Untitled",
+      description: data.description || "",
+      date: data.date || "",
+      author: data.author || "Zoltai AI",
+      tags: data.tags || [],
+      image: data.image || "",
+      content: body.trim(),
+    });
+  }
+
+  // List all articles
   const files = fs
     .readdirSync(CONTENT_DIR)
     .filter((f) => f.endsWith(".mdx"));
 
   const articles = files.map((file) => {
-    const slug = file.replace(".mdx", "");
+    const fileSlug = file.replace(".mdx", "");
     const content = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
     const { data, content: body } = matter(content);
     return {
-      slug,
+      slug: fileSlug,
       title: data.title || "Untitled",
       description: data.description || "",
       date: data.date || "",

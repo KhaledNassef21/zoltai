@@ -224,37 +224,94 @@ async function crossPostToFacebook(
     return;
   }
 
-  console.log("\n📘 Cross-posting to Facebook...");
+  console.log("\n📘 Cross-posting to Facebook with images...");
 
   try {
-    // Try link post first (best for traffic)
-    const res = await fetch(`https://graph.facebook.com/v18.0/${pageId}/feed`, {
+    // Step 1: Upload each image as unpublished photo
+    const photoIds: string[] = [];
+
+    for (let i = 0; i < imageUrls.length; i++) {
+      console.log(`   📤 Uploading photo ${i + 1}/${imageUrls.length}: ${imageUrls[i].slice(0, 70)}...`);
+
+      const photoRes = await fetch(`https://graph.facebook.com/v18.0/${pageId}/photos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          url: imageUrls[i],
+          published: false,
+          access_token: pageToken,
+        }),
+      });
+      const photoData = await photoRes.json();
+
+      if (photoRes.ok && !photoData.error && photoData.id) {
+        photoIds.push(photoData.id);
+        console.log(`   ✅ Photo ${i + 1} uploaded: ${photoData.id}`);
+      } else {
+        console.warn(`   ⚠️ Photo ${i + 1} failed: ${photoData.error?.message || "Unknown"}`);
+      }
+    }
+
+    // Step 2: Create feed post with attached photos
+    if (photoIds.length > 0) {
+      console.log(`\n📝 Creating feed post with ${photoIds.length} photos...`);
+
+      const attachedMedia: Record<string, string> = {};
+      photoIds.forEach((id, i) => {
+        attachedMedia[`attached_media[${i}]`] = JSON.stringify({ media_fbid: id });
+      });
+
+      const feedRes = await fetch(`https://graph.facebook.com/v18.0/${pageId}/feed`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          message: caption,
+          link: articleUrl,
+          ...attachedMedia,
+          access_token: pageToken,
+        }),
+      });
+      const feedData = await feedRes.json();
+
+      if (feedRes.ok && !feedData.error) {
+        console.log(`✅ Facebook posted with ${photoIds.length} photos! ID: ${feedData.id}`);
+        return;
+      }
+      console.warn(`⚠️ Multi-photo post failed: ${feedData.error?.message || "Unknown"}`);
+
+      // Fallback: try without link (link + attached_media sometimes conflicts)
+      console.log("🔄 Retrying without link...");
+      const retryRes = await fetch(`https://graph.facebook.com/v18.0/${pageId}/feed`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          message: `${caption}\n\n👉 ${articleUrl}`,
+          ...attachedMedia,
+          access_token: pageToken,
+        }),
+      });
+      const retryData = await retryRes.json();
+
+      if (retryRes.ok && !retryData.error) {
+        console.log(`✅ Facebook posted with ${photoIds.length} photos! ID: ${retryData.id}`);
+        return;
+      }
+      console.warn(`⚠️ Retry failed: ${retryData.error?.message || "Unknown"}`);
+    }
+
+    // Final fallback: simple link post
+    console.log("🔄 Final fallback: link post...");
+    const linkRes = await fetch(`https://graph.facebook.com/v18.0/${pageId}/feed`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: caption, link: articleUrl, access_token: pageToken }),
     });
-    const data = await res.json();
+    const linkData = await linkRes.json();
 
-    if (res.ok && !data.error) {
-      console.log(`✅ Facebook posted! ID: ${data.id}`);
-      return;
-    }
-    console.warn(`⚠️ Feed post failed: ${data.error?.message || "Unknown"}`);
-
-    // Fallback: photo post
-    if (imageUrls.length > 0) {
-      console.log("🔄 Trying photo post...");
-      const photoRes = await fetch(`https://graph.facebook.com/v18.0/${pageId}/photos`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: imageUrls[0], caption, access_token: pageToken }),
-      });
-      const photoData = await photoRes.json();
-      if (photoRes.ok && !photoData.error) {
-        console.log(`✅ Facebook photo posted! ID: ${photoData.id}`);
-      } else {
-        console.warn(`⚠️ Photo post failed: ${photoData.error?.message || "Unknown"}`);
-      }
+    if (linkRes.ok && !linkData.error) {
+      console.log(`✅ Facebook link posted! ID: ${linkData.id}`);
+    } else {
+      console.warn(`⚠️ Link post failed: ${linkData.error?.message || "Unknown"}`);
     }
   } catch (err) {
     console.error(`❌ Facebook error: ${(err as Error).message}`);

@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { AffiliateCTA } from "@/components/affiliate-cta";
 import { LeadMagnet } from "@/components/lead-magnet";
+import { Comments } from "@/components/comments";
 import { getFeaturedTools, tools } from "@/data/tools";
 
 type Props = {
@@ -270,6 +271,9 @@ export default async function BlogPost({ params }: Props) {
           Browse Tools Directory →
         </a>
       </div>
+
+      {/* Comments */}
+      <Comments slug={slug} />
     </article>
   );
 }

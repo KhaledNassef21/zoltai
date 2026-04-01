@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { StickyCTA } from "@/components/sticky-cta";
+import { PWARegister } from "@/components/pwa-register";
+import { PushPrompt } from "@/components/push-prompt";
 import { Providers } from "@/components/providers";
 
 const geistSans = Geist({
@@ -100,6 +103,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#7c3aed" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
@@ -110,6 +116,9 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <StickyCTA />
+          <PWARegister />
+          <PushPrompt />
         </Providers>
       </body>
     </html>

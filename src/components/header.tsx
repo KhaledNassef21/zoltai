@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTheme, useLang } from "./providers";
+import { UserMenu } from "./user-menu";
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -26,6 +27,12 @@ export function Header() {
             className="text-zinc-400 hover:text-foreground transition-colors"
           >
             {t("nav.tools")}
+          </Link>
+          <Link
+            href="/earn"
+            className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
+          >
+            💰 Earn
           </Link>
           <Link
             href="/about"

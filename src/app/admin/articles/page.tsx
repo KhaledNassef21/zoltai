@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { AdminLayout } from "@/components/admin/sidebar";
+import { Plus, Pencil, Trash2, ExternalLink, X } from "lucide-react";
 
 interface Article {
   slug: string;
@@ -23,6 +24,7 @@ export default function AdminArticles() {
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [showEditor, setShowEditor] = useState(false);
   const [editSlug, setEditSlug] = useState<string | null>(null);
+  const [loadingContent, setLoadingContent] = useState(false);
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -31,6 +33,7 @@ export default function AdminArticles() {
     author: "Zoltai",
     image: "",
   });
+  const [search, setSearch] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -79,62 +82,73 @@ export default function AdminArticles() {
   }
 
   async function handleSave() {
+    if (!form.title || !form.content) {
+      showMessage("Title and content are required", "error");
+      return;
+    }
+
     const method = editSlug ? "PUT" : "POST";
-    const body = editSlug
-      ? {
-          slug: editSlug,
-          title: form.title,
-          description: form.description,
-          content: form.content,
-          tags: form.tags
-            .split(",")
-            .map((t) => t.trim())
-            .filter(Boolean),
-          author: form.author,
-          image: form.image,
-        }
-      : {
-          title: form.title,
-          description: form.description,
-          content: form.content,
-          tags: form.tags
-            .split(",")
-            .map((t) => t.trim())
-            .filter(Boolean),
-          author: form.author,
-          image: form.image,
-        };
+    const body = {
+      ...(editSlug ? { slug: editSlug } : {}),
+      title: form.title,
+      description: form.description,
+      content: form.content,
+      tags: form.tags
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean),
+      author: form.author,
+      image: form.image,
+    };
 
-    const res = await fetch("/api/admin/articles", {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    try {
+      const res = await fetch("/api/admin/articles", {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
-    if (res.ok) {
-      showMessage(
-        editSlug ? "Article updated!" : "Article created!",
-        "success"
-      );
-      resetEditor();
-      loadArticles();
-    } else {
-      const data = await res.json();
-      showMessage(`Error: ${data.error}`, "error");
+      if (res.ok) {
+        showMessage(
+          editSlug ? "Article updated!" : "Article created!",
+          "success"
+        );
+        resetEditor();
+        loadArticles();
+      } else {
+        const data = await res.json();
+        showMessage(`Error: ${data.error}`, "error");
+      }
+    } catch (err) {
+      showMessage(`Error: ${(err as Error).message}`, "error");
     }
   }
 
-  function openEditor(article?: Article) {
+  async function openEditor(article?: Article) {
     if (article) {
       setEditSlug(article.slug);
       setForm({
         title: article.title,
         description: article.description,
-        content: "", // Will be loaded separately or user edits
+        content: "",
         tags: article.tags.join(", "),
         author: article.author,
         image: article.image,
       });
+      setShowEditor(true);
+
+      // Load the actual content for editing
+      setLoadingContent(true);
+      try {
+        const res = await fetch(`/api/admin/articles?slug=${article.slug}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.content) {
+            setForm((prev) => ({ ...prev, content: data.content }));
+          }
+        }
+      } catch {}
+      setLoadingContent(false);
     } else {
       setEditSlug(null);
       setForm({
@@ -145,8 +159,8 @@ export default function AdminArticles() {
         author: "Zoltai",
         image: "",
       });
+      setShowEditor(true);
     }
-    setShowEditor(true);
   }
 
   function resetEditor() {
@@ -162,16 +176,25 @@ export default function AdminArticles() {
     });
   }
 
+  const filteredArticles = articles.filter(
+    (a) =>
+      !search ||
+      a.title.toLowerCase().includes(search.toLowerCase()) ||
+      a.slug.includes(search.toLowerCase())
+  );
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-zinc-500">Loading articles...</p>
-      </div>
+      <AdminLayout>
+        <div className="flex items-center justify-center py-20">
+          <p className="text-zinc-500">Loading articles...</p>
+        </div>
+      </AdminLayout>
     );
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <AdminLayout>
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
@@ -182,20 +205,12 @@ export default function AdminArticles() {
             {articles.length} article{articles.length !== 1 ? "s" : ""} total
           </p>
         </div>
-        <div className="flex gap-3">
-          <Link
-            href="/admin"
-            className="px-4 py-2 rounded-lg border border-card-border text-zinc-400 text-sm hover:text-foreground transition-colors"
-          >
-            ← Dashboard
-          </Link>
-          <button
-            onClick={() => openEditor()}
-            className="px-4 py-2 rounded-lg bg-accent hover:bg-accent/90 text-white text-sm font-medium transition-colors"
-          >
-            + New Article
-          </button>
-        </div>
+        <button
+          onClick={() => openEditor()}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent hover:bg-accent/90 text-white text-sm font-medium transition-colors"
+        >
+          <Plus className="w-4 h-4" /> New Article
+        </button>
       </div>
 
       {/* Message */}
@@ -211,6 +226,17 @@ export default function AdminArticles() {
         </div>
       )}
 
+      {/* Search */}
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Search articles..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full px-4 py-2 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 text-sm focus:outline-none focus:border-accent/50"
+        />
+      </div>
+
       {/* Editor Modal */}
       {showEditor && (
         <div className="fixed inset-0 z-50 bg-black/70 flex items-start justify-center pt-10 px-4 overflow-y-auto">
@@ -219,11 +245,8 @@ export default function AdminArticles() {
               <h2 className="text-xl font-bold">
                 {editSlug ? "Edit Article" : "New Article"}
               </h2>
-              <button
-                onClick={resetEditor}
-                className="text-zinc-500 hover:text-foreground text-xl"
-              >
-                ×
+              <button onClick={resetEditor} className="text-zinc-500 hover:text-foreground">
+                <X className="w-5 h-5" />
               </button>
             </div>
 
@@ -246,28 +269,33 @@ export default function AdminArticles() {
                 <input
                   type="text"
                   value={form.description}
-                  onChange={(e) =>
-                    setForm({ ...form, description: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, description: e.target.value })}
                   placeholder="Meta description (155 chars max)"
                   maxLength={160}
                   className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                 />
+                <p className="text-xs text-zinc-600 mt-1">
+                  {form.description.length}/160 characters
+                </p>
               </div>
 
               <div>
                 <label className="block text-sm text-zinc-400 mb-1">
                   Content (Markdown) *
+                  {loadingContent && (
+                    <span className="ml-2 text-accent-light">Loading...</span>
+                  )}
                 </label>
                 <textarea
                   value={form.content}
-                  onChange={(e) =>
-                    setForm({ ...form, content: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, content: e.target.value })}
                   placeholder="Write your article in Markdown..."
-                  rows={15}
+                  rows={20}
                   className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 font-mono text-sm"
                 />
+                <p className="text-xs text-zinc-600 mt-1">
+                  {form.content.split(/\s+/).filter(Boolean).length} words
+                </p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -286,9 +314,7 @@ export default function AdminArticles() {
                   <input
                     type="text"
                     value={form.author}
-                    onChange={(e) =>
-                      setForm({ ...form, author: e.target.value })
-                    }
+                    onChange={(e) => setForm({ ...form, author: e.target.value })}
                     placeholder="Zoltai"
                     className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                   />
@@ -303,7 +329,7 @@ export default function AdminArticles() {
                   type="text"
                   value={form.image}
                   onChange={(e) => setForm({ ...form, image: e.target.value })}
-                  placeholder="/images/blog/my-article.png"
+                  placeholder="/images/blog/my-article.jpg"
                   className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                 />
               </div>
@@ -329,17 +355,17 @@ export default function AdminArticles() {
       )}
 
       {/* Articles List */}
-      {articles.length === 0 ? (
+      {filteredArticles.length === 0 ? (
         <div className="text-center py-20 text-zinc-500">
           <p className="text-4xl mb-4">📝</p>
-          <p className="text-lg">No articles yet</p>
+          <p className="text-lg">No articles found</p>
           <p className="text-sm mt-1">
             Create your first article or trigger the AI article generator.
           </p>
         </div>
       ) : (
         <div className="space-y-3">
-          {articles.map((article) => (
+          {filteredArticles.map((article) => (
             <div
               key={article.slug}
               className="p-5 rounded-xl border border-card-border bg-card-bg hover:border-card-border/80 transition-all"
@@ -353,9 +379,7 @@ export default function AdminArticles() {
                       {article.wordCount} words
                     </span>
                     <span className="text-xs text-zinc-700">·</span>
-                    <span className="text-xs text-zinc-600">
-                      {article.author}
-                    </span>
+                    <span className="text-xs text-zinc-600">{article.author}</span>
                   </div>
                   <h3 className="font-semibold text-foreground truncate">
                     {article.title}
@@ -381,15 +405,17 @@ export default function AdminArticles() {
                   <a
                     href={`/blog/${article.slug}`}
                     target="_blank"
-                    className="px-3 py-1.5 rounded-lg border border-card-border text-zinc-400 text-xs hover:text-foreground hover:border-accent/30 transition-colors"
+                    className="p-2 rounded-lg border border-card-border text-zinc-400 hover:text-foreground transition-colors"
+                    title="View"
                   >
-                    View
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                   <button
                     onClick={() => openEditor(article)}
-                    className="px-3 py-1.5 rounded-lg border border-card-border text-zinc-400 text-xs hover:text-foreground hover:border-accent/30 transition-colors"
+                    className="p-2 rounded-lg border border-card-border text-zinc-400 hover:text-foreground transition-colors"
+                    title="Edit"
                   >
-                    Edit
+                    <Pencil className="w-3.5 h-3.5" />
                   </button>
                   {deleteConfirm === article.slug ? (
                     <div className="flex gap-1">
@@ -409,9 +435,10 @@ export default function AdminArticles() {
                   ) : (
                     <button
                       onClick={() => setDeleteConfirm(article.slug)}
-                      className="px-3 py-1.5 rounded-lg border border-red-500/20 text-red-400/70 text-xs hover:text-red-400 hover:border-red-500/40 transition-colors"
+                      className="p-2 rounded-lg border border-red-500/20 text-red-400/70 hover:text-red-400 transition-colors"
+                      title="Delete"
                     >
-                      Delete
+                      <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   )}
                 </div>
@@ -420,6 +447,6 @@ export default function AdminArticles() {
           ))}
         </div>
       )}
-    </div>
+    </AdminLayout>
   );
 }
