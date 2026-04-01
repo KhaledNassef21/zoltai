@@ -41,6 +41,7 @@ export const metadata: Metadata = {
   ],
   other: {
     "google-site-verification": "FSKh_zkNE5wDnpiVBiML628oT11QR2FF_2w5ejfJYF4",
+    "impact-site-verification": "9436c631-e4a2-43bb-ad89-e175d3b38758",
   },
   openGraph: {
     title: "Zoltai - Make Money Using AI Tools",
