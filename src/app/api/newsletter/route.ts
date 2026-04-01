@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const fromEmail =
       process.env.RESEND_FROM_EMAIL || "Zoltai <noreply@zoltai.org>";
-    const adminEmail = process.env.REPORT_EMAIL_TO || "";
+    const adminEmail = process.env.REPORT_EMAIL_TO || "zoltai.official@gmail.com";
 
     if (!resendApiKey) {
       console.error("RESEND_API_KEY not configured");
