@@ -251,14 +251,15 @@ function buildInstagramSlides(
 ): string[] {
   const mainTool = ctx.toolsMentioned[0] || "AI";
   const secondTool = ctx.toolsMentioned[1] || "chatbot";
+  const topicKeyword = ctx.title.split(/[\s:,\-–]+/).filter((w) => w.length > 3).slice(0, 3).join(" ");
 
-  // SLIDE 1: Topic overview — aerial/flat lay desk shot
+  // SLIDE 1: Topic-specific overview — includes article keywords for uniqueness
   const slide1Options: Record<string, string> = {
-    "make-money": `flat lay desk with laptop showing revenue dashboard, dollar bills, coffee cup, golden warm light`,
-    productivity: `organized desk flat lay, laptop with apps open, tablet, sticky notes, bright daylight`,
-    comparison: `two phones side by side showing different apps, marble desk, studio lighting`,
-    tutorial: `person following tutorial on laptop, notepad with notes, warm desk lamp`,
-    review: `laptop showing product review with star rating, modern home office, ring light`,
+    "make-money": `laptop showing ${mainTool} earnings dashboard, money graphs, golden desk lamp, flat lay`,
+    productivity: `organized desk with ${mainTool} open on laptop, tablet, sticky notes, bright daylight`,
+    comparison: `split screen monitor ${mainTool} vs ${secondTool}, side by side, modern desk`,
+    tutorial: `person learning ${topicKeyword} on laptop, notepad with notes, warm lamp`,
+    review: `laptop showing ${mainTool} review with star rating, home office, ring light`,
   };
   const slide1 = slide1Options[ctx.intent] || slide1Options["make-money"];
 

@@ -2,17 +2,37 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { generateArticle, researchTrendingTopics } from "../src/lib/claude";
-import { generateImageFromPrompt } from "../src/lib/image-provider";
 import {
   buildArticleContext,
   generateImagePrompts,
-  validatePrompts,
 } from "../src/lib/image-prompts";
 
-async function downloadImage(url: string, filepath: string): Promise<void> {
-  const response = await fetch(url);
-  const buffer = Buffer.from(await response.arrayBuffer());
-  fs.writeFileSync(filepath, buffer);
+/**
+ * Download image from URL and save to disk.
+ * For Pollinations: the URL triggers generation, so we wait up to 90s.
+ */
+async function downloadImage(url: string, filepath: string): Promise<boolean> {
+  try {
+    console.log(`   📥 Downloading: ${url.slice(0, 80)}...`);
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(90000), // 90s for AI generation
+    });
+    if (!response.ok) {
+      console.warn(`   ⚠️ Download failed: ${response.status}`);
+      return false;
+    }
+    const buffer = Buffer.from(await response.arrayBuffer());
+    if (buffer.length < 5000) {
+      console.warn(`   ⚠️ Image too small (${buffer.length} bytes), skipping`);
+      return false;
+    }
+    fs.writeFileSync(filepath, buffer);
+    console.log(`   ✅ Saved: ${filepath} (${(buffer.length / 1024).toFixed(0)}KB)`);
+    return true;
+  } catch (err) {
+    console.warn(`   ⚠️ Download error: ${(err as Error).message}`);
+    return false;
+  }
 }
 
 function getExistingArticles(): string[] {
@@ -61,7 +81,7 @@ async function main() {
   console.log(`📰 Article: ${article.title}`);
 
   // Generate slug from title
-  const slug = article.title
+  let slug = article.title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
@@ -74,12 +94,9 @@ async function main() {
 
   const existingFile = path.join(contentDir, `${slug}.mdx`);
   if (fs.existsSync(existingFile)) {
-    console.log(
-      `⚠️ Article with slug "${slug}" already exists. Adding date suffix.`
-    );
     const date = new Date().toISOString().split("T")[0];
-    const newSlug = `${slug}-${date}`;
-    const newFile = path.join(contentDir, `${newSlug}.mdx`);
+    slug = `${slug}-${date}`;
+    const newFile = path.join(contentDir, `${slug}.mdx`);
 
     if (fs.existsSync(newFile)) {
       console.log("⚠️ Today's article already generated. Skipping.");
@@ -89,82 +106,67 @@ async function main() {
 
   const date = new Date().toISOString().split("T")[0];
 
-  // === CONTEXT-AWARE IMAGE GENERATION ===
-  console.log("🎨 Building article context for image generation...");
+  // ========================================
+  // GENERATE & SAVE IMAGES (cover + 4 Instagram slides)
+  // ========================================
+  console.log("\n🎨 Generating images...");
 
-  // Build context from article content
-  const articleContext = buildArticleContext(
+  // Build context for image prompts
+  const ctx = buildArticleContext(
     article.title,
     article.description,
     article.content,
     article.tags
   );
-  console.log(`   📋 Intent: ${articleContext.intent}`);
-  console.log(
-    `   🔧 Tools mentioned: ${articleContext.toolsMentioned.join(", ") || "none"}`
-  );
+  const imagePrompts = generateImagePrompts(ctx);
 
-  // Generate context-aware image prompts
-  const imagePrompts = generateImagePrompts(articleContext);
+  // Ensure directories exist
+  const coverDir = path.join(process.cwd(), "public/images/blog");
+  const instaDir = path.join(process.cwd(), "public/images/instagram", slug);
+  if (!fs.existsSync(coverDir)) fs.mkdirSync(coverDir, { recursive: true });
+  if (!fs.existsSync(instaDir)) fs.mkdirSync(instaDir, { recursive: true });
 
-  // Use Claude's image prompt if available, otherwise use our generated one
-  const featuredPrompt = article.imagePrompt || imagePrompts.featured;
-  console.log(`   🖼️ Featured prompt: ${featuredPrompt.slice(0, 80)}...`);
-
-  // Validate prompts before generating
-  const validation = validatePrompts(imagePrompts, articleContext);
-  if (!validation.valid) {
-    console.warn(`   ⚠️ Prompt validation issues: ${validation.issues.join(", ")}`);
-    console.log(`   🔄 Regenerating with stricter context...`);
-    // Use Claude's prompt as override if our generator had issues
-  }
-
-  // Generate cover image with context-aware prompt
+  // --- Cover image (16:9) ---
   let imagePath = "";
-  try {
-    console.log("🎨 Generating context-aware cover image...");
-    const imageUrl = await generateImageFromPrompt(featuredPrompt);
-    if (imageUrl && !imageUrl.startsWith("data:")) {
-      const imagesDir = path.join(process.cwd(), "public/images/blog");
-      if (!fs.existsSync(imagesDir)) {
-        fs.mkdirSync(imagesDir, { recursive: true });
-      }
-      imagePath = `/images/blog/${slug}.png`;
-      await downloadImage(
-        imageUrl,
-        path.join(process.cwd(), "public", imagePath)
-      );
-      console.log("🖼️ Context-aware cover image saved");
-    } else if (imageUrl) {
-      const imagesDir = path.join(process.cwd(), "public/images/blog");
-      if (!fs.existsSync(imagesDir)) {
-        fs.mkdirSync(imagesDir, { recursive: true });
-      }
-      imagePath = `/images/blog/${slug}.png`;
-      const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, "");
-      fs.writeFileSync(
-        path.join(process.cwd(), "public", imagePath),
-        Buffer.from(base64Data, "base64")
-      );
-      console.log("🖼️ Cover image saved (base64)");
-    }
-  } catch (err) {
-    console.warn(
-      "⚠️ Cover image generation failed, continuing without image:",
-      (err as Error).message
-    );
+  const coverPrompt = article.imagePrompt || imagePrompts.featured;
+  const coverSeed = 42000 + Math.floor(Math.random() * 1000);
+  const coverUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(coverPrompt.slice(0, 150))}?width=1792&height=1024&nologo=true&seed=${coverSeed}`;
+  const coverFile = path.join(coverDir, `${slug}.jpg`);
+
+  console.log("🖼️ Cover image...");
+  if (await downloadImage(coverUrl, coverFile)) {
+    imagePath = `/images/blog/${slug}.jpg`;
   }
 
-  // Create MDX file with image prompts in frontmatter for social pipeline
+  // --- Instagram slides (1080x1080, 4 slides with DIFFERENT seeds) ---
+  const slidePaths: string[] = [];
+  const slideSeeds = [10000, 30000, 55000, 80000]; // Widely separated
+
+  console.log("📸 Instagram slides...");
+  for (let i = 0; i < 4; i++) {
+    const prompt = imagePrompts.instagramSlides[i] || `AI tools on laptop, modern workspace, tech aesthetic`;
+    const seed = slideSeeds[i];
+    const slideUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt.slice(0, 120))}?width=1080&height=1080&nologo=true&seed=${seed}`;
+    const slideFile = path.join(instaDir, `slide-${i + 1}.jpg`);
+
+    console.log(`   Slide ${i + 1} (seed=${seed}): "${prompt.slice(0, 60)}..."`);
+    if (await downloadImage(slideUrl, slideFile)) {
+      slidePaths.push(`/images/instagram/${slug}/slide-${i + 1}.jpg`);
+    }
+  }
+
+  console.log(`✅ Saved ${slidePaths.length}/4 Instagram slides`);
+
+  // Create MDX file with image paths + Instagram data in frontmatter
   const mdxContent = `---
-title: "${article.title}"
-description: "${article.description}"
+title: "${article.title.replace(/"/g, '\\"')}"
+description: "${article.description.replace(/"/g, '\\"')}"
 date: "${date}"
 author: "Zoltai AI"
 tags: ${JSON.stringify(article.tags)}
 image: "${imagePath}"
-imagePrompt: "${(article.imagePrompt || imagePrompts.featured).replace(/"/g, '\\"')}"
-instagramCaption: "${(article.instagramCaption || "").replace(/"/g, '\\"').replace(/\n/g, '\\n')}"
+instagramSlides: ${JSON.stringify(slidePaths)}
+instagramCaption: "${(article.instagramCaption || "").replace(/"/g, '\\"').replace(/\n/g, "\\n")}"
 instagramHook: "${(article.instagramHook || "").replace(/"/g, '\\"')}"
 ---
 
@@ -172,34 +174,9 @@ ${article.content}
 `;
 
   fs.writeFileSync(path.join(contentDir, `${slug}.mdx`), mdxContent);
-  console.log(`✅ Article saved: ${slug}.mdx`);
-  console.log(`   📷 Image prompts saved in frontmatter`);
-  console.log(`   📸 Instagram caption pre-generated`);
-
-  // Save image prompts separately for the social pipeline
-  const promptsDir = path.join(process.cwd(), "data/image-prompts");
-  if (!fs.existsSync(promptsDir)) {
-    fs.mkdirSync(promptsDir, { recursive: true });
-  }
-  fs.writeFileSync(
-    path.join(promptsDir, `${slug}.json`),
-    JSON.stringify(
-      {
-        slug,
-        title: article.title,
-        featured: featuredPrompt,
-        inline: imagePrompts.inline,
-        instagram: imagePrompts.instagram,
-        instagramSlides: imagePrompts.instagramSlides,
-        instagramCaption: article.instagramCaption || "",
-        instagramHook: article.instagramHook || "",
-        generatedAt: new Date().toISOString(),
-      },
-      null,
-      2
-    )
-  );
-  console.log(`   💾 Image prompts saved: data/image-prompts/${slug}.json`);
+  console.log(`\n✅ Article saved: ${slug}.mdx`);
+  console.log(`   📷 Cover: ${imagePath || "none"}`);
+  console.log(`   📸 Instagram: ${slidePaths.length} slides saved`);
 
   console.log(`::set-output name=slug::${slug}`);
   console.log(`::set-output name=title::${article.title}`);
