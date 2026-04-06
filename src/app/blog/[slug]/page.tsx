@@ -12,6 +12,7 @@ import { NewsletterPopup } from "@/components/newsletter-popup";
 import { getFeaturedTools, tools } from "@/data/tools";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FAQSchema, extractFAQsFromContent } from "@/components/faq-schema";
+import { TagLinks } from "@/components/tag-links";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -133,15 +134,8 @@ export default async function BlogPost({ params }: Props) {
 
       {/* === HEADER === */}
       <header className="mb-10">
-        <div className="flex items-center gap-2 mb-4">
-          {post.tags.map((tag: string) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent-light"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="mb-4">
+          <TagLinks tags={post.tags} />
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
           {post.title}
