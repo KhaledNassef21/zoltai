@@ -24,15 +24,213 @@
     "timestamp": "2026-04-06T13:33:15.132Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775483326851}]",
-    "page": "/tools",
-    "timestamp": "2026-04-06T13:48:49.620Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:04:12.706Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-06T14:16:48.480Z"
+    "timestamp": "2026-04-06T14:04:13.428Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:04:29.438Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:04:29.516Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:04:29.755Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:04:37.138Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_timer",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:05:14.619Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:10:53.289Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:10:56.378Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":60,\"y\":25,\"el\":\"svg.[object\",\"time\":1775484653247},{\"x\":22,\"y\":4,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775484655673}]",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:10:56.409Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":86,\"y\":20,\"el\":\"button.px-3[Enable Notifications]\",\"time\":1775484663245},{\"x\":31,\"y\":65,\"el\":\"img.w-full\",\"time\":1775484671408}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:11:13.804Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:13.872Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:13.919Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:14.083Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":31,\"y\":51,\"el\":\"div.p-5[Kkh39m agoGood]\",\"time\":1775484691548},{\"x\":58,\"y\":3,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775484699034}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:39.942Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T14:11:40.109Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":3,\"el\":\"div.flex[BlogTools💰 EarnAboutContactAR]\",\"time\":1775484703964},{\"x\":62,\"y\":3,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775484704396}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T14:11:46.335Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T14:11:46.369Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-06T14:11:53.552Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":68,\"y\":4,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775484713016}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T14:11:53.606Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/profile",
+    "timestamp": "2026-04-06T14:12:03.273Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":69,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775484719499},{\"x\":77,\"y\":3,\"el\":\"div.w-7[J]\",\"time\":1775484722677}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T14:12:03.295Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:11.739Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":35,\"y\":84,\"el\":\"button.px-5[Sign Out]\",\"time\":1775484729513}]",
+    "page": "/profile",
+    "timestamp": "2026-04-06T14:12:11.771Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:31.254Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:31.368Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:31.417Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":34,\"y\":40,\"el\":\"img.w-full\",\"time\":1775484749440}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:31.461Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:41.991Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":52,\"y\":51,\"el\":\"input.flex-1\",\"time\":1775484757236},{\"x\":48,\"y\":51,\"el\":\"input.w-full\",\"time\":1775484758133},{\"x\":24,\"y\":5,\"el\":\"nav.max-w-6xl[ZoltaiBlogTools💰 EarnAboutCon]\",\"time\":1775484761102},{\"x\":22,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775484761557}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:42.033Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":5,\"el\":\"nav.max-w-6xl[ZoltaiBlogTools💰 EarnAboutCon]\",\"time\":1775484763466},{\"x\":77,\"y\":3,\"el\":\"div.w-7[J]\",\"time\":1775484763835}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:44.109Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/profile",
+    "timestamp": "2026-04-06T14:12:44.156Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-06T14:12:45.394Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":38,\"y\":63,\"el\":\"div.min-h-[70vh][Welcome BackSign in to access ]\",\"time\":1775484766468},{\"x\":46,\"y\":34,\"el\":\"label.block[Email]\",\"time\":1775484768229},{\"x\":46,\"y\":39,\"el\":\"input.w-full\",\"time\":1775484768760},{\"x\":71,\"y\":18,\"el\":\"div.min-h-[70vh][Welcome BackSign in to access ]\",\"time\":1775484772990},{\"x\":55,\"y\":34,\"el\":\"label.block[Email]\",\"time\":1775484773696}]",
+    "page": "/login",
+    "timestamp": "2026-04-06T14:12:58.283Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:13:00.006Z"
   }
 ]
