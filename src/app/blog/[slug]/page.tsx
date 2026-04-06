@@ -5,7 +5,10 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import { AffiliateCTA } from "@/components/affiliate-cta";
 import { LeadMagnet } from "@/components/lead-magnet";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 import { Comments } from "@/components/comments";
+import { MidArticleCTA, BottomArticleCTA } from "@/components/article-cta";
+import { NewsletterPopup } from "@/components/newsletter-popup";
 import { getFeaturedTools, tools } from "@/data/tools";
 
 type Props = {
@@ -40,7 +43,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Match tools to article based on tags/title keywords
 function getRelevantTools(title: string, tags: string[]) {
   const text = `${title} ${tags.join(" ")}`.toLowerCase();
   const matched = tools.filter((tool) => {
@@ -53,39 +55,27 @@ function getRelevantTools(title: string, tags: string[]) {
   });
 
   if (matched.length >= 3) return matched.slice(0, 3);
-
-  // Fallback to featured
   const featured = getFeaturedTools();
-  const combined = [...matched, ...featured.filter((f) => !matched.includes(f))];
+  const combined = [
+    ...matched,
+    ...featured.filter((f) => !matched.includes(f)),
+  ];
   return combined.slice(0, 3);
 }
 
-// Get related articles by tag overlap
 function getRelatedPosts(currentSlug: string, currentTags: string[]) {
   const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
-
   const scored = allPosts.map((post) => {
     const overlap = post.tags.filter((t) => currentTags.includes(t)).length;
     return { post, score: overlap };
   });
-
   scored.sort((a, b) => b.score - a.score);
   return scored.slice(0, 3).map((s) => s.post);
 }
 
-export default async function BlogPost({ params }: Props) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
-
-  if (!post) {
-    notFound();
-  }
-
-  const relevantTools = getRelevantTools(post.title, post.tags);
-  const relatedPosts = getRelatedPosts(slug, post.tags);
-
-  // JSON-LD
-  const jsonLd = {
+// JSON-LD for article
+function getJsonLd(post: any, slug: string) {
+  return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
@@ -108,6 +98,19 @@ export default async function BlogPost({ params }: Props) {
       "@id": `https://zoltai.org/blog/${slug}`,
     },
   };
+}
+
+export default async function BlogPost({ params }: Props) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const relevantTools = getRelevantTools(post.title, post.tags);
+  const relatedPosts = getRelatedPosts(slug, post.tags);
+  const jsonLd = getJsonLd(post, slug);
 
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
@@ -115,9 +118,11 @@ export default async function BlogPost({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      {/* === HEADER === */}
       <header className="mb-10">
         <div className="flex items-center gap-2 mb-4">
-          {post.tags.map((tag) => (
+          {post.tags.map((tag: string) => (
             <span
               key={tag}
               className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent-light"
@@ -157,23 +162,40 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
-      {/* Top Tool CTA - Smart */}
+      {/* === LEAD FLOW POSITION 1: Top CTA (Affiliate) === */}
       {relevantTools[0] && (
         <AffiliateCTA
           toolName={relevantTools[0].name}
           description={relevantTools[0].description}
-          ctaText={`🔥 Start Earning with ${relevantTools[0].name}`}
+          ctaText={`Try ${relevantTools[0].name} Free →`}
           ctaUrl={relevantTools[0].affiliateUrl || relevantTools[0].url}
           variant="banner"
           badge="Top Pick for This Topic"
         />
       )}
 
+      {/* === LEAD FLOW POSITION 2: Top Newsletter Bar === */}
+      <NewsletterSignup
+        variant="banner"
+        title="Free AI Money Guide"
+        description="Get the top 10 AI tools that can earn you $1,000/month. Free weekly tips."
+      />
+
+      {/* === ARTICLE CONTENT === */}
       <div className="prose">
         <MDXRemote source={post.content} />
       </div>
 
-      {/* Top Tools for This Topic */}
+      {/* === LEAD FLOW POSITION 3: Mid-Article CTA === */}
+      {relevantTools[0] && (
+        <MidArticleCTA
+          toolName={relevantTools[0].name}
+          toolUrl={relevantTools[0].affiliateUrl || relevantTools[0].url}
+          slug={slug}
+        />
+      )}
+
+      {/* === Top Tools for This Topic === */}
       {relevantTools.length > 1 && (
         <div className="my-10 p-6 rounded-xl border border-accent/20 bg-gradient-to-br from-accent/5 via-card-bg to-card-bg">
           <h3 className="font-bold text-lg mb-4">
@@ -210,24 +232,15 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
-      {/* Post-article CTA */}
-      {relevantTools[1] && (
-        <AffiliateCTA
-          toolName={relevantTools[1].name}
-          description={`Use ${relevantTools[1].name} to start earning. ${relevantTools[1].pricingDetail}`}
-          ctaText="Use This Tool to Earn Online →"
-          ctaUrl={relevantTools[1].affiliateUrl || relevantTools[1].url}
-          variant="default"
-          badge="Recommended for You"
-        />
-      )}
+      {/* === LEAD FLOW POSITION 4: Bottom Article CTA === */}
+      <BottomArticleCTA slug={slug} />
 
-      {/* Lead Magnet */}
-      <div className="mt-12">
+      {/* === LEAD FLOW POSITION 5: Lead Magnet (Email Capture) === */}
+      <div className="mt-8">
         <LeadMagnet />
       </div>
 
-      {/* Related Articles */}
+      {/* === Related Articles === */}
       {relatedPosts.length > 0 && (
         <div className="mt-12">
           <h3 className="font-bold text-xl mb-6">📖 Related Articles</h3>
@@ -257,7 +270,7 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
-      {/* Explore more */}
+      {/* === Explore All Tools === */}
       <div className="mt-10 p-6 rounded-xl border border-card-border bg-card-bg">
         <h3 className="font-bold text-lg mb-2">Explore All AI Tools</h3>
         <p className="text-sm text-zinc-500 mb-4">
@@ -272,8 +285,11 @@ export default async function BlogPost({ params }: Props) {
         </a>
       </div>
 
-      {/* Comments */}
+      {/* === Comments === */}
       <Comments slug={slug} />
+
+      {/* === LEAD FLOW POSITION 6: Newsletter Popup (timed + exit intent) === */}
+      <NewsletterPopup />
     </article>
   );
 }
