@@ -4,5 +4,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-06T13:29:33.945Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775482184736}]",
+    "page": "/",
+    "timestamp": "2026-04-06T13:29:48.103Z"
   }
 ]
