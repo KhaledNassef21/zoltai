@@ -246,33 +246,297 @@
     "timestamp": "2026-04-06T14:26:02.349Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025",
-    "timestamp": "2026-04-06T17:09:05.173Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":54,\"y\":2,\"el\":\"div.flex[BlogTools💰 EarnAboutContactAR]\",\"time\":1775486758298},{\"x\":54,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775486758920}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:45:59.968Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/blog",
-    "timestamp": "2026-04-06T18:22:56.686Z"
+    "timestamp": "2026-04-06T14:46:00.169Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "79",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:41.533Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "79",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:42.067Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-06T18:24:51.600Z"
+    "timestamp": "2026-04-06T14:53:45.576Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:49.619Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:53:50.671Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:53:57.993Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:58.290Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:54:07.027Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:54:08.353Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:54:17.111Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:54:17.266Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:08:36.081Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:08:40.352Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:08:47.380Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:17:20.878Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775488640472}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:17:20.898Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:17:25.235Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":57,\"y\":4,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775488654980}]",
+    "page": "/",
+    "timestamp": "2026-04-06T15:17:35.703Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:17:35.834Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":3,\"el\":\"a.text-zinc-400[About]\",\"time\":1775488660161}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:17:40.481Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/about",
+    "timestamp": "2026-04-06T15:17:40.505Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-06T15:17:43.066Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":67,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775488662678}]",
+    "page": "/about",
+    "timestamp": "2026-04-06T15:17:43.083Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:17:45.025Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":54,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775488664624}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T15:17:45.052Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:17:48.389Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:17:48.640Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":37,\"y\":32,\"el\":\"img.w-full\",\"time\":1775488666371}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:17:48.684Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:17:48.790Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":37,\"y\":50,\"el\":\"a.inline-flex[Browse Tools Directory →]\",\"time\":1775488693444}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:18:13.500Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "93",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:18:13.528Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:18:15.402Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:18:20.930Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775488700492}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:18:20.958Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "61",
+    "page": "/",
+    "timestamp": "2026-04-06T15:26:25.924Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:26:27.226Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:26:37.469Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":78,\"y\":13,\"el\":\"a.text-accent-light[View all→]\",\"time\":1775489196862}]",
+    "page": "/",
+    "timestamp": "2026-04-06T15:26:37.505Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/earn",
-    "timestamp": "2026-04-06T18:29:47.686Z"
+    "timestamp": "2026-04-06T15:27:19.389Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775489213089},{\"x\":59,\"y\":4,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775489238608}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:27:19.457Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "40",
+    "page": "/earn",
+    "timestamp": "2026-04-06T15:27:31.646Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:27:33.088Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:27:50.096Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":48,\"y\":27,\"el\":\"a.block[Get Premium Access]\",\"time\":1775489269828}]",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:27:50.200Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-06T18:38:36.943Z"
+    "timestamp": "2026-04-06T15:29:21.164Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":58,\"y\":16,\"el\":\"div.relative[👑 Premium MembershipUnlock Pr]\",\"time\":1775489276551},{\"x\":58,\"y\":16,\"el\":\"div.relative[👑 Premium MembershipUnlock Pr]\",\"time\":1775489276862},{\"x\":23,\"y\":5,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775489372177}]",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:29:32.560Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:29:32.591Z"
   }
 ]

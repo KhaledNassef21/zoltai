@@ -32,6 +32,12 @@ export function Footer() {
                 <Link href="/about" className="hover:text-foreground transition-colors">
                   {t("nav.about")}
                 </Link>
+                <Link href="/privacy" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms" className="hover:text-foreground transition-colors">
+                  Terms of Service
+                </Link>
               </div>
             </div>
             <div>
