@@ -268,5 +268,11 @@
     "variant": "",
     "page": "/earn",
     "timestamp": "2026-04-06T18:29:47.686Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T18:38:36.943Z"
   }
 ]
