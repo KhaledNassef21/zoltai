@@ -13,8 +13,8 @@ interface UserData {
 const premiumFeatures = [
   {
     icon: "🎯",
-    title: "Advanced AI Money Strategies",
-    description: "Step-by-step blueprints for building $5K+/month AI businesses",
+    title: "Advanced AI Strategies",
+    description: "Step-by-step blueprints for building AI-powered workflows",
   },
   {
     icon: "📊",
@@ -34,7 +34,7 @@ const premiumFeatures = [
   {
     icon: "📈",
     title: "Monthly Earnings Reports",
-    description: "See what's working now with real income breakdowns",
+    description: "See what's working now with real performance breakdowns",
   },
   {
     icon: "🚀",
@@ -45,19 +45,19 @@ const premiumFeatures = [
 
 const premiumArticles = [
   {
-    title: "How I Built a $10K/Month AI Content Agency (Full Blueprint)",
+    title: "How to Build an AI Content Agency (Full Blueprint)",
     locked: true,
   },
   {
-    title: "The Complete ChatGPT Freelancing Playbook: From $0 to $5K",
+    title: "The Complete ChatGPT Freelancing Playbook: Getting Started",
     locked: true,
   },
   {
-    title: "AI Automation Secrets: 7 Workflows That Generate Passive Income",
+    title: "AI Automation Playbook: 7 Workflows That Save Hours",
     locked: true,
   },
   {
-    title: "Advanced Midjourney for Print-on-Demand: $3K/Month Strategy",
+    title: "Advanced Midjourney for Print-on-Demand: Complete Strategy",
     locked: true,
   },
   {
@@ -93,8 +93,8 @@ export default function PremiumPage() {
             Unlock <span className="gradient-text">Premium</span> AI Strategies
           </h1>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-8">
-            Get exclusive access to advanced money-making guides, done-for-you templates,
-            and strategies that are generating real income for our members.
+            Get exclusive access to advanced AI guides, done-for-you templates,
+            and strategies that deliver real results for our members.
           </p>
 
           {user?.premium ? (

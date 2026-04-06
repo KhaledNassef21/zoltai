@@ -51,7 +51,7 @@ export function StickyCTA() {
           className="flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold text-sm shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300"
         >
           <span className="text-lg">🔥</span>
-          <span>Make Money with AI Tools</span>
+          <span>Explore AI Tools</span>
         </Link>
       </div>
 

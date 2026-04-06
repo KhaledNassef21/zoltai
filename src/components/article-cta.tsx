@@ -34,7 +34,7 @@ export function MidArticleCTA({
             Recommended Tool
           </p>
           <p className="text-foreground font-semibold">
-            Want to start earning? Try {toolName} — most readers start here.
+            Looking to level up your workflow? Try {toolName} — most readers start here.
           </p>
           <p className="text-zinc-500 text-sm mt-1">
             Free to start. No credit card needed.
@@ -73,10 +73,10 @@ export function BottomArticleCTA({
     <div className="my-10 p-8 rounded-2xl border border-accent/20 bg-gradient-to-br from-accent/10 via-card-bg to-cyan-500/5 text-center not-prose">
       <p className="text-3xl mb-3">💰</p>
       <h3 className="text-xl font-bold mb-2">
-        Ready to Start Earning with AI?
+        Ready to Explore AI Tools?
       </h3>
       <p className="text-zinc-400 text-sm mb-6 max-w-md mx-auto">
-        Join thousands of people using AI tools to build side income. See our
+        Join thousands of people using AI tools to boost their productivity. See our
         top-rated tools with step-by-step guides.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -91,7 +91,7 @@ export function BottomArticleCTA({
           }
           className="px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold text-sm transition-all hover:scale-[1.02] shadow-lg shadow-accent/20"
         >
-          🔥 See Top Earning Tools
+          See Top-Rated Tools
         </a>
         <a
           href="/tools"

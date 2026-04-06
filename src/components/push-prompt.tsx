@@ -40,7 +40,7 @@ export function PushPrompt() {
         if ("serviceWorker" in navigator) {
           const reg = await navigator.serviceWorker.ready;
           reg.showNotification("Welcome to Zoltai!", {
-            body: "You'll get notified about new AI money-making tips.",
+            body: "You'll get notified about new AI tool guides and tips.",
             icon: "/icons/icon-192.png",
           });
         }
@@ -66,9 +66,9 @@ export function PushPrompt() {
         <div className="flex items-start gap-3">
           <span className="text-2xl">&#x1F514;</span>
           <div className="flex-1">
-            <p className="text-sm font-medium mb-1">Get AI Money Tips</p>
+            <p className="text-sm font-medium mb-1">Get AI Tool Updates</p>
             <p className="text-xs text-zinc-400 mb-3">
-              Get notified when we publish new guides about making money with AI
+              Get notified when we publish new guides and tutorials about AI
               tools.
             </p>
             <div className="flex gap-2">

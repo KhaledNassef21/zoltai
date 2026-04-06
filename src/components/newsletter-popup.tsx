@@ -116,7 +116,7 @@ export function NewsletterPopup() {
               You're In!
             </h3>
             <p className="text-zinc-400 text-sm">
-              Check your inbox for your free AI Money Guide.
+              Check your inbox for your free AI Tools Guide.
             </p>
           </div>
         ) : (
@@ -126,26 +126,26 @@ export function NewsletterPopup() {
                 FREE GUIDE
               </div>
               <h3 className="text-2xl font-bold mb-2">
-                10 AI Tools Making People{" "}
-                <span className="gradient-text">$1,000/Month</span>
+                10 AI Tools That Can Transform{" "}
+                <span className="gradient-text">Your Productivity</span>
               </h3>
               <p className="text-zinc-400 text-sm">
-                Get the exact tools + strategies. Free. No coding needed.
+                Discover the best AI tools with practical guides. Free. No coding needed.
               </p>
             </div>
 
             <div className="flex flex-col gap-2 mb-4 text-sm text-zinc-400">
               <span className="flex items-center gap-2">
-                <span className="text-emerald-400">✓</span> Top 10 earning
-                tools ranked
+                <span className="text-emerald-400">✓</span> Top 10 AI tools
+                reviewed
               </span>
               <span className="flex items-center gap-2">
                 <span className="text-emerald-400">✓</span> Step-by-step
-                income playbooks
+                learning guides
               </span>
               <span className="flex items-center gap-2">
-                <span className="text-emerald-400">✓</span> Weekly AI money
-                tips
+                <span className="text-emerald-400">✓</span> Weekly AI
+                insights
               </span>
             </div>
 
@@ -172,7 +172,7 @@ export function NewsletterPopup() {
               >
                 {status === "loading"
                   ? "Joining..."
-                  : "🔥 Get Free Guide + Weekly Tips"}
+                  : "Get Free Guide + Weekly Tips"}
               </button>
             </form>
 

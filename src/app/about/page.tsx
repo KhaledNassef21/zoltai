@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Zoltai - Make Money with AI Tools",
+  title: "About Zoltai - Learn and Master AI Tools",
   description:
-    "Zoltai helps you discover the best AI tools to earn money online, boost productivity, and build your side hustle. No coding required.",
+    "Zoltai helps you discover the best AI tools to boost productivity, learn new skills, and work smarter. No coding required.",
 };
 
 const jsonLd = {
@@ -13,7 +13,7 @@ const jsonLd = {
   name: "Zoltai",
   url: "https://zoltai.org",
   description:
-    "Discover the best AI tools to earn money online. No coding required.",
+    "Discover the best AI tools to boost productivity and work smarter. No coding required.",
   sameAs: [
     "https://www.instagram.com/zoltai.ai/",
     "https://www.facebook.com/zoltai.community",
@@ -39,17 +39,17 @@ export default function AboutPage() {
 
       <div className="prose">
         <p>
-          Zoltai is your guide to <strong>making money using AI tools</strong> —
+          Zoltai is your guide to <strong>mastering AI tools</strong> —
           no coding required. We publish daily articles, honest reviews, and
-          step-by-step tutorials to help you earn money online using the best
+          step-by-step tutorials to help you work smarter using the best
           artificial intelligence tools available today.
         </p>
 
         <h2>Our Mission</h2>
         <p>
-          We believe everyone can earn from AI — whether you&apos;re a complete
+          We believe everyone can benefit from AI — whether you&apos;re a complete
           beginner or a seasoned professional. Our mission is to bridge the gap
-          between powerful AI technology and real income opportunities, making it
+          between powerful AI technology and everyday workflows, making it
           accessible to anyone with an internet connection.
         </p>
 
@@ -60,8 +60,8 @@ export default function AboutPage() {
             reviews with free trials and deals
           </li>
           <li>
-            <strong>Money-Making Strategies</strong> — Step-by-step guides to
-            earn with AI (freelancing, content creation, automation)
+            <strong>Practical AI Strategies</strong> — Step-by-step guides to
+            leverage AI for freelancing, content creation, and automation
           </li>
           <li>
             <strong>Productivity Hacks</strong> — Automate your work and 10x

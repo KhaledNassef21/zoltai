@@ -107,33 +107,33 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: fromEmail,
         to: cleanEmail,
-        subject: "🎉 Welcome to Zoltai — Start Making Money with AI",
+        subject: "Welcome to Zoltai — Your AI Tools Journey Starts Here",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ededed; padding: 32px; border-radius: 12px;">
             <h1 style="color: #7c3aed; font-size: 28px; margin-bottom: 16px;">Welcome to Zoltai, ${firstName}!</h1>
             <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px;">
-              You just unlocked your guide to <strong style="color: #ededed;">making money with AI tools</strong> — no coding required.
+              You just unlocked your guide to <strong style="color: #ededed;">mastering AI tools</strong> — no coding required.
             </p>
             <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px;">
               Over the next week, I'll send you:
             </p>
             <ul style="color: #a1a1aa; line-height: 2; font-size: 16px;">
-              <li>💰 Top 5 AI tools to start earning today</li>
-              <li>📝 Step-by-step guide to make your first $100</li>
-              <li>⚡ Honest comparison of AI tools that pay</li>
+              <li>💰 Top 5 AI tools to explore this week</li>
+              <li>📝 Step-by-step guide to get started with AI</li>
+              <li>⚡ Honest comparison of the best AI tools</li>
               <li>🏆 My #1 recommended tool for beginners</li>
             </ul>
             <div style="margin: 32px 0; text-align: center;">
               <a href="https://zoltai.org/tools" style="display: inline-block; padding: 14px 28px; background: #7c3aed; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">
-                🔥 Explore AI Tools Now
+                Explore AI Tools Now
               </a>
             </div>
             <p style="color: #71717a; font-size: 14px; line-height: 1.6;">
-              P.S. Check your inbox tomorrow — I'll send you the Top 5 tools that are making people real money right now.
+              P.S. Check your inbox tomorrow — I'll send you the Top 5 tools that are transforming how people work right now.
             </p>
             <hr style="border-color: #1e1e1e; margin: 24px 0;" />
             <p style="color: #666; font-size: 12px; text-align: center;">
-              Zoltai — Make Money Using AI Tools | <a href="https://zoltai.org" style="color: #666;">zoltai.org</a>
+              Zoltai — Discover the Best AI Tools | <a href="https://zoltai.org" style="color: #666;">zoltai.org</a>
             </p>
           </div>
         `,

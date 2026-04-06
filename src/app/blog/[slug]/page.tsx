@@ -178,7 +178,7 @@ export default async function BlogPost({ params }: Props) {
       <NewsletterSignup
         variant="banner"
         title="Free AI Money Guide"
-        description="Get the top 10 AI tools that can earn you $1,000/month. Free weekly tips."
+        description="Discover the top 10 AI tools to boost your productivity. Free weekly insights."
       />
 
       {/* === ARTICLE CONTENT === */}
@@ -274,8 +274,8 @@ export default async function BlogPost({ params }: Props) {
       <div className="mt-10 p-6 rounded-xl border border-card-border bg-card-bg">
         <h3 className="font-bold text-lg mb-2">Explore All AI Tools</h3>
         <p className="text-sm text-zinc-500 mb-4">
-          Discover {tools.length}+ curated AI tools to help you earn money
-          online.
+          Discover {tools.length}+ curated AI tools to boost your
+          productivity.
         </p>
         <a
           href="/tools"

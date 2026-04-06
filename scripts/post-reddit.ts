@@ -255,7 +255,7 @@ function buildRedditPost(article: {
 
 ${isTruncated ? `**[Read the full article with detailed comparisons and pricing →](${articleUrl})**` : `**[Full article with more details →](${articleUrl})**`}
 
-*I write about making money with AI tools at [zoltai.org](${SITE_URL}?utm_source=reddit&utm_medium=social&utm_campaign=post). No coding required — just practical guides.*
+*I write about practical AI tools and workflows at [zoltai.org](${SITE_URL}?utm_source=reddit&utm_medium=social&utm_campaign=post). No coding required — practical guides for everyone.*
 
 *What tools are you all using? Curious to hear what's working for others.*`;
 

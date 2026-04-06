@@ -195,7 +195,7 @@ export function HomeContent({
             {
               name: "Sarah M.",
               role: "Freelance Writer",
-              text: "Zoltai helped me discover AI writing tools that tripled my freelance income. The guides are super practical!",
+              text: "Zoltai helped me discover AI writing tools that transformed my workflow. The guides are super practical!",
               avatar: "S",
             },
             {
@@ -207,7 +207,7 @@ export function HomeContent({
             {
               name: "Lisa T.",
               role: "Content Creator",
-              text: "Started earning from AI art after reading the Midjourney guide. Zoltai is my go-to resource for AI money tips.",
+              text: "Started creating AI art after reading the Midjourney guide. Zoltai is my go-to resource for AI tool reviews.",
               avatar: "L",
             },
           ].map((review) => (

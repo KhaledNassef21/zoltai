@@ -39,8 +39,8 @@ export function LeadMagnet() {
           Check Your Inbox!
         </h3>
         <p className="text-zinc-400">
-          Your free AI Money Guide is on its way. Plus, you&apos;ll get our
-          best money-making tips every week.
+          Your free AI Tools Guide is on its way. Plus, you&apos;ll get our
+          best AI insights and tips every week.
         </p>
       </div>
     );
@@ -56,12 +56,12 @@ export function LeadMagnet() {
           FREE DOWNLOAD
         </div>
         <h3 className="font-bold text-2xl sm:text-3xl mb-2">
-          10 AI Tools That Can Make You{" "}
-          <span className="gradient-text">$1,000/Month</span>
+          10 AI Tools That Can Transform{" "}
+          <span className="gradient-text">Your Workflow</span>
         </h3>
         <p className="text-zinc-400 mb-2 max-w-lg mx-auto">
-          Get the exact tools, strategies, and step-by-step playbooks used by
-          people earning real money with AI.
+          Get curated tools, strategies, and step-by-step guides to boost
+          your productivity with AI.
         </p>
 
         <div className="flex flex-wrap justify-center gap-3 mb-6 text-sm text-zinc-400">
@@ -72,7 +72,7 @@ export function LeadMagnet() {
             <span className="text-emerald-400">✓</span> Step-by-step guides
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span> Real earning strategies
+            <span className="text-emerald-400">✓</span> Real-world use cases
           </span>
         </div>
 
@@ -100,7 +100,7 @@ export function LeadMagnet() {
             disabled={status === "loading"}
             className="px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-bold transition-all hover:scale-[1.02] disabled:opacity-50 whitespace-nowrap shadow-lg shadow-accent/20"
           >
-            {status === "loading" ? "..." : "🔥 Get Free Guide"}
+            {status === "loading" ? "..." : "Get Free Guide"}
           </button>
         </form>
 

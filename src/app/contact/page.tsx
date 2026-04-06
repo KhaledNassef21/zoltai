@@ -91,8 +91,8 @@ export default function ContactPage() {
         <div className="space-y-4">
           {[
             {
-              q: "How do I make money with AI tools?",
-              a: "Check out our blog for detailed guides. Popular methods include AI freelancing (writing, design, coding), creating content with AI, building AI-powered products, and affiliate marketing.",
+              q: "How can AI tools help me in my work?",
+              a: "Check out our blog for detailed guides. Popular use cases include AI-assisted freelancing (writing, design, coding), creating content with AI, building AI-powered products, and streamlining workflows.",
             },
             {
               q: "Are the tools on Zoltai really free?",

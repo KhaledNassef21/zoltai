@@ -22,22 +22,22 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://zoltai.org"),
   title: {
-    default: "Zoltai - Make Money Using AI Tools (No Coding Required)",
+    default: "Zoltai - Discover the Best AI Tools (No Coding Required)",
     template: "%s | Zoltai",
   },
   description:
-    "Discover the best AI tools to earn money online, boost productivity, and build your side hustle. No coding required.",
+    "Discover the best AI tools to boost productivity, streamline your workflow, and learn new skills. No coding required.",
   keywords: [
     "AI tools",
-    "make money with AI",
-    "AI side hustle",
+    "best AI tools",
+    "AI workflow",
     "AI productivity",
-    "earn money online",
+    "AI productivity tools",
     "AI for beginners",
     "AI automation",
-    "best AI tools",
-    "make money online",
-    "passive income AI",
+    "AI for work",
+    "AI learning",
+    "AI tools review",
     "AI freelancing",
   ],
   other: {
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     "impact-site-verification": "9436c631-e4a2-43bb-ad89-e175d3b38758",
   },
   openGraph: {
-    title: "Zoltai - Make Money Using AI Tools",
+    title: "Zoltai - Discover the Best AI Tools",
     description:
-      "Discover the best AI tools to earn money online. No coding required.",
+      "Discover the best AI tools to boost productivity and streamline your workflow. No coding required.",
     siteName: "Zoltai",
     locale: "en_US",
     type: "website",
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zoltai - Make Money Using AI Tools",
+    title: "Zoltai - Discover the Best AI Tools",
     description:
-      "Discover the best AI tools to earn money online. No coding required.",
+      "Discover the best AI tools to boost productivity and streamline your workflow. No coding required.",
   },
   robots: {
     index: true,
@@ -81,7 +81,7 @@ const websiteJsonLd = {
   name: "Zoltai",
   url: "https://zoltai.org",
   description:
-    "Discover the best AI tools to earn money online, boost productivity, and build your side hustle. No coding required.",
+    "Discover the best AI tools to boost productivity, streamline your workflow, and learn new skills. No coding required.",
   publisher: {
     "@type": "Organization",
     name: "Zoltai",

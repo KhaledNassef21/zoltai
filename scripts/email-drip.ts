@@ -7,13 +7,13 @@
  *
  * Sequence:
  * Day 0: Welcome (sent by newsletter API on signup — not here)
- * Day 1: Quick Win — "Your first $50 in 24 hours" (builds trust)
- * Day 3: Deep Dive — "The $5K/month AI writing playbook" (desire)
- * Day 5: Social Proof — "How Sarah made $3,200 last month" (credibility)
+ * Day 1: Quick Win — "Getting started with AI tools" (builds trust)
+ * Day 3: Deep Dive — "The AI writing playbook" (desire)
+ * Day 5: Social Proof — "How creators use AI art tools" (credibility)
  * Day 7: Comparison — "I tested 24 tools. Here are the top 5." (authority)
- * Day 10: Advanced — "The AI coding goldmine nobody talks about" (new opportunity)
- * Day 12: Urgency — "These free tiers won't last forever" (scarcity)
- * Day 14: Final — "Your personal AI money roadmap" (commitment)
+ * Day 10: Advanced — "The AI coding opportunity nobody talks about" (new opportunity)
+ * Day 12: Urgency — "These free AI tiers are worth exploring" (scarcity)
+ * Day 14: Final — "Your personal AI learning roadmap" (commitment)
  *
  * Runs daily via GitHub Actions at 8AM UTC.
  */
@@ -95,17 +95,17 @@ function wrap(content: string, preheader: string, campaign: string): string {
 const dripEmails: DripEmail[] = [
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   // DAY 1: Quick Win — Build Trust + First Action
-  // Goal: Get them to click ONE affiliate link
+  // Goal: Get them to try ONE tool
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {
     id: 1,
     dayAfterSignup: 1,
-    subject: "Your first $50 with AI — here's exactly how (takes 2 hours)",
+    subject: "Getting started with AI tools — a practical 2-hour guide",
     preheader: "No coding. No experience. Just follow these 3 steps.",
     html: wrap(
       `
     <h1 style="color: #ededed; font-size: 24px; line-height: 1.3; margin: 0 0 16px 0;">
-      Make Your First $50 with AI<br/>
+      Get Started with AI Tools<br/>
       <span style="color: #a78bfa;">In Under 2 Hours</span>
     </h1>
 
@@ -116,7 +116,7 @@ const dripEmails: DripEmail[] = [
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">
-      Here's what actually works — <strong style="color: #ededed;">3 steps, 2 hours, $50+</strong>:
+      Here's what actually works — <strong style="color: #ededed;">3 steps, 2 hours, real results</strong>:
     </p>
 
     <div style="margin: 24px 0; padding: 20px; background: #111; border-radius: 8px; border-left: 4px solid #7c3aed;">
@@ -134,11 +134,11 @@ const dripEmails: DripEmail[] = [
     <div style="margin: 24px 0; padding: 20px; background: #111; border-radius: 8px; border-left: 4px solid #22c55e;">
       <p style="color: #22c55e; font-weight: 700; font-size: 14px; margin: 0 0 4px 0;">STEP 3 (1 hour)</p>
       <p style="color: #ededed; font-weight: 600; margin: 0 0 8px 0;">Post on Fiverr: "I will write AI-powered LinkedIn content"</p>
-      <p style="color: #a1a1aa; font-size: 14px; margin: 0;">Price at $25 for 5 posts. Use your samples as portfolio. Most sellers get their first order within 48 hours.</p>
+      <p style="color: #a1a1aa; font-size: 14px; margin: 0;">Use affordable starting prices for your first gig. Use your samples as portfolio. Most sellers get their first order within 48 hours.</p>
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 16px 0;">
-      That's it. No course needed. No $500 software. Just ChatGPT + Fiverr + 2 hours.
+      That's it. No course needed. No expensive software. Just ChatGPT + Fiverr + 2 hours.
     </p>
 
     <div style="margin: 32px 0; text-align: center;">
@@ -148,33 +148,33 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 24px 0 8px 0;">
-      <strong style="color: #ededed;">P.S.</strong> — Tomorrow I'll send you "The $5K/month AI writing playbook." It's the exact system freelancers use to replace their 9-5. Don't miss it.
+      <strong style="color: #ededed;">P.S.</strong> — Tomorrow I'll send you "The AI writing playbook." It's the exact workflow professional freelancers use with AI tools. Don't miss it.
     </p>
     `,
-      "No coding. No experience. Just follow these 3 steps to earn $50.",
+      "No coding. No experience. Just follow these 3 steps to get started.",
       "drip1_quickwin"
     ),
   },
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // DAY 3: Deep Dive — AI Writing Money Machine
+  // DAY 3: Deep Dive — AI Writing Workflow
   // Goal: Get Jasper/Copy.ai affiliate click
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {
     id: 2,
     dayAfterSignup: 3,
-    subject: "The AI writing playbook: $5K/month (copy this system)",
+    subject: "The AI writing playbook: tools and workflows that professionals use",
     preheader: "3 freelancers. Same tools. Here's their exact workflow.",
     html: wrap(
       `
     <h1 style="color: #ededed; font-size: 24px; line-height: 1.3; margin: 0 0 16px 0;">
-      The $5K/Month AI Writing System
+      The Professional AI Writing System
     </h1>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">Hey {{name}},</p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">
-      I've talked to dozens of AI freelancers. The ones making $5K+/month all follow the same pattern:
+      I've talked to dozens of AI freelancers. The most successful ones all follow the same pattern:
     </p>
 
     <p style="color: #ededed; font-weight: 600; font-size: 18px; margin: 24px 0 8px 0;">
@@ -223,7 +223,7 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 16px 0;">
-      At $150-300 per blog post (which takes 45 minutes with AI), you need just <strong style="color: #22c55e;">17-34 posts per month</strong> to hit $5K. That's about 1 post per day.
+      With AI tools, a quality blog post takes about 45 minutes instead of hours. That efficiency lets freelancers take on <strong style="color: #22c55e;">more projects and grow faster</strong>.
     </p>
 
     <div style="margin: 32px 0; text-align: center;">
@@ -233,32 +233,32 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; font-size: 13px; margin: 16px 0 0 0;">
-      Not into writing? No worries. In 2 days I'll show you how someone made $3,200/month with AI <em>art</em> — zero art skills needed.
+      Not into writing? No worries. In 2 days I'll show you how creators are using AI <em>art</em> tools — zero art skills needed.
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 16px 0 0 0;">
       <strong style="color: #ededed;">P.S.</strong> — Our <a href="${link("/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025", "drip2_writing", "jasper")}" style="color: #a78bfa;">full Jasper vs Copy.ai vs Writesonic comparison</a> shows which tool has the best ROI for your niche.
     </p>
     `,
-      "3 freelancers. Same tools. $5K/month. Here's their exact workflow.",
+      "3 freelancers. Same tools. Professional results. Here's their exact workflow.",
       "drip2_writing"
     ),
   },
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // DAY 5: Social Proof — AI Art Income Story
+  // DAY 5: Social Proof — AI Art Creator Story
   // Goal: Midjourney/Leonardo affiliate click
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {
     id: 3,
     dayAfterSignup: 5,
-    subject: "She makes $3,200/month selling AI art (no art skills)",
-    preheader: "Her Etsy shop went from $0 to $3,200 in 4 months. Here's how.",
+    subject: "How creators are using AI art tools (no art skills needed)",
+    preheader: "She built a thriving Etsy shop with AI art in 4 months. Here's how.",
     html: wrap(
       `
     <h1 style="color: #ededed; font-size: 24px; line-height: 1.3; margin: 0 0 16px 0;">
-      From $0 to $3,200/Month<br/>
-      <span style="color: #a78bfa;">Selling AI-Generated Art</span>
+      Growing a Creative Business<br/>
+      <span style="color: #a78bfa;">With AI-Generated Art</span>
     </h1>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">Hey {{name}},</p>
@@ -268,7 +268,7 @@ const dripEmails: DripEmail[] = [
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">
-      Last month: <strong style="color: #22c55e; font-size: 20px;">$3,217</strong> in passive income.
+      Now she's <strong style="color: #22c55e; font-size: 20px;">growing her creative business</strong> with consistent sales.
     </p>
 
     <p style="color: #ededed; font-weight: 600; margin: 16px 0 8px 0;">Her exact process:</p>
@@ -299,17 +299,17 @@ const dripEmails: DripEmail[] = [
         <span style="color: #a78bfa; font-weight: 700; margin-right: 12px; font-size: 18px;">4.</span>
         <div>
           <p style="color: #ededed; font-weight: 600; margin: 0;">List as digital downloads on Etsy</p>
-          <p style="color: #a1a1aa; font-size: 13px; margin: 4px 0 0 0;">No shipping, no inventory. 100% profit after Etsy fees.</p>
+          <p style="color: #a1a1aa; font-size: 13px; margin: 4px 0 0 0;">No shipping, no inventory. Digital products with minimal overhead.</p>
         </div>
       </div>
     </div>
 
     <div style="padding: 20px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1)); border: 1px solid rgba(124,58,237,0.2); border-radius: 12px; margin: 24px 0;">
-      <p style="color: #ededed; font-weight: 700; text-align: center; margin: 0 0 4px 0; font-size: 18px;">Her Numbers (Month 4)</p>
+      <p style="color: #ededed; font-weight: 700; text-align: center; margin: 0 0 4px 0; font-size: 18px;">Her Setup (Month 4)</p>
       <p style="color: #a1a1aa; text-align: center; margin: 0; font-size: 14px;">
-        348 sales × $9.25 avg price = <strong style="color: #22c55e;">$3,217</strong><br/>
-        Cost: Midjourney $10/mo + Etsy fees ~$480 = <strong style="color: #ef4444;">-$490</strong><br/>
-        <strong style="color: #22c55e; font-size: 18px;">Net profit: $2,727</strong>
+        Hundreds of sales across multiple product types<br/>
+        Low costs: Midjourney $10/mo + Etsy listing fees<br/>
+        <strong style="color: #22c55e; font-size: 18px;">A thriving digital art shop</strong>
       </p>
     </div>
 
@@ -322,10 +322,10 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 24px 0 0 0;">
-      <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024", "drip3_art", "midjourney")}" style="color: #a78bfa;">complete AI art income guide</a> for the exact prompts Sarah uses.
+      <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024", "drip3_art", "midjourney")}" style="color: #a78bfa;">complete AI art guide</a> for the exact prompts and workflows Sarah uses.
     </p>
     `,
-      "Her Etsy shop went from $0 to $3,200 in 4 months with AI art.",
+      "She built a thriving Etsy shop with AI art in 4 months.",
       "drip3_art"
     ),
   },
@@ -337,8 +337,8 @@ const dripEmails: DripEmail[] = [
   {
     id: 4,
     dayAfterSignup: 7,
-    subject: "I tested 24 AI tools. These 5 actually make money.",
-    preheader: "Most are overhyped. These 5 consistently generate income.",
+    subject: "I tested 24 AI tools. These 5 stood out.",
+    preheader: "Most are overhyped. These 5 consistently deliver real value.",
     html: wrap(
       `
     <h1 style="color: #ededed; font-size: 24px; line-height: 1.3; margin: 0 0 16px 0;">
@@ -349,20 +349,20 @@ const dripEmails: DripEmail[] = [
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">Hey {{name}},</p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 24px 0;">
-      I've spent months testing every "make money with AI" tool out there. Most are overpriced, overhyped, or outright useless for actually earning.
+      I've spent months testing every popular AI tool out there. Most are overpriced, overhyped, or outright useless for real productivity gains.
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 24px 0;">
-      Here are the <strong style="color: #ededed;">only 5 I'd bet my own money on:</strong>
+      Here are the <strong style="color: #ededed;">only 5 I'd recommend without hesitation:</strong>
     </p>
 
     <!-- Tool 1 -->
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border: 1px solid #1e1e1e;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <span style="color: #ededed; font-weight: 700; font-size: 16px;">🥇 ChatGPT Plus</span>
-        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">$2K-10K/mo</span>
+        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Top Pick</span>
       </div>
-      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Best for: Writing, coding, consulting, literally everything</p>
+      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Popular for: Writing, coding, consulting, literally everything</p>
       <a href="${aff("https://chat.openai.com/?ref=zoltai", "drip4_top5", "chatgpt")}" style="color: #a78bfa; font-size: 13px; font-weight: 600;">Try Free →</a>
     </div>
 
@@ -370,9 +370,9 @@ const dripEmails: DripEmail[] = [
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border: 1px solid #1e1e1e;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <span style="color: #ededed; font-weight: 700; font-size: 16px;">🥈 Cursor</span>
-        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">$5K-20K/mo</span>
+        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Rising Star</span>
       </div>
-      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Best for: Building apps and websites without years of coding experience</p>
+      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Popular for: Building apps and websites without years of coding experience</p>
       <a href="${aff("https://cursor.sh/?ref=zoltai", "drip4_top5", "cursor")}" style="color: #a78bfa; font-size: 13px; font-weight: 600;">Try Free →</a>
     </div>
 
@@ -380,9 +380,9 @@ const dripEmails: DripEmail[] = [
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border: 1px solid #1e1e1e;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <span style="color: #ededed; font-weight: 700; font-size: 16px;">🥉 Midjourney</span>
-        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">$1K-5K/mo</span>
+        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Best for Art</span>
       </div>
-      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Best for: Selling AI art, design services, print-on-demand</p>
+      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Popular for: AI art, design services, print-on-demand</p>
       <a href="${aff("https://midjourney.com/?ref=zoltai", "drip4_top5", "midjourney")}" style="color: #a78bfa; font-size: 13px; font-weight: 600;">Start at $10/mo →</a>
     </div>
 
@@ -390,9 +390,9 @@ const dripEmails: DripEmail[] = [
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border: 1px solid #1e1e1e;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <span style="color: #ededed; font-weight: 700; font-size: 16px;">4. Jasper</span>
-        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">$3K-8K/mo</span>
+        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Best for Writing</span>
       </div>
-      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Best for: Starting a content/copywriting agency</p>
+      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Popular for: Content creation, copywriting, marketing</p>
       <a href="${aff("https://jasper.ai?fpr=zoltai", "drip4_top5", "jasper")}" style="color: #a78bfa; font-size: 13px; font-weight: 600;">7-Day Free Trial →</a>
     </div>
 
@@ -400,9 +400,9 @@ const dripEmails: DripEmail[] = [
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border: 1px solid #1e1e1e;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <span style="color: #ededed; font-weight: 700; font-size: 16px;">5. ElevenLabs</span>
-        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">$1K-4K/mo</span>
+        <span style="background: #22c55e20; color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;">Best for Voice</span>
       </div>
-      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Best for: Voiceover services, YouTube narration, audiobooks</p>
+      <p style="color: #a1a1aa; font-size: 13px; margin: 0 0 8px 0;">Popular for: Voiceover services, YouTube narration, audiobooks</p>
       <a href="${aff("https://elevenlabs.io/?ref=zoltai", "drip4_top5", "elevenlabs")}" style="color: #a78bfa; font-size: 13px; font-weight: 600;">Try Free →</a>
     </div>
 
@@ -413,27 +413,27 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 24px 0 0 0;">
-      <strong style="color: #ededed;">P.S.</strong> — The #2 pick (Cursor) is blowing up right now. Developers are building $10K+/month side projects with it. I'll tell you exactly how in my next email.
+      <strong style="color: #ededed;">P.S.</strong> — The #2 pick (Cursor) is blowing up right now. Developers are building impressive projects with it, even without deep coding experience. I'll show you how in my next email.
     </p>
     `,
-      "Most AI tools are overhyped. These 5 consistently generate income.",
+      "Most AI tools are overhyped. These 5 consistently deliver real value.",
       "drip4_top5"
     ),
   },
 
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  // DAY 10: New Opportunity — AI Coding Goldmine
+  // DAY 10: New Opportunity — AI Coding Tools
   // Goal: Cursor/Bolt affiliate click
   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   {
     id: 5,
     dayAfterSignup: 10,
-    subject: "The AI coding goldmine nobody talks about",
-    preheader: "People with ZERO coding experience are building apps and charging $2K-5K each.",
+    subject: "The AI coding opportunity nobody talks about",
+    preheader: "People with ZERO coding experience are building real apps with AI tools.",
     html: wrap(
       `
     <h1 style="color: #ededed; font-size: 24px; line-height: 1.3; margin: 0 0 16px 0;">
-      Build Apps. Charge $2K-5K Each.<br/>
+      Build Real Apps with AI.<br/>
       <span style="color: #a78bfa;">No Coding Experience Needed.</span>
     </h1>
 
@@ -444,7 +444,7 @@ const dripEmails: DripEmail[] = [
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">
-      Right now, there are people with <strong style="color: #ededed;">zero prior coding experience</strong> who are building real web apps and charging businesses $2,000-5,000 per project.
+      Right now, there are people with <strong style="color: #ededed;">zero prior coding experience</strong> who are building real web apps and offering them as professional services to businesses.
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 24px 0;">
@@ -473,11 +473,11 @@ const dripEmails: DripEmail[] = [
 
     <div style="padding: 16px; background: #111; border-radius: 8px; margin: 0 0 24px 0;">
       <p style="color: #a1a1aa; line-height: 2; margin: 0; font-size: 14px;">
-        ✅ Landing pages for local businesses — <strong style="color: #22c55e;">$500-1,500</strong><br/>
-        ✅ Booking/scheduling apps — <strong style="color: #22c55e;">$1,000-3,000</strong><br/>
-        ✅ Simple SaaS dashboards — <strong style="color: #22c55e;">$2,000-5,000</strong><br/>
-        ✅ E-commerce stores — <strong style="color: #22c55e;">$1,500-4,000</strong><br/>
-        ✅ Portfolio websites — <strong style="color: #22c55e;">$300-800</strong>
+        ✅ Landing pages for local businesses<br/>
+        ✅ Booking/scheduling apps<br/>
+        ✅ Simple SaaS dashboards<br/>
+        ✅ E-commerce stores<br/>
+        ✅ Portfolio websites
       </p>
     </div>
 
@@ -491,7 +491,7 @@ const dripEmails: DripEmail[] = [
       <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/best-ai-coding-assistants-2025-cursor-vs-github-copilot-vs-bolt", "drip5_coding", "cursor")}" style="color: #a78bfa;">Cursor vs Copilot vs Bolt comparison</a> to pick the right tool for your situation.
     </p>
     `,
-      "People with zero coding experience are building apps and charging $2K-5K.",
+      "People with zero coding experience are building real apps with AI tools.",
       "drip5_coding"
     ),
   },
@@ -503,7 +503,7 @@ const dripEmails: DripEmail[] = [
   {
     id: 6,
     dayAfterSignup: 12,
-    subject: "⚠️ These free tiers won't last (grab them now)",
+    subject: "⚠️ These free AI tiers are worth exploring now",
     preheader: "AI companies are cutting free plans. Lock in access while you can.",
     html: wrap(
       `
@@ -566,7 +566,7 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 24px 0 0 0;">
-      <strong style="color: #ededed;">P.S.</strong> — My final email in 2 days will give you a complete AI income roadmap customized to your situation. It's the most valuable thing I've ever put together. Watch for it.
+      <strong style="color: #ededed;">P.S.</strong> — My final email in 2 days will give you a complete AI learning roadmap customized to your situation. It's the most valuable thing I've ever put together. Watch for it.
     </p>
     `,
       "AI companies are cutting free plans. Lock in access while you can.",
@@ -581,13 +581,13 @@ const dripEmails: DripEmail[] = [
   {
     id: 7,
     dayAfterSignup: 14,
-    subject: "Your AI money roadmap (save this email)",
-    preheader: "Week 1-4 plan to go from $0 to $1,000/month with AI. Bookmark this.",
+    subject: "Your AI learning roadmap (save this email)",
+    preheader: "Your 4-week plan to build real AI skills from scratch. Bookmark this.",
     html: wrap(
       `
     <h1 style="color: #ededed; font-size: 24px; line-height: 1.3; margin: 0 0 16px 0;">
       Your Personal<br/>
-      <span style="color: #a78bfa;">AI Income Roadmap</span>
+      <span style="color: #a78bfa;">AI Learning Roadmap</span>
     </h1>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 16px 0;">Hey {{name}},</p>
@@ -597,7 +597,7 @@ const dripEmails: DripEmail[] = [
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 0 0 24px 0;">
-      Below is the <strong style="color: #ededed;">exact 4-week plan</strong> to go from zero to your first $1,000 with AI. <strong style="color: #a78bfa;">Bookmark this email.</strong>
+      Below is the <strong style="color: #ededed;">exact 4-week plan</strong> to build real AI skills from scratch. <strong style="color: #a78bfa;">Bookmark this email.</strong>
     </p>
 
     <!-- Week 1 -->
@@ -618,7 +618,7 @@ const dripEmails: DripEmail[] = [
       <p style="color: #ededed; font-weight: 600; margin: 0 0 8px 0;">Land your first 2-3 paying clients</p>
       <ul style="color: #a1a1aa; font-size: 13px; line-height: 2; margin: 0; padding-left: 16px;">
         <li>Send 20 cold pitches on LinkedIn (use ChatGPT to write them)</li>
-        <li>Price low: $25-50 per project to get reviews</li>
+        <li>Start with affordable prices to build your reputation</li>
         <li>Deliver fast + over-deliver on quality</li>
         <li>Ask for 5-star reviews</li>
       </ul>
@@ -627,9 +627,9 @@ const dripEmails: DripEmail[] = [
     <!-- Week 3 -->
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border-left: 4px solid #22c55e;">
       <p style="color: #22c55e; font-weight: 700; font-size: 14px; margin: 0 0 4px 0;">WEEK 3: Scale</p>
-      <p style="color: #ededed; font-weight: 600; margin: 0 0 8px 0;">Raise prices + add services</p>
+      <p style="color: #ededed; font-weight: 600; margin: 0 0 8px 0;">Expand your skills + add services</p>
       <ul style="color: #a1a1aa; font-size: 13px; line-height: 2; margin: 0; padding-left: 16px;">
-        <li>Raise prices to $75-150 per project (you have reviews now)</li>
+        <li>Increase your rates as you build a track record</li>
         <li>Add a premium tier with faster delivery</li>
         <li>Start using <a href="${aff("https://jasper.ai?fpr=zoltai", "drip7_roadmap", "jasper")}" style="color: #a78bfa;">Jasper</a> or <a href="${aff("https://cursor.sh/?ref=zoltai", "drip7_roadmap", "cursor")}" style="color: #a78bfa;">Cursor</a> for higher-value work</li>
         <li>Target: 5-10 active projects</li>
@@ -638,13 +638,13 @@ const dripEmails: DripEmail[] = [
 
     <!-- Week 4 -->
     <div style="margin: 16px 0; padding: 20px; background: #111; border-radius: 10px; border-left: 4px solid #f59e0b;">
-      <p style="color: #f59e0b; font-weight: 700; font-size: 14px; margin: 0 0 4px 0;">WEEK 4: $1,000 Target</p>
-      <p style="color: #ededed; font-weight: 600; margin: 0 0 8px 0;">Optimize + hit $1K</p>
+      <p style="color: #f59e0b; font-weight: 700; font-size: 14px; margin: 0 0 4px 0;">WEEK 4: Optimize</p>
+      <p style="color: #ededed; font-weight: 600; margin: 0 0 8px 0;">Refine your workflow + grow</p>
       <ul style="color: #a1a1aa; font-size: 13px; line-height: 2; margin: 0; padding-left: 16px;">
         <li>Focus on what's working, drop what isn't</li>
         <li>Upsell existing clients on recurring work</li>
-        <li>Add passive income: AI art on Etsy, templates, digital products</li>
-        <li>🎯 <strong style="color: #22c55e;">Goal: $1,000 this month</strong></li>
+        <li>Explore new formats: AI art on Etsy, templates, digital products</li>
+        <li>🎯 <strong style="color: #22c55e;">Goal: A sustainable AI-powered workflow</strong></li>
       </ul>
     </div>
 
@@ -654,7 +654,7 @@ const dripEmails: DripEmail[] = [
         Visit our Earn page for tool-by-tool guides with direct links.
       </p>
       <a href="${link("/earn", "drip7_roadmap")}" style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #7c3aed, #06b6d4); color: white; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px;">
-        🔥 See Top Earning Tools + Guides →
+        🔥 See Top AI Tools + Guides →
       </a>
     </div>
 
@@ -663,7 +663,7 @@ const dripEmails: DripEmail[] = [
     </p>
     <ul style="color: #a1a1aa; font-size: 14px; line-height: 2; margin: 0 0 24px 0; padding-left: 16px;">
       <li>New AI tools worth your time</li>
-      <li>Real income stories and breakdowns</li>
+      <li>Real creator stories and case studies</li>
       <li>Strategies that are working right now</li>
     </ul>
 
@@ -671,7 +671,7 @@ const dripEmails: DripEmail[] = [
       <strong style="color: #ededed;">P.S.</strong> — Reply to this email and tell me which niche you chose. I read every reply and I'll send you personalized tool recommendations.
     </p>
     `,
-      "Your 4-week plan: $0 to $1,000/month with AI. Bookmark this.",
+      "Your 4-week plan to build real AI skills from scratch. Bookmark this.",
       "drip7_roadmap"
     ),
   },

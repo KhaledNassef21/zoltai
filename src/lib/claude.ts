@@ -24,22 +24,22 @@ export async function generateArticle(topic: string): Promise<{
     messages: [
       {
         role: "user",
-        content: `You are an expert AI & money-making writer for "Zoltai" (zoltai.org), a website that helps people make money using AI tools — no coding required.
+        content: `You are an expert AI tools writer for "Zoltai" (zoltai.org), a website that helps people discover and use AI tools effectively — no coding required.
 
 Write a comprehensive, SEO-optimized blog article about: "${topic}"
 
 CRITICAL REQUIREMENTS:
-- Every article MUST have a MONEY-MAKING ANGLE — show readers how to EARN with AI
+- Every article MUST have a PRACTICAL VALUE ANGLE — show readers how to USE AI effectively
 - Write in an engaging, motivating tone — make readers feel they can start TODAY
-- Include SPECIFIC earning potential (e.g., "$500-2000/month", "freelancers earn $50-100/hour")
+- Include practical use cases and real-world applications
 - Include practical, step-by-step examples anyone can follow
 - Use proper markdown formatting with headers (##, ###)
 - Length: 1500-2500 words
 - Naturally include relevant keywords for SEO
-- When mentioning AI tools, ENTHUSIASTICALLY recommend them with affiliate-friendly language:
+- When mentioning AI tools, recommend them with helpful, recommendation-style language:
   - "I highly recommend X" / "The best tool for this is X" / "Start with X (it's free)"
 - Include a "Quick Summary" section at the top with key takeaways
-- Include a "How Much Can You Earn?" section
+- Include a "What Can You Achieve?" section
 - End with a clear "Which Tool Should You Start With?" recommendation section
 - ALWAYS mention pricing (free tier, paid plans) when discussing tools
 - Include a call-to-action: "Check out our full tools directory at zoltai.org/tools"
@@ -49,13 +49,13 @@ ChatGPT, Claude, Midjourney, Jasper, Copy.ai, Cursor, GitHub Copilot, Bolt.new, 
 
 ALSO GENERATE:
 1. A featured image prompt for AI image generation — must be DIRECTLY related to the article topic. Style: modern tech, SaaS dashboard, laptop scene, AI tools interface. 16:9 aspect ratio. NO random stock photos.
-2. An Instagram caption (short, value-driven, money-angle, ends with CTA to read the full article)
-3. An Instagram hook (first line that grabs attention, about making money with AI)
+2. An Instagram caption (short, value-driven, ends with CTA to read the full article)
+3. An Instagram hook (first line that grabs attention, about AI tools and productivity)
 
 Return your response in this exact JSON format:
 {
   "title": "Article title (60 chars max, SEO-friendly, include year)",
-  "description": "Meta description (155 chars max, include money angle)",
+  "description": "Meta description (155 chars max, include value proposition)",
   "content": "Full article in markdown",
   "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
   "imagePrompt": "Detailed image generation prompt, photorealistic, modern tech, SaaS UI, 16:9, related to article topic",
@@ -84,21 +84,21 @@ export async function researchTrendingTopics(existingTitles: string[] = []): Pro
     messages: [
       {
         role: "user",
-        content: `You are an SEO content strategist for "Zoltai", a website about making money using AI tools (no coding required).
+        content: `You are an SEO content strategist for "Zoltai", a website about using AI tools effectively (no coding required).
 
 Suggest 5 HIGH-CONVERSION article topics that would:
 1. Rank well in search engines (target long-tail keywords)
-2. Drive affiliate clicks and signups
-3. Answer buyer-intent search queries
-4. Help people MAKE MONEY using AI tools
+2. Drive engagement and tool exploration
+3. Answer high-intent search queries
+4. Help people USE AI tools effectively
 
 Article types to rotate between:
-- "Best X tools for Y" (e.g., "Best AI tools for freelancers to earn $5K/month")
-- "X vs Y" comparisons (e.g., "Jasper vs Copy.ai: Which makes you more money?")
-- "How to make money with X" tutorials (e.g., "How to make $1000/month with AI art")
-- "Top free X tools" listicles (e.g., "Top 10 free AI tools to start earning today")
-- Review articles (e.g., "Midjourney review: Can you really sell AI art?")
-- Income guides (e.g., "5 ways to earn passive income with ChatGPT")
+- "Best X tools for Y" (e.g., "Best AI tools for freelancers to boost workflow")
+- "X vs Y" comparisons (e.g., "Jasper vs Copy.ai: Which is better for content?")
+- "How to use X" tutorials (e.g., "How to create AI art with Midjourney")
+- "Top free X tools" listicles (e.g., "Top 10 free AI tools to improve productivity")
+- Review articles (e.g., "Midjourney review: Is it worth learning in 2026?")
+- Workflow guides (e.g., "5 ways to save time with ChatGPT")
 
 Cover DIVERSE niches: writing, design, video, coding, marketing, SEO, social media, e-commerce, freelancing, education, music, data analysis.
 

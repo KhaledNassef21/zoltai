@@ -57,10 +57,10 @@ const TOOL_VISUALS: Record<string, string> = {
 // Intent-based visual themes
 const INTENT_SCENES: Record<string, string[]> = {
   "make-money": [
-    "laptop showing earnings dashboard with growing revenue chart, dollar signs",
-    "freelancer workspace with multiple screens showing AI tools and payment notifications",
-    "modern home office setup with laptop showing passive income analytics",
-    "split screen: AI tool interface on left, payment/earnings on right",
+    "laptop showing AI productivity dashboard with workflow metrics and task completion chart",
+    "freelancer workspace with multiple screens showing AI tools and project management boards",
+    "modern home office setup with laptop showing AI-powered analytics and insights",
+    "split screen: AI tool interface on left, performance metrics on right",
   ],
   productivity: [
     "clean desk setup with laptop showing AI-powered workflow automation",
@@ -215,7 +215,7 @@ function buildInlinePrompts(
   // Inline 2: Earnings/results or secondary tool
   if (ctx.intent === "make-money") {
     prompts.push(
-      `Laptop screen showing earnings analytics dashboard with growing revenue graph, modern home office, ${STYLE_BASE}, 16:9 aspect ratio`
+      `Laptop screen showing AI workflow analytics dashboard with productivity metrics, modern home office, ${STYLE_BASE}, 16:9 aspect ratio`
     );
   } else if (toolVisuals.length > 1) {
     prompts.push(
@@ -255,7 +255,7 @@ function buildInstagramSlides(
 
   // SLIDE 1: Topic-specific overview — includes article keywords for uniqueness
   const slide1Options: Record<string, string> = {
-    "make-money": `laptop showing ${mainTool} earnings dashboard, money graphs, golden desk lamp, flat lay`,
+    "make-money": `laptop showing ${mainTool} productivity dashboard, workflow charts, golden desk lamp, flat lay`,
     productivity: `organized desk with ${mainTool} open on laptop, tablet, sticky notes, bright daylight`,
     comparison: `split screen monitor ${mainTool} vs ${secondTool}, side by side, modern desk`,
     tutorial: `person learning ${topicKeyword} on laptop, notepad with notes, warm lamp`,
@@ -268,7 +268,7 @@ function buildInstagramSlides(
 
   // SLIDE 3: Results/outcome — completely different scene
   const slide3Options = [
-    `hand holding smartphone with payment notification $1000, blurred laptop background, celebratory mood`,
+    `hand holding smartphone with task completion notification, blurred laptop background, satisfied mood`,
     `person at standing desk smiling, laptop shows green checkmark done, city skyline window, golden hour`,
     `ultrawide monitor showing ${secondTool} dashboard, RGB lights, standing desk, evening mood`,
     `coffee shop table, open laptop with analytics graphs, cappuccino, natural window light, cozy`,

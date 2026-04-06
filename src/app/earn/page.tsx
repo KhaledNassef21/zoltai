@@ -3,13 +3,13 @@ import { tools } from "@/data/tools";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Earn Money with AI Tools - Top 10 Tools to Start Today",
+  title: "Top AI Tools — Curated Picks to Boost Your Productivity",
   description:
-    "Discover the top 10 AI tools that can help you earn money online. No coding required. Start your AI side hustle today with our curated picks.",
+    "Discover our top 10 curated AI tools for productivity, creativity, and professional growth. No coding required.",
   openGraph: {
-    title: "Earn Money with AI Tools - Top 10 Picks",
+    title: "Top AI Tools — Curated Picks to Boost Your Productivity",
     description:
-      "Start earning with AI today. Our top 10 curated AI tools for making money online.",
+      "Discover our top 10 curated AI tools for productivity, creativity, and professional growth. No coding required.",
   },
 };
 
@@ -64,14 +64,14 @@ export default function EarnPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-purple-600/10 via-transparent to-transparent" />
         <div className="relative max-w-4xl mx-auto">
           <div className="inline-block px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium mb-6">
-            💰 Start Earning Today
+            🚀 Curated Picks
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="gradient-text">Make Money</span> with AI Tools
+            <span className="gradient-text">Level Up</span> with AI Tools
           </h1>
           <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-8">
-            These 10 AI tools are helping thousands of people earn money online.
-            No coding. No experience needed. Pick a tool and start today.
+            These 10 AI tools are helping thousands of people work smarter and build new skills.
+            No coding required. Explore each tool and find your perfect match.
           </p>
           <div className="flex justify-center gap-4">
             <a
@@ -94,7 +94,7 @@ export default function EarnPage() {
       <section className="py-16 px-4 border-t border-card-border">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-center mb-12">
-            How People Earn with AI
+            How to Get Started with AI
           </h2>
           <div className="grid sm:grid-cols-3 gap-8">
             {[
@@ -110,8 +110,8 @@ export default function EarnPage() {
               },
               {
                 icon: "💰",
-                title: "Start Earning",
-                desc: "Freelance, create content, build products, or automate tasks. The opportunities are endless.",
+                title: "Start Creating",
+                desc: "Create content, build projects, automate tasks, or explore freelancing. The possibilities are endless.",
               },
             ].map((step, i) => (
               <div key={i} className="text-center">
@@ -128,10 +128,10 @@ export default function EarnPage() {
       <section id="tools" className="py-16 px-4 border-t border-card-border">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-4">
-            Top 10 AI Tools for <span className="gradient-text">Making Money</span>
+            Top 10 AI Tools for <span className="gradient-text">Productivity & Growth</span>
           </h2>
           <p className="text-zinc-400 text-center mb-12 max-w-2xl mx-auto">
-            Hand-picked and tested. These tools have the best earning potential for beginners and pros alike.
+            Hand-picked and tested. These tools offer the best value for beginners and professionals alike.
           </p>
 
           <div className="space-y-6">
@@ -190,7 +190,7 @@ export default function EarnPage() {
                       rel="noopener noreferrer"
                       className="block text-center px-5 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold text-sm hover:opacity-90 transition-opacity"
                     >
-                      Start Earning →
+                      Try It Free →
                     </a>
                     <a
                       href={tool.url}
@@ -212,10 +212,10 @@ export default function EarnPage() {
       <section className="py-20 px-4 border-t border-card-border">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">
-            Ready to <span className="gradient-text">Start Earning</span>?
+            Ready to <span className="gradient-text">Get Started</span>?
           </h2>
           <p className="text-zinc-400 mb-8">
-            Join thousands who are already making money with AI. Get our weekly tips and tool reviews.
+            Join thousands who are already boosting their productivity with AI. Get our weekly tips and tool reviews.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
@@ -234,14 +234,19 @@ export default function EarnPage() {
         </div>
       </section>
 
-      {/* Affiliate Disclosure */}
+      {/* Disclaimers */}
       <section className="py-8 px-4 border-t border-card-border">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto space-y-3">
           <p className="text-xs text-zinc-600 text-center">
             <strong className="text-zinc-500">Affiliate Disclosure:</strong> Some
-            links on this page are affiliate links. This means we may earn a
-            commission if you sign up through our link, at no extra cost to you.
-            We only recommend tools we have personally tested and believe in.
+            links on this page are affiliate links. We may earn a commission if
+            you sign up through our link, at no extra cost to you. We only
+            recommend tools we have personally reviewed and believe provide value.
+          </p>
+          <p className="text-xs text-zinc-600 text-center">
+            <strong className="text-zinc-500">Disclaimer:</strong> Results vary
+            based on individual effort, experience, and market conditions. This
+            content is educational and does not guarantee any specific outcomes.
           </p>
         </div>
       </section>

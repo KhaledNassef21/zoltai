@@ -12,19 +12,19 @@ interface CTAVariant {
 const CTA_VARIANTS: CTAVariant[] = [
   {
     id: "a",
-    text: "Start Earning with AI \u2192",
+    text: "Explore AI Tools \u2192",
     color: "bg-gradient-to-r from-purple-600 to-cyan-600",
     href: "/earn",
   },
   {
     id: "b",
-    text: "Make Money with AI Tools \u2192",
+    text: "Discover Top AI Tools \u2192",
     color: "bg-gradient-to-r from-purple-600 to-pink-600",
     href: "/earn",
   },
   {
     id: "c",
-    text: "Discover AI Side Hustles \u2192",
+    text: "Boost Your Workflow with AI \u2192",
     color: "bg-gradient-to-r from-cyan-600 to-emerald-600",
     href: "/earn",
   },

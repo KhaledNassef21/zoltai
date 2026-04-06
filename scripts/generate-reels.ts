@@ -13,11 +13,11 @@
  * - Music suggestion
  *
  * The 10 Reel formats per article:
- * 1. 🪝 Hook/Curiosity — "Did you know you can earn $X with AI?"
+ * 1. 🪝 Hook/Curiosity — "Did you know AI can do this?"
  * 2. 🛠️ Tool Demo — Quick showcase of the main tool
  * 3. 📋 Step-by-Step — 3-5 step tutorial
  * 4. 🔄 Before/After — Life without vs with AI tool
- * 5. 💰 Money Breakdown — Exact earnings math
+ * 5. 💡 Value Breakdown — Cost vs time saved
  * 6. ⚔️ Comparison — Tool A vs Tool B in 30 seconds
  * 7. ⚡ Quick Tip — One actionable hack
  * 8. 🤯 Myth Buster — "People think X but actually Y"
@@ -88,7 +88,7 @@ async function generateReelsWithClaude(
     messages: [
       {
         role: "user",
-        content: `You are a viral short-form video scriptwriter for "Zoltai" (@zoltai.ai), a brand about making money with AI tools.
+        content: `You are a viral short-form video scriptwriter for "Zoltai" (@zoltai.ai), a brand about discovering and using AI tools for productivity.
 
 Generate 10 Instagram Reels scripts based on this article:
 
@@ -101,26 +101,26 @@ ARTICLE CONTENT (excerpt):
 ${articleExcerpt}
 
 Each Reel must be a DIFFERENT format:
-1. 🪝 HOOK/CURIOSITY — Open with a shocking stat or question about earning with AI
+1. 🪝 HOOK/CURIOSITY — Open with a shocking stat or question about AI productivity
 2. 🛠️ TOOL DEMO — Quick showcase of the main tool (${tools[0] || "the AI tool"}) and what it does
 3. 📋 STEP-BY-STEP — 3-5 step mini tutorial anyone can follow
 4. 🔄 BEFORE/AFTER — Contrast life without vs with the AI tool
-5. 💰 MONEY BREAKDOWN — Show exact math: cost of tool vs potential earnings
+5. 💡 VALUE BREAKDOWN — Show what the tool costs vs time/effort saved
 6. ⚔️ COMPARISON — ${tools.length >= 2 ? `${tools[0]} vs ${tools[1]}` : "Best free vs paid option"} in 30 seconds
 7. ⚡ QUICK TIP — One specific, actionable hack from the article
 8. 🤯 MYTH BUSTER — Debunk a common misconception about this topic
-9. 📖 STORY — Mini success story of someone using these tools to earn
-10. 📊 LIST/RANKING — "Top 3 ${tags[0]?.replace(/-/g, " ") || "AI tools"} for making money"
+9. 📖 STORY — Mini success story of someone using these tools to level up
+10. 📊 LIST/RANKING — "Top 3 ${tags[0]?.replace(/-/g, " ") || "AI tools"} to learn now"
 
 RULES:
 - Hook MUST grab attention in first 3 seconds (question, bold claim, or pattern interrupt)
 - Script should be 80-150 words (30-60 second reel)
 - Use conversational, energetic tone — like talking to a friend
-- Include specific numbers (earnings, time saved, costs)
+- Include specific numbers (time saved, costs, productivity gains)
 - Every reel ends with CTA to "Follow @zoltai.ai" or "Link in bio"
 - On-screen text = 3-5 key phrases shown as text overlays
 - Caption includes 5-8 relevant hashtags
-- NO cringe. NO fake promises. Keep it real but exciting.
+- NO cringe. NO income promises. NO dollar amounts as earnings. Keep it educational but exciting.
 - Music vibe = mood suggestion (e.g., "upbeat electronic", "inspiring ambient")
 
 Return a JSON array of 10 objects:
@@ -161,17 +161,17 @@ function generateReelsFromTemplate(
   const mainTool = tools[0] || "AI";
   const secondTool = tools[1] || "ChatGPT";
   const topic = tags[0]?.replace(/-/g, " ") || "AI tools";
-  const hashtags = `#AI #AITools #MakeMoneyOnline #${mainTool.replace(/[\s.]/g, "")} #SideHustle #Zoltai`;
+  const hashtags = `#AI #AITools #Productivity #${mainTool.replace(/[\s.]/g, "")} #AIWorkflow #LearnAI #Zoltai`;
 
   return [
     {
       id: 1,
       format: "Hook/Curiosity",
-      hook: `People are making $1,000+/month with ${mainTool}. Here's how.`,
-      script: `Stop scrolling. This is important. ${mainTool} is helping regular people — not tech experts — earn real money online. I'm talking $1,000 to $5,000 a month. And the best part? Most of these tools have free tiers. You don't need to invest anything to start. In the next 30 seconds, I'll show you exactly how to get started. No coding. No experience needed.`,
-      onScreenText: [`$1K-5K/month with ${mainTool}`, "Free to start", "No coding needed", "Follow for more"],
-      cta: "Follow @zoltai.ai for daily AI money tips",
-      caption: `💰 ${mainTool} is a money machine if you know how to use it.\n\nFull guide in bio → zoltai.org\n\n${hashtags}`,
+      hook: `People are transforming their workflow with ${mainTool}. Here's how.`,
+      script: `Stop scrolling. This is important. ${mainTool} is helping regular people — not tech experts — level up their skills and productivity. And the best part? Most of these tools have free tiers. You don't need to invest anything to start. In the next 30 seconds, I'll show you exactly how to get started. No coding. No experience needed.`,
+      onScreenText: [`Level up with ${mainTool}`, "Free to start", "No coding needed", "Follow for more"],
+      cta: "Follow @zoltai.ai for daily AI tips",
+      caption: `${mainTool} is a game-changer if you know how to use it.\n\nFull guide in bio → zoltai.org\n\n${hashtags}`,
       musicVibe: "upbeat electronic, motivational",
       duration: "30s",
     },
@@ -179,8 +179,8 @@ function generateReelsFromTemplate(
       id: 2,
       format: "Tool Demo",
       hook: `Let me show you what ${mainTool} can actually do.`,
-      script: `Everyone talks about ${mainTool} but nobody shows you the money-making features. Watch this. First, you open ${mainTool}. Then you use it to create something valuable — whether that's content, code, designs, or analysis. The key is: you're not using it for fun. You're using it to deliver a service that people pay for. This one tool can replace hours of work. And clients are paying $50 to $500 per project for this.`,
-      onScreenText: [`${mainTool} Demo`, "Create value in minutes", "$50-500 per project", "Free tier available"],
+      script: `Everyone talks about ${mainTool} but nobody shows you the best features. Watch this. First, you open ${mainTool}. Then you use it to create something valuable — whether that's content, code, designs, or analysis. The key is: you're using it to work smarter and deliver quality results faster. This one tool can replace hours of manual work. It's a real productivity multiplier.`,
+      onScreenText: [`${mainTool} Demo`, "Create value in minutes", "Save hours of work", "Free tier available"],
       cta: "Link in bio for the full tool guide",
       caption: `🛠️ ${mainTool} walkthrough — the features nobody talks about\n\nFull review: link in bio\n\n${hashtags}`,
       musicVibe: "tech, futuristic beats",
@@ -189,11 +189,11 @@ function generateReelsFromTemplate(
     {
       id: 3,
       format: "Step-by-Step",
-      hook: "3 steps to make your first $100 with AI 👇",
-      script: `Step 1: Sign up for ${mainTool}. It's free. Takes 2 minutes. Step 2: Use it to create 3 sample projects. If it's writing, create sample blog posts. If it's design, create sample graphics. Step 3: Post your service on Fiverr or Upwork at $25-50 per project. Most people get their first order within a week. That's $100 in your pocket. Then you raise your prices. Simple as that.`,
-      onScreenText: ["Step 1: Sign up (free)", "Step 2: Create 3 samples", "Step 3: Post on Fiverr", "= First $100 💰"],
+      hook: "3 steps to get started with AI today 👇",
+      script: `Step 1: Sign up for ${mainTool}. It's free. Takes 2 minutes. Step 2: Use it to create 3 sample projects. If it's writing, create sample blog posts. If it's design, create sample graphics. Step 3: Build a portfolio showcasing what you can do with AI tools. Most people see real results within a week. Then you keep building from there. Simple as that.`,
+      onScreenText: ["Step 1: Sign up (free)", "Step 2: Create 3 samples", "Step 3: Build your portfolio", "Start building today"],
       cta: "Save this. Follow @zoltai.ai for more",
-      caption: `📋 Your first $100 with AI — save this for later\n\nStep-by-step guide: link in bio\n\n${hashtags}`,
+      caption: `📋 Get started with AI tools — save this for later\n\nStep-by-step guide: link in bio\n\n${hashtags}`,
       musicVibe: "inspiring, building momentum",
       duration: "30s",
     },
@@ -201,30 +201,30 @@ function generateReelsFromTemplate(
       id: 4,
       format: "Before/After",
       hook: "Working 8 hours vs working 1 hour with AI 🤯",
-      script: `Before ${mainTool}: You spend 8 hours writing one blog post. Charge $50. That's $6 an hour. After ${mainTool}: You spend 1 hour creating the same quality post. Still charge $50. But now you can do 5 per day. That's $250 per day. $5,000 per month. Same work. Same quality. 8x faster. This is why AI freelancers are dominating right now.`,
-      onScreenText: ["Before: 8 hrs = $50", "After: 1 hr = $50", "5x per day = $250", "$5K/month 🔥"],
-      cta: "Follow for AI money tips @zoltai.ai",
-      caption: `🔄 Before vs After using ${mainTool} for freelancing\n\nThe math speaks for itself.\n\n${hashtags}`,
+      script: `Before ${mainTool}: You spend 8 hours writing one blog post. After ${mainTool}: You spend 1 hour creating the same quality post. That means you can take on more projects, learn faster, and deliver better work. Same quality. 8x faster. This is why people who learn AI tools have a real advantage right now.`,
+      onScreenText: ["Before: 8 hours per task", "After: 1 hour per task", "8x faster output", "Same quality"],
+      cta: "Follow for AI tips @zoltai.ai",
+      caption: `🔄 Before vs After using ${mainTool}\n\nThe productivity difference is real.\n\n${hashtags}`,
       musicVibe: "dramatic transition, cinematic",
       duration: "30s",
     },
     {
       id: 5,
-      format: "Money Breakdown",
-      hook: "Let's do the math on AI side income 💵",
-      script: `Here's the real math. ${mainTool} costs: $0 to $20 per month. What you can charge: $50 to $300 per project. Time per project with AI: 30 minutes to 2 hours. If you do just 2 projects per day, 5 days a week, at $100 each... that's $1,000 per week. $4,000 per month. Minus $20 for the tool. Net profit: $3,980. And that's being conservative. Some people do way more.`,
-      onScreenText: [`${mainTool}: $0-20/mo`, "Charge: $100/project", "2 projects/day", "= $4,000/month 💰"],
+      format: "Value Breakdown",
+      hook: "Let's break down what AI tools actually cost vs what they save 💡",
+      script: `Here's the real breakdown. ${mainTool} costs: $0 to $20 per month. What it saves you: hours of repetitive work every day. Time per project with AI: 30 minutes instead of 3-4 hours manually. That means you can take on more projects, learn new skills faster, and focus on creative work instead of busywork. The ROI on learning these tools is massive — even on the free tiers.`,
+      onScreenText: [`${mainTool}: $0-20/mo`, "Hours saved daily", "Focus on creative work", "Free tiers available"],
       cta: "Want the full breakdown? Link in bio",
-      caption: `💰 The AI freelancing math that changed everything\n\nFull earnings guide: link in bio\n\n${hashtags}`,
-      musicVibe: "cash register sounds, upbeat",
+      caption: `💡 The real value of AI tools — it's about time saved\n\nFull guide: link in bio\n\n${hashtags}`,
+      musicVibe: "upbeat, informative",
       duration: "30s",
     },
     {
       id: 6,
       format: "Comparison",
-      hook: `${mainTool} vs ${secondTool} — which makes you more money?`,
-      script: `Quick comparison. ${mainTool}: great for ${topic}. Pricing starts free. Best if you want speed and ease of use. ${secondTool}: stronger for detailed analysis and complex tasks. Also has a free tier. My honest take? Start with ${mainTool} if you're a beginner. Switch to ${secondTool} once you're more advanced. Or use both — that's what the top earners do.`,
-      onScreenText: [`${mainTool}: Best for beginners`, `${secondTool}: Best for advanced`, "Both have free tiers", "Top earners use both"],
+      hook: `${mainTool} vs ${secondTool} — which one should you learn first?`,
+      script: `Quick comparison. ${mainTool}: great for ${topic}. Pricing starts free. Best if you want speed and ease of use. ${secondTool}: stronger for detailed analysis and complex tasks. Also has a free tier. My honest take? Start with ${mainTool} if you're a beginner. Switch to ${secondTool} once you're more advanced. Or use both — that's what the most productive people do.`,
+      onScreenText: [`${mainTool}: Best for beginners`, `${secondTool}: Best for advanced`, "Both have free tiers", "Use both for best results"],
       cta: "Full comparison on zoltai.org — link in bio",
       caption: `⚔️ ${mainTool} vs ${secondTool} — honest comparison\n\nDetailed review: link in bio\n\n${hashtags}`,
       musicVibe: "competitive, energetic",
@@ -234,8 +234,8 @@ function generateReelsFromTemplate(
       id: 7,
       format: "Quick Tip",
       hook: "One ${mainTool} hack that 10x'd my output ⚡",
-      script: `Here's a hack most people don't know. When using ${mainTool}, don't just give it a simple prompt. Give it a ROLE first. Say: "Act as a professional copywriter with 10 years of experience." Then give your task. The quality difference is insane. This one trick turned my $50 projects into $200 projects because the output is SO much better. Clients can't tell the difference from human-written work.`,
-      onScreenText: ["Give it a ROLE first", '"Act as a professional..."', "Quality = 10x better", "Charge 4x more"],
+      script: `Here's a hack most people don't know. When using ${mainTool}, don't just give it a simple prompt. Give it a ROLE first. Say: "Act as a professional copywriter with 10 years of experience." Then give your task. The quality difference is insane. This one trick dramatically improved my results because the output is SO much better. The quality rivals professional-level work.`,
+      onScreenText: ["Give it a ROLE first", '"Act as a professional..."', "Quality = 10x better", "Better results instantly"],
       cta: "More hacks at @zoltai.ai",
       caption: `⚡ The #1 ${mainTool} hack nobody uses\n\nMore tips: follow @zoltai.ai\n\n${hashtags}`,
       musicVibe: "quick, snappy, electronic",
@@ -245,32 +245,32 @@ function generateReelsFromTemplate(
       id: 8,
       format: "Myth Buster",
       hook: `"AI will replace all jobs" — here's the truth`,
-      script: `Everyone says AI will replace jobs. Here's what's actually happening. AI is not replacing people. People who USE AI are replacing people who don't. The freelancers earning $5K+ per month aren't worried about AI taking their jobs. They're USING ${mainTool} to do 10x more work in less time. While others panic, they're getting rich. Don't fear AI. Learn to use it. That's the real opportunity.`,
-      onScreenText: ["AI won't replace you", "People WITH AI will", "Use it = earn more", "Fear it = fall behind"],
+      script: `Everyone says AI will replace jobs. Here's what's actually happening. AI is not replacing people. People who USE AI are replacing people who don't. The professionals who learn ${mainTool} aren't worried about AI taking their jobs. They're USING it to do 10x more work in less time. While others panic, they're building new skills. Don't fear AI. Learn to use it. That's the real opportunity.`,
+      onScreenText: ["AI won't replace you", "People WITH AI will", "Use it = level up", "Fear it = fall behind"],
       cta: "Start learning at @zoltai.ai",
-      caption: `🤯 The biggest myth about AI and jobs — debunked\n\nLearn to profit from AI: link in bio\n\n${hashtags}`,
+      caption: `🤯 The biggest myth about AI and jobs — debunked\n\nLearn AI tools: link in bio\n\n${hashtags}`,
       musicVibe: "dramatic reveal, documentary style",
       duration: "30s",
     },
     {
       id: 9,
       format: "Story",
-      hook: "From $0 to $2,000/month in 3 months with AI 📖",
-      script: `Let me tell you about someone who started with nothing. No tech skills. No audience. No money to invest. They signed up for ${mainTool} — free tier. Started offering simple services on Fiverr. Month 1: $200. Month 2: raised prices, got repeat clients. $800. Month 3: added a second service. $2,000. The secret? They didn't try to be perfect. They just started. Today they're making over $3,000 per month and growing. Your story could be next.`,
-      onScreenText: ["Month 1: $200", "Month 2: $800", "Month 3: $2,000", "Now: $3,000+ 🚀"],
+      hook: "From zero AI skills to pro-level workflows in 3 months 📖",
+      script: `Let me tell you about someone who started with nothing. No tech skills. No audience. No experience with AI. They signed up for ${mainTool} — free tier. Started learning and building projects. Month 1: learned the basics, created their first AI-assisted projects. Month 2: got confident, started helping others. Month 3: became the go-to person for AI workflows at their company. The secret? They didn't try to be perfect. They just started. Today they're leading AI initiatives and growing. Your story could be next.`,
+      onScreenText: ["Month 1: Learn the basics", "Month 2: Build confidence", "Month 3: Become the expert", "Keep growing 🚀"],
       cta: "Your turn. Follow @zoltai.ai",
-      caption: `📖 Real story: $0 → $2,000/month with ${mainTool}\n\nStart your journey: link in bio\n\n${hashtags}`,
+      caption: `📖 Real story: from AI beginner to expert with ${mainTool}\n\nStart your journey: link in bio\n\n${hashtags}`,
       musicVibe: "inspiring, emotional buildup",
       duration: "60s",
     },
     {
       id: 10,
       format: "List/Ranking",
-      hook: `Top 3 ${topic} tools for making money 📊`,
-      script: `Number 3: ${tools[2] || "Canva AI"} — perfect for beginners. Free tier. Easy to use. Number 2: ${secondTool} — more powerful features. Great for scaling. Number 1: ${mainTool} — the best overall for making money. It's versatile, has the biggest market demand, and clients are actively looking for people who can use it. All three have free tiers. Start today. Zero excuses.`,
+      hook: `Top 3 ${topic} tools to learn right now 📊`,
+      script: `Number 3: ${tools[2] || "Canva AI"} — perfect for beginners. Free tier. Easy to use. Number 2: ${secondTool} — more powerful features. Great for scaling your skills. Number 1: ${mainTool} — the best overall for productivity. It's versatile, widely adopted, and employers are actively looking for people who can use it. All three have free tiers. Start today. Zero excuses.`,
       onScreenText: [`#3: ${tools[2] || "Canva AI"}`, `#2: ${secondTool}`, `#1: ${mainTool} 🏆`, "All FREE to start"],
       cta: "Full ranking at zoltai.org — link in bio",
-      caption: `📊 Top 3 ${topic} tools ranked by earning potential\n\nFull list: link in bio\n\n${hashtags}`,
+      caption: `📊 Top 3 ${topic} tools ranked by usefulness\n\nFull list: link in bio\n\n${hashtags}`,
       musicVibe: "countdown, building anticipation",
       duration: "30s",
     },
