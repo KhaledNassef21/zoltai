@@ -12,9 +12,9 @@
     "timestamp": "2026-04-06T13:29:48.103Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":39,\"y\":34,\"el\":\"input.px-4\",\"time\":1775482264270},{\"x\":39,\"y\":37,\"el\":\"textarea.w-full\",\"time\":1775482278007},{\"x\":63,\"y\":52,\"el\":\"button.px-5[Post Comment]\",\"time\":1775482300708},{\"x\":31,\"y\":73,\"el\":\"div.p-5[Kkhjust nowGood]\",\"time\":1775482304728},{\"x\":33,\"y\":73,\"el\":\"p.text-sm[Good]\",\"time\":1775482305455},{\"x\":34,\"y\":68,\"el\":\"div.p-5[Kkhjust nowGood]\",\"time\":1775482307922}]",
     "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
-    "timestamp": "2026-04-06T13:31:02.136Z"
+    "timestamp": "2026-04-06T13:31:57.477Z"
   }
 ]
