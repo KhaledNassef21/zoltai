@@ -1,27 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { isAuthenticated } from "@/lib/admin-auth";
 
-const SETTINGS_FILE = path.join(process.cwd(), ".env.local");
-
-function isAdmin(req: NextRequest): boolean {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token) return false;
-  try {
-    const decoded = Buffer.from(token, "base64").toString();
-    const adminPassword = process.env.ADMIN_PASSWORD || "zoltai2026";
-    return decoded.includes(adminPassword);
-  } catch {
-    return false;
-  }
-}
-
-export async function GET(req: NextRequest) {
-  if (!isAdmin(req)) {
+// GET: Return current settings (masked tokens)
+export async function GET() {
+  if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Return current settings (masked tokens)
   const settings = {
     INSTAGRAM_ACCESS_TOKEN: process.env.INSTAGRAM_ACCESS_TOKEN
       ? "***" + process.env.INSTAGRAM_ACCESS_TOKEN.slice(-8)
@@ -39,13 +24,22 @@ export async function GET(req: NextRequest) {
     RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL || "Not set",
     REPORT_EMAIL_TO: process.env.REPORT_EMAIL_TO || "Not set",
     IMAGE_PROVIDER: process.env.IMAGE_PROVIDER || "mock",
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN
+      ? "***" + process.env.GITHUB_TOKEN.slice(-8)
+      : "Not set",
+    FACEBOOK_PAGE_ID: process.env.FACEBOOK_PAGE_ID || "Not set",
+    FACEBOOK_PAGE_ACCESS_TOKEN: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
+      ? "***" + process.env.FACEBOOK_PAGE_ACCESS_TOKEN.slice(-8)
+      : "Not set",
   };
 
   return NextResponse.json({ settings });
 }
 
+// POST: Update setting — on Vercel we update process.env (runtime only)
+// For persistent changes, use Vercel Dashboard > Environment Variables
 export async function POST(req: NextRequest) {
-  if (!isAdmin(req)) {
+  if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -62,35 +56,49 @@ export async function POST(req: NextRequest) {
       "REPORT_EMAIL_TO",
       "IMAGE_PROVIDER",
       "ADMIN_PASSWORD",
+      "GITHUB_TOKEN",
+      "FACEBOOK_PAGE_ID",
+      "FACEBOOK_PAGE_ACCESS_TOKEN",
     ];
 
     if (!allowedKeys.includes(key)) {
-      return NextResponse.json({ error: "Invalid setting key" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid setting key" },
+        { status: 400 }
+      );
     }
 
-    // Update .env.local file
-    let envContent = "";
-    if (fs.existsSync(SETTINGS_FILE)) {
-      envContent = fs.readFileSync(SETTINGS_FILE, "utf-8");
-    }
-
-    const regex = new RegExp(`^${key}=.*$`, "m");
-    if (regex.test(envContent)) {
-      envContent = envContent.replace(regex, `${key}=${value}`);
-    } else {
-      envContent += `\n${key}=${value}`;
-    }
-
-    fs.writeFileSync(SETTINGS_FILE, envContent.trim() + "\n");
-
-    // Also update process.env for immediate effect
+    // Update process.env for runtime effect
     process.env[key] = value;
+
+    // Try to update .env.local for local development
+    try {
+      const fs = await import("fs");
+      const path = await import("path");
+      const envFile = path.join(process.cwd(), ".env.local");
+      let envContent = "";
+      if (fs.existsSync(envFile)) {
+        envContent = fs.readFileSync(envFile, "utf-8");
+      }
+      const regex = new RegExp(`^${key}=.*$`, "m");
+      if (regex.test(envContent)) {
+        envContent = envContent.replace(regex, `${key}=${value}`);
+      } else {
+        envContent += `\n${key}=${value}`;
+      }
+      fs.writeFileSync(envFile, envContent.trim() + "\n");
+    } catch {
+      // Filesystem write failed (Vercel) — runtime update still worked
+    }
 
     return NextResponse.json({
       success: true,
-      message: `${key} updated. Restart server for full effect.`,
+      message: `${key} updated for this session. For permanent changes on Vercel, update via Vercel Dashboard > Environment Variables.`,
     });
   } catch {
-    return NextResponse.json({ error: "Failed to update setting" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to update setting" },
+      { status: 500 }
+    );
   }
 }

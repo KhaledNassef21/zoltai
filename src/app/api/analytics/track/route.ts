@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { readFile, writeFile, isGitHubAvailable } from "@/lib/github";
 
 const ANALYTICS_FILE = path.join(process.cwd(), "data/analytics.json");
+const GITHUB_ANALYTICS_PATH = "data/analytics.json";
 
 interface AnalyticsEvent {
   event: string;
@@ -26,12 +28,21 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     };
 
+    // Load existing events
     let events: AnalyticsEvent[] = [];
     try {
       if (fs.existsSync(ANALYTICS_FILE)) {
         events = JSON.parse(fs.readFileSync(ANALYTICS_FILE, "utf-8"));
       }
     } catch {}
+
+    // If local failed, try GitHub
+    if (events.length === 0 && isGitHubAvailable()) {
+      try {
+        const file = await readFile(GITHUB_ANALYTICS_PATH);
+        if (file) events = JSON.parse(file.content);
+      } catch {}
+    }
 
     events.push(entry);
 
@@ -40,12 +51,29 @@ export async function POST(req: NextRequest) {
       events = events.slice(-10000);
     }
 
-    const dir = path.dirname(ANALYTICS_FILE);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(events, null, 2));
+    const json = JSON.stringify(events, null, 2);
+
+    // Try local save
+    try {
+      const dir = path.dirname(ANALYTICS_FILE);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(ANALYTICS_FILE, json);
+      return NextResponse.json({ success: true });
+    } catch {
+      // Filesystem failed
+    }
+
+    // Try GitHub (but don't block on analytics - fire and forget)
+    if (isGitHubAvailable()) {
+      // Don't await — analytics shouldn't block the response
+      writeFile(GITHUB_ANALYTICS_PATH, json, "Track analytics event").catch(
+        () => {}
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch {
-    return NextResponse.json({ error: "Failed" }, { status: 500 });
+    // Analytics should never fail the user experience
+    return NextResponse.json({ success: true });
   }
 }

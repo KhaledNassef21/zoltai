@@ -1,32 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-
-function isAdmin(req: NextRequest): boolean {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token) return false;
-  try {
-    const decoded = Buffer.from(token, "base64").toString();
-    const adminPassword = process.env.ADMIN_PASSWORD || "zoltai2026";
-    return decoded.includes(adminPassword);
-  } catch {
-    return false;
-  }
-}
+import { isAuthenticated } from "@/lib/admin-auth";
 
 export async function POST(req: NextRequest) {
-  if (!isAdmin(req)) {
+  if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const { action } = await req.json();
 
-    // Trigger GitHub Actions workflow via API
     const githubToken = process.env.GITHUB_TOKEN;
-    const repo = "KhaledNassef21/zoltai";
+    const repo = process.env.GITHUB_REPO || "KhaledNassef21/zoltai";
 
     if (!githubToken) {
       return NextResponse.json(
-        { error: "GITHUB_TOKEN not configured. Set it in environment variables." },
+        {
+          error:
+            "GITHUB_TOKEN not configured. Set it in environment variables.",
+        },
         { status: 500 }
       );
     }
@@ -42,7 +33,9 @@ export async function POST(req: NextRequest) {
     const workflowFile = workflowMap[action];
     if (!workflowFile) {
       return NextResponse.json(
-        { error: `Invalid action: ${action}. Valid: ${Object.keys(workflowMap).join(", ")}` },
+        {
+          error: `Invalid action: ${action}. Valid: ${Object.keys(workflowMap).join(", ")}`,
+        },
         { status: 400 }
       );
     }
@@ -73,6 +66,9 @@ export async function POST(req: NextRequest) {
       { status: response.status }
     );
   } catch {
-    return NextResponse.json({ error: "Failed to trigger workflow" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to trigger workflow" },
+      { status: 500 }
+    );
   }
 }

@@ -1,67 +1,68 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { cookies } from "next/headers";
+import { isAuthenticated } from "@/lib/admin-auth";
+import { readFile, writeFile, isGitHubAvailable } from "@/lib/github";
 
-const TOOLS_FILE = path.join(process.cwd(), "src/data/tools.ts");
+const TOOLS_JSON = path.join(process.cwd(), "src/data/tools.json");
+const GITHUB_TOOLS_PATH = "src/data/tools.json";
 
-async function isAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("admin_token");
-  if (!token) return false;
-  const expected = Buffer.from(
-    `${process.env.ADMIN_PASSWORD || "zoltai2026"}:zoltai-admin`
-  ).toString("base64");
-  return token.value === expected;
+interface Tool {
+  name: string;
+  slug: string;
+  description: string;
+  category: string;
+  useCase?: string;
+  pricing: string;
+  pricingDetail?: string;
+  url: string;
+  affiliateUrl?: string;
+  featured?: boolean;
+  rating?: number;
 }
 
-function parseToolsFile(): any[] {
-  const content = fs.readFileSync(TOOLS_FILE, "utf-8");
-  // Extract the array between "export const tools: Tool[] = [" and the closing "];"
-  const match = content.match(/export const tools:\s*Tool\[\]\s*=\s*\[([\s\S]*?)\];\s*\n\nexport function/);
-  if (!match) return [];
-
+async function loadTools(): Promise<Tool[]> {
+  // Try local JSON file first
   try {
-    // Parse each tool object - they're JS objects, not JSON
-    const toolsStr = `[${match[1]}]`;
-    // Use Function constructor to evaluate the JS array safely
-    const fn = new Function(`return ${toolsStr}`);
-    return fn();
+    if (fs.existsSync(TOOLS_JSON)) {
+      return JSON.parse(fs.readFileSync(TOOLS_JSON, "utf-8"));
+    }
+  } catch {}
+
+  // Fallback: try GitHub
+  if (isGitHubAvailable()) {
+    try {
+      const file = await readFile(GITHUB_TOOLS_PATH);
+      if (file) return JSON.parse(file.content);
+    } catch {}
+  }
+
+  // Fallback: import from tools.ts (read-only, always works)
+  try {
+    const { tools } = await import("@/data/tools");
+    return tools as Tool[];
   } catch {
     return [];
   }
 }
 
-function writeToolsFile(tools: any[]): void {
-  const content = fs.readFileSync(TOOLS_FILE, "utf-8");
+async function saveTools(tools: Tool[]): Promise<{ success: boolean; note?: string }> {
+  const json = JSON.stringify(tools, null, 2);
 
-  // Build the tools array string
-  const toolsStr = tools.map(tool => {
-    const lines = [
-      `  {`,
-      `    name: ${JSON.stringify(tool.name)},`,
-      `    slug: ${JSON.stringify(tool.slug)},`,
-      `    description: ${JSON.stringify(tool.description)},`,
-      `    category: ${JSON.stringify(tool.category)},`,
-      `    useCase: ${JSON.stringify(tool.useCase || "")},`,
-      `    pricing: ${JSON.stringify(tool.pricing)},`,
-      `    pricingDetail: ${JSON.stringify(tool.pricingDetail || "")},`,
-      `    url: ${JSON.stringify(tool.url)},`,
-      `    affiliateUrl: ${JSON.stringify(tool.affiliateUrl || "")},`,
-      tool.featured ? `    featured: true,` : null,
-      `    rating: ${tool.rating},`,
-      `  }`,
-    ].filter(Boolean);
-    return lines.join("\n");
-  }).join(",\n");
+  // Try local filesystem first
+  try {
+    fs.writeFileSync(TOOLS_JSON, json);
+    return { success: true };
+  } catch {
+    // Filesystem write failed (Vercel), try GitHub
+  }
 
-  // Replace the tools array in the file
-  const newContent = content.replace(
-    /export const tools:\s*Tool\[\]\s*=\s*\[[\s\S]*?\];\s*\n\nexport function/,
-    `export const tools: Tool[] = [\n${toolsStr},\n];\n\nexport function`
-  );
+  if (isGitHubAvailable()) {
+    await writeFile(GITHUB_TOOLS_PATH, json, "Update tools data");
+    return { success: true, note: "Saved to GitHub. Site will redeploy shortly." };
+  }
 
-  fs.writeFileSync(TOOLS_FILE, newContent);
+  throw new Error("Cannot write files. Configure GITHUB_TOKEN for Vercel.");
 }
 
 // GET: List all tools
@@ -71,10 +72,13 @@ export async function GET() {
   }
 
   try {
-    const { tools } = await import("@/data/tools");
+    const tools = await loadTools();
     return NextResponse.json({ tools });
-  } catch {
-    return NextResponse.json({ error: "Failed to load tools" }, { status: 500 });
+  } catch (err) {
+    return NextResponse.json(
+      { error: `Failed to load tools: ${(err as Error).message}` },
+      { status: 500 }
+    );
   }
 }
 
@@ -85,30 +89,40 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const tool = await req.json();
+    const tool: Tool = await req.json();
 
     if (!tool.name || !tool.url) {
-      return NextResponse.json({ error: "Name and URL are required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Name and URL are required" },
+        { status: 400 }
+      );
     }
 
-    // Generate slug if not provided
     if (!tool.slug) {
-      tool.slug = tool.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      tool.slug = tool.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
     }
 
-    const tools = parseToolsFile();
+    const tools = await loadTools();
 
-    // Check duplicate slug
-    if (tools.some((t: any) => t.slug === tool.slug)) {
-      return NextResponse.json({ error: "Tool with this slug already exists" }, { status: 409 });
+    if (tools.some((t) => t.slug === tool.slug)) {
+      return NextResponse.json(
+        { error: "Tool with this slug already exists" },
+        { status: 409 }
+      );
     }
 
     tools.push(tool);
-    writeToolsFile(tools);
+    const result = await saveTools(tools);
 
-    return NextResponse.json({ success: true, slug: tool.slug });
+    return NextResponse.json({ success: true, slug: tool.slug, note: result.note });
   } catch (err) {
-    return NextResponse.json({ error: "Failed to create tool" }, { status: 500 });
+    return NextResponse.json(
+      { error: `Failed to create tool: ${(err as Error).message}` },
+      { status: 500 }
+    );
   }
 }
 
@@ -125,19 +139,22 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
     }
 
-    const tools = parseToolsFile();
-    const index = tools.findIndex((t: any) => t.slug === slug);
+    const tools = await loadTools();
+    const index = tools.findIndex((t) => t.slug === slug);
 
     if (index === -1) {
       return NextResponse.json({ error: "Tool not found" }, { status: 404 });
     }
 
     tools[index] = { ...tools[index], ...updates };
-    writeToolsFile(tools);
+    const result = await saveTools(tools);
 
-    return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to update tool" }, { status: 500 });
+    return NextResponse.json({ success: true, note: result.note });
+  } catch (err) {
+    return NextResponse.json(
+      { error: `Failed to update tool: ${(err as Error).message}` },
+      { status: 500 }
+    );
   }
 }
 
@@ -154,17 +171,20 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
     }
 
-    const tools = parseToolsFile();
-    const filtered = tools.filter((t: any) => t.slug !== slug);
+    const tools = await loadTools();
+    const filtered = tools.filter((t) => t.slug !== slug);
 
     if (filtered.length === tools.length) {
       return NextResponse.json({ error: "Tool not found" }, { status: 404 });
     }
 
-    writeToolsFile(filtered);
+    const result = await saveTools(filtered);
 
-    return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to delete tool" }, { status: 500 });
+    return NextResponse.json({ success: true, note: result.note });
+  } catch (err) {
+    return NextResponse.json(
+      { error: `Failed to delete tool: ${(err as Error).message}` },
+      { status: 500 }
+    );
   }
 }

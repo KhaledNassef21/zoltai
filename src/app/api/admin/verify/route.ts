@@ -1,18 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { isAuthenticated } from "@/lib/admin-auth";
 
-export async function GET(req: NextRequest) {
-  const token = req.cookies.get("admin_token")?.value;
-  if (!token) {
-    return NextResponse.json({ authenticated: false }, { status: 401 });
+export async function GET() {
+  if (await isAuthenticated()) {
+    return NextResponse.json({ authenticated: true });
   }
-
-  try {
-    const decoded = Buffer.from(token, "base64").toString();
-    const adminPassword = process.env.ADMIN_PASSWORD || "zoltai2026";
-    if (decoded.includes(adminPassword)) {
-      return NextResponse.json({ authenticated: true });
-    }
-  } catch {}
-
   return NextResponse.json({ authenticated: false }, { status: 401 });
 }

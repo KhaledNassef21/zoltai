@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { readFile, writeFile, isGitHubAvailable } from "@/lib/github";
 
 const COMMENTS_DIR = path.join(process.cwd(), "data/comments");
+const GITHUB_COMMENTS_DIR = "data/comments";
 
 interface Comment {
   id: string;
@@ -13,25 +15,50 @@ interface Comment {
   approved: boolean;
 }
 
-function getCommentsFile(slug: string): string {
-  return path.join(COMMENTS_DIR, `${slug}.json`);
-}
-
-function loadComments(slug: string): Comment[] {
-  const file = getCommentsFile(slug);
-  if (!fs.existsSync(file)) return [];
+async function loadComments(slug: string): Promise<Comment[]> {
+  // Try local filesystem
+  const file = path.join(COMMENTS_DIR, `${slug}.json`);
   try {
-    return JSON.parse(fs.readFileSync(file, "utf-8"));
-  } catch {
-    return [];
+    if (fs.existsSync(file)) {
+      return JSON.parse(fs.readFileSync(file, "utf-8"));
+    }
+  } catch {}
+
+  // Try GitHub
+  if (isGitHubAvailable()) {
+    try {
+      const ghFile = await readFile(`${GITHUB_COMMENTS_DIR}/${slug}.json`);
+      if (ghFile) return JSON.parse(ghFile.content);
+    } catch {}
   }
+
+  return [];
 }
 
-function saveComments(slug: string, comments: Comment[]): void {
-  if (!fs.existsSync(COMMENTS_DIR)) {
-    fs.mkdirSync(COMMENTS_DIR, { recursive: true });
+async function saveComments(slug: string, comments: Comment[]): Promise<void> {
+  const json = JSON.stringify(comments, null, 2);
+
+  // Try local filesystem first
+  try {
+    if (!fs.existsSync(COMMENTS_DIR)) {
+      fs.mkdirSync(COMMENTS_DIR, { recursive: true });
+    }
+    fs.writeFileSync(path.join(COMMENTS_DIR, `${slug}.json`), json);
+    return;
+  } catch {
+    // Filesystem write failed (Vercel), try GitHub
   }
-  fs.writeFileSync(getCommentsFile(slug), JSON.stringify(comments, null, 2));
+
+  if (isGitHubAvailable()) {
+    await writeFile(
+      `${GITHUB_COMMENTS_DIR}/${slug}.json`,
+      json,
+      `Update comments for: ${slug}`
+    );
+    return;
+  }
+
+  throw new Error("Cannot save comments. Configure GITHUB_TOKEN for Vercel.");
 }
 
 // GET: Get approved comments for a post
@@ -43,7 +70,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Slug required" }, { status: 400 });
   }
 
-  const comments = loadComments(slug).filter((c) => c.approved);
+  const comments = (await loadComments(slug)).filter((c) => c.approved);
   return NextResponse.json({ comments });
 }
 
@@ -67,7 +94,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Basic spam check
-    const spamWords = ["buy now", "click here", "free money", "casino", "viagra"];
+    const spamWords = [
+      "buy now",
+      "click here",
+      "free money",
+      "casino",
+      "viagra",
+    ];
     const contentLower = content.toLowerCase();
     if (spamWords.some((w) => contentLower.includes(w))) {
       return NextResponse.json(
@@ -85,14 +118,14 @@ export async function POST(req: NextRequest) {
       approved: true,
     };
 
-    const comments = loadComments(slug);
+    const comments = await loadComments(slug);
     comments.push(comment);
-    saveComments(slug, comments);
+    await saveComments(slug, comments);
 
     return NextResponse.json({ success: true, comment });
-  } catch {
+  } catch (err) {
     return NextResponse.json(
-      { error: "Failed to submit comment" },
+      { error: `Failed to submit comment: ${(err as Error).message}` },
       { status: 500 }
     );
   }

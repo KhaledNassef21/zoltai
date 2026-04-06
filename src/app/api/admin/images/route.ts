@@ -1,24 +1,15 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { cookies } from "next/headers";
-
-async function isAuthenticated(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("admin_token");
-  if (!token) return false;
-  const expected = Buffer.from(
-    `${process.env.ADMIN_PASSWORD || "zoltai2026"}:zoltai-admin`
-  ).toString("base64");
-  return token.value === expected;
-}
+import { isAuthenticated } from "@/lib/admin-auth";
 
 export async function GET() {
   if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const images: { name: string; path: string; url: string; size: string }[] = [];
+  const images: { name: string; path: string; url: string; size: string }[] =
+    [];
   const publicDir = path.join(process.cwd(), "public/images");
 
   function scanDir(dir: string, urlPrefix: string) {

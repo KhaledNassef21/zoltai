@@ -39,6 +39,7 @@ yarn-error.log*
 # data files (runtime-generated)
 /data/comments/
 /data/analytics.json
+/data/users.json
 
 # typescript
 *.tsbuildinfo

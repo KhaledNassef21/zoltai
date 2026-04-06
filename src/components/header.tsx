@@ -72,6 +72,9 @@ export function Header() {
               </svg>
             )}
           </button>
+
+          {/* User Menu */}
+          <UserMenu />
         </div>
       </nav>
     </header>

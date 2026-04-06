@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { StickyCTA } from "@/components/sticky-cta";
 import { PWARegister } from "@/components/pwa-register";
 import { PushPrompt } from "@/components/push-prompt";
+import { HeatmapTracker } from "@/components/heatmap-tracker";
 import { Providers } from "@/components/providers";
 
 const geistSans = Geist({
@@ -120,6 +121,7 @@ export default function RootLayout({
           <StickyCTA />
           <PWARegister />
           <PushPrompt />
+          <HeatmapTracker />
         </Providers>
       </body>
     </html>
