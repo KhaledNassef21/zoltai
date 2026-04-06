@@ -3,7 +3,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AdminLayout } from "@/components/admin/sidebar";
-import { Plus, Pencil, Trash2, ExternalLink, X } from "lucide-react";
+import {
+  RichEditor,
+  htmlToMarkdown,
+  markdownToHtml,
+} from "@/components/admin/rich-editor";
+import { Plus, Pencil, Trash2, ExternalLink, X, Eye, Code } from "lucide-react";
 
 interface Article {
   slug: string;
@@ -20,15 +25,19 @@ export default function AdminArticles() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState<"success" | "error">("success");
+  const [messageType, setMessageType] = useState<"success" | "error">(
+    "success"
+  );
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [showEditor, setShowEditor] = useState(false);
   const [editSlug, setEditSlug] = useState<string | null>(null);
   const [loadingContent, setLoadingContent] = useState(false);
+  const [editorMode, setEditorMode] = useState<"rich" | "markdown">("rich");
   const [form, setForm] = useState({
     title: "",
     description: "",
     content: "",
+    htmlContent: "",
     tags: "",
     author: "Zoltai",
     image: "",
@@ -82,7 +91,13 @@ export default function AdminArticles() {
   }
 
   async function handleSave() {
-    if (!form.title || !form.content) {
+    // Get the final markdown content
+    const finalContent =
+      editorMode === "rich"
+        ? htmlToMarkdown(form.htmlContent)
+        : form.content;
+
+    if (!form.title || !finalContent) {
       showMessage("Title and content are required", "error");
       return;
     }
@@ -92,7 +107,7 @@ export default function AdminArticles() {
       ...(editSlug ? { slug: editSlug } : {}),
       title: form.title,
       description: form.description,
-      content: form.content,
+      content: finalContent,
       tags: form.tags
         .split(",")
         .map((t) => t.trim())
@@ -109,10 +124,10 @@ export default function AdminArticles() {
       });
 
       if (res.ok) {
-        showMessage(
-          editSlug ? "Article updated!" : "Article created!",
-          "success"
-        );
+        const data = await res.json();
+        let msg = editSlug ? "Article updated!" : "Article created!";
+        if (data.note) msg += ` ${data.note}`;
+        showMessage(msg, "success");
         resetEditor();
         loadArticles();
       } else {
@@ -131,6 +146,7 @@ export default function AdminArticles() {
         title: article.title,
         description: article.description,
         content: "",
+        htmlContent: "",
         tags: article.tags.join(", "),
         author: article.author,
         image: article.image,
@@ -140,11 +156,18 @@ export default function AdminArticles() {
       // Load the actual content for editing
       setLoadingContent(true);
       try {
-        const res = await fetch(`/api/admin/articles?slug=${article.slug}`);
+        const res = await fetch(
+          `/api/admin/articles?slug=${article.slug}`
+        );
         if (res.ok) {
           const data = await res.json();
           if (data.content) {
-            setForm((prev) => ({ ...prev, content: data.content }));
+            const html = markdownToHtml(data.content);
+            setForm((prev) => ({
+              ...prev,
+              content: data.content,
+              htmlContent: html,
+            }));
           }
         }
       } catch {}
@@ -155,6 +178,7 @@ export default function AdminArticles() {
         title: "",
         description: "",
         content: "",
+        htmlContent: "",
         tags: "",
         author: "Zoltai",
         image: "",
@@ -166,14 +190,30 @@ export default function AdminArticles() {
   function resetEditor() {
     setShowEditor(false);
     setEditSlug(null);
+    setEditorMode("rich");
     setForm({
       title: "",
       description: "",
       content: "",
+      htmlContent: "",
       tags: "",
       author: "Zoltai",
       image: "",
     });
+  }
+
+  function toggleEditorMode() {
+    if (editorMode === "rich") {
+      // Switch to markdown — convert current HTML
+      const md = htmlToMarkdown(form.htmlContent);
+      setForm((prev) => ({ ...prev, content: md }));
+      setEditorMode("markdown");
+    } else {
+      // Switch to rich — convert current markdown
+      const html = markdownToHtml(form.content);
+      setForm((prev) => ({ ...prev, htmlContent: html }));
+      setEditorMode("rich");
+    }
   }
 
   const filteredArticles = articles.filter(
@@ -239,24 +279,57 @@ export default function AdminArticles() {
 
       {/* Editor Modal */}
       {showEditor && (
-        <div className="fixed inset-0 z-50 bg-black/70 flex items-start justify-center pt-10 px-4 overflow-y-auto">
-          <div className="w-full max-w-3xl bg-card-bg border border-card-border rounded-2xl p-6 mb-10">
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-start justify-center pt-6 px-4 overflow-y-auto">
+          <div className="w-full max-w-4xl bg-card-bg border border-card-border rounded-2xl p-6 mb-10">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold">
                 {editSlug ? "Edit Article" : "New Article"}
               </h2>
-              <button onClick={resetEditor} className="text-zinc-500 hover:text-foreground">
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                {/* Editor Mode Toggle */}
+                <button
+                  onClick={toggleEditorMode}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                    editorMode === "rich"
+                      ? "border-accent/30 text-accent-light bg-accent/10"
+                      : "border-card-border text-zinc-400 hover:text-foreground"
+                  }`}
+                  title={
+                    editorMode === "rich"
+                      ? "Switch to Markdown"
+                      : "Switch to Rich Editor"
+                  }
+                >
+                  {editorMode === "rich" ? (
+                    <>
+                      <Eye className="w-3.5 h-3.5" /> Rich
+                    </>
+                  ) : (
+                    <>
+                      <Code className="w-3.5 h-3.5" /> Markdown
+                    </>
+                  )}
+                </button>
+                <button
+                  onClick={resetEditor}
+                  className="text-zinc-500 hover:text-foreground"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm text-zinc-400 mb-1">Title *</label>
+                <label className="block text-sm text-zinc-400 mb-1">
+                  Title *
+                </label>
                 <input
                   type="text"
                   value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, title: e.target.value })
+                  }
                   placeholder="Article title"
                   className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                 />
@@ -269,7 +342,9 @@ export default function AdminArticles() {
                 <input
                   type="text"
                   value={form.description}
-                  onChange={(e) => setForm({ ...form, description: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, description: e.target.value })
+                  }
                   placeholder="Meta description (155 chars max)"
                   maxLength={160}
                   className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
@@ -281,40 +356,73 @@ export default function AdminArticles() {
 
               <div>
                 <label className="block text-sm text-zinc-400 mb-1">
-                  Content (Markdown) *
+                  Content *
                   {loadingContent && (
-                    <span className="ml-2 text-accent-light">Loading...</span>
+                    <span className="ml-2 text-accent-light">
+                      Loading...
+                    </span>
                   )}
                 </label>
-                <textarea
-                  value={form.content}
-                  onChange={(e) => setForm({ ...form, content: e.target.value })}
-                  placeholder="Write your article in Markdown..."
-                  rows={20}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 font-mono text-sm"
-                />
-                <p className="text-xs text-zinc-600 mt-1">
-                  {form.content.split(/\s+/).filter(Boolean).length} words
-                </p>
+
+                {editorMode === "rich" ? (
+                  <RichEditor
+                    content={form.htmlContent}
+                    onChange={(html) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        htmlContent: html,
+                      }))
+                    }
+                    placeholder="Write your article..."
+                  />
+                ) : (
+                  <>
+                    <textarea
+                      value={form.content}
+                      onChange={(e) =>
+                        setForm({ ...form, content: e.target.value })
+                      }
+                      placeholder="Write your article in Markdown..."
+                      rows={20}
+                      className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50 font-mono text-sm"
+                    />
+                    <p className="text-xs text-zinc-600 mt-1">
+                      {
+                        form.content
+                          .split(/\s+/)
+                          .filter(Boolean).length
+                      }{" "}
+                      words
+                    </p>
+                  </>
+                )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-zinc-400 mb-1">Tags</label>
+                  <label className="block text-sm text-zinc-400 mb-1">
+                    Tags
+                  </label>
                   <input
                     type="text"
                     value={form.tags}
-                    onChange={(e) => setForm({ ...form, tags: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, tags: e.target.value })
+                    }
                     placeholder="AI, Productivity, Tools"
                     className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm text-zinc-400 mb-1">Author</label>
+                  <label className="block text-sm text-zinc-400 mb-1">
+                    Author
+                  </label>
                   <input
                     type="text"
                     value={form.author}
-                    onChange={(e) => setForm({ ...form, author: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, author: e.target.value })
+                    }
                     placeholder="Zoltai"
                     className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                   />
@@ -328,7 +436,9 @@ export default function AdminArticles() {
                 <input
                   type="text"
                   value={form.image}
-                  onChange={(e) => setForm({ ...form, image: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, image: e.target.value })
+                  }
                   placeholder="/images/blog/my-article.jpg"
                   className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
                 />
@@ -343,7 +453,6 @@ export default function AdminArticles() {
                 </button>
                 <button
                   onClick={handleSave}
-                  disabled={!form.title || !form.content}
                   className="px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white text-sm font-medium disabled:opacity-40"
                 >
                   {editSlug ? "Update Article" : "Publish Article"}
@@ -373,13 +482,17 @@ export default function AdminArticles() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
-                    <time className="text-xs text-zinc-600">{article.date}</time>
+                    <time className="text-xs text-zinc-600">
+                      {article.date}
+                    </time>
                     <span className="text-xs text-zinc-700">·</span>
                     <span className="text-xs text-zinc-600">
                       {article.wordCount} words
                     </span>
                     <span className="text-xs text-zinc-700">·</span>
-                    <span className="text-xs text-zinc-600">{article.author}</span>
+                    <span className="text-xs text-zinc-600">
+                      {article.author}
+                    </span>
                   </div>
                   <h3 className="font-semibold text-foreground truncate">
                     {article.title}
