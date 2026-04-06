@@ -244,5 +244,11 @@
     "variant": "[{\"x\":63,\"y\":3,\"el\":\"a.text-zinc-400[About]\",\"time\":1775485558914}]",
     "page": "/blog",
     "timestamp": "2026-04-06T14:26:02.349Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025",
+    "timestamp": "2026-04-06T17:09:05.173Z"
   }
 ]
