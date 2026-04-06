@@ -232,5 +232,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-06T14:13:00.006Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
+    "timestamp": "2026-04-06T14:25:09.471Z"
   }
 ]
