@@ -28,5 +28,11 @@
     "variant": "[{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775483326851}]",
     "page": "/tools",
     "timestamp": "2026-04-06T13:48:49.620Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:16:48.480Z"
   }
 ]
