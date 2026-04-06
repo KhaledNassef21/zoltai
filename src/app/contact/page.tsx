@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <Breadcrumbs items={[{ label: "Contact" }]} />
       <h1 className="text-3xl sm:text-4xl font-bold mb-3">
         Contact <span className="gradient-text">Us</span>
       </h1>

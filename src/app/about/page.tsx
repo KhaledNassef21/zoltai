@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "About Zoltai - Learn and Master AI Tools",
@@ -32,6 +33,7 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <Breadcrumbs items={[{ label: "About" }]} />
 
       <h1 className="text-3xl sm:text-4xl font-bold mb-6">
         About <span className="gradient-text">Zoltai</span>

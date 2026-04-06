@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function TermsOfService() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <Breadcrumbs items={[{ label: "Terms of Service" }]} />
       <h1 className="text-3xl font-bold mb-2">Terms of Service</h1>
       <p className="text-sm text-zinc-500 mb-10">
         Last updated: April 7, 2026

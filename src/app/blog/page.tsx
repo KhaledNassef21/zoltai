@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { BlogCard } from "@/components/blog-card";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,6 +14,7 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <Breadcrumbs items={[{ label: "Blog" }]} />
       <div className="mb-12">
         <h1 className="text-3xl sm:text-4xl font-bold">
           <span className="gradient-text">Blog</span>

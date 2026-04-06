@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { tools, toolCategories } from "@/data/tools";
 import { ToolsDirectory } from "./tools-directory";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Best AI Tools Directory 2026 — Curated & Reviewed",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default function ToolsPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+      <Breadcrumbs items={[{ label: "AI Tools" }]} />
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl sm:text-4xl font-bold">

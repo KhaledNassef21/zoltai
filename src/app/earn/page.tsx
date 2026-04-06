@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { tools } from "@/data/tools";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Top AI Tools — Curated Picks to Boost Your Productivity",
@@ -59,6 +60,9 @@ function PricingBadge({ pricing }: { pricing: string }) {
 export default function EarnPage() {
   return (
     <div className="min-h-screen">
+      <div className="max-w-5xl mx-auto px-4 pt-8">
+        <Breadcrumbs items={[{ label: "Top AI Tools" }]} />
+      </div>
       {/* Hero Section */}
       <section className="relative py-20 px-4 text-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-600/10 via-transparent to-transparent" />

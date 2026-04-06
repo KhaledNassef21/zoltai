@@ -10,6 +10,8 @@ import { Comments } from "@/components/comments";
 import { MidArticleCTA, BottomArticleCTA } from "@/components/article-cta";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 import { getFeaturedTools, tools } from "@/data/tools";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { FAQSchema, extractFAQsFromContent } from "@/components/faq-schema";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -111,12 +113,22 @@ export default async function BlogPost({ params }: Props) {
   const relevantTools = getRelevantTools(post.title, post.tags);
   const relatedPosts = getRelatedPosts(slug, post.tags);
   const jsonLd = getJsonLd(post, slug);
+  const faqs = extractFAQsFromContent(post.content);
 
   return (
     <article className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <FAQSchema faqs={faqs} />
+
+      {/* === BREADCRUMBS === */}
+      <Breadcrumbs
+        items={[
+          { label: "Blog", href: "/blog" },
+          { label: post.title },
+        ]}
       />
 
       {/* === HEADER === */}
