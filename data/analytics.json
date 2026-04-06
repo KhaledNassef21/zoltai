@@ -252,9 +252,15 @@
     "timestamp": "2026-04-06T17:09:05.173Z"
   },
   {
-    "event": "scroll_depth",
-    "variant": "72",
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T18:22:56.686Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
     "page": "/",
-    "timestamp": "2026-04-06T18:24:39.264Z"
+    "timestamp": "2026-04-06T18:24:51.600Z"
   }
 ]
