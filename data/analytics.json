@@ -1366,5 +1366,11 @@
     "variant": "[{\"x\":50,\"y\":29,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775545441358},{\"x\":50,\"y\":29,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775545441582},{\"x\":50,\"y\":37,\"el\":\"p.mt-6[Discover the best AI tools to ]\",\"time\":1775545442006},{\"x\":50,\"y\":37,\"el\":\"p.mt-6[Discover the best AI tools to ]\",\"time\":1775545442214},{\"x\":50,\"y\":37,\"el\":\"p.mt-6[Discover the best AI tools to ]\",\"time\":1775545442438},{\"x\":55,\"y\":29,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775545442854},{\"x\":60,\"y\":2,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775545444759}]",
     "page": "/",
     "timestamp": "2026-04-07T07:04:07.118Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "51",
+    "page": "/",
+    "timestamp": "2026-04-07T07:19:45.101Z"
   }
 ]
