@@ -1,6 +1,17 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://zoltai.org/",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "zoltai.vercel.app"
+        }
+      ]
+    },
+    {
       "source": "/:path*",
       "destination": "https://zoltai.org/:path*",
       "permanent": true,
