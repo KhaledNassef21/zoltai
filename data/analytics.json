@@ -1300,5 +1300,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-07T03:43:22.642Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535404607},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535405660},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535406162},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535408496},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535409161},{\"x\":55,\"y\":71,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775535415024}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T04:16:58.530Z"
   }
 ]
