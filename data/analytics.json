@@ -1494,9 +1494,9 @@
     "timestamp": "2026-04-07T14:07:41.628Z"
   },
   {
-    "event": "cta_impression",
-    "variant": "article_mid",
-    "page": "/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025",
-    "timestamp": "2026-04-07T14:12:45.607Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775571311858}]",
+    "page": "/",
+    "timestamp": "2026-04-07T14:15:15.664Z"
   }
 ]
