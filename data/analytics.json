@@ -1416,9 +1416,9 @@
     "timestamp": "2026-04-07T10:11:17.501Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-07T10:16:15.472Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775557011879}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-07T10:16:52.793Z"
   }
 ]
