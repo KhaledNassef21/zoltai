@@ -1402,5 +1402,11 @@
     "variant": "newsletter_popup_timer",
     "page": "/blog/claude-3-5-sonnet-vs-gpt-4-turbo-complete-business-guide-2024",
     "timestamp": "2026-04-07T08:58:36.560Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "49",
+    "page": "/",
+    "timestamp": "2026-04-07T10:09:54.983Z"
   }
 ]
