@@ -1390,5 +1390,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-07T08:18:30.232Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:40:51.583Z"
   }
 ]
