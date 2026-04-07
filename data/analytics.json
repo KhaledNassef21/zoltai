@@ -1450,5 +1450,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-07T10:38:39.456Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":47,\"y\":41,\"el\":\"input.w-full\",\"time\":1775558325829},{\"x\":29,\"y\":50,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775558326500},{\"x\":42,\"y\":47,\"el\":\"form.p-6[Email AddressPasswordForgot pa]\",\"time\":1775558368053},{\"x\":42,\"y\":44,\"el\":\"input.w-full\",\"time\":1775558368356},{\"x\":46,\"y\":43,\"el\":\"input.w-full\",\"time\":1775558370637},{\"x\":34,\"y\":40,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775558371764},{\"x\":45,\"y\":43,\"el\":\"input.w-full\",\"time\":1775558373613},{\"x\":52,\"y\":70,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775558380214}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T10:39:41.865Z"
   }
 ]
