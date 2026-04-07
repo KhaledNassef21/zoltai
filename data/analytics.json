@@ -1422,9 +1422,15 @@
     "timestamp": "2026-04-07T10:16:57.493Z"
   },
   {
+    "event": "scroll_depth",
+    "variant": "61",
+    "page": "/about",
+    "timestamp": "2026-04-07T10:23:49.307Z"
+  },
+  {
     "event": "page_view",
     "variant": "",
-    "page": "/earn",
-    "timestamp": "2026-04-07T10:24:01.913Z"
+    "page": "/",
+    "timestamp": "2026-04-07T10:24:42.159Z"
   }
 ]
