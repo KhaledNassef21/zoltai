@@ -1376,145 +1376,133 @@
   {
     "event": "page_view",
     "variant": "",
-    "page": "/login",
-    "timestamp": "2026-04-07T08:12:41.169Z"
-  },
-  {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":25,\"y\":24,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775549666387},{\"x\":14,\"y\":36,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775549668083}]",
-    "page": "/login",
-    "timestamp": "2026-04-07T08:16:05.397Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-07T08:18:30.232Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/login",
-    "timestamp": "2026-04-07T08:40:51.583Z"
-  },
-  {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_timer",
-    "page": "/blog/claude-3-5-sonnet-vs-gpt-4-turbo-complete-business-guide-2024",
-    "timestamp": "2026-04-07T08:58:36.560Z"
-  },
-  {
-    "event": "scroll_depth",
-    "variant": "49",
-    "page": "/",
-    "timestamp": "2026-04-07T10:09:54.983Z"
-  },
-  {
-    "event": "cta_impression",
-    "variant": "article_mid",
-    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
-    "timestamp": "2026-04-07T10:11:17.501Z"
-  },
-  {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_exit",
-    "page": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
-    "timestamp": "2026-04-07T10:16:57.493Z"
-  },
-  {
-    "event": "scroll_depth",
-    "variant": "61",
-    "page": "/about",
-    "timestamp": "2026-04-07T10:23:49.307Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-07T10:24:42.159Z"
-  },
-  {
-    "event": "scroll_depth",
-    "variant": "85",
-    "page": "/",
-    "timestamp": "2026-04-07T10:30:39.947Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-07T10:34:00.402Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-07T10:38:39.456Z"
-  },
-  {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":47,\"y\":41,\"el\":\"input.w-full\",\"time\":1775558325829},{\"x\":29,\"y\":50,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775558326500},{\"x\":42,\"y\":47,\"el\":\"form.p-6[Email AddressPasswordForgot pa]\",\"time\":1775558368053},{\"x\":42,\"y\":44,\"el\":\"input.w-full\",\"time\":1775558368356},{\"x\":46,\"y\":43,\"el\":\"input.w-full\",\"time\":1775558370637},{\"x\":34,\"y\":40,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775558371764},{\"x\":45,\"y\":43,\"el\":\"input.w-full\",\"time\":1775558373613},{\"x\":52,\"y\":70,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775558380214}]",
-    "page": "/login",
-    "timestamp": "2026-04-07T10:39:41.865Z"
-  },
-  {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":52,\"y\":41,\"el\":\"button.px-8[Loading...]\",\"time\":1775558454398},{\"x\":46,\"y\":16,\"el\":\"div.inline-block[👑 Premium Membership]\",\"time\":1775558469253}]",
     "page": "/premium",
-    "timestamp": "2026-04-07T10:41:11.894Z"
+    "timestamp": "2026-04-07T08:23:27.899Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T08:23:31.619Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T08:23:32.566Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":43,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775550208834},{\"x\":43,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775550209709},{\"x\":91,\"y\":38,\"el\":\"div.absolute\",\"time\":1775550215248},{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775550216525}]",
+    "page": "/premium",
+    "timestamp": "2026-04-07T08:23:36.900Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:23:37.057Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":52,\"el\":\"input.w-full\",\"time\":1775550218427},{\"x\":48,\"y\":44,\"el\":\"input.w-full\",\"time\":1775550219331},{\"x\":48,\"y\":52,\"el\":\"input.w-full\",\"time\":1775550220316},{\"x\":71,\"y\":66,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775550221229},{\"x\":56,\"y\":71,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775550222593}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:23:42.869Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T08:23:42.911Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T08:24:08.655Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":58,\"el\":\"input.w-full\",\"time\":1775550224450},{\"x\":65,\"y\":62,\"el\":\"div.min-h-[80vh][ZoltaiCreate Your AccountJoin ]\",\"time\":1775550225992},{\"x\":22,\"y\":5,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775550248238}]",
+    "page": "/register",
+    "timestamp": "2026-04-07T08:24:08.677Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":55,\"y\":3,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775550259658}]",
+    "page": "/",
+    "timestamp": "2026-04-07T08:24:20.003Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/tools",
-    "timestamp": "2026-04-07T10:48:21.492Z"
+    "timestamp": "2026-04-07T08:24:20.037Z"
   },
   {
-    "event": "scroll_depth",
-    "variant": "100",
-    "page": "/profile",
-    "timestamp": "2026-04-07T11:32:57.167Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:24:21.867Z"
   },
   {
-    "event": "scroll_depth",
-    "variant": "100",
-    "page": "/profile",
-    "timestamp": "2026-04-07T11:34:59.784Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775550261390}]",
+    "page": "/tools",
+    "timestamp": "2026-04-07T08:24:21.894Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":66,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775550269698}]",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:24:29.988Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-07T08:24:30.012Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:24:32.241Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"nav.max-w-6xl[ZoltaiBlogTools💰 EarnAboutCon]\",\"time\":1775550271344},{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775550271804}]",
+    "page": "/contact",
+    "timestamp": "2026-04-07T08:24:32.261Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:25:00.466Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":42,\"y\":12,\"el\":\"div.max-w-6xl[{\\\"@context\\\":\\\"https://schema.or]\",\"time\":1775550298949},{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775550300317}]",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:25:00.494Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T08:25:05.623Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":43,\"el\":\"input.w-full\",\"time\":1775550303704},{\"x\":54,\"y\":70,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775550305484}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:25:05.646Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-07T14:04:04.585Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
-    "timestamp": "2026-04-07T14:07:41.628Z"
-  },
-  {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775571311858}]",
-    "page": "/",
-    "timestamp": "2026-04-07T14:15:15.664Z"
-  },
-  {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":53,\"y\":50,\"el\":\"input.w-full\",\"time\":1775571316095},{\"x\":52,\"y\":58,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571336747},{\"x\":47,\"y\":62,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571340640},{\"x\":43,\"y\":53,\"el\":\"input.w-full\",\"time\":1775571342295},{\"x\":45,\"y\":53,\"el\":\"input.w-full\",\"time\":1775571346766},{\"x\":47,\"y\":62,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571356778}]",
-    "page": "/forgot-password",
-    "timestamp": "2026-04-07T14:17:52.806Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
-    "timestamp": "2026-04-07T14:31:41.977Z"
-  },
-  {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":80,\"y\":57,\"el\":\"h3.font-semibold[How to Use Notion AI for Proje]\",\"time\":1775576767161}]",
-    "page": "/",
-    "timestamp": "2026-04-07T15:46:07.710Z"
+    "timestamp": "2026-04-07T13:26:15.181Z"
   }
 ]

@@ -36,17 +36,21 @@ async function getImageUrls(
 ): Promise<string[]> {
   const urls: string[] = [];
 
-  // Check for pre-saved images first
+  // Check for pre-saved images first (supports both .jpg and .png)
   const instaDir = path.join(process.cwd(), "public/images/instagram", slug);
   if (fs.existsSync(instaDir)) {
     for (let i = 1; i <= 4; i++) {
-      const file = path.join(instaDir, `slide-${i}.jpg`);
-      if (fs.existsSync(file)) {
-        const stat = fs.statSync(file);
-        if (stat.size > 5000) {
-          const cdnUrl = `${SITE_URL}/images/instagram/${slug}/slide-${i}.jpg`;
-          urls.push(cdnUrl);
-          console.log(`   ✅ Slide ${i}: ${cdnUrl} (${(stat.size / 1024).toFixed(0)}KB)`);
+      // Check both .jpg and .png extensions
+      for (const ext of ["jpg", "png"]) {
+        const file = path.join(instaDir, `slide-${i}.${ext}`);
+        if (fs.existsSync(file)) {
+          const stat = fs.statSync(file);
+          if (stat.size > 5000) {
+            const cdnUrl = `${SITE_URL}/images/instagram/${slug}/slide-${i}.${ext}`;
+            urls.push(cdnUrl);
+            console.log(`   ✅ Slide ${i}: ${cdnUrl} (${(stat.size / 1024).toFixed(0)}KB)`);
+            break; // Found this slide, move to next
+          }
         }
       }
     }
