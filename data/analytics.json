@@ -1398,9 +1398,9 @@
     "timestamp": "2026-04-07T08:40:51.583Z"
   },
   {
-    "event": "popup_dismissed",
-    "variant": "newsletter_popup",
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":48,\"y\":58,\"el\":\"input.jsx-75d0be6bc88678d2\",\"time\":1775552276673},{\"x\":48,\"y\":64,\"el\":\"input.jsx-75d0be6bc88678d2\",\"time\":1775552277097},{\"x\":48,\"y\":57,\"el\":\"input.jsx-75d0be6bc88678d2\",\"time\":1775552278785},{\"x\":48,\"y\":62,\"el\":\"input.jsx-75d0be6bc88678d2\",\"time\":1775552279736},{\"x\":48,\"y\":70,\"el\":\"button.jsx-75d0be6bc88678d2[Get Free Guide + Weekly Tips]\",\"time\":1775552281640},{\"x\":60,\"y\":25,\"el\":\"svg.[object\",\"time\":1775552283995},{\"x\":60,\"y\":25,\"el\":\"svg.[object\",\"time\":1775552287242},{\"x\":60,\"y\":24,\"el\":\"svg.[object\",\"time\":1775552299371},{\"x\":60,\"y\":25,\"el\":\"svg.[object\",\"time\":1775552301938},{\"x\":47,\"y\":43,\"el\":\"div.jsx-75d0be6bc88678d2[FREE GUIDE10 AI Tools That Can]\",\"time\":1775552306161}]",
     "page": "/blog/claude-3-5-sonnet-vs-gpt-4-turbo-complete-business-guide-2024",
-    "timestamp": "2026-04-07T08:58:23.368Z"
+    "timestamp": "2026-04-07T08:58:27.584Z"
   }
 ]
