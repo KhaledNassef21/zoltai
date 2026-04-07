@@ -1,42 +1,42 @@
 // src/lib/image-provider.ts
 /**
- * Context-Aware Image Provider
+ * Image Provider — DALL-E 3 Primary, Pollinations Fallback
  *
- * Uses Pollinations.ai (free, no API key) with intelligent prompts
- * generated from article content. Falls back to mock if needed.
- *
- * OLD: Random picsum.photos stock images (DEPRECATED)
- * NEW: AI-generated images matched to article content
+ * Priority:
+ * 1. OpenAI DALL-E 3 (if OPENAI_API_KEY is set) — high quality
+ * 2. Pollinations.ai (free, no key needed) — fallback
+ * 3. Mock (placeholder) — last resort
  */
 
-import { generateImageWithPollinations } from "./pollinations-image";
+import { generateCoverImage, generateInstagramSlide, isDallEAvailable } from "./openai-image";
 import { generateMockImage } from "./mock-image";
 
-export type ImageProvider = "pollinations" | "mock";
+export type ImageProvider = "openai" | "pollinations" | "mock";
 
 function getProvider(): ImageProvider {
   const env = process.env.IMAGE_PROVIDER?.toLowerCase();
   if (env === "mock") return "mock";
-  return "pollinations"; // Default to Pollinations (free AI generation)
+  if (isDallEAvailable()) return "openai";
+  return "pollinations";
 }
 
 /**
- * Generate a single image from an explicit prompt
- * Used by the new context-aware system
+ * Generate a single image from an explicit prompt.
+ * Tries DALL-E 3 → Pollinations → Mock
  */
 export async function generateImageFromPrompt(prompt: string): Promise<string> {
   const provider = getProvider();
 
-  if (provider === "pollinations") {
+  if (provider === "openai" || provider === "pollinations") {
     try {
-      console.log(`🎨 [Pollinations] Generating context-aware image...`);
-      const url = await generateImageWithPollinations(prompt);
-      if (url) {
-        console.log(`✅ Context-aware image generated`);
-        return url;
+      console.log(`🎨 [${isDallEAvailable() ? "DALL-E 3" : "Pollinations"}] Generating image...`);
+      const result = await generateInstagramSlide(prompt);
+      if (result.url) {
+        console.log(`✅ Image generated (${result.provider})`);
+        return result.url;
       }
     } catch (err) {
-      console.warn(`⚠️ Pollinations failed:`, (err as Error).message);
+      console.warn(`⚠️ Image generation failed:`, (err as Error).message);
     }
   }
 
@@ -47,7 +47,6 @@ export async function generateImageFromPrompt(prompt: string): Promise<string> {
 
 /**
  * Generate image using title + description (legacy interface)
- * Now builds a basic prompt internally
  */
 export async function generateImage(
   title: string,
@@ -58,21 +57,17 @@ export async function generateImage(
 }
 
 /**
- * Generate Instagram-optimized image from prompt
- * Square 1:1 format
+ * Generate Instagram-optimized image from prompt (1:1 square)
  */
 export async function generateInstagramImage(prompt: string): Promise<string> {
   const provider = getProvider();
 
-  if (provider === "pollinations") {
+  if (provider === "openai" || provider === "pollinations") {
     try {
-      // Pollinations with square dimensions
-      const encodedPrompt = encodeURIComponent(prompt);
-      const url = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1080&height=1080&nologo=true&seed=${Math.floor(Math.random() * 999999)}`;
-      console.log(`✅ [Pollinations] Instagram image URL generated`);
-      return url;
+      const result = await generateInstagramSlide(prompt);
+      if (result.url) return result.url;
     } catch (err) {
-      console.warn(`⚠️ Pollinations failed for Instagram:`, (err as Error).message);
+      console.warn(`⚠️ Instagram image failed:`, (err as Error).message);
     }
   }
 
