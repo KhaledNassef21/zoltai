@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useLang } from "@/components/providers";
 import { BlogCard } from "@/components/blog-card";
 import { LeadMagnet } from "@/components/lead-magnet";
+import { StatsCounter, Testimonials } from "@/components/social-proof";
 import type { Post } from "@/lib/blog";
 
 interface Tool {
@@ -185,52 +186,17 @@ export function HomeContent({
         )}
       </section>
 
+      {/* Trust Stats */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-card-border">
+        <StatsCounter />
+      </section>
+
       {/* Testimonials / Social Proof */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10">
           {t("testimonials.title")}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {[
-            {
-              name: "Sarah M.",
-              role: "Freelance Writer",
-              text: "Zoltai helped me discover AI writing tools that transformed my workflow. The guides are super practical!",
-              avatar: "S",
-            },
-            {
-              name: "Ahmed K.",
-              role: "Digital Marketer",
-              text: "I found the best AI tools for my marketing agency through Zoltai. The comparison articles saved me hours of research.",
-              avatar: "A",
-            },
-            {
-              name: "Lisa T.",
-              role: "Content Creator",
-              text: "Started creating AI art after reading the Midjourney guide. Zoltai is my go-to resource for AI tool reviews.",
-              avatar: "L",
-            },
-          ].map((review) => (
-            <div
-              key={review.name}
-              className="p-6 rounded-xl border border-card-border bg-card-bg"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent-light font-bold text-sm">
-                  {review.avatar}
-                </div>
-                <div>
-                  <p className="font-semibold text-sm">{review.name}</p>
-                  <p className="text-xs text-zinc-500">{review.role}</p>
-                </div>
-              </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                &ldquo;{review.text}&rdquo;
-              </p>
-              <div className="mt-3 text-amber-400 text-xs">★★★★★</div>
-            </div>
-          ))}
-        </div>
+        <Testimonials />
       </section>
 
       {/* Community Section */}
