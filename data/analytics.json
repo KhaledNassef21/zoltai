@@ -1498,5 +1498,11 @@
     "variant": "[{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775571311858}]",
     "page": "/",
     "timestamp": "2026-04-07T14:15:15.664Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":50,\"el\":\"input.w-full\",\"time\":1775571316095},{\"x\":52,\"y\":58,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571336747},{\"x\":47,\"y\":62,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571340640},{\"x\":43,\"y\":53,\"el\":\"input.w-full\",\"time\":1775571342295},{\"x\":45,\"y\":53,\"el\":\"input.w-full\",\"time\":1775571346766},{\"x\":47,\"y\":62,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571356778}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:17:52.806Z"
   }
 ]
