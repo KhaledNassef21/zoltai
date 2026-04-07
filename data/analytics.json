@@ -1468,5 +1468,11 @@
     "variant": "",
     "page": "/tools",
     "timestamp": "2026-04-07T10:48:21.492Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/profile",
+    "timestamp": "2026-04-07T11:32:57.167Z"
   }
 ]
