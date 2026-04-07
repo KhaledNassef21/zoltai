@@ -1488,9 +1488,9 @@
     "timestamp": "2026-04-07T14:04:04.585Z"
   },
   {
-    "event": "cta_impression",
-    "variant": "article_mid",
+    "event": "page_view",
+    "variant": "",
     "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
-    "timestamp": "2026-04-07T14:07:41.622Z"
+    "timestamp": "2026-04-07T14:07:41.628Z"
   }
 ]
