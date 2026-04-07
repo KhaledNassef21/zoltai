@@ -70,11 +70,18 @@ export default function AdminReelsPage() {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [generatingSlug, setGeneratingSlug] = useState<string | null>(null);
   const [generatingAll, setGeneratingAll] = useState(false);
+  const [authError, setAuthError] = useState(false);
 
   function fetchArticles() {
     setLoading(true);
     fetch("/api/admin/reels")
-      .then((r) => r.json())
+      .then((r) => {
+        if (r.status === 401) {
+          setAuthError(true);
+          return { articles: [], total: 0 };
+        }
+        return r.json();
+      })
       .then((data) => {
         setArticles(data.articles || []);
         setTotalReels(data.total || 0);
@@ -249,13 +256,26 @@ ${reel.caption}
             </div>
           </div>
 
+          {/* Auth Error */}
+          {authError && (
+            <div className="text-center py-20">
+              <p className="text-zinc-400 mb-4">You need to be logged in as admin.</p>
+              <a
+                href="/admin/login"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-medium hover:opacity-90 transition-opacity"
+              >
+                Go to Admin Login
+              </a>
+            </div>
+          )}
+
           {/* Content */}
-          {loading ? (
+          {!authError && loading ? (
             <div className="text-center py-20 text-zinc-500">
               <Loader2 className="w-8 h-8 animate-spin mx-auto mb-3" />
               Loading...
             </div>
-          ) : articles.length === 0 ? (
+          ) : !authError && articles.length === 0 ? (
             <div className="text-center py-20">
               <Sparkles className="w-12 h-12 text-zinc-600 mx-auto mb-4" />
               <p className="text-zinc-500">No articles found.</p>

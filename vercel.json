@@ -22,5 +22,37 @@
         }
       ]
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        }
+      ],
+      "has": [
+        {
+          "type": "host",
+          "value": "zoltai.org"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ],
+      "has": [
+        {
+          "type": "host",
+          "value": "zoltai.vercel.app"
+        }
+      ]
+    }
   ]
 }

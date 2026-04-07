@@ -5,7 +5,17 @@ import matter from "gray-matter";
 import { isAuthenticated } from "@/lib/admin-auth";
 
 const REELS_DIR = path.join(process.cwd(), "data/reels");
+const TMP_REELS_DIR = "/tmp/reels";
 const CONTENT_DIR = path.join(process.cwd(), "src/content/blog");
+
+/** Check if reels file exists in primary or tmp location */
+function getReelsFile(slug: string): string | null {
+  const primary = path.join(REELS_DIR, `${slug}.json`);
+  if (fs.existsSync(primary)) return primary;
+  const tmp = path.join(TMP_REELS_DIR, `${slug}.json`);
+  if (fs.existsSync(tmp)) return tmp;
+  return null;
+}
 
 // ==================== GET: List all reels ====================
 export async function GET() {
@@ -25,12 +35,12 @@ export async function GET() {
         const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
         const { data } = matter(raw);
 
-        // Check if reels exist
+        // Check if reels exist (primary + /tmp)
         let reelCount = 0;
         let generatedAt = "";
-        const reelsFile = path.join(REELS_DIR, `${slug}.json`);
+        const reelsFile = getReelsFile(slug);
 
-        if (fs.existsSync(reelsFile)) {
+        if (reelsFile) {
           try {
             const reelsData = JSON.parse(fs.readFileSync(reelsFile, "utf-8"));
             reelCount = reelsData.reels?.length || 0;
@@ -76,8 +86,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "slug required" }, { status: 400 });
     }
 
-    const file = path.join(REELS_DIR, `${slug}.json`);
-    if (!fs.existsSync(file)) {
+    const file = getReelsFile(slug);
+    if (!file) {
       return NextResponse.json({ error: "No reels for this article" }, { status: 404 });
     }
 
@@ -210,9 +220,7 @@ Return ONLY the JSON array.`,
       ];
     }
 
-    // Save to data/reels/
-    if (!fs.existsSync(REELS_DIR)) fs.mkdirSync(REELS_DIR, { recursive: true });
-
+    // Save to data/reels/ (try primary dir, fallback to /tmp on Vercel)
     const pack = {
       slug,
       title,
@@ -220,7 +228,33 @@ Return ONLY the JSON array.`,
       reels,
     };
 
-    fs.writeFileSync(path.join(REELS_DIR, `${slug}.json`), JSON.stringify(pack, null, 2));
+    const packJson = JSON.stringify(pack, null, 2);
+    let saved = false;
+
+    // Try primary location
+    try {
+      if (!fs.existsSync(REELS_DIR)) fs.mkdirSync(REELS_DIR, { recursive: true });
+      fs.writeFileSync(path.join(REELS_DIR, `${slug}.json`), packJson);
+      saved = true;
+    } catch (writeErr) {
+      console.warn("Primary reels dir write failed, trying /tmp:", writeErr);
+    }
+
+    // Fallback: /tmp on Vercel
+    if (!saved) {
+      try {
+        const tmpReelsDir = "/tmp/reels";
+        if (!fs.existsSync(tmpReelsDir)) fs.mkdirSync(tmpReelsDir, { recursive: true });
+        fs.writeFileSync(path.join(tmpReelsDir, `${slug}.json`), packJson);
+        saved = true;
+      } catch (tmpErr) {
+        console.error("Failed to save reels to /tmp:", tmpErr);
+      }
+    }
+
+    if (!saved) {
+      return NextResponse.json({ error: "Failed to save reels — filesystem is read-only" }, { status: 500 });
+    }
 
     return NextResponse.json({
       success: true,
