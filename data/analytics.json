@@ -1504,5 +1504,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-07T13:26:15.181Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025",
+    "timestamp": "2026-04-07T18:59:40.210Z"
   }
 ]
