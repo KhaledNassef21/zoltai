@@ -1462,5 +1462,11 @@
     "variant": "[{\"x\":52,\"y\":41,\"el\":\"button.px-8[Loading...]\",\"time\":1775558454398},{\"x\":46,\"y\":16,\"el\":\"div.inline-block[👑 Premium Membership]\",\"time\":1775558469253}]",
     "page": "/premium",
     "timestamp": "2026-04-07T10:41:11.894Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T10:48:15.423Z"
   }
 ]
