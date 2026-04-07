@@ -1378,5 +1378,11 @@
     "variant": "",
     "page": "/login",
     "timestamp": "2026-04-07T08:12:41.169Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":25,\"y\":24,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775549666387},{\"x\":14,\"y\":36,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775549668083}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:16:05.397Z"
   }
 ]
