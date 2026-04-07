@@ -8,19 +8,16 @@ import {
 import { getHostedImageUrl } from "../src/lib/image-host";
 
 /**
- * Instagram + Facebook Unified Social Pipeline
+ * Instagram + Facebook Unified Social Pipeline v4
  *
- * NEW APPROACH (v3):
- * - Images are PRE-GENERATED during article creation (generate-article.ts)
- * - Saved to public/images/instagram/{slug}/slide-1.jpg etc.
- * - Deployed to Vercel CDN at zoltai.org/images/instagram/...
- * - Instagram uses these DIRECT Vercel CDN URLs (always works!)
+ * CHANGES from v3:
+ * - Removed ALL income claims and non-compliant hashtags
+ * - Random seeds for fallback image generation (no more duplicates)
+ * - Better duplicate post prevention with posted-slugs.json
+ * - Compliant captions focused on productivity and learning
  *
- * OLD APPROACH (broken):
- * - Generate images at post time with Pollinations → catbox → Instagram
- * - Failed because: Pollinations slow/timeout, catbox unreliable, picsum fallback = random
- *
- * Facebook cross-posting via Graph API after Instagram publish.
+ * Images are PRE-GENERATED during article creation (generate-article.ts)
+ * and served from Vercel CDN at zoltai.org/images/instagram/...
  */
 
 const SITE_URL = "https://zoltai.org";
@@ -30,8 +27,8 @@ const SITE_URL = "https://zoltai.org";
 /**
  * Get Instagram image URLs for an article.
  * Priority:
- * 1. Pre-saved images in public/images/instagram/{slug}/ → Vercel CDN URLs
- * 2. Generate fresh with Pollinations → catbox.moe hosting (fallback)
+ * 1. Pre-saved images in public/images/instagram/{slug}/ -> Vercel CDN URLs
+ * 2. Generate fresh with Pollinations -> catbox.moe hosting (fallback with RANDOM seeds)
  */
 async function getImageUrls(
   slug: string,
@@ -60,14 +57,13 @@ async function getImageUrls(
     return urls;
   }
 
-  // Fallback: generate fresh (less reliable but better than nothing)
+  // Fallback: generate fresh with RANDOM seeds (no more fixed seeds!)
   console.log("⚠️ No pre-saved images found. Generating fresh...");
-  const slideSeeds = [11111, 33333, 55555, 77777];
 
   for (let i = 0; i < Math.min(prompts.length, 4); i++) {
     try {
       const prompt = prompts[i].slice(0, 120);
-      const seed = slideSeeds[i];
+      const seed = Math.floor(Math.random() * 999999); // RANDOM seed every time
       const pollinationsUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1080&height=1080&nologo=true&seed=${seed}`;
 
       console.log(`   🎨 Slide ${i + 1} (seed=${seed}): "${prompt.slice(0, 50)}..."`);
@@ -97,14 +93,27 @@ function buildCaption(
   const articleUrl = slug ? `${SITE_URL}/blog/${slug}` : SITE_URL;
 
   if (savedCaption) {
-    return `${savedHook || "💰 Make money with AI"}\n\n${savedCaption}\n\n📖 Full guide: ${articleUrl}\n🔗 Browse tools: zoltai.org/tools\n\n#AI #AITools #MakeMoneyOnline #SideHustle #PassiveIncome #Zoltai\n\nFollow @zoltai.ai for daily AI money tips 💰`;
+    // Clean any legacy income claims from saved captions
+    const cleanCaption = savedCaption
+      .replace(/make money/gi, "boost productivity")
+      .replace(/earn money/gi, "save time")
+      .replace(/passive income/gi, "workflow automation")
+      .replace(/side hustle/gi, "AI skills")
+      .replace(/\$\d+[\+\/]?/g, "");
+
+    const hook = savedHook
+      ? savedHook.replace(/make money/gi, "boost productivity").replace(/\$/g, "")
+      : "🚀 Discover powerful AI tools";
+
+    return `${hook}\n\n${cleanCaption}\n\n📖 Full guide: ${articleUrl}\n🔗 Browse tools: zoltai.org/tools\n\n#AI #AITools #Productivity #TechTips #AIAutomation #Zoltai\n\nFollow @zoltai.ai for daily AI tips 🚀`;
   }
 
   const hooks = [
-    `💰 ${tools.length > 0 ? `${tools.slice(0, 2).join(" & ")} can make you money` : "These AI tools can make you money"}`,
-    `🚀 Stop scrolling. Start earning with AI`,
-    `💸 People are making $1000+/month with ${tools[0] || "AI tools"}`,
-    `🔥 AI tools you NEED to know about in 2026`,
+    `🚀 ${tools.length > 0 ? `${tools.slice(0, 2).join(" & ")} — tools you need to know` : "AI tools that will change your workflow"}`,
+    `🔥 Stop scrolling. Start learning AI tools that actually work`,
+    `💡 These AI tools are transforming how people work in 2026`,
+    `🤖 AI tools you NEED to know about in 2026`,
+    `⚡ Work smarter, not harder — with these AI tools`,
   ];
   const hook = hooks[Math.floor(Math.random() * hooks.length)];
 
@@ -125,9 +134,9 @@ ${description}${toolList}
 
 🔗 Browse 24+ AI tools: zoltai.org/tools
 
-${hashTags} #AI #AITools #MakeMoneyOnline #SideHustle #PassiveIncome #Zoltai
+${hashTags} #AI #AITools #Productivity #TechTips #LearnAI #Zoltai
 
-Follow @zoltai.ai for daily AI money tips 💰`;
+Follow @zoltai.ai for daily AI tips 🚀`;
 }
 
 // ==================== INSTAGRAM ====================
@@ -164,7 +173,7 @@ async function publishToInstagram(
   }
 
   if (containerIds.length < 2) {
-    throw new Error(`Need ≥2 containers, got ${containerIds.length}`);
+    throw new Error(`Need >=2 containers, got ${containerIds.length}`);
   }
 
   // Create carousel
@@ -279,7 +288,7 @@ async function crossPostToFacebook(
       }
       console.warn(`⚠️ Multi-photo post failed: ${feedData.error?.message || "Unknown"}`);
 
-      // Fallback: try without link (link + attached_media sometimes conflicts)
+      // Fallback: try without link
       console.log("🔄 Retrying without link...");
       const retryRes = await fetch(`https://graph.facebook.com/v18.0/${pageId}/feed`, {
         method: "POST",
@@ -321,7 +330,7 @@ async function crossPostToFacebook(
 // ==================== MAIN ====================
 
 async function main() {
-  console.log("📸 Instagram + Facebook Social Pipeline v3\n");
+  console.log("📸 Instagram + Facebook Social Pipeline v4\n");
 
   const userId = process.env.INSTAGRAM_USER_ID;
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
@@ -345,7 +354,7 @@ async function main() {
   const files = fs.readdirSync(contentDir).filter((f) => f.endsWith(".mdx")).sort().reverse();
   if (files.length === 0) throw new Error("No articles found");
 
-  // Find first unposted article
+  // Find first unposted article (newest first)
   let articleFile = "";
   let articleSlug = "";
   for (const file of files) {
@@ -384,7 +393,7 @@ async function main() {
   // --- Get images ---
   console.log("\n🖼️ Resolving images...");
 
-  // First try: pre-saved slides from frontmatter → Vercel CDN
+  // First try: pre-saved slides from frontmatter -> Vercel CDN
   let imageUrls: string[] = [];
 
   if (savedSlides.length >= 2) {
@@ -393,17 +402,17 @@ async function main() {
     imageUrls.forEach((u, i) => console.log(`   [${i + 1}] ${u}`));
   }
 
-  // Fallback: check local files
+  // Fallback: check local files or generate fresh
   if (imageUrls.length < 2) {
     const imagePrompts = generateImagePrompts(ctx);
     imageUrls = await getImageUrls(articleSlug, imagePrompts.instagramSlides);
   }
 
   if (imageUrls.length < 2) {
-    throw new Error(`Only ${imageUrls.length} images available, need ≥2`);
+    throw new Error(`Only ${imageUrls.length} images available, need >=2`);
   }
 
-  // --- Build caption ---
+  // --- Build caption (COMPLIANT - no income claims) ---
   const articleUrl = `${SITE_URL}/blog/${articleSlug}`;
   const caption = buildCaption(title, description, articleSlug, tags, ctx.toolsMentioned, savedCaption, savedHook);
 
@@ -415,7 +424,7 @@ async function main() {
     await crossPostToFacebook(imageUrls, caption, articleUrl);
   }
 
-  // --- Log posted slug ---
+  // --- Log posted slug (prevent duplicates) ---
   if (postId) {
     try {
       posted.push(articleSlug);

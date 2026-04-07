@@ -6,26 +6,22 @@ import {
   buildArticleContext,
   generateImagePrompts,
 } from "../src/lib/image-prompts";
+import {
+  generateCoverImage,
+  generateInstagramSlide,
+  downloadImageToBuffer,
+  isDallEAvailable,
+} from "../src/lib/openai-image";
 
 /**
  * Download image from URL and save to disk.
- * For Pollinations: the URL triggers generation, so we wait up to 90s.
+ * For DALL-E: direct CDN URL (fast).
+ * For Pollinations: URL triggers generation (slow, up to 90s).
  */
 async function downloadImage(url: string, filepath: string): Promise<boolean> {
   try {
     console.log(`   📥 Downloading: ${url.slice(0, 80)}...`);
-    const response = await fetch(url, {
-      signal: AbortSignal.timeout(90000), // 90s for AI generation
-    });
-    if (!response.ok) {
-      console.warn(`   ⚠️ Download failed: ${response.status}`);
-      return false;
-    }
-    const buffer = Buffer.from(await response.arrayBuffer());
-    if (buffer.length < 5000) {
-      console.warn(`   ⚠️ Image too small (${buffer.length} bytes), skipping`);
-      return false;
-    }
+    const buffer = await downloadImageToBuffer(url);
     fs.writeFileSync(filepath, buffer);
     console.log(`   ✅ Saved: ${filepath} (${(buffer.length / 1024).toFixed(0)}KB)`);
     return true;
@@ -35,43 +31,77 @@ async function downloadImage(url: string, filepath: string): Promise<boolean> {
   }
 }
 
-function getExistingArticles(): string[] {
+function getExistingArticles(): { titles: string[]; slugs: string[] } {
   const contentDir = path.join(process.cwd(), "src/content/blog");
-  if (!fs.existsSync(contentDir)) return [];
+  if (!fs.existsSync(contentDir)) return { titles: [], slugs: [] };
 
-  return fs
-    .readdirSync(contentDir)
+  const titles: string[] = [];
+  const slugs: string[] = [];
+
+  fs.readdirSync(contentDir)
     .filter((f) => f.endsWith(".mdx"))
-    .map((f) => {
+    .forEach((f) => {
       const content = fs.readFileSync(path.join(contentDir, f), "utf-8");
       const { data } = matter(content);
-      return (data.title || f).toLowerCase();
+      titles.push((data.title || f).toLowerCase());
+      slugs.push(f.replace(".mdx", ""));
     });
+
+  return { titles, slugs };
+}
+
+/**
+ * Check if a topic is too similar to existing articles.
+ * Uses word overlap AND slug similarity.
+ */
+function isDuplicateTopic(topic: string, existing: { titles: string[]; slugs: string[] }): boolean {
+  const topicLower = topic.toLowerCase();
+  const topicWords = topicLower.split(/\s+/).filter((w) => w.length > 3);
+
+  // Check title word overlap (>50% = duplicate)
+  for (const title of existing.titles) {
+    const matchCount = topicWords.filter((w) => title.includes(w)).length;
+    if (topicWords.length > 0 && matchCount / topicWords.length > 0.5) {
+      return true;
+    }
+  }
+
+  // Check slug similarity
+  const topicSlug = topicLower.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  for (const slug of existing.slugs) {
+    // If the slug is contained in or contains the topic slug
+    if (slug.includes(topicSlug.slice(0, 30)) || topicSlug.includes(slug.slice(0, 30))) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 async function main() {
+  console.log(`🎨 Image provider: ${isDallEAvailable() ? "OpenAI DALL-E 3" : "Pollinations.ai (free)"}`);
+
   // Get existing articles to avoid duplicates
   const existing = getExistingArticles();
-  console.log(`📚 Existing articles: ${existing.length}`);
+  console.log(`📚 Existing articles: ${existing.titles.length}`);
 
   console.log("🔍 Researching trending AI topics...");
-  const topics = await researchTrendingTopics(existing);
+  const topics = await researchTrendingTopics(existing.titles);
 
   // Pick a topic that's not too similar to existing articles
-  let selectedTopic = topics[0];
+  let selectedTopic = "";
   for (const topic of topics) {
-    const topicLower = topic.toLowerCase();
-    const isDuplicate = existing.some((title) => {
-      const topicWords = topicLower.split(/\s+/).filter((w) => w.length > 3);
-      const matchCount = topicWords.filter((w) => title.includes(w)).length;
-      return matchCount / topicWords.length > 0.6;
-    });
-
-    if (!isDuplicate) {
+    if (!isDuplicateTopic(topic, existing)) {
       selectedTopic = topic;
       break;
     }
     console.log(`   ⏭️ Skipping similar topic: ${topic}`);
+  }
+
+  if (!selectedTopic) {
+    // If all topics are duplicates, use the first one but append date
+    console.log("⚠️ All topics seem similar to existing. Using first topic with date suffix.");
+    selectedTopic = topics[0];
   }
 
   console.log(`📝 Selected topic: ${selectedTopic}`);
@@ -104,6 +134,13 @@ async function main() {
     }
   }
 
+  // Double-check slug doesn't exist
+  if (existing.slugs.includes(slug)) {
+    const date = new Date().toISOString().split("T")[0];
+    const rand = Math.floor(Math.random() * 1000);
+    slug = `${slug}-${date}-${rand}`;
+  }
+
   const date = new Date().toISOString().split("T")[0];
 
   // ========================================
@@ -129,29 +166,30 @@ async function main() {
   // --- Cover image (16:9) ---
   let imagePath = "";
   const coverPrompt = article.imagePrompt || imagePrompts.featured;
-  const coverSeed = 42000 + Math.floor(Math.random() * 1000);
-  const coverUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(coverPrompt.slice(0, 150))}?width=1792&height=1024&nologo=true&seed=${coverSeed}`;
+  console.log("🖼️ Cover image...");
+
+  const coverResult = await generateCoverImage(coverPrompt);
   const coverFile = path.join(coverDir, `${slug}.jpg`);
 
-  console.log("🖼️ Cover image...");
-  if (await downloadImage(coverUrl, coverFile)) {
+  if (await downloadImage(coverResult.url, coverFile)) {
     imagePath = `/images/blog/${slug}.jpg`;
+    console.log(`   Provider: ${coverResult.provider}`);
   }
 
-  // --- Instagram slides (1080x1080, 4 slides with DIFFERENT seeds) ---
+  // --- Instagram slides (1:1, 4 slides with UNIQUE prompts) ---
   const slidePaths: string[] = [];
-  const slideSeeds = [10000, 30000, 55000, 80000]; // Widely separated
 
   console.log("📸 Instagram slides...");
   for (let i = 0; i < 4; i++) {
-    const prompt = imagePrompts.instagramSlides[i] || `AI tools on laptop, modern workspace, tech aesthetic`;
-    const seed = slideSeeds[i];
-    const slideUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt.slice(0, 120))}?width=1080&height=1080&nologo=true&seed=${seed}`;
+    const prompt = imagePrompts.instagramSlides[i] || `Modern AI workspace with laptop showing productivity dashboard, tech aesthetic, slide ${i + 1}`;
+
+    console.log(`   Slide ${i + 1}: "${prompt.slice(0, 60)}..."`);
+    const slideResult = await generateInstagramSlide(prompt);
     const slideFile = path.join(instaDir, `slide-${i + 1}.jpg`);
 
-    console.log(`   Slide ${i + 1} (seed=${seed}): "${prompt.slice(0, 60)}..."`);
-    if (await downloadImage(slideUrl, slideFile)) {
+    if (await downloadImage(slideResult.url, slideFile)) {
       slidePaths.push(`/images/instagram/${slug}/slide-${i + 1}.jpg`);
+      console.log(`   Provider: ${slideResult.provider}`);
     }
   }
 
@@ -177,6 +215,7 @@ ${article.content}
   console.log(`\n✅ Article saved: ${slug}.mdx`);
   console.log(`   📷 Cover: ${imagePath || "none"}`);
   console.log(`   📸 Instagram: ${slidePaths.length} slides saved`);
+  console.log(`   🎨 Provider: ${isDallEAvailable() ? "DALL-E 3" : "Pollinations"}`);
 
   console.log(`::set-output name=slug::${slug}`);
   console.log(`::set-output name=title::${article.title}`);

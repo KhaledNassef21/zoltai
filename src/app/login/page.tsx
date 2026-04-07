@@ -65,6 +65,10 @@ export default function LoginPage() {
             </div>
           )}
 
+          {/* Hidden honeypot fields to trick browser autocomplete */}
+          <input type="text" name="fake_user" autoComplete="username" style={{ display: "none" }} tabIndex={-1} />
+          <input type="password" name="fake_pass" autoComplete="current-password" style={{ display: "none" }} tabIndex={-1} />
+
           <div>
             <label className="block text-sm font-medium text-zinc-300 mb-1.5">
               Email Address
@@ -74,7 +78,8 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              autoComplete="off"
+              name="zoltai_email_field"
+              autoComplete="new-password"
               placeholder="you@example.com"
               className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
             />
@@ -98,7 +103,8 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                autoComplete="off"
+                name="zoltai_pass_field"
+                autoComplete="new-password"
                 placeholder="Enter your password"
                 className="w-full px-4 py-3 pr-12 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
               />

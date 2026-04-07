@@ -68,7 +68,7 @@ export async function generateInstagramImage(prompt: string): Promise<string> {
     try {
       // Pollinations with square dimensions
       const encodedPrompt = encodeURIComponent(prompt);
-      const url = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1080&height=1080&nologo=true&seed=${Math.floor(Math.random() * 10000)}`;
+      const url = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1080&height=1080&nologo=true&seed=${Math.floor(Math.random() * 999999)}`;
       console.log(`✅ [Pollinations] Instagram image URL generated`);
       return url;
     } catch (err) {

@@ -60,7 +60,7 @@ const INTENT_SCENES: Record<string, string[]> = {
     "laptop showing AI productivity dashboard with workflow metrics and task completion chart",
     "freelancer workspace with multiple screens showing AI tools and project management boards",
     "modern home office setup with laptop showing AI-powered analytics and insights",
-    "split screen: AI tool interface on left, performance metrics on right",
+    "split screen: AI tool interface on left, productivity metrics on right",
   ],
   productivity: [
     "clean desk setup with laptop showing AI-powered workflow automation",
@@ -129,7 +129,7 @@ export function detectIntent(
   if (text.includes("productivity") || text.includes("workflow") || text.includes("automate") || text.includes("save time"))
     return "productivity";
 
-  return "make-money"; // Default: money-making angle
+  return "productivity"; // Default: productivity angle
 }
 
 /**
@@ -255,7 +255,7 @@ function buildInstagramSlides(
 
   // SLIDE 1: Topic-specific overview — includes article keywords for uniqueness
   const slide1Options: Record<string, string> = {
-    "make-money": `laptop showing ${mainTool} productivity dashboard, workflow charts, golden desk lamp, flat lay`,
+    "make-money": `laptop showing ${mainTool} productivity dashboard, workflow automation charts, modern desk lamp, flat lay`,
     productivity: `organized desk with ${mainTool} open on laptop, tablet, sticky notes, bright daylight`,
     comparison: `split screen monitor ${mainTool} vs ${secondTool}, side by side, modern desk`,
     tutorial: `person learning ${topicKeyword} on laptop, notepad with notes, warm lamp`,

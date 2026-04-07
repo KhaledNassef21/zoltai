@@ -32,6 +32,8 @@ CRITICAL REQUIREMENTS:
 - Every article MUST have a PRACTICAL VALUE ANGLE — show readers how to USE AI effectively
 - Write in an engaging, motivating tone — make readers feel they can start TODAY
 - Include practical use cases and real-world applications
+- NEVER include income claims, dollar amounts, or "make money" language
+- Focus on productivity, learning, and skill development
 - Include practical, step-by-step examples anyone can follow
 - Use proper markdown formatting with headers (##, ###)
 - Length: 1500-2500 words
@@ -49,8 +51,8 @@ ChatGPT, Claude, Midjourney, Jasper, Copy.ai, Cursor, GitHub Copilot, Bolt.new, 
 
 ALSO GENERATE:
 1. A featured image prompt for AI image generation — must be DIRECTLY related to the article topic. Style: modern tech, SaaS dashboard, laptop scene, AI tools interface. 16:9 aspect ratio. NO random stock photos.
-2. An Instagram caption (short, value-driven, ends with CTA to read the full article)
-3. An Instagram hook (first line that grabs attention, about AI tools and productivity)
+2. An Instagram caption (short, value-driven, ends with CTA to read the full article. NO income claims or dollar amounts.)
+3. An Instagram hook (first line that grabs attention, about AI tools and productivity. NO "make money" or income language.)
 
 Return your response in this exact JSON format:
 {

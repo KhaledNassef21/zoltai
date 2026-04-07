@@ -89,6 +89,10 @@ export default function RegisterPage() {
             </div>
           )}
 
+          {/* Hidden fields to prevent browser autocomplete */}
+          <input type="text" name="fake_user" autoComplete="username" style={{ display: "none" }} tabIndex={-1} />
+          <input type="password" name="fake_pass" autoComplete="current-password" style={{ display: "none" }} tabIndex={-1} />
+
           <div>
             <label className="block text-sm font-medium text-zinc-300 mb-1.5">
               Full Name
@@ -98,7 +102,8 @@ export default function RegisterPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              autoComplete="off"
+              name="zoltai_name_field"
+              autoComplete="new-password"
               placeholder="John Doe"
               className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
             />
@@ -113,7 +118,7 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              autoComplete="off"
+              autoComplete="new-password"
               placeholder="you@example.com"
               className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
             />
@@ -129,7 +134,7 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                autoComplete="off"
+                autoComplete="new-password"
                 placeholder="Min 8 chars, uppercase, lowercase, number"
                 className="w-full px-4 py-3 pr-12 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
               />
