@@ -1422,9 +1422,9 @@
     "timestamp": "2026-04-07T10:16:57.493Z"
   },
   {
-    "event": "scroll_depth",
-    "variant": "61",
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":66,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775557439630}]",
     "page": "/about",
-    "timestamp": "2026-04-07T10:23:49.307Z"
+    "timestamp": "2026-04-07T10:24:00.552Z"
   }
 ]
