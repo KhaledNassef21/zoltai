@@ -1398,9 +1398,9 @@
     "timestamp": "2026-04-07T08:40:51.583Z"
   },
   {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_exit",
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
     "page": "/blog/claude-3-5-sonnet-vs-gpt-4-turbo-complete-business-guide-2024",
-    "timestamp": "2026-04-07T08:58:06.324Z"
+    "timestamp": "2026-04-07T08:58:20.817Z"
   }
 ]
