@@ -1434,9 +1434,15 @@
     "timestamp": "2026-04-07T10:24:42.159Z"
   },
   {
-    "event": "popup_dismissed",
-    "variant": "newsletter_popup",
-    "page": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
-    "timestamp": "2026-04-07T10:33:33.475Z"
+    "event": "scroll_depth",
+    "variant": "85",
+    "page": "/",
+    "timestamp": "2026-04-07T10:30:39.947Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T10:34:00.402Z"
   }
 ]
