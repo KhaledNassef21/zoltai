@@ -1405,8 +1405,14 @@
   },
   {
     "event": "scroll_depth",
-    "variant": "35",
+    "variant": "49",
     "page": "/",
-    "timestamp": "2026-04-07T10:10:26.110Z"
+    "timestamp": "2026-04-07T10:09:54.983Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T10:11:03.154Z"
   }
 ]
