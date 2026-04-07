@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Get user from cookie
+    // Get user from auth API instead of parsing token directly
     const cookieStore = await cookies();
     const userToken = cookieStore.get("user_token")?.value;
 
@@ -22,16 +22,41 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Parse user data from token (base64 JSON)
+    // Fetch user data from auth endpoint internally
+    // We need to get the email from the users file
+    const fs = await import("fs");
+    const path = await import("path");
+    const usersFile = path.join(process.cwd(), "data/users.json");
+
     let userEmail = "";
     try {
-      const decoded = JSON.parse(
-        Buffer.from(userToken, "base64").toString("utf-8")
-      );
-      userEmail = decoded.email || "";
+      if (fs.existsSync(usersFile)) {
+        const users = JSON.parse(fs.readFileSync(usersFile, "utf-8"));
+        // We can't access the session store from here, so we'll rely on the cookie being valid
+        // The actual user verification happens via GET /api/auth
+        // For checkout, we do a server-side auth check
+        const authRes = await fetch(new URL("/api/auth", req.nextUrl.origin), {
+          headers: { Cookie: `user_token=${userToken}` },
+        });
+        const authData = await authRes.json();
+        if (!authData.user?.email) {
+          return NextResponse.json(
+            { error: "Please log in again" },
+            { status: 401 }
+          );
+        }
+        userEmail = authData.user.email;
+      }
     } catch {
       return NextResponse.json(
-        { error: "Invalid session. Please log in again." },
+        { error: "Authentication error. Please log in again." },
+        { status: 401 }
+      );
+    }
+
+    if (!userEmail) {
+      return NextResponse.json(
+        { error: "Please log in first" },
         { status: 401 }
       );
     }
