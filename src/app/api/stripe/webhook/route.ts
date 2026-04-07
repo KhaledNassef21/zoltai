@@ -5,46 +5,54 @@ import path from "path";
 
 const USERS_FILE = path.join(process.cwd(), "data", "users.json");
 
-function getUsers(): Record<string, any> {
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  passwordHash: string;
+  salt: string;
+  premium: boolean;
+  createdAt: string;
+  lastLogin: string;
+  stripeCustomerId?: string;
+  premiumSince?: string;
+}
+
+function getUsers(): User[] {
   try {
     if (fs.existsSync(USERS_FILE)) {
       return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
     }
   } catch {}
-  return {};
+  return [];
 }
 
-function saveUsers(users: Record<string, any>) {
+function saveUsers(users: User[]) {
   const dir = path.dirname(USERS_FILE);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 }
 
-function upgradeToPremium(email: string, stripeCustomerId: string) {
+function upgradeToPremium(email: string, stripeCustomerId: string): boolean {
   const users = getUsers();
-  // Find user by email
-  for (const [id, user] of Object.entries(users)) {
-    if ((user as any).email === email) {
-      (user as any).premium = true;
-      (user as any).stripeCustomerId = stripeCustomerId;
-      (user as any).premiumSince = new Date().toISOString();
-      users[id] = user;
-      saveUsers(users);
-      return true;
-    }
+  const user = users.find((u) => u.email === email);
+  if (user) {
+    user.premium = true;
+    user.stripeCustomerId = stripeCustomerId;
+    user.premiumSince = new Date().toISOString();
+    saveUsers(users);
+    return true;
   }
   return false;
 }
 
-function downgradeFromPremium(stripeCustomerId: string) {
+function downgradeFromPremium(stripeCustomerId: string): boolean {
   const users = getUsers();
-  for (const [id, user] of Object.entries(users)) {
-    if ((user as any).stripeCustomerId === stripeCustomerId) {
-      (user as any).premium = false;
-      users[id] = user;
-      saveUsers(users);
-      return true;
-    }
+  const user = users.find((u) => u.stripeCustomerId === stripeCustomerId);
+  if (user) {
+    user.premium = false;
+    saveUsers(users);
+    return true;
   }
   return false;
 }
@@ -74,29 +82,29 @@ export async function POST(req: NextRequest) {
 
     switch (event.type) {
       case "checkout.session.completed": {
-        const session = event.data.object as any;
-        const email = session.customer_email || session.metadata?.userEmail;
-        const customerId = session.customer;
+        const session = event.data.object;
+        const email = (session as any).customer_email || (session as any).metadata?.userEmail;
+        const customerId = (session as any).customer as string;
         if (email && customerId) {
-          upgradeToPremium(email, customerId);
-          console.log(`Premium activated for ${email}`);
+          const upgraded = upgradeToPremium(email, customerId);
+          console.log(`Premium ${upgraded ? "activated" : "failed"} for ${email}`);
         }
         break;
       }
 
       case "customer.subscription.deleted": {
-        const subscription = event.data.object as any;
-        const customerId = subscription.customer;
+        const subscription = event.data.object;
+        const customerId = (subscription as any).customer as string;
         if (customerId) {
-          downgradeFromPremium(customerId);
-          console.log(`Premium canceled for customer ${customerId}`);
+          const downgraded = downgradeFromPremium(customerId);
+          console.log(`Premium ${downgraded ? "canceled" : "cancel failed"} for customer ${customerId}`);
         }
         break;
       }
 
       case "invoice.payment_failed": {
-        const invoice = event.data.object as any;
-        console.log(`Payment failed for customer ${invoice.customer}`);
+        const invoice = event.data.object;
+        console.log(`Payment failed for customer ${(invoice as any).customer}`);
         break;
       }
     }

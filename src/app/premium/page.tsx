@@ -293,7 +293,7 @@ export default function PremiumPage() {
                 $19<span className="text-lg text-zinc-500">/month</span>
               </p>
               <p className="text-sm text-zinc-500 mb-6">
-                Cancel anytime. 7-day money-back guarantee.
+                Cancel anytime. No long-term commitment.
               </p>
               <ul className="text-left space-y-3 mb-8">
                 {[

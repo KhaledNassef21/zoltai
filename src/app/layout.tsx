@@ -8,7 +8,6 @@ import { PWARegister } from "@/components/pwa-register";
 import { PushPrompt } from "@/components/push-prompt";
 import { HeatmapTracker } from "@/components/heatmap-tracker";
 import { CookieConsent } from "@/components/cookie-consent";
-import { RecentActivity } from "@/components/social-proof";
 import { Providers } from "@/components/providers";
 
 const geistSans = Geist({
@@ -125,7 +124,6 @@ export default function RootLayout({
           <PushPrompt />
           <HeatmapTracker />
           <CookieConsent />
-          <RecentActivity />
         </Providers>
       </body>
     </html>

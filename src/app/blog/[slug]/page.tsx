@@ -183,7 +183,7 @@ export default async function BlogPost({ params }: Props) {
       {/* === LEAD FLOW POSITION 2: Top Newsletter Bar === */}
       <NewsletterSignup
         variant="banner"
-        title="Free AI Money Guide"
+        title="Free AI Tools Guide"
         description="Discover the top 10 AI tools to boost your productivity. Free weekly insights."
       />
 
