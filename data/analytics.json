@@ -1504,5 +1504,11 @@
     "variant": "[{\"x\":53,\"y\":50,\"el\":\"input.w-full\",\"time\":1775571316095},{\"x\":52,\"y\":58,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571336747},{\"x\":47,\"y\":62,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571340640},{\"x\":43,\"y\":53,\"el\":\"input.w-full\",\"time\":1775571342295},{\"x\":45,\"y\":53,\"el\":\"input.w-full\",\"time\":1775571346766},{\"x\":47,\"y\":62,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571356778}]",
     "page": "/forgot-password",
     "timestamp": "2026-04-07T14:17:52.806Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
+    "timestamp": "2026-04-07T14:31:41.977Z"
   }
 ]
