@@ -1477,8 +1477,8 @@
   },
   {
     "event": "scroll_depth",
-    "variant": "85",
-    "page": "/premium",
-    "timestamp": "2026-04-07T11:34:44.873Z"
+    "variant": "100",
+    "page": "/profile",
+    "timestamp": "2026-04-07T11:34:59.784Z"
   }
 ]
