@@ -1410,9 +1410,9 @@
     "timestamp": "2026-04-07T10:09:54.983Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-07T10:11:03.154Z"
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-07T10:11:17.501Z"
   }
 ]
