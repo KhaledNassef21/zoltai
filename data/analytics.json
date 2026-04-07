@@ -1338,9 +1338,9 @@
     "timestamp": "2026-04-07T04:04:04.706Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog",
-    "timestamp": "2026-04-07T05:25:26.108Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775539563716}]",
+    "page": "/blog/leonardo-ai-vs-midjourney-vs-canva-ai-2025-profit-comparison",
+    "timestamp": "2026-04-07T05:26:05.073Z"
   }
 ]
