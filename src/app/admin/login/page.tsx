@@ -73,7 +73,7 @@ export default function AdminLogin() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter admin password"
                 required
-                autoComplete="current-password"
+                autoComplete="off"
                 className="w-full px-4 py-3 pr-12 rounded-lg bg-background border border-card-border text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
               />
               <button

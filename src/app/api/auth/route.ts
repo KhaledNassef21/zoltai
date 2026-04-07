@@ -8,10 +8,17 @@ import { readFile, writeFile, isGitHubAvailable } from "@/lib/github";
 const USERS_FILE = path.join(process.cwd(), "data/users.json");
 const GITHUB_USERS_PATH = "data/users.json";
 
+// Secret key for signing tokens — derived from ADMIN_PASSWORD or fallback
+const TOKEN_SECRET = process.env.ADMIN_PASSWORD
+  ? crypto.createHash("sha256").update("user-token-secret:" + process.env.ADMIN_PASSWORD).digest("hex")
+  : crypto.createHash("sha256").update("user-token-secret:zoltai-default-key-change-me").digest("hex");
+
 // Rate limiting: max 10 login attempts per IP per 15 minutes
 const loginAttempts = new Map<string, { count: number; resetAt: number }>();
 const MAX_ATTEMPTS = 10;
-const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const WINDOW_MS = 15 * 60 * 1000;
+
+const SESSION_MAX_AGE_SECONDS = 30 * 24 * 60 * 60; // 30 days
 
 interface User {
   id: string;
@@ -28,7 +35,6 @@ interface User {
 
 /**
  * Secure password hashing using scrypt (Node.js built-in).
- * scrypt is memory-hard and resistant to brute-force attacks.
  */
 function hashPassword(password: string, salt?: string): { hash: string; salt: string } {
   const useSalt = salt || crypto.randomBytes(32).toString("hex");
@@ -38,7 +44,6 @@ function hashPassword(password: string, salt?: string): { hash: string; salt: st
 
 function verifyPassword(password: string, hash: string, salt: string): boolean {
   const { hash: computedHash } = hashPassword(password, salt);
-  // Timing-safe comparison to prevent timing attacks
   return crypto.timingSafeEqual(
     Buffer.from(computedHash, "hex"),
     Buffer.from(hash, "hex")
@@ -46,46 +51,51 @@ function verifyPassword(password: string, hash: string, salt: string): boolean {
 }
 
 /**
- * Generate a cryptographically secure session token.
- * Format: randomBytes(32) — no user data embedded.
+ * Create a signed token: userId.expiry.signature
+ * No server-side storage needed — survives restarts and serverless.
  */
-function generateToken(): string {
-  return crypto.randomBytes(48).toString("hex");
+function createToken(userId: string): string {
+  const expiry = Date.now() + SESSION_MAX_AGE_SECONDS * 1000;
+  const payload = `${userId}.${expiry}`;
+  const signature = crypto
+    .createHmac("sha256", TOKEN_SECRET)
+    .update(payload)
+    .digest("hex");
+  return Buffer.from(`${payload}.${signature}`).toString("base64url");
 }
 
-// In-memory session store (maps token → userId)
-// In production you'd use Redis. For this project, this works.
-const sessions = new Map<string, { userId: string; expiresAt: number }>();
-const SESSION_MAX_AGE = 30 * 24 * 60 * 60 * 1000; // 30 days
+/**
+ * Verify and decode a signed token.
+ * Returns userId if valid, null otherwise.
+ */
+function verifyToken(token: string): string | null {
+  try {
+    const decoded = Buffer.from(token, "base64url").toString();
+    const parts = decoded.split(".");
+    if (parts.length !== 3) return null;
 
-function createSession(userId: string): string {
-  const token = generateToken();
-  sessions.set(token, {
-    userId,
-    expiresAt: Date.now() + SESSION_MAX_AGE,
-  });
-  // Clean expired sessions periodically
-  if (sessions.size > 100) {
-    const now = Date.now();
-    for (const [key, session] of sessions) {
-      if (session.expiresAt < now) sessions.delete(key);
-    }
-  }
-  return token;
-}
+    const [userId, expiryStr, signature] = parts;
+    const expiry = parseInt(expiryStr, 10);
 
-function getSessionUserId(token: string): string | null {
-  const session = sessions.get(token);
-  if (!session) return null;
-  if (session.expiresAt < Date.now()) {
-    sessions.delete(token);
+    // Check expiry
+    if (isNaN(expiry) || expiry < Date.now()) return null;
+
+    // Verify signature
+    const payload = `${userId}.${expiryStr}`;
+    const expectedSignature = crypto
+      .createHmac("sha256", TOKEN_SECRET)
+      .update(payload)
+      .digest("hex");
+
+    const sigBuf = Buffer.from(signature, "hex");
+    const expectedBuf = Buffer.from(expectedSignature, "hex");
+    if (sigBuf.length !== expectedBuf.length) return null;
+    if (!crypto.timingSafeEqual(sigBuf, expectedBuf)) return null;
+
+    return userId;
+  } catch {
     return null;
   }
-  return session.userId;
-}
-
-function destroySession(token: string): void {
-  sessions.delete(token);
 }
 
 function checkRateLimit(ip: string): boolean {
@@ -97,10 +107,7 @@ function checkRateLimit(ip: string): boolean {
     return true;
   }
 
-  if (record.count >= MAX_ATTEMPTS) {
-    return false;
-  }
-
+  if (record.count >= MAX_ATTEMPTS) return false;
   record.count++;
   return true;
 }
@@ -140,12 +147,10 @@ async function saveUsers(users: User[]): Promise<void> {
   throw new Error("Cannot save users. Configure GITHUB_TOKEN for Vercel.");
 }
 
-// Validate email format
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
 }
 
-// Validate password strength
 function validatePassword(password: string): string | null {
   if (password.length < 8) return "Password must be at least 8 characters";
   if (password.length > 128) return "Password is too long";
@@ -155,7 +160,6 @@ function validatePassword(password: string): string | null {
   return null;
 }
 
-// Sanitize user name
 function sanitizeName(name: string): string {
   return name.replace(/[<>&"'\/\\]/g, "").trim().slice(0, 100);
 }
@@ -166,16 +170,12 @@ export async function POST(req: NextRequest) {
     const { action, name, email, password } = await req.json();
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
 
-    // Logout
     if (action === "logout") {
       const cookieStore = await cookies();
-      const token = cookieStore.get("user_token")?.value;
-      if (token) destroySession(token);
       cookieStore.set("user_token", "", { maxAge: 0, path: "/" });
       return NextResponse.json({ success: true });
     }
 
-    // Rate limit check for login/register
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: "Too many attempts. Please try again in 15 minutes." },
@@ -202,18 +202,12 @@ export async function POST(req: NextRequest) {
     // ========== REGISTER ==========
     if (action === "register") {
       if (!name || !name.trim()) {
-        return NextResponse.json(
-          { error: "Name is required" },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: "Name is required" }, { status: 400 });
       }
 
       const passwordError = validatePassword(password);
       if (passwordError) {
-        return NextResponse.json(
-          { error: passwordError },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: passwordError }, { status: 400 });
       }
 
       const normalizedEmail = email.toLowerCase().trim();
@@ -239,24 +233,19 @@ export async function POST(req: NextRequest) {
       users.push(user);
       await saveUsers(users);
 
-      const token = createSession(user.id);
+      const token = createToken(user.id);
       const cookieStore = await cookies();
       cookieStore.set("user_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
-        maxAge: 30 * 24 * 60 * 60,
+        maxAge: SESSION_MAX_AGE_SECONDS,
         path: "/",
       });
 
       return NextResponse.json({
         success: true,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          premium: user.premium,
-        },
+        user: { id: user.id, name: user.name, email: user.email, premium: user.premium },
       });
     }
 
@@ -266,17 +255,11 @@ export async function POST(req: NextRequest) {
       const user = users.find((u) => u.email === normalizedEmail);
 
       if (!user) {
-        // Generic error to prevent email enumeration
-        return NextResponse.json(
-          { error: "Invalid email or password" },
-          { status: 401 }
-        );
+        return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
       }
 
-      // Support both old (SHA256) and new (scrypt) password hashes
       let isValid = false;
       if (user.salt) {
-        // New scrypt hash
         isValid = verifyPassword(password, user.passwordHash, user.salt);
       } else {
         // Legacy SHA256 hash — verify and upgrade
@@ -286,7 +269,6 @@ export async function POST(req: NextRequest) {
           .digest("hex");
         if (legacyHash === user.passwordHash) {
           isValid = true;
-          // Upgrade to scrypt
           const { hash, salt } = hashPassword(password);
           user.passwordHash = hash;
           user.salt = salt;
@@ -294,33 +276,25 @@ export async function POST(req: NextRequest) {
       }
 
       if (!isValid) {
-        return NextResponse.json(
-          { error: "Invalid email or password" },
-          { status: 401 }
-        );
+        return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
       }
 
       user.lastLogin = new Date().toISOString();
       await saveUsers(users);
 
-      const token = createSession(user.id);
+      const token = createToken(user.id);
       const cookieStore = await cookies();
       cookieStore.set("user_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",
-        maxAge: 30 * 24 * 60 * 60,
+        maxAge: SESSION_MAX_AGE_SECONDS,
         path: "/",
       });
 
       return NextResponse.json({
         success: true,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          premium: user.premium,
-        },
+        user: { id: user.id, name: user.name, email: user.email, premium: user.premium },
       });
     }
 
@@ -334,33 +308,22 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// GET: Get current user from session
+// GET: Get current user from signed token
 export async function GET() {
   try {
     const cookieStore = await cookies();
     const token = cookieStore.get("user_token")?.value;
-    if (!token) {
-      return NextResponse.json({ user: null });
-    }
+    if (!token) return NextResponse.json({ user: null });
 
-    const userId = getSessionUserId(token);
-    if (!userId) {
-      return NextResponse.json({ user: null });
-    }
+    const userId = verifyToken(token);
+    if (!userId) return NextResponse.json({ user: null });
 
     const users = await loadUsers();
     const user = users.find((u) => u.id === userId);
-    if (!user) {
-      return NextResponse.json({ user: null });
-    }
+    if (!user) return NextResponse.json({ user: null });
 
     return NextResponse.json({
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        premium: user.premium,
-      },
+      user: { id: user.id, name: user.name, email: user.email, premium: user.premium },
     });
   } catch {
     return NextResponse.json({ user: null });

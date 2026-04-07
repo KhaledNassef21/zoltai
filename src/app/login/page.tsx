@@ -74,7 +74,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              autoComplete="email"
+              autoComplete="off"
               placeholder="you@example.com"
               className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
             />
@@ -85,6 +85,12 @@ export default function LoginPage() {
               <label className="block text-sm font-medium text-zinc-300">
                 Password
               </label>
+              <Link
+                href="/forgot-password"
+                className="text-xs text-purple-400 hover:text-purple-300"
+              >
+                Forgot password?
+              </Link>
             </div>
             <div className="relative">
               <input
@@ -92,7 +98,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                autoComplete="current-password"
+                autoComplete="off"
                 placeholder="Enter your password"
                 className="w-full px-4 py-3 pr-12 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500/50 transition-all"
               />
