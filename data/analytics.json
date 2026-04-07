@@ -1480,5 +1480,11 @@
     "variant": "100",
     "page": "/profile",
     "timestamp": "2026-04-07T11:34:59.784Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T14:04:04.585Z"
   }
 ]
