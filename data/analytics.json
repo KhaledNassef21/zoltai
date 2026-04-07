@@ -1380,9 +1380,15 @@
     "timestamp": "2026-04-07T08:12:41.169Z"
   },
   {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":25,\"y\":24,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775549666387},{\"x\":14,\"y\":36,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775549668083}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:16:05.397Z"
+  },
+  {
     "event": "page_view",
     "variant": "",
-    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
-    "timestamp": "2026-04-07T08:17:31.386Z"
+    "page": "/",
+    "timestamp": "2026-04-07T08:18:30.232Z"
   }
 ]
