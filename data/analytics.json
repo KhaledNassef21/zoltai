@@ -1302,9 +1302,39 @@
     "timestamp": "2026-04-07T03:43:22.642Z"
   },
   {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T04:03:37.377Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-07T04:03:43.127Z"
+  },
+  {
     "event": "heatmap_clicks",
-    "variant": "[{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535404607},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535405660},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535406162},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535408496},{\"x\":58,\"y\":53,\"el\":\"svg.[object\",\"time\":1775535409161},{\"x\":55,\"y\":71,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775535415024}]",
-    "page": "/login",
-    "timestamp": "2026-04-07T04:16:58.530Z"
+    "variant": "[{\"x\":43,\"y\":34,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775534627361},{\"x\":67,\"y\":19,\"el\":\"span.text-xs[Premium]\",\"time\":1775534634836},{\"x\":50,\"y\":56,\"el\":\"a.block[Create Account to Subscribe]\",\"time\":1775534637517}]",
+    "page": "/premium",
+    "timestamp": "2026-04-07T04:03:58.148Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T04:03:58.215Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":31,\"el\":\"div.min-h-[70vh][Join ZoltaiCreate your free ac]\",\"time\":1775534641698}]",
+    "page": "/register",
+    "timestamp": "2026-04-07T04:04:04.648Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-07T04:04:04.706Z"
   }
 ]
