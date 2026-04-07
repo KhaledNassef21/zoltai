@@ -1510,5 +1510,11 @@
     "variant": "",
     "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
     "timestamp": "2026-04-07T14:31:41.977Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":80,\"y\":57,\"el\":\"h3.font-semibold[How to Use Notion AI for Proje]\",\"time\":1775576767161}]",
+    "page": "/",
+    "timestamp": "2026-04-07T15:46:07.710Z"
   }
 ]
