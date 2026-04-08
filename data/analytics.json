@@ -1528,5 +1528,11 @@
     "variant": "38",
     "page": "/blog",
     "timestamp": "2026-04-08T05:13:34.819Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:14:19.745Z"
   }
 ]
