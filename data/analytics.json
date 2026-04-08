@@ -1540,5 +1540,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-08T05:50:21.727Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-08T07:30:35.182Z"
   }
 ]
