@@ -1560,9 +1560,9 @@
     "timestamp": "2026-04-08T10:40:25.576Z"
   },
   {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_exit",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-08T12:02:52.795Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/best-ai-coding-tools-2024-cursor-vs-github-copilot-vs-bolt-new",
+    "timestamp": "2026-04-08T12:02:54.467Z"
   }
 ]
