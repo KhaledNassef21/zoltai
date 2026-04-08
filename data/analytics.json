@@ -1522,5 +1522,11 @@
     "variant": "",
     "page": "/profile",
     "timestamp": "2026-04-08T05:11:42.630Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "38",
+    "page": "/blog",
+    "timestamp": "2026-04-08T05:13:34.819Z"
   }
 ]
