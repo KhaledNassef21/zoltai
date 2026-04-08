@@ -1560,9 +1560,9 @@
     "timestamp": "2026-04-08T10:40:25.576Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog/best-ai-coding-tools-2024-cursor-vs-github-copilot-vs-bolt-new",
-    "timestamp": "2026-04-08T12:03:00.302Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":66,\"y\":57,\"el\":\"span.text-xs[ElevenLabs]\",\"time\":1775649786877}]",
+    "page": "/",
+    "timestamp": "2026-04-08T12:03:09.148Z"
   }
 ]
