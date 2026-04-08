@@ -1542,9 +1542,9 @@
     "timestamp": "2026-04-08T05:50:21.727Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
+    "event": "scroll_depth",
+    "variant": "24",
     "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
-    "timestamp": "2026-04-08T07:31:14.096Z"
+    "timestamp": "2026-04-08T07:31:16.436Z"
   }
 ]
