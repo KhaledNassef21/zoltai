@@ -16,12 +16,35 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  // Edit states
+  const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error">("success");
+
+  // Password change
+  const [showPasswordChange, setShowPasswordChange] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [showCurrentPass, setShowCurrentPass] = useState(false);
+  const [showNewPass, setShowNewPass] = useState(false);
+
+  const passwordChecks = {
+    length: newPassword.length >= 8,
+    uppercase: /[A-Z]/.test(newPassword),
+    lowercase: /[a-z]/.test(newPassword),
+    number: /[0-9]/.test(newPassword),
+  };
+  const passedChecks = Object.values(passwordChecks).filter(Boolean).length;
+
   useEffect(() => {
     fetch("/api/auth")
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
           setUser(data.user);
+          setEditName(data.user.name);
         } else {
           router.push("/login");
         }
@@ -32,6 +55,59 @@ export default function ProfilePage() {
         setLoading(false);
       });
   }, [router]);
+
+  function showMsg(text: string, type: "success" | "error") {
+    setMessage(text);
+    setMessageType(type);
+    setTimeout(() => setMessage(""), 5000);
+  }
+
+  async function handleSaveName() {
+    if (!editName.trim()) return;
+    setSaving(true);
+    try {
+      const res = await fetch("/api/auth/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: editName }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setUser(data.user);
+        setEditing(false);
+        showMsg("Name updated successfully", "success");
+      } else {
+        showMsg(data.error || "Failed to update", "error");
+      }
+    } catch {
+      showMsg("Network error", "error");
+    }
+    setSaving(false);
+  }
+
+  async function handleChangePassword() {
+    if (!currentPassword || passedChecks < 4) return;
+    setSaving(true);
+    try {
+      const res = await fetch("/api/auth/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setShowPasswordChange(false);
+        setCurrentPassword("");
+        setNewPassword("");
+        showMsg("Password changed successfully", "success");
+      } else {
+        showMsg(data.error || "Failed to change password", "error");
+      }
+    } catch {
+      showMsg("Network error", "error");
+    }
+    setSaving(false);
+  }
 
   async function handleLogout() {
     await fetch("/api/auth", {
@@ -61,6 +137,19 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      {/* Message */}
+      {message && (
+        <div
+          className={`mb-6 p-3 rounded-lg text-sm ${
+            messageType === "success"
+              ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+              : "bg-red-500/10 text-red-400 border border-red-500/20"
+          }`}
+        >
+          {message}
+        </div>
+      )}
+
       {/* Profile Header */}
       <div className="flex items-center gap-5 mb-8">
         <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-purple-500/20">
@@ -72,7 +161,7 @@ export default function ProfilePage() {
           <div className="mt-1.5">
             {user.premium ? (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                👑 Premium Member
+                Premium Member
               </span>
             ) : (
               <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-card-border">
@@ -83,7 +172,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* Premium Upgrade Card */}
+      {/* Premium Upgrade */}
       {!user.premium && (
         <div className="p-5 rounded-xl border border-purple-500/20 bg-gradient-to-r from-purple-500/5 to-cyan-500/5 mb-8">
           <div className="flex items-center justify-between">
@@ -107,23 +196,147 @@ export default function ProfilePage() {
       <div className="p-6 rounded-2xl border border-card-border bg-card-bg mb-6">
         <h2 className="text-lg font-semibold mb-4">Account Details</h2>
         <div className="space-y-4">
+          {/* Name - Editable */}
           <div className="flex items-center justify-between py-3 border-b border-card-border">
-            <div>
+            <div className="flex-1">
               <p className="text-xs text-zinc-500 uppercase tracking-wide">Name</p>
-              <p className="text-sm mt-0.5">{user.name}</p>
+              {editing ? (
+                <div className="flex items-center gap-2 mt-1">
+                  <input
+                    type="text"
+                    value={editName}
+                    onChange={(e) => setEditName(e.target.value)}
+                    className="flex-1 px-3 py-1.5 rounded-lg bg-background border border-card-border text-foreground text-sm focus:outline-none focus:border-purple-500/50"
+                    maxLength={100}
+                  />
+                  <button
+                    onClick={handleSaveName}
+                    disabled={saving || !editName.trim()}
+                    className="px-3 py-1.5 rounded-lg bg-accent text-white text-xs font-medium disabled:opacity-50"
+                  >
+                    {saving ? "..." : "Save"}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditing(false);
+                      setEditName(user.name);
+                    }}
+                    className="px-3 py-1.5 rounded-lg border border-card-border text-zinc-400 text-xs"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 mt-0.5">
+                  <p className="text-sm">{user.name}</p>
+                  <button
+                    onClick={() => setEditing(true)}
+                    className="text-xs text-purple-400 hover:text-purple-300"
+                  >
+                    Edit
+                  </button>
+                </div>
+              )}
             </div>
           </div>
+
+          {/* Email - Read-only */}
           <div className="flex items-center justify-between py-3 border-b border-card-border">
             <div>
               <p className="text-xs text-zinc-500 uppercase tracking-wide">Email</p>
               <p className="text-sm mt-0.5">{user.email}</p>
             </div>
           </div>
+
+          {/* Password */}
+          <div className="py-3 border-b border-card-border">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs text-zinc-500 uppercase tracking-wide">Password</p>
+                <p className="text-sm mt-0.5 text-zinc-500">********</p>
+              </div>
+              <button
+                onClick={() => setShowPasswordChange(!showPasswordChange)}
+                className="text-xs text-purple-400 hover:text-purple-300"
+              >
+                {showPasswordChange ? "Cancel" : "Change"}
+              </button>
+            </div>
+
+            {showPasswordChange && (
+              <div className="mt-4 space-y-3 p-4 rounded-lg bg-background border border-card-border">
+                <div>
+                  <label className="block text-xs text-zinc-400 mb-1">Current Password</label>
+                  <div className="relative">
+                    <input
+                      type={showCurrentPass ? "text" : "password"}
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      className="w-full px-3 py-2 pr-10 rounded-lg bg-card-bg border border-card-border text-foreground text-sm focus:outline-none focus:border-purple-500/50"
+                      placeholder="Enter current password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPass(!showCurrentPass)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 text-xs"
+                    >
+                      {showCurrentPass ? "Hide" : "Show"}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs text-zinc-400 mb-1">New Password</label>
+                  <div className="relative">
+                    <input
+                      type={showNewPass ? "text" : "password"}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      className="w-full px-3 py-2 pr-10 rounded-lg bg-card-bg border border-card-border text-foreground text-sm focus:outline-none focus:border-purple-500/50"
+                      placeholder="Min 8 chars, uppercase, lowercase, number"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowNewPass(!showNewPass)}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 text-xs"
+                    >
+                      {showNewPass ? "Hide" : "Show"}
+                    </button>
+                  </div>
+                  {newPassword.length > 0 && (
+                    <div className="mt-2 grid grid-cols-2 gap-1 text-xs">
+                      {[
+                        { label: "8+ characters", ok: passwordChecks.length },
+                        { label: "Uppercase", ok: passwordChecks.uppercase },
+                        { label: "Lowercase", ok: passwordChecks.lowercase },
+                        { label: "Number", ok: passwordChecks.number },
+                      ].map((check) => (
+                        <span
+                          key={check.label}
+                          className={check.ok ? "text-emerald-400" : "text-zinc-600"}
+                        >
+                          {check.ok ? "✓" : "○"} {check.label}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button
+                  onClick={handleChangePassword}
+                  disabled={saving || !currentPassword || passedChecks < 4}
+                  className="w-full py-2 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-600 text-white text-sm font-medium disabled:opacity-50 hover:opacity-90 transition-all"
+                >
+                  {saving ? "Changing..." : "Change Password"}
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Plan */}
           <div className="flex items-center justify-between py-3">
             <div>
               <p className="text-xs text-zinc-500 uppercase tracking-wide">Plan</p>
               <p className="text-sm mt-0.5">
-                {user.premium ? "Premium ($19/month)" : "Free"}
+                {user.premium ? "Premium" : "Free"}
               </p>
             </div>
             {user.premium && (
@@ -170,7 +383,7 @@ export default function ProfilePage() {
         </Link>
       </div>
 
-      {/* Danger Zone */}
+      {/* Sign Out */}
       <div className="pt-6 border-t border-card-border flex items-center justify-between">
         <button
           onClick={handleLogout}

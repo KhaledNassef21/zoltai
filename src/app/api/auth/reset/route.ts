@@ -3,8 +3,14 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { Resend } from "resend";
+import {
+  readFile,
+  writeFile as ghWriteFile,
+  isGitHubAvailable,
+} from "@/lib/github";
 
 const USERS_FILE = path.join(process.cwd(), "data/users.json");
+const GITHUB_USERS_PATH = "data/users.json";
 
 // ============================================================
 // Reset Token Storage — In-memory + /tmp fallback for Vercel
@@ -21,7 +27,6 @@ const resetTokensMap = new Map<string, ResetToken>();
 
 // Backup: /tmp file for Vercel (persists across warm starts)
 function getTmpPath(): string {
-  // On Vercel, /tmp is writable. Locally, use data/ directory.
   const tmpDir = process.env.VERCEL ? "/tmp" : path.join(process.cwd(), "data");
   return path.join(tmpDir, "reset-tokens.json");
 }
@@ -42,7 +47,6 @@ function loadResetTokens(): ResetToken[] {
     if (fs.existsSync(tmpPath)) {
       const tokens: ResetToken[] = JSON.parse(fs.readFileSync(tmpPath, "utf-8"));
       const valid = tokens.filter((t) => t.expiresAt > now);
-      // Re-populate memory
       for (const t of valid) resetTokensMap.set(t.email, t);
       return valid;
     }
@@ -52,33 +56,27 @@ function loadResetTokens(): ResetToken[] {
 }
 
 function saveResetTokens(tokens: ResetToken[]) {
-  // Always update in-memory
   resetTokensMap.clear();
   for (const t of tokens) {
     resetTokensMap.set(t.email, t);
   }
 
-  // Try to persist to /tmp (best effort)
   try {
     const tmpPath = getTmpPath();
     const dir = path.dirname(tmpPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(tmpPath, JSON.stringify(tokens, null, 2));
-  } catch {
-    // Silently fail — in-memory is still valid
-  }
+  } catch {}
 }
 
 function findResetToken(email: string, tokenHash: string): ResetToken | undefined {
   const now = Date.now();
 
-  // Check in-memory first
   const memToken = resetTokensMap.get(email);
   if (memToken && memToken.token === tokenHash && memToken.expiresAt > now) {
     return memToken;
   }
 
-  // Fallback: load all
   const tokens = loadResetTokens();
   return tokens.find(
     (t) => t.email === email && t.token === tokenHash && t.expiresAt > now
@@ -92,33 +90,55 @@ function removeResetToken(email: string) {
 }
 
 // ============================================================
-// Users
+// Users — with GitHub API fallback for Vercel persistence
 // ============================================================
 
-function loadUsers(): any[] {
+async function loadUsers(): Promise<any[]> {
   try {
     if (fs.existsSync(USERS_FILE)) {
       return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
     }
   } catch {}
+
+  // Fallback: GitHub API
+  if (isGitHubAvailable()) {
+    try {
+      const file = await readFile(GITHUB_USERS_PATH);
+      if (file) return JSON.parse(file.content);
+    } catch {}
+  }
+
   return [];
 }
 
-function saveUsers(users: any[]) {
-  // Try data/ directory first
+async function saveUsers(users: any[]): Promise<void> {
+  const json = JSON.stringify(users, null, 2);
+
+  // Try local filesystem first
   try {
-    fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+    const dir = path.dirname(USERS_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(USERS_FILE, json);
     return;
   } catch {}
 
-  // Fallback: /tmp on Vercel
-  try {
-    const tmpUsersFile = path.join("/tmp", "users.json");
-    fs.writeFileSync(tmpUsersFile, JSON.stringify(users, null, 2));
-  } catch (err) {
-    console.error("Failed to save users:", err);
-    throw new Error("Could not save user data");
+  // Fallback: GitHub API (critical for Vercel)
+  if (isGitHubAvailable()) {
+    try {
+      await ghWriteFile(GITHUB_USERS_PATH, json, "Update user password (reset)");
+      return;
+    } catch (err) {
+      console.error("GitHub write failed for users:", err);
+    }
   }
+
+  // Last resort: /tmp
+  try {
+    fs.writeFileSync(path.join("/tmp", "users.json"), json);
+    return;
+  } catch {}
+
+  throw new Error("Could not save user data");
 }
 
 // Rate limit: max 3 reset requests per email per hour
@@ -140,7 +160,10 @@ export async function POST(req: NextRequest) {
       const now = Date.now();
       const attempts = resetAttempts.get(normalizedEmail);
       if (attempts && attempts.resetAt > now && attempts.count >= 3) {
-        return NextResponse.json({ success: true, message: "If an account exists, a reset link has been sent." });
+        return NextResponse.json({
+          success: true,
+          message: "If an account exists, a reset link has been sent.",
+        });
       }
 
       if (!attempts || attempts.resetAt < now) {
@@ -149,24 +172,25 @@ export async function POST(req: NextRequest) {
         attempts.count++;
       }
 
-      const users = loadUsers();
+      const users = await loadUsers();
       const user = users.find((u: any) => u.email === normalizedEmail);
 
       // Always return success to prevent email enumeration
       if (!user) {
-        return NextResponse.json({ success: true, message: "If an account exists, a reset link has been sent." });
+        return NextResponse.json({
+          success: true,
+          message: "If an account exists, a reset link has been sent.",
+        });
       }
 
       // Generate secure reset token
       const resetToken = crypto.randomBytes(32).toString("hex");
       const tokens = loadResetTokens();
-
-      // Remove any existing tokens for this email
       const filtered = tokens.filter((t) => t.email !== normalizedEmail);
       filtered.push({
         email: normalizedEmail,
         token: crypto.createHash("sha256").update(resetToken).digest("hex"),
-        expiresAt: Date.now() + 30 * 60 * 1000, // 30 minutes
+        expiresAt: Date.now() + 30 * 60 * 1000,
       });
       saveResetTokens(filtered);
 
@@ -200,11 +224,13 @@ export async function POST(req: NextRequest) {
           });
         } catch (emailErr) {
           console.error("Failed to send reset email:", emailErr);
-          // Don't fail the request — token is still saved
         }
       }
 
-      return NextResponse.json({ success: true, message: "If an account exists, a reset link has been sent." });
+      return NextResponse.json({
+        success: true,
+        message: "If an account exists, a reset link has been sent.",
+      });
     }
 
     // ========== RESET PASSWORD ==========
@@ -213,17 +239,19 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
       }
 
-      // Validate new password
-      if (newPassword.length < 8) return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
-      if (!/[A-Z]/.test(newPassword)) return NextResponse.json({ error: "Password must contain an uppercase letter" }, { status: 400 });
-      if (!/[a-z]/.test(newPassword)) return NextResponse.json({ error: "Password must contain a lowercase letter" }, { status: 400 });
-      if (!/[0-9]/.test(newPassword)) return NextResponse.json({ error: "Password must contain a number" }, { status: 400 });
+      if (newPassword.length < 8)
+        return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 });
+      if (!/[A-Z]/.test(newPassword))
+        return NextResponse.json({ error: "Password must contain an uppercase letter" }, { status: 400 });
+      if (!/[a-z]/.test(newPassword))
+        return NextResponse.json({ error: "Password must contain a lowercase letter" }, { status: 400 });
+      if (!/[0-9]/.test(newPassword))
+        return NextResponse.json({ error: "Password must contain a number" }, { status: 400 });
 
       const normalizedEmail = email.toLowerCase().trim();
       const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
 
       const resetEntry = findResetToken(normalizedEmail, tokenHash);
-
       if (!resetEntry) {
         return NextResponse.json(
           { error: "Invalid or expired reset link. Please request a new one." },
@@ -232,7 +260,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Update password
-      const users = loadUsers();
+      const users = await loadUsers();
       const user = users.find((u: any) => u.email === normalizedEmail);
       if (!user) {
         return NextResponse.json({ error: "Account not found" }, { status: 404 });
@@ -242,17 +270,22 @@ export async function POST(req: NextRequest) {
       const hash = crypto.scryptSync(newPassword, salt, 64).toString("hex");
       user.passwordHash = hash;
       user.salt = salt;
-      saveUsers(users);
+      await saveUsers(users);
 
-      // Remove used token
       removeResetToken(normalizedEmail);
 
-      return NextResponse.json({ success: true, message: "Password reset successfully. You can now log in." });
+      return NextResponse.json({
+        success: true,
+        message: "Password reset successfully. You can now log in.",
+      });
     }
 
     return NextResponse.json({ error: "Invalid action" }, { status: 400 });
   } catch (err) {
     console.error("Password reset error:", err);
-    return NextResponse.json({ error: "An error occurred. Please try again." }, { status: 500 });
+    return NextResponse.json(
+      { error: "An error occurred. Please try again." },
+      { status: 500 }
+    );
   }
 }

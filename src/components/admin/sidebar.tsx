@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   FileText,
   Wrench,
-  Image,
   Settings,
   BarChart3,
   DollarSign,
@@ -25,7 +24,6 @@ const navItems = [
   { href: "/admin/earn", label: "Earn Page", icon: DollarSign },
   { href: "/admin/comments", label: "Comments", icon: MessageSquare },
   { href: "/admin/reels", label: "Reels", icon: Film },
-  { href: "/admin/images", label: "Images", icon: Image },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];

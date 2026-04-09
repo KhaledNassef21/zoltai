@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useLang } from "./providers";
 
 export function LeadMagnet() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const { t } = useLang();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,11 +38,10 @@ export function LeadMagnet() {
       <div className="p-8 rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-card-bg to-accent/5 text-center">
         <div className="text-5xl mb-4">🎉</div>
         <h3 className="font-bold text-2xl text-emerald-400 mb-2">
-          Check Your Inbox!
+          {t("lead.success.title")}
         </h3>
         <p className="text-zinc-400">
-          Your free AI Tools Guide is on its way. Plus, you&apos;ll get our
-          best AI insights and tips every week.
+          {t("lead.success.desc")}
         </p>
       </div>
     );
@@ -53,26 +54,25 @@ export function LeadMagnet() {
 
       <div className="relative text-center">
         <div className="inline-block px-3 py-1 rounded-full bg-accent/20 text-accent-light text-xs font-semibold mb-4">
-          FREE DOWNLOAD
+          {t("lead.badge")}
         </div>
         <h3 className="font-bold text-2xl sm:text-3xl mb-2">
-          10 AI Tools That Can Transform{" "}
-          <span className="gradient-text">Your Workflow</span>
+          {t("lead.title1")}{" "}
+          <span className="gradient-text">{t("lead.title2")}</span>
         </h3>
         <p className="text-zinc-400 mb-2 max-w-lg mx-auto">
-          Get curated tools, strategies, and step-by-step guides to boost
-          your productivity with AI.
+          {t("lead.desc")}
         </p>
 
         <div className="flex flex-wrap justify-center gap-3 mb-6 text-sm text-zinc-400">
           <span className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span> Free AI tools list
+            <span className="text-emerald-400">✓</span> {t("lead.check1")}
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span> Step-by-step guides
+            <span className="text-emerald-400">✓</span> {t("lead.check2")}
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span> Real-world use cases
+            <span className="text-emerald-400">✓</span> {t("lead.check3")}
           </span>
         </div>
 
@@ -84,23 +84,23 @@ export function LeadMagnet() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Your name"
-            className="sm:w-36 px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
+            placeholder={t("lead.namePlaceholder")}
+            className="sm:w-36 px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-500 focus:outline-none focus:border-accent/50"
           />
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@email.com"
+            placeholder={t("lead.emailPlaceholder")}
             required
-            className="flex-1 px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
+            className="flex-1 px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-500 focus:outline-none focus:border-accent/50"
           />
           <button
             type="submit"
             disabled={status === "loading"}
             className="px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-bold transition-all hover:scale-[1.02] disabled:opacity-50 whitespace-nowrap shadow-lg shadow-accent/20"
           >
-            {status === "loading" ? "..." : "Get Free Guide"}
+            {status === "loading" ? "..." : t("lead.cta")}
           </button>
         </form>
 
@@ -110,8 +110,8 @@ export function LeadMagnet() {
           </p>
         )}
 
-        <p className="text-xs text-zinc-600 mt-4">
-          Join 1,000+ readers. No spam. Unsubscribe anytime.
+        <p className="text-xs text-zinc-500 mt-4">
+          {t("lead.joinCount")}
         </p>
       </div>
     </div>

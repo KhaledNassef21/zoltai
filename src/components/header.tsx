@@ -32,7 +32,7 @@ export function Header() {
             href="/earn"
             className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
           >
-            💰 Earn
+            {t("nav.earn")}
           </Link>
           <Link
             href="/about"

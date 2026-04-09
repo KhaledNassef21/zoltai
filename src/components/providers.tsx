@@ -92,10 +92,79 @@ const translations: Record<string, Record<Lang, string>> = {
   "footer.community": { en: "Community", ar: "المجتمع" },
   "footer.desc": {
     en: "Your guide to mastering AI tools. Smart content, daily.",
-    ar: "\u062f\u0644\u064a\u0644\u0643 \u0644\u0625\u062a\u0642\u0627\u0646 \u0623\u062f\u0648\u0627\u062a \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a. \u0645\u062d\u062a\u0648\u0649 \u0630\u0643\u064a \u064a\u0648\u0645\u064a\u0627\u064b.",
+    ar: "دليلك لإتقان أدوات الذكاء الاصطناعي. محتوى ذكي يومياً.",
   },
-  "footer.links": { en: "Links", ar: "\u0631\u0648\u0627\u0628\u0637" },
-  "footer.follow": { en: "Follow Us", ar: "\u062a\u0627\u0628\u0639\u0646\u0627" },
+  "footer.links": { en: "Links", ar: "روابط" },
+  "footer.follow": { en: "Follow Us", ar: "تابعنا" },
+  "footer.privacy": { en: "Privacy Policy", ar: "سياسة الخصوصية" },
+  "footer.terms": { en: "Terms of Service", ar: "شروط الاستخدام" },
+  "footer.rights": { en: "All rights reserved.", ar: "جميع الحقوق محفوظة." },
+
+  // Nav extra
+  "nav.earn": { en: "Earn", ar: "اربح" },
+
+  // Community buttons
+  "community.facebook": { en: "Facebook Community", ar: "مجتمع فيسبوك" },
+  "community.instagram": { en: "Instagram", ar: "انستجرام" },
+  "community.email": { en: "Email Us", ar: "راسلنا" },
+
+  // Lead Magnet
+  "lead.badge": { en: "FREE RESOURCE", ar: "مورد مجاني" },
+  "lead.title1": { en: "Get the Ultimate", ar: "احصل على الدليل" },
+  "lead.title2": { en: "AI Tools Guide", ar: "الشامل لأدوات AI" },
+  "lead.desc": {
+    en: "Download our curated list of the best AI tools — with tips, use cases, and exclusive deals.",
+    ar: "حمّل قائمتنا المختارة لأفضل أدوات AI — مع نصائح وحالات استخدام وعروض حصرية.",
+  },
+  "lead.check1": { en: "24+ AI Tools", ar: "24+ أداة AI" },
+  "lead.check2": { en: "Free Trials Listed", ar: "تجارب مجانية" },
+  "lead.check3": { en: "Updated Weekly", ar: "تحديث أسبوعي" },
+  "lead.namePlaceholder": { en: "Your name", ar: "اسمك" },
+  "lead.emailPlaceholder": { en: "Your email", ar: "بريدك الإلكتروني" },
+  "lead.cta": { en: "Get Free Access", ar: "احصل على الدليل مجاناً" },
+  "lead.success.title": { en: "You're In!", ar: "تم التسجيل!" },
+  "lead.success.desc": {
+    en: "Check your inbox for the AI Tools Guide. Welcome to the Zoltai community!",
+    ar: "تفقد بريدك للحصول على دليل أدوات AI. أهلاً بك في مجتمع Zoltai!",
+  },
+  "lead.joinCount": {
+    en: "Join 2,000+ readers already learning AI skills",
+    ar: "انضم لأكثر من 2,000 قارئ يتعلمون مهارات AI",
+  },
+
+  // Stats
+  "stats.tools": { en: "AI Tools Reviewed", ar: "أداة AI تم مراجعتها" },
+  "stats.guides": { en: "In-Depth Guides", ar: "دليل متعمق" },
+  "stats.readers": { en: "Monthly Readers", ar: "قارئ شهرياً" },
+  "stats.rating": { en: "Average Rating", ar: "متوسط التقييم" },
+
+  // Testimonials
+  "testimonial.1.name": { en: "Sarah M.", ar: "سارة م." },
+  "testimonial.1.role": { en: "Freelance Writer", ar: "كاتبة مستقلة" },
+  "testimonial.1.text": {
+    en: "Zoltai helped me discover AI writing tools I didn't know existed. My workflow is completely different now — I'm more productive than ever.",
+    ar: "Zoltai ساعدني أكتشف أدوات كتابة بالذكاء الاصطناعي ما كنتش أعرفها. شغلي اتغير تماماً — إنتاجيتي زادت جداً.",
+  },
+  "testimonial.2.name": { en: "Ahmed K.", ar: "أحمد ك." },
+  "testimonial.2.role": { en: "Marketing Specialist", ar: "متخصص تسويق" },
+  "testimonial.2.text": {
+    en: "The tool comparisons are genuinely helpful. Instead of spending hours researching, I found exactly what I needed for my team in minutes.",
+    ar: "مقارنات الأدوات مفيدة فعلاً. بدل ما أقعد ساعات أبحث، لقيت اللي محتاجه لفريقي في دقائق.",
+  },
+  "testimonial.3.name": { en: "Jessica L.", ar: "جيسيكا ل." },
+  "testimonial.3.role": { en: "Content Creator", ar: "صانعة محتوى" },
+  "testimonial.3.text": {
+    en: "Finally a site that reviews AI tools honestly without the hype. The guides are practical and beginner-friendly. Highly recommend.",
+    ar: "أخيراً موقع بيراجع أدوات AI بصدق من غير مبالغة. الأدلة عملية وسهلة للمبتدئين. أنصح بيه جداً.",
+  },
+
+  // Recent Activity notifications
+  "activity.1": { en: "Someone from Cairo just subscribed to the newsletter", ar: "حد من القاهرة لسه اشترك في النشرة البريدية" },
+  "activity.2": { en: "A reader just downloaded the free AI tools guide", ar: "قارئ لسه حمّل دليل أدوات AI المجاني" },
+  "activity.3": { en: "Someone from London just explored the tools directory", ar: "حد من لندن لسه استكشف دليل الأدوات" },
+  "activity.4": { en: "A new reader just joined from a Google search", ar: "قارئ جديد لسه انضم من بحث جوجل" },
+  "activity.5": { en: "Someone just bookmarked the ChatGPT guide", ar: "حد لسه حفظ دليل ChatGPT" },
+  "activity.justNow": { en: "Just now", ar: "الآن" },
 };
 
 const LangContext = createContext<LangContextType>({

@@ -33,7 +33,7 @@ export default function ToolsPage() {
       </div>
 
       {/* Stats bar */}
-      <div className="flex items-center gap-6 mb-10 text-sm text-zinc-500">
+      <div className="flex items-center gap-6 mb-10 text-sm text-zinc-400">
         <span>
           <strong className="text-white">{tools.length}</strong> tools listed
         </span>

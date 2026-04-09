@@ -118,6 +118,31 @@ async function getFallbackImage(seed: string, size: number = 1080): Promise<stri
 }
 
 /**
+ * Upload a raw image buffer to a free host. Returns direct URL.
+ * Used when we already have image data (e.g. from DALL-E 3).
+ */
+export async function uploadImageBuffer(
+  buffer: Buffer,
+  name: string
+): Promise<string | null> {
+  const filename = `${name}-${Date.now()}.jpg`;
+
+  try {
+    return await uploadToCatbox(buffer, filename);
+  } catch (err) {
+    console.warn(`   ⚠️ Catbox failed: ${(err as Error).message}`);
+  }
+
+  try {
+    return await uploadToLitterbox(buffer, filename);
+  } catch (err) {
+    console.warn(`   ⚠️ Litterbox failed: ${(err as Error).message}`);
+  }
+
+  return null;
+}
+
+/**
  * Main function: Generate image from Pollinations prompt → Upload to host → Return direct URL
  * This is what Instagram needs: a direct, fast, reliable image URL
  */

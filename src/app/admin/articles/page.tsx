@@ -8,7 +8,7 @@ import {
   htmlToMarkdown,
   markdownToHtml,
 } from "@/components/admin/rich-editor";
-import { Plus, Pencil, Trash2, ExternalLink, X, Eye, Code } from "lucide-react";
+import { Plus, Pencil, Trash2, ExternalLink, X, Eye, Code, Upload, ImageIcon, RefreshCw } from "lucide-react";
 
 interface Article {
   slug: string;
@@ -43,6 +43,9 @@ export default function AdminArticles() {
     image: "",
   });
   const [search, setSearch] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [regeneratingImages, setRegeneratingImages] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -151,6 +154,7 @@ export default function AdminArticles() {
         author: article.author,
         image: article.image,
       });
+      setImagePreview(article.image || null);
       setShowEditor(true);
 
       // Load the actual content for editing
@@ -191,6 +195,7 @@ export default function AdminArticles() {
     setShowEditor(false);
     setEditSlug(null);
     setEditorMode("rich");
+    setImagePreview(null);
     setForm({
       title: "",
       description: "",
@@ -429,19 +434,128 @@ export default function AdminArticles() {
                 </div>
               </div>
 
+              {/* Cover Image — URL input + upload + preview */}
               <div>
                 <label className="block text-sm text-zinc-400 mb-1">
-                  Cover Image URL
+                  Cover Image
                 </label>
-                <input
-                  type="text"
-                  value={form.image}
-                  onChange={(e) =>
-                    setForm({ ...form, image: e.target.value })
-                  }
-                  placeholder="/images/blog/my-article.jpg"
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
-                />
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={form.image}
+                    onChange={(e) => {
+                      setForm({ ...form, image: e.target.value });
+                      setImagePreview(e.target.value || null);
+                    }}
+                    placeholder="/images/blog/my-article.jpg"
+                    className="flex-1 px-4 py-3 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 focus:outline-none focus:border-accent/50"
+                  />
+                  <label className="flex items-center gap-2 px-4 py-3 rounded-lg border border-card-border text-zinc-400 hover:text-foreground hover:border-accent/30 cursor-pointer transition-colors">
+                    <Upload className="w-4 h-4" />
+                    <span className="text-sm">{uploading ? "..." : "Upload"}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        setUploading(true);
+                        try {
+                          const reader = new FileReader();
+                          reader.onload = async () => {
+                            const base64 = (reader.result as string).split(",")[1];
+                            const res = await fetch("/api/admin/upload", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({
+                                filename: file.name,
+                                data: base64,
+                                folder: "blog",
+                              }),
+                            });
+                            const data = await res.json();
+                            if (data.success) {
+                              setForm((prev) => ({ ...prev, image: data.url }));
+                              setImagePreview(data.url);
+                              showMessage("Image uploaded!", "success");
+                            } else {
+                              showMessage(data.error || "Upload failed", "error");
+                            }
+                            setUploading(false);
+                          };
+                          reader.readAsDataURL(file);
+                        } catch {
+                          showMessage("Upload failed", "error");
+                          setUploading(false);
+                        }
+                      }}
+                    />
+                  </label>
+                  {editSlug && (
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        setRegeneratingImages(true);
+                        try {
+                          const res = await fetch("/api/admin/regenerate-images", {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ slug: editSlug }),
+                          });
+                          const data = await res.json();
+                          if (data.success) {
+                            if (data.coverImage) {
+                              setForm((prev) => ({ ...prev, image: data.coverImage }));
+                              setImagePreview(data.coverImage);
+                            }
+                            showMessage("Images regenerated with AI!", "success");
+                          } else {
+                            showMessage(data.error || "Regeneration failed", "error");
+                          }
+                        } catch {
+                          showMessage("Regeneration failed", "error");
+                        }
+                        setRegeneratingImages(false);
+                      }}
+                      disabled={regeneratingImages}
+                      className="flex items-center gap-2 px-4 py-3 rounded-lg border border-purple-500/20 text-purple-400 hover:bg-purple-500/10 transition-colors disabled:opacity-50"
+                      title="Regenerate cover + Instagram images with AI"
+                    >
+                      <RefreshCw className={`w-4 h-4 ${regeneratingImages ? "animate-spin" : ""}`} />
+                      <span className="text-sm whitespace-nowrap">{regeneratingImages ? "Generating..." : "AI Generate"}</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Image Preview */}
+                {(imagePreview || form.image) && (
+                  <div className="mt-3 relative group">
+                    <div className="rounded-lg overflow-hidden border border-card-border bg-background">
+                      <img
+                        src={imagePreview || form.image}
+                        alt="Cover preview"
+                        className="w-full max-h-48 object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                        onLoad={(e) => {
+                          (e.target as HTMLImageElement).style.display = "block";
+                        }}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setForm((prev) => ({ ...prev, image: "" }));
+                        setImagePreview(null);
+                      }}
+                      className="absolute top-2 right-2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-end gap-3 pt-4">

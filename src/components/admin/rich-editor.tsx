@@ -80,6 +80,7 @@ export function RichEditor({
   placeholder = "Write your article...",
 }: RichEditorProps) {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({
         heading: { levels: [1, 2, 3] },

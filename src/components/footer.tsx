@@ -14,7 +14,7 @@ export function Footer() {
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-8">
             <div>
               <h3 className="font-bold text-lg gradient-text mb-3">Zoltai</h3>
-              <p className="text-zinc-500 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-sm leading-relaxed">
                 {t("footer.desc")}
               </p>
             </div>
@@ -22,7 +22,7 @@ export function Footer() {
               <h4 className="font-semibold text-sm text-zinc-300 mb-3">
                 {t("footer.links")}
               </h4>
-              <div className="flex flex-col gap-2 text-sm text-zinc-500">
+              <div className="flex flex-col gap-2 text-sm text-zinc-400">
                 <Link href="/blog" className="hover:text-foreground transition-colors">
                   {t("nav.blog")}
                 </Link>
@@ -33,10 +33,10 @@ export function Footer() {
                   {t("nav.about")}
                 </Link>
                 <Link href="/privacy" className="hover:text-foreground transition-colors">
-                  Privacy Policy
+                  {t("footer.privacy")}
                 </Link>
                 <Link href="/terms" className="hover:text-foreground transition-colors">
-                  Terms of Service
+                  {t("footer.terms")}
                 </Link>
               </div>
             </div>
@@ -44,7 +44,7 @@ export function Footer() {
               <h4 className="font-semibold text-sm text-zinc-300 mb-3">
                 {t("footer.community")}
               </h4>
-              <div className="flex flex-col gap-2 text-sm text-zinc-500">
+              <div className="flex flex-col gap-2 text-sm text-zinc-400">
                 <a
                   href="https://www.facebook.com/zoltai.community"
                   target="_blank"
@@ -67,7 +67,7 @@ export function Footer() {
               <h4 className="font-semibold text-sm text-zinc-300 mb-3">
                 {t("footer.follow")}
               </h4>
-              <div className="flex flex-col gap-2 text-sm text-zinc-500">
+              <div className="flex flex-col gap-2 text-sm text-zinc-400">
                 <a
                   href="mailto:info.zoltai@gmail.com"
                   className="hover:text-foreground transition-colors"
@@ -83,8 +83,8 @@ export function Footer() {
       {/* Legal Disclaimers */}
       <Disclaimer />
 
-      <div className="py-4 border-t border-card-border text-center text-xs text-zinc-600">
-        &copy; {new Date().getFullYear()} Zoltai. All rights reserved.
+      <div className="py-4 border-t border-card-border text-center text-xs text-zinc-500">
+        &copy; {new Date().getFullYear()} Zoltai. {t("footer.rights")}
       </div>
     </footer>
   );

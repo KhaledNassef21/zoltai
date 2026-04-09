@@ -29,8 +29,8 @@ export default function ContactPage() {
           <h3 className="font-semibold text-lg group-hover:text-accent-light transition-colors">
             Email
           </h3>
-          <p className="text-sm text-zinc-500 mt-1">info.zoltai@gmail.com</p>
-          <p className="text-xs text-zinc-600 mt-2">
+          <p className="text-sm text-zinc-400 mt-1">info.zoltai@gmail.com</p>
+          <p className="text-xs text-zinc-500 mt-2">
             Best for partnerships, affiliate inquiries, and detailed questions.
           </p>
         </a>
@@ -46,8 +46,8 @@ export default function ContactPage() {
           <h3 className="font-semibold text-lg group-hover:text-accent-light transition-colors">
             Instagram
           </h3>
-          <p className="text-sm text-zinc-500 mt-1">@zoltai.ai</p>
-          <p className="text-xs text-zinc-600 mt-2">
+          <p className="text-sm text-zinc-400 mt-1">@zoltai.ai</p>
+          <p className="text-xs text-zinc-500 mt-2">
             Daily AI tips, tool highlights, and quick interactions.
           </p>
         </a>
@@ -63,8 +63,8 @@ export default function ContactPage() {
           <h3 className="font-semibold text-lg group-hover:text-accent-light transition-colors">
             Facebook
           </h3>
-          <p className="text-sm text-zinc-500 mt-1">Zoltai Community</p>
-          <p className="text-xs text-zinc-600 mt-2">
+          <p className="text-sm text-zinc-400 mt-1">Zoltai Community</p>
+          <p className="text-xs text-zinc-500 mt-2">
             Join our community for discussions and updates.
           </p>
         </a>
@@ -78,8 +78,8 @@ export default function ContactPage() {
           <h3 className="font-semibold text-lg group-hover:text-accent-light transition-colors">
             Suggest a Tool
           </h3>
-          <p className="text-sm text-zinc-500 mt-1">Know a great AI tool?</p>
-          <p className="text-xs text-zinc-600 mt-2">
+          <p className="text-sm text-zinc-400 mt-1">Know a great AI tool?</p>
+          <p className="text-xs text-zinc-500 mt-2">
             Email us and we&apos;ll review it for our tools directory.
           </p>
         </a>

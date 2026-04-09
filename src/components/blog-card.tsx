@@ -21,7 +21,7 @@ export function BlogCard({ post }: { post: Post }) {
             {post.tags.slice(0, 2).map((tag) => (
               <span
                 key={tag}
-                className="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent-light"
+                className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300"
               >
                 {tag}
               </span>
@@ -30,10 +30,10 @@ export function BlogCard({ post }: { post: Post }) {
           <h3 className="font-semibold text-lg leading-snug group-hover:text-accent-light transition-colors">
             {post.title}
           </h3>
-          <p className="mt-2 text-sm text-zinc-500 line-clamp-2">
+          <p className="mt-2 text-sm text-zinc-400 line-clamp-2">
             {post.description}
           </p>
-          <div className="mt-4 flex items-center gap-3 text-xs text-zinc-600">
+          <div className="mt-4 flex items-center gap-3 text-xs text-zinc-500">
             <time>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</time>
             <span>&middot;</span>
             <span>{post.readingTime}</span>
