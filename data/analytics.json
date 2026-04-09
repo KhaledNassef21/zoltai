@@ -1804,5 +1804,11 @@
     "variant": "[{\"x\":70,\"y\":4,\"el\":\"button.px-2[EN]\",\"time\":1775713808488},{\"x\":43,\"y\":3,\"el\":\"a.text-zinc-400[مدونة]\",\"time\":1775713824069}]",
     "page": "/",
     "timestamp": "2026-04-09T05:50:24.862Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":64,\"y\":44,\"el\":\"img.w-full\",\"time\":1775735591298},{\"x\":77,\"y\":33,\"el\":\"input.sm:w-36\",\"time\":1775735612316},{\"x\":73,\"y\":41,\"el\":\"h4.font-semibold[Descript vs Otter.ai vs Gramma]\",\"time\":1775735620100}]",
+    "page": "/blog/how-to-automate-social-media-content-creation-with-ai-in-2024",
+    "timestamp": "2026-04-09T11:53:41.482Z"
   }
 ]
