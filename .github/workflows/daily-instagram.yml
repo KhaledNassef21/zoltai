@@ -39,4 +39,5 @@ jobs:
           git config user.email "bot@zoltai.org"
           git add data/posted-slugs.json || true
           git diff --staged --quiet || git commit -m "chore: update posted slugs log"
+          git pull --rebase || true
           git push || true

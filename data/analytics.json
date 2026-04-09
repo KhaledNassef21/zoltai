@@ -1506,69 +1506,285 @@
     "timestamp": "2026-04-07T13:26:15.181Z"
   },
   {
-    "event": "cta_impression",
-    "variant": "article_mid",
-    "page": "/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025",
-    "timestamp": "2026-04-07T18:59:40.210Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T14:07:28.550Z"
   },
   {
     "event": "scroll_depth",
-    "variant": "35",
+    "variant": "48",
     "page": "/",
-    "timestamp": "2026-04-07T19:08:49.027Z"
+    "timestamp": "2026-04-07T14:22:54.304Z"
   },
   {
     "event": "page_view",
     "variant": "",
-    "page": "/profile",
-    "timestamp": "2026-04-08T05:11:42.630Z"
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:23:07.547Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":49,\"y\":50,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571796649}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:23:38.083Z"
   },
   {
     "event": "scroll_depth",
-    "variant": "38",
-    "page": "/blog",
-    "timestamp": "2026-04-08T05:13:34.819Z"
+    "variant": "67",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:23:38.122Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/reset-password",
+    "timestamp": "2026-04-07T14:23:40.522Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "67",
+    "page": "/reset-password",
+    "timestamp": "2026-04-07T14:24:19.258Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":49,\"y\":50,\"el\":\"button.w-full[Reset Password]\",\"time\":1775571835522}]",
+    "page": "/reset-password",
+    "timestamp": "2026-04-07T14:24:19.288Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":22,\"y\":21,\"el\":\"div.min-h-[80vh][ZoltaiCreate Your AccountJoin ]\",\"time\":1775571504055},{\"x\":76,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775572145434}]",
+    "page": "/register",
+    "timestamp": "2026-04-07T14:29:05.798Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:29:05.820Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":58,\"y\":49,\"el\":\"a.text-xs[Forgot password?]\",\"time\":1775572148980}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:29:09.201Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:29:09.221Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":48,\"el\":\"input.w-full\",\"time\":1775572149807},{\"x\":50,\"y\":57,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775572159533},{\"x\":45,\"y\":59,\"el\":\"button.px-5[Try Again]\",\"time\":1775572222300},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572228936},{\"x\":48,\"y\":58,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775572230659},{\"x\":47,\"y\":49,\"el\":\"input.w-full\",\"time\":1775572232040},{\"x\":49,\"y\":56,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775572233513},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572234446},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572235254},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572235495}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:30:35.548Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:31:10.377Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572235721},{\"x\":44,\"y\":50,\"el\":\"input.w-full\",\"time\":1775572237018},{\"x\":44,\"y\":33,\"el\":\"h1.text-2xl[Forgot Password?]\",\"time\":1775572267995},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572269285},{\"x\":54,\"y\":68,\"el\":\"a.text-purple-400[Sign in]\",\"time\":1775572270227}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:31:10.400Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":69,\"y\":35,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775572271767},{\"x\":59,\"y\":49,\"el\":\"a.text-xs[Forgot password?]\",\"time\":1775572273557}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:31:13.698Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:31:13.719Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-08T05:14:19.745Z"
+    "timestamp": "2026-04-07T14:31:20.549Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":73,\"y\":4,\"el\":\"button.p-1.5\",\"time\":1775572277602},{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775572279894}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:31:20.651Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-08T05:50:21.727Z"
-  },
-  {
-    "event": "scroll_depth",
-    "variant": "24",
-    "page": "/blog/how-to-use-notion-ai-for-project-management-complete-guide-2025",
-    "timestamp": "2026-04-08T07:31:16.436Z"
+    "timestamp": "2026-04-07T18:44:18.278Z"
   },
   {
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-08T08:15:47.589Z"
+    "timestamp": "2026-04-07T18:44:24.339Z"
   },
   {
-    "event": "scroll_depth",
-    "variant": "70",
+    "event": "page_view",
+    "variant": "",
     "page": "/",
-    "timestamp": "2026-04-08T10:40:25.576Z"
-  },
-  {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_exit",
-    "page": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
-    "timestamp": "2026-04-08T12:03:19.743Z"
+    "timestamp": "2026-04-07T18:44:27.179Z"
   },
   {
     "event": "scroll_depth",
-    "variant": "21",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-09T05:42:05.682Z"
+    "variant": "44",
+    "page": "/",
+    "timestamp": "2026-04-07T18:50:07.771Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T18:50:10.090Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "44",
+    "page": "/",
+    "timestamp": "2026-04-07T18:51:59.872Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:31:49.080Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:31:49.992Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:31:58.954Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:32:03.309Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "57",
+    "page": "/",
+    "timestamp": "2026-04-08T05:32:06.473Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/reset-password",
+    "timestamp": "2026-04-08T05:34:47.615Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T10:10:38.389Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T10:10:42.412Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "19",
+    "page": "/",
+    "timestamp": "2026-04-08T10:10:59.426Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T20:20:42.838Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T20:20:48.368Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T20:20:52.045Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":71,\"y\":3,\"el\":\"button.px-2[EN]\",\"time\":1775680033584},{\"x\":82,\"y\":44,\"el\":\"h2.text-2xl[ماذا يقول قراؤنا]\",\"time\":1775680044042},{\"x\":27,\"y\":5,\"el\":\"button.px-2[AR]\",\"time\":1775680048976},{\"x\":75,\"y\":3,\"el\":\"button.px-2[EN]\",\"time\":1775680056505},{\"x\":22,\"y\":6,\"el\":\"button.px-2[AR]\",\"time\":1775680082593}]",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:06.891Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:06.959Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:07.970Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:12.239Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:18.748Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:18.812Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":75,\"y\":3,\"el\":\"button.px-2[EN]\",\"time\":1775679642844},{\"x\":29,\"y\":3,\"el\":\"button.px-2[AR]\",\"time\":1775679661210},{\"x\":60,\"y\":64,\"el\":\"button.px-6[lead.cta]\",\"time\":1775679762638},{\"x\":52,\"y\":50,\"el\":\"span.gradient-text[lead.title2]\",\"time\":1775679765639},{\"x\":49,\"y\":44,\"el\":\"div.inline-block[lead.badge]\",\"time\":1775679766805},{\"x\":49,\"y\":44,\"el\":\"div.inline-block[lead.badge]\",\"time\":1775679767039},{\"x\":49,\"y\":44,\"el\":\"div.inline-block[lead.badge]\",\"time\":1775679767313},{\"x\":54,\"y\":45,\"el\":\"div.relative[lead.badgelead.title1 lead.tit]\",\"time\":1775679767726}]",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:19.137Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:47.597Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "89",
+    "page": "/",
+    "timestamp": "2026-04-09T05:32:05.525Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-09T05:32:06.933Z"
   }
 ]
