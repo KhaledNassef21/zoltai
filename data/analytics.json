@@ -1566,9 +1566,9 @@
     "timestamp": "2026-04-08T12:03:19.743Z"
   },
   {
-    "event": "cta_impression",
-    "variant": "article_mid",
+    "event": "page_view",
+    "variant": "",
     "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-09T05:41:32.639Z"
+    "timestamp": "2026-04-09T05:41:32.620Z"
   }
 ]
