@@ -1822,5 +1822,11 @@
     "variant": "",
     "page": "/blog/how-to-automate-social-media-content-creation-with-ai-in-2024",
     "timestamp": "2026-04-10T04:35:36.859Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "47",
+    "page": "/",
+    "timestamp": "2026-04-10T07:12:15.061Z"
   }
 ]
