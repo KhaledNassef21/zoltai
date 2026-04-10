@@ -1836,9 +1836,9 @@
     "timestamp": "2026-04-10T10:52:29.136Z"
   },
   {
-    "event": "cta_impression",
-    "variant": "article_mid",
+    "event": "scroll_depth",
+    "variant": "20",
     "page": "/blog/automate-e-commerce-descriptions-semrush-vs-grammarly-2025",
-    "timestamp": "2026-04-10T13:25:13.220Z"
+    "timestamp": "2026-04-10T13:25:39.562Z"
   }
 ]
