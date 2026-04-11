@@ -1890,9 +1890,9 @@
     "timestamp": "2026-04-11T09:10:49.924Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
+    "event": "cta_impression",
+    "variant": "article_mid",
     "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
-    "timestamp": "2026-04-11T13:12:50.534Z"
+    "timestamp": "2026-04-11T13:12:51.459Z"
   }
 ]
