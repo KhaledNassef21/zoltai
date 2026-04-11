@@ -1878,9 +1878,9 @@
     "timestamp": "2026-04-11T09:03:16.064Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":100,\"y\":76,\"el\":\"html.geist_a71539c9-module__T19VSG__variable[body {transition: opacity ease]\",\"time\":1775898204259},{\"x\":93,\"y\":48,\"el\":\"main.flex-1[{\\\"@context\\\":\\\"https://schema.or]\",\"time\":1775898204578},{\"x\":47,\"y\":53,\"el\":\"textarea.w-full\",\"time\":1775898210890},{\"x\":43,\"y\":46,\"el\":\"input.px-4\",\"time\":1775898211370},{\"x\":55,\"y\":46,\"el\":\"input.px-4\",\"time\":1775898211906},{\"x\":42,\"y\":46,\"el\":\"input.px-4\",\"time\":1775898212378},{\"x\":53,\"y\":48,\"el\":\"input.px-4\",\"time\":1775898213042},{\"x\":49,\"y\":52,\"el\":\"textarea.w-full\",\"time\":1775898213410},{\"x\":50,\"y\":68,\"el\":\"input.w-full\",\"time\":1775898373258},{\"x\":55,\"y\":68,\"el\":\"input.flex-1\",\"time\":1775898373786}]",
+    "event": "scroll_depth",
+    "variant": "100",
     "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
-    "timestamp": "2026-04-11T09:06:14.002Z"
+    "timestamp": "2026-04-11T09:06:23.953Z"
   }
 ]
