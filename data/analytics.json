@@ -1882,5 +1882,11 @@
     "variant": "100",
     "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
     "timestamp": "2026-04-11T09:06:23.953Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-11T09:10:49.924Z"
   }
 ]
