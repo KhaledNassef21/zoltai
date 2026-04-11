@@ -1858,5 +1858,11 @@
     "variant": "[{\"x\":55,\"y\":2,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775887367682}]",
     "page": "/blog",
     "timestamp": "2026-04-11T06:02:48.219Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
+    "timestamp": "2026-04-11T08:51:54.469Z"
   }
 ]
