@@ -1860,9 +1860,9 @@
     "timestamp": "2026-04-11T06:02:48.219Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
-    "timestamp": "2026-04-11T08:51:54.469Z"
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/automate-e-commerce-descriptions-semrush-vs-grammarly-2025",
+    "timestamp": "2026-04-11T08:52:18.658Z"
   }
 ]
