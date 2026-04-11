@@ -1852,5 +1852,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-11T05:32:21.864Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":55,\"y\":2,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775887367682}]",
+    "page": "/blog",
+    "timestamp": "2026-04-11T06:02:48.219Z"
   }
 ]
