@@ -1906,5 +1906,11 @@
     "variant": "",
     "page": "/blog",
     "timestamp": "2026-04-13T10:13:05.208Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":28,\"y\":67,\"el\":\"img.w-full\",\"time\":1776075364966}]",
+    "page": "/",
+    "timestamp": "2026-04-13T10:16:05.230Z"
   }
 ]
