@@ -1948,5 +1948,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-13T10:38:41.474Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":13,\"y\":36,\"el\":\"main.flex-1[Discover the Best AI Tools(No ]\",\"time\":1776076723574}]",
+    "page": "/",
+    "timestamp": "2026-04-13T10:40:51.295Z"
   }
 ]
