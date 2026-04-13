@@ -1912,5 +1912,11 @@
     "variant": "[{\"x\":28,\"y\":67,\"el\":\"img.w-full\",\"time\":1776075364966}]",
     "page": "/",
     "timestamp": "2026-04-13T10:16:05.230Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-13T10:17:35.919Z"
   }
 ]
