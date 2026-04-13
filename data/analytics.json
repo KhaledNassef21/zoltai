@@ -1936,5 +1936,11 @@
     "variant": "article_mid",
     "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
     "timestamp": "2026-04-13T10:28:11.540Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "43",
+    "page": "/",
+    "timestamp": "2026-04-13T10:34:57.584Z"
   }
 ]
