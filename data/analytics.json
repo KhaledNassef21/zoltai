@@ -1956,9 +1956,9 @@
     "timestamp": "2026-04-13T10:40:51.295Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":0,\"y\":0,\"el\":\"button.px-5[Accept]\",\"time\":1776088600534}]",
-    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
-    "timestamp": "2026-04-13T13:56:50.472Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-13T19:17:41.454Z"
   }
 ]
