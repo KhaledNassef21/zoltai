@@ -1942,5 +1942,11 @@
     "variant": "43",
     "page": "/",
     "timestamp": "2026-04-13T10:34:57.584Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "54",
+    "page": "/",
+    "timestamp": "2026-04-13T10:37:14.589Z"
   }
 ]
