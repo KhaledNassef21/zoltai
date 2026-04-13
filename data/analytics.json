@@ -1930,5 +1930,11 @@
     "variant": "[{\"x\":33,\"y\":53,\"el\":\"p[undefined]\",\"time\":1776075591061},{\"x\":33,\"y\":53,\"el\":\"p[undefined]\",\"time\":1776075591246},{\"x\":43,\"y\":60,\"el\":\"img.w-full\",\"time\":1776075633958},{\"x\":40,\"y\":49,\"el\":\"img.w-full\",\"time\":1776075634270}]",
     "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
     "timestamp": "2026-04-13T10:23:55.371Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "45",
+    "page": "/",
+    "timestamp": "2026-04-13T10:28:08.855Z"
   }
 ]
