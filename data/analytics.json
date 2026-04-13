@@ -1956,9 +1956,9 @@
     "timestamp": "2026-04-13T10:40:51.295Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-13T11:19:37.399Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":35,\"y\":42,\"el\":\"p[undefined]\",\"time\":1776079208366},{\"x\":35,\"y\":42,\"el\":\"p[undefined]\",\"time\":1776079208630},{\"x\":35,\"y\":42,\"el\":\"p[undefined]\",\"time\":1776079208886}]",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-13T11:20:43.120Z"
   }
 ]
