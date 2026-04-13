@@ -1900,5 +1900,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-11T16:14:05.128Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-13T10:13:05.208Z"
   }
 ]
