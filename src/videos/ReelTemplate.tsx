@@ -158,17 +158,10 @@ const SceneView: React.FC<{
   const { fps } = useVideoConfig();
   const localFrame = frame - enterFrame;
 
-  // Fade in/out
-  const fadeIn = interpolate(localFrame, [0, fps * 0.3], [0, 1], {
+  // Quick fade in only — no fade out (persistent background prevents black)
+  const opacity = interpolate(localFrame, [0, fps * 0.2], [0, 1], {
     extrapolateRight: "clamp",
   });
-  const fadeOut = interpolate(
-    localFrame,
-    [durationFrames - fps * 0.3, durationFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-  const opacity = Math.min(fadeIn, fadeOut);
 
   return (
     <AbsoluteFill style={{ opacity }}>
@@ -373,7 +366,8 @@ export const ReelTemplate: React.FC<ReelProps> = ({
   backgroundMusic,
   images,
 }) => {
-  const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
+  const { fps, durationInFrames } = useVideoConfig();
 
   // Calculate frame positions
   const hookDuration = fps * 3; // 3 seconds for hook
@@ -397,8 +391,32 @@ export const ReelTemplate: React.FC<ReelProps> = ({
     currentFrame += durationFrames;
   }
 
+  // Determine which background image to show based on current frame
+  const getCurrentBgImage = (): string => {
+    if (frame < hookDuration) return images[0] || "";
+    for (let i = sequences.length - 1; i >= 0; i--) {
+      if (frame >= sequences[i].start) {
+        return images[sequences[i].imageIdx] || images[0] || "";
+      }
+    }
+    return images[images.length - 1] || images[0] || "";
+  };
+
   return (
     <AbsoluteFill style={{ backgroundColor: "#000000", fontFamily: "Inter, sans-serif" }}>
+      {/* Persistent background — always visible, never black */}
+      <AbsoluteFill>
+        <Img
+          src={getCurrentBgImage()}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            filter: "brightness(0.4)",
+          }}
+        />
+      </AbsoluteFill>
+
       {/* Voice audio */}
       {audioFile && (
         <Audio src={staticFile(audioFile)} volume={1} />

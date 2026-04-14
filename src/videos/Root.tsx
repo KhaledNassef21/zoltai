@@ -21,7 +21,14 @@ const defaultProps: ReelProps = {
   ],
 };
 
-const totalDuration = 3 + defaultProps.scenes.reduce((s, sc) => s + sc.duration, 0) + 3;
+function calculateDurationInFrames(props: ReelProps, fps: number): number {
+  const hookSeconds = 3;
+  const ctaSeconds = 3;
+  const scenesSeconds = props.scenes.reduce((sum, s) => sum + s.duration, 0);
+  const total = hookSeconds + scenesSeconds + ctaSeconds;
+  // Minimum 15 seconds
+  return Math.max(total, 15) * fps;
+}
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -29,11 +36,15 @@ export const RemotionRoot: React.FC = () => {
       <Composition<ReelProps>
         id="Reel"
         component={ReelTemplate}
-        durationInFrames={totalDuration * 30}
         fps={30}
         width={1080}
         height={1920}
         defaultProps={defaultProps}
+        calculateMetadata={({ props }) => {
+          return {
+            durationInFrames: calculateDurationInFrames(props, 30),
+          };
+        }}
       />
     </>
   );

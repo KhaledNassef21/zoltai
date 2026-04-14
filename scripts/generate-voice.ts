@@ -106,8 +106,33 @@ async function generateWithEdgeTTS(
 
     const voice = "en-US-GuyNeural"; // Energetic male voice
 
+    // Try finding edge-tts in common locations
+    const edgeTtsBin = (() => {
+      const { execSync: es } = require("child_process");
+      for (const cmd of ["edge-tts", "python -m edge_tts", "python3 -m edge_tts"]) {
+        try {
+          es(`${cmd} --version`, { stdio: "pipe", timeout: 5000 });
+          return cmd;
+        } catch {}
+      }
+      // Check common Windows Python Scripts paths
+      const home = process.env.HOME || process.env.USERPROFILE || "";
+      const winPaths = [
+        `${home}/AppData/Local/Python/pythoncore-3.14-64/Scripts/edge-tts`,
+        `${home}/AppData/Local/Programs/Python/Python312/Scripts/edge-tts`,
+        `${home}/AppData/Local/Programs/Python/Python311/Scripts/edge-tts`,
+      ];
+      for (const p of winPaths) {
+        try {
+          es(`"${p}" --version`, { stdio: "pipe", timeout: 5000 });
+          return `"${p}"`;
+        } catch {}
+      }
+      return "edge-tts";
+    })();
+
     execSync(
-      `edge-tts --voice "${voice}" --text "${cleanText}" --write-media "${outputPath}" --rate="+10%"`,
+      `${edgeTtsBin} --voice "${voice}" --text "${cleanText}" --write-media "${outputPath}" --rate="+10%"`,
       { timeout: 60000, stdio: "pipe" }
     );
 

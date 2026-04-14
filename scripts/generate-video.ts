@@ -20,6 +20,27 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+
+// Load .env.local for local development
+function loadEnv() {
+  const envFile = path.join(process.cwd(), ".env.local");
+  if (fs.existsSync(envFile)) {
+    const lines = fs.readFileSync(envFile, "utf-8").split("\n");
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eqIdx = trimmed.indexOf("=");
+      if (eqIdx === -1) continue;
+      const key = trimmed.slice(0, eqIdx).trim();
+      const val = trimmed.slice(eqIdx + 1).trim();
+      if (!process.env[key]) {
+        process.env[key] = val;
+      }
+    }
+  }
+}
+loadEnv();
+
 import { pickTopReels, type OptimizedReel } from "../src/lib/reel-optimizer";
 import { generateVoice } from "./generate-voice";
 
@@ -113,7 +134,7 @@ function renderVideo(input: RenderInput): string | null {
     hook: reel.hook,
     scenes: reel.scenes,
     cta: reel.cta,
-    audioFile: audioPath ? path.basename(audioPath) : undefined,
+    audioFile: audioPath ? `audio/${path.basename(audioPath)}` : undefined,
     images,
   });
 
@@ -126,11 +147,10 @@ function renderVideo(input: RenderInput): string | null {
 
     const cmd = [
       "npx remotion render",
-      `--entry-point="src/videos/index.ts"`,
+      `src/videos/index.ts`,
       "Reel",
       `"${outputFile}"`,
       `--props="${propsFile}"`,
-      `--frames=0-${totalFrames - 1}`,
       `--width=1080`,
       `--height=1920`,
       `--fps=${fps}`,
