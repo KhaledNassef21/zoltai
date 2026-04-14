@@ -187,7 +187,9 @@ export default function AdminArticles() {
             setAffiliateLinks(data.affiliateLinks);
           }
         }
-      } catch {}
+      } catch (err) {
+        console.error("Failed to load article content:", err);
+      }
       setLoadingContent(false);
     } else {
       setEditSlug(null);
