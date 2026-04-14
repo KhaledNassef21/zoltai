@@ -3,108 +3,1962 @@
     "event": "page_view",
     "variant": "",
     "page": "/",
-    "timestamp": "2026-04-14T05:24:38.881Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:30:48.801Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:30:56.603Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:35:12.392Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:36:17.072Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:36:17.607Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:36:17.740Z"
-  },
-  {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-14T05:36:29.430Z"
+    "timestamp": "2026-04-06T13:29:33.945Z"
   },
   {
     "event": "heatmap_clicks",
-    "variant": "[{\"x\":29,\"y\":44,\"el\":\"img.w-full\",\"time\":1776145004838},{\"x\":29,\"y\":44,\"el\":\"img.w-full\",\"time\":1776145007259},{\"x\":22,\"y\":63,\"el\":\"h3.font-semibold[Descript vs Otter.ai vs Gramma]\",\"time\":1776145009828},{\"x\":22,\"y\":43,\"el\":\"p.mt-2[Compare Descript, Otter.ai, an]\",\"time\":1776145011455}]",
+    "variant": "[{\"x\":77,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775482184736}]",
     "page": "/",
-    "timestamp": "2026-04-14T05:36:53.964Z"
+    "timestamp": "2026-04-06T13:29:48.103Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":39,\"y\":34,\"el\":\"input.px-4\",\"time\":1775482264270},{\"x\":39,\"y\":37,\"el\":\"textarea.w-full\",\"time\":1775482278007},{\"x\":63,\"y\":52,\"el\":\"button.px-5[Post Comment]\",\"time\":1775482300708},{\"x\":31,\"y\":73,\"el\":\"div.p-5[Kkhjust nowGood]\",\"time\":1775482304728},{\"x\":33,\"y\":73,\"el\":\"p.text-sm[Good]\",\"time\":1775482305455},{\"x\":34,\"y\":68,\"el\":\"div.p-5[Kkhjust nowGood]\",\"time\":1775482307922}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T13:31:57.477Z"
   },
   {
     "event": "page_view",
     "variant": "",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:36:54.111Z"
+    "page": "/",
+    "timestamp": "2026-04-06T13:33:15.132Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:04:12.706Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:04:13.428Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:04:29.438Z"
   },
   {
     "event": "cta_impression",
     "variant": "article_mid",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:36:54.201Z"
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:04:29.516Z"
   },
   {
     "event": "cta_impression",
     "variant": "article_mid",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:36:54.223Z"
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:04:29.755Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:04:37.138Z"
   },
   {
     "event": "popup_shown",
     "variant": "newsletter_popup_timer",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:37:38.998Z"
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:05:14.619Z"
   },
   {
     "event": "popup_dismissed",
     "variant": "newsletter_popup",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:37:41.294Z"
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:10:53.289Z"
   },
   {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_exit",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:37:56.111Z"
-  },
-  {
-    "event": "popup_shown",
-    "variant": "newsletter_popup_exit",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:37:57.282Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:10:56.378Z"
   },
   {
     "event": "heatmap_clicks",
-    "variant": "[{\"x\":80,\"y\":15,\"el\":\"path.[object\",\"time\":1776145061278}]",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:38:02.148Z"
+    "variant": "[{\"x\":60,\"y\":25,\"el\":\"svg.[object\",\"time\":1775484653247},{\"x\":22,\"y\":4,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775484655673}]",
+    "page": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+    "timestamp": "2026-04-06T14:10:56.409Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":86,\"y\":20,\"el\":\"button.px-3[Enable Notifications]\",\"time\":1775484663245},{\"x\":31,\"y\":65,\"el\":\"img.w-full\",\"time\":1775484671408}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:11:13.804Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:13.872Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:13.919Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:14.083Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":31,\"y\":51,\"el\":\"div.p-5[Kkh39m agoGood]\",\"time\":1775484691548},{\"x\":58,\"y\":3,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775484699034}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:11:39.942Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T14:11:40.109Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":3,\"el\":\"div.flex[BlogTools💰 EarnAboutContactAR]\",\"time\":1775484703964},{\"x\":62,\"y\":3,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775484704396}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T14:11:46.335Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T14:11:46.369Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-06T14:11:53.552Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":68,\"y\":4,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775484713016}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T14:11:53.606Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/profile",
+    "timestamp": "2026-04-06T14:12:03.273Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":69,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775484719499},{\"x\":77,\"y\":3,\"el\":\"div.w-7[J]\",\"time\":1775484722677}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T14:12:03.295Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:11.739Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":35,\"y\":84,\"el\":\"button.px-5[Sign Out]\",\"time\":1775484729513}]",
+    "page": "/profile",
+    "timestamp": "2026-04-06T14:12:11.771Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:31.254Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:31.368Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:31.417Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":34,\"y\":40,\"el\":\"img.w-full\",\"time\":1775484749440}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:31.461Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:41.991Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":52,\"y\":51,\"el\":\"input.flex-1\",\"time\":1775484757236},{\"x\":48,\"y\":51,\"el\":\"input.w-full\",\"time\":1775484758133},{\"x\":24,\"y\":5,\"el\":\"nav.max-w-6xl[ZoltaiBlogTools💰 EarnAboutCon]\",\"time\":1775484761102},{\"x\":22,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775484761557}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T14:12:42.033Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":5,\"el\":\"nav.max-w-6xl[ZoltaiBlogTools💰 EarnAboutCon]\",\"time\":1775484763466},{\"x\":77,\"y\":3,\"el\":\"div.w-7[J]\",\"time\":1775484763835}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:12:44.109Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/profile",
+    "timestamp": "2026-04-06T14:12:44.156Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-06T14:12:45.394Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":38,\"y\":63,\"el\":\"div.min-h-[70vh][Welcome BackSign in to access ]\",\"time\":1775484766468},{\"x\":46,\"y\":34,\"el\":\"label.block[Email]\",\"time\":1775484768229},{\"x\":46,\"y\":39,\"el\":\"input.w-full\",\"time\":1775484768760},{\"x\":71,\"y\":18,\"el\":\"div.min-h-[70vh][Welcome BackSign in to access ]\",\"time\":1775484772990},{\"x\":55,\"y\":34,\"el\":\"label.block[Email]\",\"time\":1775484773696}]",
+    "page": "/login",
+    "timestamp": "2026-04-06T14:12:58.283Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:13:00.006Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
+    "timestamp": "2026-04-06T14:25:09.471Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":3,\"el\":\"a.text-zinc-400[About]\",\"time\":1775485558914}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:26:02.349Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":54,\"y\":2,\"el\":\"div.flex[BlogTools💰 EarnAboutContactAR]\",\"time\":1775486758298},{\"x\":54,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775486758920}]",
+    "page": "/",
+    "timestamp": "2026-04-06T14:45:59.968Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:46:00.169Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "79",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:41.533Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "79",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:42.067Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:53:45.576Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:49.619Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:53:50.671Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:53:57.993Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:53:58.290Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:54:07.027Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:54:08.353Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T14:54:17.111Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T14:54:17.266Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:08:36.081Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:08:40.352Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:08:47.380Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:17:20.878Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775488640472}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:17:20.898Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:17:25.235Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":57,\"y\":4,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775488654980}]",
+    "page": "/",
+    "timestamp": "2026-04-06T15:17:35.703Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:17:35.834Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":3,\"el\":\"a.text-zinc-400[About]\",\"time\":1775488660161}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:17:40.481Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/about",
+    "timestamp": "2026-04-06T15:17:40.505Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-06T15:17:43.066Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":67,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775488662678}]",
+    "page": "/about",
+    "timestamp": "2026-04-06T15:17:43.083Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:17:45.025Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":54,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775488664624}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T15:17:45.052Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:17:48.389Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:17:48.640Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":37,\"y\":32,\"el\":\"img.w-full\",\"time\":1775488666371}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:17:48.684Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:17:48.790Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":37,\"y\":50,\"el\":\"a.inline-flex[Browse Tools Directory →]\",\"time\":1775488693444}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:18:13.500Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "93",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T15:18:13.528Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:18:15.402Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:18:20.930Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775488700492}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T15:18:20.958Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "61",
+    "page": "/",
+    "timestamp": "2026-04-06T15:26:25.924Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:26:27.226Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:26:37.469Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":78,\"y\":13,\"el\":\"a.text-accent-light[View all→]\",\"time\":1775489196862}]",
+    "page": "/",
+    "timestamp": "2026-04-06T15:26:37.505Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T15:27:19.389Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775489213089},{\"x\":59,\"y\":4,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775489238608}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T15:27:19.457Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "40",
+    "page": "/earn",
+    "timestamp": "2026-04-06T15:27:31.646Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:27:33.088Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:27:50.096Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":48,\"y\":27,\"el\":\"a.block[Get Premium Access]\",\"time\":1775489269828}]",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:27:50.200Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:29:21.164Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":58,\"y\":16,\"el\":\"div.relative[👑 Premium MembershipUnlock Pr]\",\"time\":1775489276551},{\"x\":58,\"y\":16,\"el\":\"div.relative[👑 Premium MembershipUnlock Pr]\",\"time\":1775489276862},{\"x\":23,\"y\":5,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775489372177}]",
+    "page": "/premium",
+    "timestamp": "2026-04-06T15:29:32.560Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T15:29:32.591Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:06:42.063Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:06:53.234Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:06:55.095Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/privacy",
+    "timestamp": "2026-04-06T20:06:59.060Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:07:15.350Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":37,\"y\":63,\"el\":\"a.hover:text-foreground[Terms of Service]\",\"time\":1775506030950}]",
+    "page": "/privacy",
+    "timestamp": "2026-04-06T20:07:15.450Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:09:45.317Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:09:58.033Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:10:03.587Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:28.985Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:29.651Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:31.709Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:32.703Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:38.855Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:39.785Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:42.784Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:46.317Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":84,\"y\":90,\"el\":\"button.px-5[Accept]\",\"time\":1775506255386}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:56.703Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:10:57.758Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "97",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:11:16.314Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/components",
+    "timestamp": "2026-04-06T20:11:17.449Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:11:24.160Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":70,\"y\":93,\"el\":\"button.px-5[Accept]\",\"time\":1775506281946},{\"x\":22,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775506283853}]",
+    "page": "/components",
+    "timestamp": "2026-04-06T20:11:24.225Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:14:26.298Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":49,\"y\":4,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775506465362}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:14:26.339Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:14:52.728Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":60,\"y\":2,\"el\":\"div.flex[BlogTools💰 EarnAboutContactAR]\",\"time\":1775506491480},{\"x\":60,\"y\":3,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775506492145}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:14:52.817Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:15:02.509Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":30,\"y\":11,\"el\":\"span.text-zinc-400[Top AI Tools]\",\"time\":1775506501281},{\"x\":25,\"y\":11,\"el\":\"a.hover:text-zinc-300[Home]\",\"time\":1775506502132}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:15:02.538Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:15:04.619Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":60,\"y\":4,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775506504254}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:15:04.640Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":3,\"el\":\"a.text-zinc-400[About]\",\"time\":1775506509368}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:15:09.786Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/about",
+    "timestamp": "2026-04-06T20:15:09.819Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":66,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775506519837}]",
+    "page": "/about",
+    "timestamp": "2026-04-06T20:15:20.226Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:15:20.266Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775506527523}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:15:28.139Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:15:28.261Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:16:19.506Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775506579113}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:16:19.535Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:16:58.932Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:16:58.997Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:16:59.023Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":33,\"y\":33,\"el\":\"img.w-full\",\"time\":1775506607335},{\"x\":32,\"y\":22,\"el\":\"img.w-full\",\"time\":1775506615117}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:16:59.051Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":34,\"y\":48,\"el\":\"p.text-sm[Good]\",\"time\":1775506631022},{\"x\":34,\"y\":48,\"el\":\"p.text-sm[Good]\",\"time\":1775506631730},{\"x\":33,\"y\":78,\"el\":\"p.text-sm[Good]\",\"time\":1775506639560},{\"x\":33,\"y\":78,\"el\":\"p.text-sm[Good]\",\"time\":1775506639971},{\"x\":33,\"y\":78,\"el\":\"p.text-sm[Good]\",\"time\":1775506640495},{\"x\":37,\"y\":77,\"el\":\"p.text-sm[Good]\",\"time\":1775506641673},{\"x\":38,\"y\":61,\"el\":\"span.text-zinc-500[(1)]\",\"time\":1775506645483},{\"x\":22,\"y\":2,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775506821869}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:20:22.510Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:20:22.542Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:20:27.604Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":33,\"y\":22,\"el\":\"img.w-full\",\"time\":1775506825978}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:20:27.633Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:20:27.668Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:20:27.716Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":38,\"y\":42,\"el\":\"h4.font-semibold[ChatGPT vs Claude vs Gemini 20]\",\"time\":1775506836214}]",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-06T20:20:37.445Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/chatgpt-vs-claude-vs-gemini-2024-ultimate-ai-chatbot-guide",
+    "timestamp": "2026-04-06T20:20:37.538Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/chatgpt-vs-claude-vs-gemini-2024-ultimate-ai-chatbot-guide",
+    "timestamp": "2026-04-06T20:20:37.587Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/chatgpt-vs-claude-vs-gemini-2024-ultimate-ai-chatbot-guide",
+    "timestamp": "2026-04-06T20:20:37.611Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/blog/chatgpt-vs-claude-vs-gemini-2024-ultimate-ai-chatbot-guide",
+    "timestamp": "2026-04-06T20:21:06.677Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/blog-with-filters",
+    "timestamp": "2026-04-06T20:21:08.525Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:33:09.174Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775507588230}]",
+    "page": "/blog/blog-with-filters",
+    "timestamp": "2026-04-06T20:33:09.199Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024",
+    "timestamp": "2026-04-06T20:35:53.859Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024",
+    "timestamp": "2026-04-06T20:35:53.890Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024",
+    "timestamp": "2026-04-06T20:35:53.916Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":51,\"y\":59,\"el\":\"img.w-full\",\"time\":1775507752449}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:35:53.944Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":38,\"y\":27,\"el\":\"a.inline-flex[Browse Tools Directory →]\",\"time\":1775507769486}]",
+    "page": "/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024",
+    "timestamp": "2026-04-06T20:36:09.521Z"
   },
   {
     "event": "scroll_depth",
     "variant": "94",
-    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
-    "timestamp": "2026-04-14T05:38:02.416Z"
+    "page": "/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024",
+    "timestamp": "2026-04-06T20:36:09.568Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T20:36:11.798Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:36:28.721Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":28,\"y\":23,\"el\":\"button.px-4[AI Writing]\",\"time\":1775507775531},{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775507787499}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T20:36:28.772Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:37:13.813Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":43,\"y\":45,\"el\":\"button.text-xs[Leonardo AI (2)]\",\"time\":1775507810740},{\"x\":49,\"y\":40,\"el\":\"button.text-xs[ChatGPT (2)]\",\"time\":1775507812511},{\"x\":44,\"y\":40,\"el\":\"button.text-xs[Canva AI (1)]\",\"time\":1775507813852},{\"x\":43,\"y\":39,\"el\":\"div.flex[All (13)AI Tools (2)AI art (1)]\",\"time\":1775507814765},{\"x\":43,\"y\":37,\"el\":\"button.text-xs[AI music (1)]\",\"time\":1775507815684},{\"x\":32,\"y\":41,\"el\":\"button.text-xs[AI writing tools (3)]\",\"time\":1775507817265},{\"x\":37,\"y\":34,\"el\":\"button.text-xs[productivity (2)]\",\"time\":1775507826568},{\"x\":21,\"y\":15,\"el\":\"a.hover:text-zinc-300[Home]\",\"time\":1775507833321}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:37:13.895Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:37:17.478Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":60,\"y\":4,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775507837089}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:37:17.500Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:37:23.301Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":54,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775507842721}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:37:23.323Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/about",
+    "timestamp": "2026-04-06T20:37:32.349Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":63,\"y\":4,\"el\":\"a.text-zinc-400[About]\",\"time\":1775507852102}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:37:32.372Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":68,\"y\":4,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775507853736}]",
+    "page": "/about",
+    "timestamp": "2026-04-06T20:37:33.935Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:37:33.959Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":45,\"y\":48,\"el\":\"a.p-6[✉️Emailinfo.zoltai@gmail.comBe]\",\"time\":1775507855686}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:37:35.762Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":57,\"y\":71,\"el\":\"p.text-sm[Know a great AI tool?]\",\"time\":1775507859612}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:37:39.677Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":51,\"el\":\"details.p-5[How often do you publish new c]\",\"time\":1775507864147},{\"x\":66,\"y\":50,\"el\":\"summary.font-semibold[How often do you publish new c]\",\"time\":1775507865575},{\"x\":67,\"y\":60,\"el\":\"details.p-5[Can I write for Zoltai?▾Yes! I]\",\"time\":1775507867134},{\"x\":67,\"y\":62,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507868106},{\"x\":67,\"y\":29,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507871670},{\"x\":67,\"y\":29,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507871984},{\"x\":67,\"y\":29,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507872681},{\"x\":67,\"y\":44,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507876920},{\"x\":67,\"y\":50,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507887505},{\"x\":67,\"y\":53,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507891951}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:38:11.980Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":67,\"y\":53,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507892957},{\"x\":67,\"y\":53,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507894093},{\"x\":67,\"y\":54,\"el\":\"div.space-y-4[How can AI tools help me in my]\",\"time\":1775507895744},{\"x\":67,\"y\":54,\"el\":\"details.p-5[How often do you publish new c]\",\"time\":1775507896193},{\"x\":67,\"y\":52,\"el\":\"span.text-zinc-500[▾]\",\"time\":1775507900238},{\"x\":38,\"y\":60,\"el\":\"a.hover:text-foreground[Privacy Policy]\",\"time\":1775507910894}]",
+    "page": "/contact",
+    "timestamp": "2026-04-06T20:38:31.330Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/privacy",
+    "timestamp": "2026-04-06T20:38:31.377Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:38:41.921Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":38,\"y\":64,\"el\":\"a.hover:text-foreground[Terms of Service]\",\"time\":1775507921567}]",
+    "page": "/privacy",
+    "timestamp": "2026-04-06T20:38:41.945Z"
+  },
+  {
+    "event": "cta_click",
+    "variant": "sticky_cta",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:38:59.603Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":93,\"y\":95,\"el\":\"span.jsx-3025faa6dcd1a4e9[Explore AI Tools]\",\"time\":1775507939595}]",
+    "page": "/terms",
+    "timestamp": "2026-04-06T20:38:59.994Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:39:00.023Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":54,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775507947182}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:39:08.464Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:39:08.720Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":23,\"y\":32,\"el\":\"button.text-xs[All (13)]\",\"time\":1775507950456},{\"x\":22,\"y\":15,\"el\":\"a.hover:text-zinc-300[Home]\",\"time\":1775507957632}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:39:17.935Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:39:17.960Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":43,\"y\":58,\"el\":\"input.sm:w-36\",\"time\":1775507966712},{\"x\":50,\"y\":57,\"el\":\"input.flex-1\",\"time\":1775507967486}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:39:58.555Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-06T20:39:58.588Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:42:24.160Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":12,\"y\":31,\"el\":\"main.flex-1[Discover the Best AI Tools(No ]\",\"time\":1775508146509},{\"x\":52,\"y\":52,\"el\":\"a.hover:text-foreground[Facebook]\",\"time\":1775508154950}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:44:02.651Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-06T20:44:02.697Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-06T20:44:04.018Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775508283276},{\"x\":54,\"y\":41,\"el\":\"a.px-8[Create Free Account First]\",\"time\":1775508284772}]",
+    "page": "/premium",
+    "timestamp": "2026-04-06T20:44:45.067Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-06T20:44:45.155Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":52,\"el\":\"input.w-full\",\"time\":1775508287867},{\"x\":43,\"y\":30,\"el\":\"input.w-full\",\"time\":1775508289118},{\"x\":43,\"y\":39,\"el\":\"input.w-full\",\"time\":1775508289816}]",
+    "page": "/register",
+    "timestamp": "2026-04-06T20:44:53.874Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-06T20:44:53.906Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:45:36.926Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":41,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775508296633},{\"x\":44,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775508297215},{\"x\":44,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775508297501},{\"x\":44,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775508297826},{\"x\":28,\"y\":28,\"el\":\"p.text-sm[“Zoltai helped me discover AI ]\",\"time\":1775508316411},{\"x\":59,\"y\":2,\"el\":\"div.flex[BlogTools💰 EarnAboutContactAR]\",\"time\":1775508335846},{\"x\":60,\"y\":3,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775508336577}]",
+    "page": "/premium",
+    "timestamp": "2026-04-06T20:45:36.948Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:45:46.713Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":47,\"y\":36,\"el\":\"a.px-8[Read Free Guides]\",\"time\":1775508345974}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:45:46.744Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":60,\"y\":4,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775508350558}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:45:50.879Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:45:50.900Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T20:45:57.228Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":55,\"y\":34,\"el\":\"a.px-8[Browse All Tools]\",\"time\":1775508356917}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:45:57.300Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:46:25.342Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":64,\"y\":42,\"el\":\"button.px-4[Research]\",\"time\":1775508368362},{\"x\":30,\"y\":31,\"el\":\"div.max-w-6xl[{\\\"@context\\\":\\\"https://schema.or]\",\"time\":1775508373165},{\"x\":30,\"y\":31,\"el\":\"div.max-w-6xl[{\\\"@context\\\":\\\"https://schema.or]\",\"time\":1775508373379},{\"x\":35,\"y\":20,\"el\":\"h1.text-3xl[Best AI Tools in 2026]\",\"time\":1775508374195},{\"x\":73,\"y\":4,\"el\":\"svg.[object\",\"time\":1775508378472},{\"x\":22,\"y\":42,\"el\":\"button.px-4[All]\",\"time\":1775508381560},{\"x\":54,\"y\":4,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775508384607}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T20:46:25.372Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-06T20:46:28.025Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":56,\"y\":3,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775508387829}]",
+    "page": "/blog",
+    "timestamp": "2026-04-06T20:46:28.063Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":59,\"y\":3,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775508389338}]",
+    "page": "/tools",
+    "timestamp": "2026-04-06T20:46:29.633Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:46:29.655Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775508411334}]",
+    "page": "/earn",
+    "timestamp": "2026-04-06T20:46:51.591Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-06T20:46:51.616Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":60,\"el\":\"a.text-accent-light[Create one]\",\"time\":1775508414199}]",
+    "page": "/login",
+    "timestamp": "2026-04-06T20:46:54.360Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-06T20:46:54.395Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":46,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508415338},{\"x\":37,\"y\":52,\"el\":\"div.min-h-[70vh][Join ZoltaiCreate your free ac]\",\"time\":1775508416128},{\"x\":43,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508418261},{\"x\":45,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508419305},{\"x\":45,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508419519},{\"x\":45,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508419737},{\"x\":48,\"y\":15,\"el\":\"span.gradient-text[Join Zoltai]\",\"time\":1775508421703},{\"x\":42,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508424594},{\"x\":42,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508424813},{\"x\":42,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508425028}]",
+    "page": "/register",
+    "timestamp": "2026-04-06T20:47:05.043Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:47:27.465Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":42,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508426036},{\"x\":42,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508426373},{\"x\":42,\"y\":51,\"el\":\"input.w-full\",\"time\":1775508426587},{\"x\":45,\"y\":44,\"el\":\"input.w-full\",\"time\":1775508427396},{\"x\":46,\"y\":32,\"el\":\"input.w-full\",\"time\":1775508430779},{\"x\":22,\"y\":4,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775508446995}]",
+    "page": "/register",
+    "timestamp": "2026-04-06T20:47:27.508Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":34,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508453363},{\"x\":44,\"y\":34,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508453829},{\"x\":44,\"y\":34,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508454449},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508456149},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508456442},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508456662},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508456883},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508457355},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508458008},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508458235}]",
+    "page": "/",
+    "timestamp": "2026-04-06T20:47:38.248Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-06T20:58:17.190Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508458876},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508459113},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508459330},{\"x\":47,\"y\":21,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775508459943}]",
+    "page": "/",
+    "timestamp": "2026-04-07T03:42:47.747Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "46",
+    "page": "/",
+    "timestamp": "2026-04-07T03:42:47.878Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T03:43:20.772Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T03:43:22.642Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T04:03:37.377Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-07T04:03:43.127Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":43,\"y\":34,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775534627361},{\"x\":67,\"y\":19,\"el\":\"span.text-xs[Premium]\",\"time\":1775534634836},{\"x\":50,\"y\":56,\"el\":\"a.block[Create Account to Subscribe]\",\"time\":1775534637517}]",
+    "page": "/premium",
+    "timestamp": "2026-04-07T04:03:58.148Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T04:03:58.215Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":31,\"el\":\"div.min-h-[70vh][Join ZoltaiCreate your free ac]\",\"time\":1775534641698}]",
+    "page": "/register",
+    "timestamp": "2026-04-07T04:04:04.648Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-07T04:04:04.706Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":77,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775539563716}]",
+    "page": "/blog/leonardo-ai-vs-midjourney-vs-canva-ai-2025-profit-comparison",
+    "timestamp": "2026-04-07T05:26:05.073Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T05:26:57.083Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-07T05:30:59.771Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+    "timestamp": "2026-04-07T07:03:07.883Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":29,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775545441358},{\"x\":50,\"y\":29,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775545441582},{\"x\":50,\"y\":37,\"el\":\"p.mt-6[Discover the best AI tools to ]\",\"time\":1775545442006},{\"x\":50,\"y\":37,\"el\":\"p.mt-6[Discover the best AI tools to ]\",\"time\":1775545442214},{\"x\":50,\"y\":37,\"el\":\"p.mt-6[Discover the best AI tools to ]\",\"time\":1775545442438},{\"x\":55,\"y\":29,\"el\":\"h1.text-4xl[Discover the Best AI Tools(No ]\",\"time\":1775545442854},{\"x\":60,\"y\":2,\"el\":\"a.text-purple-400[💰 Earn]\",\"time\":1775545444759}]",
+    "page": "/",
+    "timestamp": "2026-04-07T07:04:07.118Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "51",
+    "page": "/",
+    "timestamp": "2026-04-07T07:19:45.101Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/premium",
+    "timestamp": "2026-04-07T08:23:27.899Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T08:23:31.619Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T08:23:32.566Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":43,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775550208834},{\"x\":43,\"y\":42,\"el\":\"button.px-8[Get Premium Access]\",\"time\":1775550209709},{\"x\":91,\"y\":38,\"el\":\"div.absolute\",\"time\":1775550215248},{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775550216525}]",
+    "page": "/premium",
+    "timestamp": "2026-04-07T08:23:36.900Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:23:37.057Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":52,\"el\":\"input.w-full\",\"time\":1775550218427},{\"x\":48,\"y\":44,\"el\":\"input.w-full\",\"time\":1775550219331},{\"x\":48,\"y\":52,\"el\":\"input.w-full\",\"time\":1775550220316},{\"x\":71,\"y\":66,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775550221229},{\"x\":56,\"y\":71,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775550222593}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:23:42.869Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T08:23:42.911Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T08:24:08.655Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":58,\"el\":\"input.w-full\",\"time\":1775550224450},{\"x\":65,\"y\":62,\"el\":\"div.min-h-[80vh][ZoltaiCreate Your AccountJoin ]\",\"time\":1775550225992},{\"x\":22,\"y\":5,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775550248238}]",
+    "page": "/register",
+    "timestamp": "2026-04-07T08:24:08.677Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":55,\"y\":3,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775550259658}]",
+    "page": "/",
+    "timestamp": "2026-04-07T08:24:20.003Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/tools",
+    "timestamp": "2026-04-07T08:24:20.037Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:24:21.867Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775550261390}]",
+    "page": "/tools",
+    "timestamp": "2026-04-07T08:24:21.894Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":66,\"y\":3,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1775550269698}]",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:24:29.988Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-07T08:24:30.012Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:24:32.241Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":53,\"y\":3,\"el\":\"nav.max-w-6xl[ZoltaiBlogTools💰 EarnAboutCon]\",\"time\":1775550271344},{\"x\":53,\"y\":3,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1775550271804}]",
+    "page": "/contact",
+    "timestamp": "2026-04-07T08:24:32.261Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:25:00.466Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":42,\"y\":12,\"el\":\"div.max-w-6xl[{\\\"@context\\\":\\\"https://schema.or]\",\"time\":1775550298949},{\"x\":77,\"y\":4,\"el\":\"a.px-3[Sign In]\",\"time\":1775550300317}]",
+    "page": "/blog",
+    "timestamp": "2026-04-07T08:25:00.494Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T08:25:05.623Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":43,\"el\":\"input.w-full\",\"time\":1775550303704},{\"x\":54,\"y\":70,\"el\":\"a.text-purple-400[Create one for free]\",\"time\":1775550305484}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T08:25:05.646Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T13:26:15.181Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/register",
+    "timestamp": "2026-04-07T14:07:28.550Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "48",
+    "page": "/",
+    "timestamp": "2026-04-07T14:22:54.304Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:23:07.547Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":49,\"y\":50,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775571796649}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:23:38.083Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "67",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:23:38.122Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/reset-password",
+    "timestamp": "2026-04-07T14:23:40.522Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "67",
+    "page": "/reset-password",
+    "timestamp": "2026-04-07T14:24:19.258Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":49,\"y\":50,\"el\":\"button.w-full[Reset Password]\",\"time\":1775571835522}]",
+    "page": "/reset-password",
+    "timestamp": "2026-04-07T14:24:19.288Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":22,\"y\":21,\"el\":\"div.min-h-[80vh][ZoltaiCreate Your AccountJoin ]\",\"time\":1775571504055},{\"x\":76,\"y\":3,\"el\":\"a.px-3[Sign In]\",\"time\":1775572145434}]",
+    "page": "/register",
+    "timestamp": "2026-04-07T14:29:05.798Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:29:05.820Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":58,\"y\":49,\"el\":\"a.text-xs[Forgot password?]\",\"time\":1775572148980}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:29:09.201Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:29:09.221Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":48,\"el\":\"input.w-full\",\"time\":1775572149807},{\"x\":50,\"y\":57,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775572159533},{\"x\":45,\"y\":59,\"el\":\"button.px-5[Try Again]\",\"time\":1775572222300},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572228936},{\"x\":48,\"y\":58,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775572230659},{\"x\":47,\"y\":49,\"el\":\"input.w-full\",\"time\":1775572232040},{\"x\":49,\"y\":56,\"el\":\"button.w-full[Send Reset Link]\",\"time\":1775572233513},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572234446},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572235254},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572235495}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:30:35.548Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:31:10.377Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572235721},{\"x\":44,\"y\":50,\"el\":\"input.w-full\",\"time\":1775572237018},{\"x\":44,\"y\":33,\"el\":\"h1.text-2xl[Forgot Password?]\",\"time\":1775572267995},{\"x\":47,\"y\":51,\"el\":\"input.w-full\",\"time\":1775572269285},{\"x\":54,\"y\":68,\"el\":\"a.text-purple-400[Sign in]\",\"time\":1775572270227}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:31:10.400Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":69,\"y\":35,\"el\":\"div.min-h-[80vh][ZoltaiWelcome BackSign in to a]\",\"time\":1775572271767},{\"x\":59,\"y\":49,\"el\":\"a.text-xs[Forgot password?]\",\"time\":1775572273557}]",
+    "page": "/login",
+    "timestamp": "2026-04-07T14:31:13.698Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:31:13.719Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T14:31:20.549Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":73,\"y\":4,\"el\":\"button.p-1.5\",\"time\":1775572277602},{\"x\":23,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1775572279894}]",
+    "page": "/forgot-password",
+    "timestamp": "2026-04-07T14:31:20.651Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T18:44:18.278Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T18:44:24.339Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T18:44:27.179Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "44",
+    "page": "/",
+    "timestamp": "2026-04-07T18:50:07.771Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-07T18:50:10.090Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "44",
+    "page": "/",
+    "timestamp": "2026-04-07T18:51:59.872Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:31:49.080Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:31:49.992Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:31:58.954Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T05:32:03.309Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "57",
+    "page": "/",
+    "timestamp": "2026-04-08T05:32:06.473Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/reset-password",
+    "timestamp": "2026-04-08T05:34:47.615Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T10:10:38.389Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T10:10:42.412Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "19",
+    "page": "/",
+    "timestamp": "2026-04-08T10:10:59.426Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T20:20:42.838Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T20:20:48.368Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-08T20:20:52.045Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":71,\"y\":3,\"el\":\"button.px-2[EN]\",\"time\":1775680033584},{\"x\":82,\"y\":44,\"el\":\"h2.text-2xl[ماذا يقول قراؤنا]\",\"time\":1775680044042},{\"x\":27,\"y\":5,\"el\":\"button.px-2[AR]\",\"time\":1775680048976},{\"x\":75,\"y\":3,\"el\":\"button.px-2[EN]\",\"time\":1775680056505},{\"x\":22,\"y\":6,\"el\":\"button.px-2[AR]\",\"time\":1775680082593}]",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:06.891Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:06.959Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:07.970Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:12.239Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:18.748Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:18.812Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":75,\"y\":3,\"el\":\"button.px-2[EN]\",\"time\":1775679642844},{\"x\":29,\"y\":3,\"el\":\"button.px-2[AR]\",\"time\":1775679661210},{\"x\":60,\"y\":64,\"el\":\"button.px-6[lead.cta]\",\"time\":1775679762638},{\"x\":52,\"y\":50,\"el\":\"span.gradient-text[lead.title2]\",\"time\":1775679765639},{\"x\":49,\"y\":44,\"el\":\"div.inline-block[lead.badge]\",\"time\":1775679766805},{\"x\":49,\"y\":44,\"el\":\"div.inline-block[lead.badge]\",\"time\":1775679767039},{\"x\":49,\"y\":44,\"el\":\"div.inline-block[lead.badge]\",\"time\":1775679767313},{\"x\":54,\"y\":45,\"el\":\"div.relative[lead.badgelead.title1 lead.tit]\",\"time\":1775679767726}]",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:19.137Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-09T05:29:47.597Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "89",
+    "page": "/",
+    "timestamp": "2026-04-09T05:32:05.525Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-09T05:32:06.933Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/",
+    "timestamp": "2026-04-09T05:45:03.631Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "94",
+    "page": "/",
+    "timestamp": "2026-04-09T05:48:23.940Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":70,\"y\":4,\"el\":\"button.px-2[EN]\",\"time\":1775713808488},{\"x\":43,\"y\":3,\"el\":\"a.text-zinc-400[مدونة]\",\"time\":1775713824069}]",
+    "page": "/",
+    "timestamp": "2026-04-09T05:50:24.862Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":64,\"y\":44,\"el\":\"img.w-full\",\"time\":1775735591298},{\"x\":77,\"y\":33,\"el\":\"input.sm:w-36\",\"time\":1775735612316},{\"x\":73,\"y\":41,\"el\":\"h4.font-semibold[Descript vs Otter.ai vs Gramma]\",\"time\":1775735620100}]",
+    "page": "/blog/how-to-automate-social-media-content-creation-with-ai-in-2024",
+    "timestamp": "2026-04-09T11:53:41.482Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":0,\"y\":0,\"el\":\"button.px-5[Accept]\",\"time\":1775743127110}]",
+    "page": "/blog/how-to-automate-social-media-content-creation-with-ai-in-2024",
+    "timestamp": "2026-04-09T13:58:56.129Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/how-to-automate-social-media-content-creation-with-ai-in-2024",
+    "timestamp": "2026-04-10T04:35:36.859Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":58,\"y\":46,\"el\":\"font[أتمتة وسائل التواصل الاجتماعي ]\",\"time\":1775805146495}]",
+    "page": "/",
+    "timestamp": "2026-04-10T07:12:26.978Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-10T10:52:29.136Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "20",
+    "page": "/blog/automate-e-commerce-descriptions-semrush-vs-grammarly-2025",
+    "timestamp": "2026-04-10T13:25:39.562Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-10T14:56:14.020Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-11T05:32:21.864Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":55,\"y\":2,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1775887367682}]",
+    "page": "/blog",
+    "timestamp": "2026-04-11T06:02:48.219Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/automate-e-commerce-descriptions-semrush-vs-grammarly-2025",
+    "timestamp": "2026-04-11T08:52:18.658Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
+    "timestamp": "2026-04-11T09:00:24.321Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
+    "timestamp": "2026-04-11T09:03:16.064Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
+    "timestamp": "2026-04-11T09:06:23.953Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-11T09:10:49.924Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":0,\"y\":0,\"el\":\"button.px-5[Accept]\",\"time\":1775913192395}]",
+    "page": "/blog/best-ai-tools-for-e-commerce-product-photography-2025",
+    "timestamp": "2026-04-11T13:13:21.366Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-11T16:14:05.128Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-13T10:13:05.208Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":28,\"y\":67,\"el\":\"img.w-full\",\"time\":1776075364966}]",
+    "page": "/",
+    "timestamp": "2026-04-13T10:16:05.230Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "29",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-13T10:17:38.342Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-13T10:19:45.783Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":33,\"y\":53,\"el\":\"p[undefined]\",\"time\":1776075591061},{\"x\":33,\"y\":53,\"el\":\"p[undefined]\",\"time\":1776075591246},{\"x\":43,\"y\":60,\"el\":\"img.w-full\",\"time\":1776075633958},{\"x\":40,\"y\":49,\"el\":\"img.w-full\",\"time\":1776075634270}]",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-13T10:23:55.371Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-13T10:28:11.540Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "43",
+    "page": "/",
+    "timestamp": "2026-04-13T10:34:57.584Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-13T10:38:41.474Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":13,\"y\":36,\"el\":\"main.flex-1[Discover the Best AI Tools(No ]\",\"time\":1776076723574}]",
+    "page": "/",
+    "timestamp": "2026-04-13T10:40:51.295Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "53",
+    "page": "/",
+    "timestamp": "2026-04-14T06:53:11.117Z"
   }
 ]
