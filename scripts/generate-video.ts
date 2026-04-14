@@ -81,13 +81,19 @@ async function resolveImages(slug: string, count: number = 4): Promise<string[]>
     }
   }
 
-  // Fallback: generate placeholder images using Pollinations
+  // Fallback: use reliable Unsplash/Picsum images (Pollinations times out in CI)
+  const fallbackImages = [
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1920&fit=crop", // AI abstract
+    "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1080&h=1920&fit=crop", // tech/AI
+    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1080&h=1920&fit=crop", // data/tech
+    "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=1080&h=1920&fit=crop", // dark tech
+    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1080&h=1920&fit=crop", // matrix/code
+    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1080&h=1920&fit=crop", // server room
+  ];
+  let fallbackIdx = 0;
   while (urls.length < count) {
-    const seed = Math.floor(Math.random() * 99999);
-    const prompt = encodeURIComponent("futuristic AI technology abstract background dark");
-    urls.push(
-      `https://image.pollinations.ai/prompt/${prompt}?width=1080&height=1920&seed=${seed}&nologo=true`
-    );
+    urls.push(fallbackImages[fallbackIdx % fallbackImages.length]);
+    fallbackIdx++;
   }
 
   console.log(`   🖼️ Resolved ${urls.length} images for video`);
