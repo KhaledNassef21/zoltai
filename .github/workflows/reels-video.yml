@@ -1,0 +1,83 @@
+name: Daily Reels Video Pipeline
+
+on:
+  schedule:
+    - cron: "0 14 * * *" # Every day at 2:00 PM UTC
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Article slug (optional — auto-picks latest)"
+        required: false
+      reel_id:
+        description: "Specific reel ID (optional — auto-picks top 3)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      # Install system dependencies for Remotion
+      - name: Install Chrome dependencies
+        run: npx remotion browser ensure
+
+      # Install Edge TTS fallback
+      - name: Install Edge TTS
+        run: pip install edge-tts || true
+
+      # Step 1: Generate reel scripts (if not already generated)
+      - name: Generate reel scripts
+        run: npx tsx scripts/generate-reels.ts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # Step 2: Generate voice + render video
+      - name: Generate videos
+        run: |
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            npx tsx scripts/generate-video.ts "${{ github.event.inputs.slug }}" ${{ github.event.inputs.reel_id }}
+          else
+            npx tsx scripts/generate-video.ts
+          fi
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      # Step 3: Publish reels
+      - name: Publish reels
+        run: |
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            npx tsx scripts/post-reel.ts "${{ github.event.inputs.slug }}" ${{ github.event.inputs.reel_id }}
+          else
+            npx tsx scripts/post-reel.ts
+          fi
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
+
+      # Step 4: Save posted reels log
+      - name: Save posted reels log
+        run: |
+          git config user.name "zoltai-bot"
+          git config user.email "bot@zoltai.org"
+          git add data/posted-reels.json data/reels/ || true
+          git diff --staged --quiet || git commit -m "chore: update posted reels log"
+          git pull --rebase || true
+          git push || true
