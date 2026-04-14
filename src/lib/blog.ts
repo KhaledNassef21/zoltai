@@ -5,6 +5,11 @@ import readingTime from "reading-time";
 
 const CONTENT_DIR = path.join(process.cwd(), "src/content/blog");
 
+export interface AffiliateLink {
+  name: string;
+  url: string;
+}
+
 export interface Post {
   slug: string;
   title: string;
@@ -15,6 +20,7 @@ export interface Post {
   image: string;
   readingTime: string;
   content: string;
+  affiliateLinks: AffiliateLink[];
 }
 
 export function getAllPosts(): Post[] {
@@ -52,6 +58,7 @@ export function getPostBySlug(slug: string): Post | null {
     image: data.image || "/images/default-cover.jpg",
     readingTime: stats.text,
     content,
+    affiliateLinks: data.affiliateLinks || [],
   };
 }
 

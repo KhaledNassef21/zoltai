@@ -50,6 +50,7 @@ export async function GET(req: NextRequest) {
       tags: data.tags || [],
       image: data.image || "",
       content: body.trim(),
+      affiliateLinks: data.affiliateLinks || [],
     });
   }
 
@@ -72,6 +73,7 @@ export async function GET(req: NextRequest) {
         tags: data.tags || [],
         image: data.image || "",
         wordCount: body.split(/\s+/).length,
+        affiliateLinks: data.affiliateLinks || [],
       };
     });
   }
@@ -96,6 +98,7 @@ export async function GET(req: NextRequest) {
             tags: data.tags || [],
             image: data.image || "",
             wordCount: body.split(/\s+/).length,
+            affiliateLinks: data.affiliateLinks || [],
           });
         }
       }
@@ -118,7 +121,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { title, description, content, tags, author, image } =
+    const { title, description, content, tags, author, image, affiliateLinks } =
       await req.json();
 
     if (!title || !content) {
@@ -134,6 +137,7 @@ export async function POST(req: NextRequest) {
       .replace(/^-|-$/g, "");
 
     const date = new Date().toISOString().split("T")[0];
+    const validLinks = (affiliateLinks || []).filter((l: any) => l.name && l.url);
 
     const mdxContent = `---
 title: "${title.replace(/"/g, '\\"')}"
@@ -142,6 +146,7 @@ date: "${date}"
 author: "${author || "Zoltai"}"
 tags: ${JSON.stringify(tags || [])}
 image: "${image || ""}"
+affiliateLinks: ${JSON.stringify(validLinks)}
 ---
 
 ${content}
@@ -206,7 +211,7 @@ export async function PUT(req: NextRequest) {
   }
 
   try {
-    const { slug, title, description, content, tags, author, image, date } =
+    const { slug, title, description, content, tags, author, image, date, affiliateLinks } =
       await req.json();
 
     if (!slug) {
@@ -229,6 +234,9 @@ export async function PUT(req: NextRequest) {
     }
 
     const { data: existingData, content: existingBody } = matter(existingRaw);
+    const finalLinks = affiliateLinks !== undefined
+      ? (affiliateLinks || []).filter((l: any) => l.name && l.url)
+      : (existingData.affiliateLinks || []);
 
     const mdxContent = `---
 title: "${(title || existingData.title || "").replace(/"/g, '\\"')}"
@@ -237,6 +245,7 @@ date: "${date || existingData.date || new Date().toISOString().split("T")[0]}"
 author: "${author || existingData.author || "Zoltai AI"}"
 tags: ${JSON.stringify(tags || existingData.tags || [])}
 image: "${image || existingData.image || ""}"
+affiliateLinks: ${JSON.stringify(finalLinks)}
 ---
 
 ${content !== undefined ? content : existingBody}

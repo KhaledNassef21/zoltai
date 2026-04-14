@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { isAuthenticated } from "@/lib/admin-auth";
-import { writeFile as ghWriteFile, isGitHubAvailable } from "@/lib/github";
+import { writeBinaryFile, isGitHubAvailable } from "@/lib/github";
 
 /**
  * Image Upload API for Admin Article Editor
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
 
     // Fallback: GitHub API
     if (isGitHubAvailable()) {
-      await ghWriteFile(relativePath, data, `Upload image: ${safeName}`);
+      await writeBinaryFile(relativePath, data, `Upload image: ${safeName}`);
       return NextResponse.json({
         success: true,
         url: publicUrl,

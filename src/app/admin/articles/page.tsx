@@ -8,7 +8,12 @@ import {
   htmlToMarkdown,
   markdownToHtml,
 } from "@/components/admin/rich-editor";
-import { Plus, Pencil, Trash2, ExternalLink, X, Eye, Code, Upload, ImageIcon, RefreshCw } from "lucide-react";
+import { Plus, Pencil, Trash2, ExternalLink, X, Eye, Code, Upload, ImageIcon, RefreshCw, Link2 } from "lucide-react";
+
+interface AffiliateLink {
+  name: string;
+  url: string;
+}
 
 interface Article {
   slug: string;
@@ -19,6 +24,7 @@ interface Article {
   tags: string[];
   image: string;
   wordCount: number;
+  affiliateLinks?: AffiliateLink[];
 }
 
 export default function AdminArticles() {
@@ -42,6 +48,7 @@ export default function AdminArticles() {
     author: "Zoltai",
     image: "",
   });
+  const [affiliateLinks, setAffiliateLinks] = useState<AffiliateLink[]>([]);
   const [search, setSearch] = useState("");
   const [uploading, setUploading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -106,6 +113,7 @@ export default function AdminArticles() {
     }
 
     const method = editSlug ? "PUT" : "POST";
+    const validLinks = affiliateLinks.filter((l) => l.name.trim() && l.url.trim());
     const body = {
       ...(editSlug ? { slug: editSlug } : {}),
       title: form.title,
@@ -117,6 +125,7 @@ export default function AdminArticles() {
         .filter(Boolean),
       author: form.author,
       image: form.image,
+      affiliateLinks: validLinks,
     };
 
     try {
@@ -155,6 +164,7 @@ export default function AdminArticles() {
         image: article.image,
       });
       setImagePreview(article.image || null);
+      setAffiliateLinks(article.affiliateLinks || []);
       setShowEditor(true);
 
       // Load the actual content for editing
@@ -173,6 +183,9 @@ export default function AdminArticles() {
               htmlContent: html,
             }));
           }
+          if (data.affiliateLinks) {
+            setAffiliateLinks(data.affiliateLinks);
+          }
         }
       } catch {}
       setLoadingContent(false);
@@ -187,6 +200,7 @@ export default function AdminArticles() {
         author: "Zoltai",
         image: "",
       });
+      setAffiliateLinks([]);
       setShowEditor(true);
     }
   }
@@ -196,6 +210,7 @@ export default function AdminArticles() {
     setEditSlug(null);
     setEditorMode("rich");
     setImagePreview(null);
+    setAffiliateLinks([]);
     setForm({
       title: "",
       description: "",
@@ -556,6 +571,57 @@ export default function AdminArticles() {
                     </button>
                   </div>
                 )}
+              </div>
+
+              {/* Affiliate Links */}
+              <div>
+                <label className="flex items-center gap-2 text-sm text-zinc-400 mb-2">
+                  <Link2 className="w-4 h-4" />
+                  Affiliate Links
+                </label>
+                <div className="space-y-2">
+                  {affiliateLinks.map((link, i) => (
+                    <div key={i} className="flex gap-2">
+                      <input
+                        type="text"
+                        value={link.name}
+                        onChange={(e) => {
+                          const updated = [...affiliateLinks];
+                          updated[i] = { ...updated[i], name: e.target.value };
+                          setAffiliateLinks(updated);
+                        }}
+                        placeholder="Tool name (e.g. ElevenLabs)"
+                        className="flex-1 px-4 py-2.5 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 text-sm focus:outline-none focus:border-accent/50"
+                      />
+                      <input
+                        type="url"
+                        value={link.url}
+                        onChange={(e) => {
+                          const updated = [...affiliateLinks];
+                          updated[i] = { ...updated[i], url: e.target.value };
+                          setAffiliateLinks(updated);
+                        }}
+                        placeholder="https://affiliate-link.com/ref=zoltai"
+                        className="flex-[2] px-4 py-2.5 rounded-lg bg-background border border-card-border text-foreground placeholder:text-zinc-600 text-sm focus:outline-none focus:border-accent/50"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setAffiliateLinks(affiliateLinks.filter((_, idx) => idx !== i))}
+                        className="p-2.5 rounded-lg border border-red-500/20 text-red-400/70 hover:text-red-400 hover:border-red-500/40 transition-colors"
+                        title="Remove"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setAffiliateLinks([...affiliateLinks, { name: "", url: "" }])}
+                  className="mt-2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-card-border text-zinc-500 hover:text-accent-light hover:border-accent/30 text-xs transition-colors"
+                >
+                  <Plus className="w-3.5 h-3.5" /> Add Affiliate Link
+                </button>
               </div>
 
               <div className="flex justify-end gap-3 pt-4">

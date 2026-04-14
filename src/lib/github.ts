@@ -152,6 +152,42 @@ export async function listFiles(
 }
 
 /**
+ * Write a binary file (image) to GitHub repo using raw base64 content.
+ * Unlike writeFile() which encodes text to base64, this accepts already-encoded base64 data.
+ */
+export async function writeBinaryFile(
+  filePath: string,
+  base64Content: string,
+  message: string
+): Promise<{ success: boolean; sha?: string }> {
+  const existing = await readFile(filePath).catch(() => null);
+
+  const body: Record<string, string> = {
+    message,
+    content: base64Content,
+    branch: BRANCH,
+  };
+
+  if (existing) {
+    body.sha = existing.sha;
+  }
+
+  const res = await fetch(apiUrl(filePath), {
+    method: "PUT",
+    headers: headers(),
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`GitHub binary write failed (${res.status}): ${err}`);
+  }
+
+  const data = await res.json();
+  return { success: true, sha: data.content?.sha };
+}
+
+/**
  * Check if GitHub API is available (token is set)
  */
 export function isGitHubAvailable(): boolean {

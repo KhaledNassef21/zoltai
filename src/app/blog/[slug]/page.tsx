@@ -169,7 +169,16 @@ export default async function BlogPost({ params }: Props) {
       )}
 
       {/* === LEAD FLOW POSITION 1: Top CTA (Affiliate) === */}
-      {relevantTools[0] && (
+      {post.affiliateLinks.length > 0 ? (
+        <AffiliateCTA
+          toolName={post.affiliateLinks[0].name}
+          description={`Check out ${post.affiliateLinks[0].name} — one of the top tools mentioned in this article.`}
+          ctaText={`Try ${post.affiliateLinks[0].name} Free →`}
+          ctaUrl={post.affiliateLinks[0].url}
+          variant="banner"
+          badge="Top Pick for This Topic"
+        />
+      ) : relevantTools[0] ? (
         <AffiliateCTA
           toolName={relevantTools[0].name}
           description={relevantTools[0].description}
@@ -178,7 +187,7 @@ export default async function BlogPost({ params }: Props) {
           variant="banner"
           badge="Top Pick for This Topic"
         />
-      )}
+      ) : null}
 
       {/* === LEAD FLOW POSITION 2: Top Newsletter Bar === */}
       <NewsletterSignup
@@ -193,22 +202,56 @@ export default async function BlogPost({ params }: Props) {
       </div>
 
       {/* === LEAD FLOW POSITION 3: Mid-Article CTA === */}
-      {relevantTools[0] && (
+      {post.affiliateLinks.length > 0 ? (
+        <MidArticleCTA
+          toolName={post.affiliateLinks[0].name}
+          toolUrl={post.affiliateLinks[0].url}
+          slug={slug}
+        />
+      ) : relevantTools[0] ? (
         <MidArticleCTA
           toolName={relevantTools[0].name}
           toolUrl={relevantTools[0].affiliateUrl || relevantTools[0].url}
           slug={slug}
         />
-      )}
+      ) : null}
 
-      {/* === Top Tools for This Topic === */}
-      {relevantTools.length > 1 && (
+      {/* === Top Tools for This Topic (Affiliate Links + Auto-Detected) === */}
+      {(post.affiliateLinks.length > 0 || relevantTools.length > 1) && (
         <div className="my-10 p-6 rounded-xl border border-accent/20 bg-gradient-to-br from-accent/5 via-card-bg to-card-bg">
           <h3 className="font-bold text-lg mb-4">
             🛠️ Top Tools for This Topic
           </h3>
           <div className="space-y-3">
-            {relevantTools.map((tool) => (
+            {/* Article-specific affiliate links first */}
+            {post.affiliateLinks.map((link, i) => (
+              <a
+                key={`aff-${i}`}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="flex items-center justify-between p-4 rounded-lg border border-card-border bg-card-bg hover:border-accent/30 transition-all group"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold group-hover:text-accent-light transition-colors">
+                      {link.name}
+                    </span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400">
+                      Recommended
+                    </span>
+                  </div>
+                </div>
+                <span className="text-accent-light text-sm font-medium whitespace-nowrap ml-4">
+                  Try Free →
+                </span>
+              </a>
+            ))}
+            {/* Auto-detected tools (only if no manual affiliate links or as extra) */}
+            {relevantTools
+              .filter((tool) => !post.affiliateLinks.some((l) => l.name.toLowerCase() === tool.name.toLowerCase()))
+              .slice(0, post.affiliateLinks.length > 0 ? 2 : 3)
+              .map((tool) => (
               <a
                 key={tool.slug}
                 href={tool.affiliateUrl || tool.url}
