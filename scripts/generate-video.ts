@@ -53,7 +53,31 @@ const SITE_URL = "https://zoltai.org";
 // Image Resolution
 // ─────────────────────────────────────────────
 
-async function resolveImages(slug: string, count: number = 4): Promise<string[]> {
+// Pool of fallback images — enough variety so each reel gets different ones
+const ALL_FALLBACK_IMAGES = [
+  "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1920&fit=crop", // AI abstract
+  "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1080&h=1920&fit=crop", // tech brain
+  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1080&h=1920&fit=crop", // earth data
+  "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=1080&h=1920&fit=crop", // dark tech
+  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1080&h=1920&fit=crop", // matrix code
+  "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1080&h=1920&fit=crop", // server room
+  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1080&h=1920&fit=crop", // cybersecurity
+  "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1080&h=1920&fit=crop", // laptop code
+  "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1080&h=1920&fit=crop", // circuit board
+  "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1080&h=1920&fit=crop", // code screen
+  "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1080&h=1920&fit=crop", // blockchain
+  "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1080&h=1920&fit=crop", // robot
+  "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1080&h=1920&fit=crop", // purple tech
+  "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1080&h=1920&fit=crop", // code close-up
+  "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=1080&h=1920&fit=crop", // AI face
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1080&h=1920&fit=crop", // abstract light
+];
+
+/**
+ * Resolve images for a specific reel.
+ * reelIndex offsets the fallback pool so each reel gets different images.
+ */
+async function resolveImages(slug: string, count: number = 4, reelIndex: number = 0): Promise<string[]> {
   const urls: string[] = [];
 
   // Try local Instagram slides first
@@ -81,22 +105,15 @@ async function resolveImages(slug: string, count: number = 4): Promise<string[]>
     }
   }
 
-  // Fallback: use reliable Unsplash/Picsum images (Pollinations times out in CI)
-  const fallbackImages = [
-    "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1080&h=1920&fit=crop", // AI abstract
-    "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1080&h=1920&fit=crop", // tech/AI
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1080&h=1920&fit=crop", // data/tech
-    "https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=1080&h=1920&fit=crop", // dark tech
-    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1080&h=1920&fit=crop", // matrix/code
-    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1080&h=1920&fit=crop", // server room
-  ];
-  let fallbackIdx = 0;
+  // Fallback: pick from pool with offset per reel so each gets different images
+  const offset = reelIndex * count;
+  let fallbackIdx = offset;
   while (urls.length < count) {
-    urls.push(fallbackImages[fallbackIdx % fallbackImages.length]);
+    urls.push(ALL_FALLBACK_IMAGES[fallbackIdx % ALL_FALLBACK_IMAGES.length]);
     fallbackIdx++;
   }
 
-  console.log(`   🖼️ Resolved ${urls.length} images for video`);
+  console.log(`   🖼️ Resolved ${urls.length} images for reel (offset=${offset})`);
   return urls.slice(0, count);
 }
 
@@ -168,7 +185,7 @@ function renderVideo(input: RenderInput): string | null {
     ].join(" ");
 
     execSync(cmd, {
-      timeout: 300000, // 5 minutes max
+      timeout: 600000, // 10 minutes max
       stdio: "inherit",
       cwd: process.cwd(),
     });
@@ -266,14 +283,15 @@ async function main() {
     reelsToProcess = pickTopReels(reelData.reels, 3);
   }
 
-  // Step 2: Resolve images
-  console.log("\n🖼️ Resolving images...");
-  const images = await resolveImages(slug);
-
-  // Step 3: Process each reel
+  // Step 2 + 3: Process each reel (images resolved per-reel for variety)
   const results: { reelId: number; video: string | null; audio: string | null }[] = [];
 
-  for (const reel of reelsToProcess) {
+  for (let reelIdx = 0; reelIdx < reelsToProcess.length; reelIdx++) {
+    const reel = reelsToProcess[reelIdx];
+
+    // Resolve different images per reel
+    console.log(`\n🖼️ Resolving images for reel #${reel.id}...`);
+    const images = await resolveImages(slug, 4, reelIdx);
     console.log(`\n${"═".repeat(50)}`);
     console.log(`🎬 Reel #${reel.id}: ${reel.format}`);
     console.log(`   Hook: "${reel.hook.slice(0, 60)}..."`);
