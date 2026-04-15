@@ -1,3 +1,4 @@
+// Blog post utilities — reads MDX frontmatter including affiliateLinks
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
