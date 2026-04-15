@@ -106,5 +106,131 @@
     "variant": "94",
     "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
     "timestamp": "2026-04-14T05:38:02.416Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog",
+    "timestamp": "2026-04-15T06:26:41.403Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:26:55.515Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:26:55.570Z"
+  },
+  {
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:26:55.616Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":46,\"y\":21,\"el\":\"img.w-full\",\"time\":1776234408091},{\"x\":50,\"y\":30,\"el\":\"img.w-full\",\"time\":1776234412461}]",
+    "page": "/blog",
+    "timestamp": "2026-04-15T06:26:55.639Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-15T06:26:58.935Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-15T06:27:09.458Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_exit",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:15.053Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:17.659Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_exit",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:18.252Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:20.358Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_exit",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:20.936Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:23.052Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_exit",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:25.167Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:28.301Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_exit",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:28.975Z"
+  },
+  {
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:30.415Z"
+  },
+  {
+    "event": "popup_shown",
+    "variant": "newsletter_popup_exit",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:30.929Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":60,\"y\":24,\"el\":\"svg.[object\",\"time\":1776234437639},{\"x\":60,\"y\":24,\"el\":\"svg.[object\",\"time\":1776234440330},{\"x\":60,\"y\":24,\"el\":\"svg.[object\",\"time\":1776234443022},{\"x\":60,\"y\":24,\"el\":\"svg.[object\",\"time\":1776234448278},{\"x\":60,\"y\":24,\"el\":\"svg.[object\",\"time\":1776234450392}]",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:36.650Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/blog/descript-vs-otter-ai-vs-grammarly-ai-best-ai-tools-2025",
+    "timestamp": "2026-04-15T06:27:36.754Z"
+  },
+  {
+    "event": "scroll_depth",
+    "variant": "100",
+    "page": "/blog/automate-e-commerce-descriptions-semrush-vs-grammarly-2025",
+    "timestamp": "2026-04-15T10:31:11.979Z"
   }
 ]
