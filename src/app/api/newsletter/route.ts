@@ -189,7 +189,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // 4. Save to local file (for drip campaign - only works locally/CI, not Vercel)
+    // 4. Save to local file + GitHub API (for drip campaign)
     try {
       const fs = await import("fs");
       const path = await import("path");
@@ -205,9 +205,12 @@ export async function POST(req: NextRequest) {
         emailsSent: number[];
       }> = [];
 
-      if (fs.existsSync(SUBSCRIBERS_FILE)) {
-        subscribers = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, "utf-8"));
-      }
+      // Try local file first
+      try {
+        if (fs.existsSync(SUBSCRIBERS_FILE)) {
+          subscribers = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, "utf-8"));
+        }
+      } catch {}
 
       const existing = subscribers.find((s) => s.email === cleanEmail);
       if (!existing) {
@@ -218,16 +221,52 @@ export async function POST(req: NextRequest) {
           emailsSent: [0],
         });
 
-        const dir = path.dirname(SUBSCRIBERS_FILE);
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-        fs.writeFileSync(
-          SUBSCRIBERS_FILE,
-          JSON.stringify(subscribers, null, 2)
-        );
+        // Try local file write
+        try {
+          const dir = path.dirname(SUBSCRIBERS_FILE);
+          if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+          fs.writeFileSync(
+            SUBSCRIBERS_FILE,
+            JSON.stringify(subscribers, null, 2)
+          );
+        } catch {
+          // Read-only on Vercel — use GitHub API
+        }
+
+        // Also save to GitHub API (persistent across deployments)
+        try {
+          const { readFile, writeFile } = await import("@/lib/github");
+          const githubPath = "data/subscribers.json";
+          const ghFile = await readFile(githubPath);
+
+          let ghSubscribers: typeof subscribers = [];
+          if (ghFile) {
+            ghSubscribers = JSON.parse(ghFile.content);
+          }
+
+          const ghExisting = ghSubscribers.find((s) => s.email === cleanEmail);
+          if (!ghExisting) {
+            ghSubscribers.push({
+              email: cleanEmail,
+              name: cleanName,
+              subscribedAt: new Date().toISOString(),
+              emailsSent: [0],
+            });
+
+            await writeFile(
+              githubPath,
+              JSON.stringify(ghSubscribers, null, 2),
+              `Add subscriber: ${cleanEmail}`,
+              ghFile?.sha
+            );
+            console.log("✅ Subscriber saved to GitHub");
+          }
+        } catch (ghErr) {
+          console.error("GitHub save error:", ghErr);
+        }
       }
     } catch {
-      // Expected to fail on Vercel (read-only filesystem) — that's OK
-      // Drip emails will use Resend audience contacts instead
+      // Fallback: Resend audience is the primary store anyway
     }
 
     return NextResponse.json({

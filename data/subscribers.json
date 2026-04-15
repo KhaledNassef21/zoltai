@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "email": "nassefkhald@gmail.com",
+    "name": "khaled",
+    "subscribedAt": "2026-03-31T10:51:25.692Z",
+    "emailsSent": [
+      0
+    ]
+  },
+  {
+    "email": "khanedbepo5@gmail.com",
+    "name": "khaled",
+    "subscribedAt": "2026-03-31T10:42:35.580Z",
+    "emailsSent": [
+      0
+    ]
+  },
+  {
+    "email": "khaledbepo5@gmail.com",
+    "name": "kh",
+    "subscribedAt": "2026-03-31T06:37:35.289Z",
+    "emailsSent": [
+      0
+    ]
+  }
+]

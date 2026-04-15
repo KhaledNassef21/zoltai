@@ -21,6 +21,26 @@
 import fs from "fs";
 import path from "path";
 
+// Load .env.local for local development
+function loadEnv() {
+  const envFile = path.join(process.cwd(), ".env.local");
+  if (fs.existsSync(envFile)) {
+    const lines = fs.readFileSync(envFile, "utf-8").split("\n");
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eqIdx = trimmed.indexOf("=");
+      if (eqIdx === -1) continue;
+      const key = trimmed.slice(0, eqIdx).trim();
+      const val = trimmed.slice(eqIdx + 1).trim();
+      if (!process.env[key]) {
+        process.env[key] = val;
+      }
+    }
+  }
+}
+loadEnv();
+
 const SUBSCRIBERS_FILE = path.join(process.cwd(), "data/subscribers.json");
 const SITE = "https://zoltai.org";
 
@@ -681,9 +701,62 @@ const dripEmails: DripEmail[] = [
 // Runner
 // ─────────────────────────────────────────────
 
-function loadSubscribers(): Subscriber[] {
-  if (!fs.existsSync(SUBSCRIBERS_FILE)) return [];
-  return JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, "utf-8"));
+async function loadSubscribers(): Promise<Subscriber[]> {
+  // Try local file first
+  let localSubs: Subscriber[] = [];
+  if (fs.existsSync(SUBSCRIBERS_FILE)) {
+    localSubs = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, "utf-8"));
+  }
+
+  // Also fetch from Resend Audience API (production subscriber store)
+  const audienceId = process.env.RESEND_AUDIENCE_ID;
+  const resendKey = process.env.RESEND_API_KEY;
+
+  if (audienceId && resendKey) {
+    try {
+      console.log("📡 Fetching subscribers from Resend Audience...");
+      const res = await fetch(
+        `https://api.resend.com/audiences/${audienceId}/contacts`,
+        {
+          headers: { Authorization: `Bearer ${resendKey}` },
+        }
+      );
+
+      if (res.ok) {
+        const data = await res.json();
+        const contacts = data.data || [];
+        console.log(`   Found ${contacts.length} contacts in Resend Audience`);
+
+        // Merge Resend contacts into local subscribers
+        for (const contact of contacts) {
+          if (contact.unsubscribed) continue;
+          const email = contact.email?.toLowerCase();
+          if (!email) continue;
+
+          const existing = localSubs.find((s) => s.email === email);
+          if (!existing) {
+            localSubs.push({
+              email,
+              name: contact.first_name || "",
+              subscribedAt: contact.created_at || new Date().toISOString(),
+              emailsSent: [0], // Welcome email already sent by newsletter API
+            });
+          }
+        }
+
+        // Save merged list back to local file
+        saveSubscribers(localSubs);
+        console.log(`   📋 Total merged subscribers: ${localSubs.length}`);
+      } else {
+        const err = await res.json().catch(() => ({}));
+        console.warn(`   ⚠️ Resend API error: ${JSON.stringify(err).slice(0, 200)}`);
+      }
+    } catch (err) {
+      console.warn(`   ⚠️ Failed to fetch from Resend: ${(err as Error).message}`);
+    }
+  }
+
+  return localSubs;
 }
 
 function saveSubscribers(subs: Subscriber[]) {
@@ -735,7 +808,7 @@ async function main() {
   console.log("📧 Running email drip campaign (v2 — Expert Funnel)...");
   console.log(`📋 Emails in sequence: ${dripEmails.length}`);
 
-  const subscribers = loadSubscribers();
+  const subscribers = await loadSubscribers();
   console.log(`👥 Total subscribers: ${subscribers.length}`);
 
   if (subscribers.length === 0) {

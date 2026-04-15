@@ -32,6 +32,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
 const REELS_DIR = path.join(process.cwd(), "data/reels");
 const CONTENT_DIR = path.join(process.cwd(), "src/content/blog");
@@ -145,6 +146,90 @@ Return ONLY the JSON array.`,
 
   const text =
     response.content[0].type === "text" ? response.content[0].text : "";
+  return JSON.parse(extractJSON(text));
+}
+
+/**
+ * AI-powered reel generation — tries Claude first, falls back to OpenAI.
+ */
+async function generateReelsWithAI(
+  title: string,
+  description: string,
+  content: string,
+  tags: string[],
+  tools: string[]
+): Promise<ReelScript[]> {
+  // Try Claude first
+  if (process.env.ANTHROPIC_API_KEY) {
+    try {
+      return await generateReelsWithClaude(title, description, content, tags, tools);
+    } catch (err: any) {
+      const msg = err?.message || String(err);
+      if (msg.includes("credit balance") || msg.includes("rate_limit") || msg.includes("overloaded")) {
+        console.warn(`   ⚠️ Claude unavailable: ${msg.slice(0, 100)}. Trying OpenAI...`);
+      } else {
+        throw err;
+      }
+    }
+  }
+
+  // Fallback to OpenAI
+  if (!process.env.OPENAI_API_KEY) {
+    throw new Error("No AI provider available");
+  }
+
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const toolList = tools.length > 0 ? tools.join(", ") : "AI tools";
+  const articleExcerpt = content.slice(0, 3000);
+
+  // Use same prompt as Claude
+  const prompt = `You are a viral short-form video scriptwriter for "Zoltai" (@zoltai.ai), a brand about discovering and using AI tools for productivity.
+
+Generate 10 Instagram Reels scripts based on this article:
+
+TITLE: "${title}"
+DESCRIPTION: "${description}"
+TOOLS MENTIONED: ${toolList}
+TAGS: ${tags.join(", ")}
+
+ARTICLE CONTENT (excerpt):
+${articleExcerpt}
+
+Each Reel must be a DIFFERENT format:
+1. 🪝 HOOK/CURIOSITY — Open with a shocking stat or question about AI productivity
+2. 🛠️ TOOL DEMO — Quick showcase of the main tool (${tools[0] || "the AI tool"})
+3. 📋 STEP-BY-STEP — 3-5 step mini tutorial
+4. 🔄 BEFORE/AFTER — Contrast life without vs with the AI tool
+5. 💡 VALUE BREAKDOWN — What the tool costs vs time/effort saved
+6. ⚔️ COMPARISON — ${tools.length >= 2 ? `${tools[0]} vs ${tools[1]}` : "Best free vs paid option"}
+7. ⚡ QUICK TIP — One specific, actionable hack
+8. 🤯 MYTH BUSTER — Debunk a common misconception
+9. 📖 STORY — Mini success story
+10. 📊 LIST/RANKING — "Top 3 ${tags[0]?.replace(/-/g, " ") || "AI tools"} to learn now"
+
+RULES:
+- Hook MUST grab attention in first 3 seconds
+- Script should be 80-150 words (30-60 second reel)
+- Conversational, energetic tone
+- Include specific numbers
+- Every reel ends with CTA to "Follow @zoltai.ai" or "Link in bio"
+- On-screen text = 3-5 key phrases
+- Caption includes 5-8 hashtags
+- NO income promises. Keep it educational but exciting.
+
+Return a JSON array of 10 objects:
+[{"id":1,"format":"Hook/Curiosity","hook":"...","script":"...","onScreenText":["..."],"cta":"...","caption":"...","musicVibe":"...","duration":"30s"}]
+
+Return ONLY the JSON array.`;
+
+  console.log("   🤖 Provider: OpenAI GPT-4o");
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    max_tokens: 6000,
+    messages: [{ role: "user", content: prompt }],
+  });
+
+  const text = response.choices[0]?.message?.content || "";
   return JSON.parse(extractJSON(text));
 }
 
@@ -307,8 +392,8 @@ async function main() {
     process.exit(1);
   }
 
-  const useClaude = !!process.env.ANTHROPIC_API_KEY;
-  console.log(`🤖 Mode: ${useClaude ? "Claude API (smart generation)" : "Template-based (no API key)"}\n`);
+  const useAI = !!process.env.ANTHROPIC_API_KEY || !!process.env.OPENAI_API_KEY;
+  console.log(`🤖 Mode: ${useAI ? "AI API (smart generation)" : "Template-based (no API key)"}\n`);
 
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".mdx"));
   console.log(`📚 Found ${files.length} articles\n`);
@@ -344,13 +429,13 @@ async function main() {
 
     let reels: ReelScript[];
 
-    if (useClaude) {
+    if (useAI) {
       try {
-        console.log("   🤖 Generating with Claude API...");
-        reels = await generateReelsWithClaude(title, description, content, tags, tools);
-        console.log(`   ✅ Got ${reels.length} reels from Claude`);
+        console.log("   🤖 Generating with AI API...");
+        reels = await generateReelsWithAI(title, description, content, tags, tools);
+        console.log(`   ✅ Got ${reels.length} reels from AI`);
       } catch (err) {
-        console.warn(`   ⚠️ Claude failed: ${(err as Error).message}`);
+        console.warn(`   ⚠️ AI failed: ${(err as Error).message}`);
         console.log("   📝 Falling back to templates...");
         reels = generateReelsFromTemplate(title, description, tools, tags);
       }
@@ -372,7 +457,7 @@ async function main() {
     generated++;
 
     // Delay between API calls
-    if (useClaude && generated < MAX_PER_RUN) {
+    if (useAI && generated < MAX_PER_RUN) {
       await new Promise((r) => setTimeout(r, 2000));
     }
   }

@@ -1,12 +1,68 @@
+// AI content generation — Claude (primary) with OpenAI fallback
 import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+function getAnthropicClient(): Anthropic | null {
+  const key = process.env.ANTHROPIC_API_KEY;
+  if (!key) return null;
+  return new Anthropic({ apiKey: key });
+}
+
+function getOpenAIClient(): OpenAI | null {
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) return null;
+  return new OpenAI({ apiKey: key });
+}
 
 function extractJSON(text: string): string {
   const match = text.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
   return match ? match[1].trim() : text.trim();
+}
+
+/**
+ * Send a prompt and get text back — tries Claude first, falls back to OpenAI.
+ */
+async function aiComplete(prompt: string, maxTokens: number): Promise<string> {
+  // Try Claude first
+  const anthropic = getAnthropicClient();
+  if (anthropic) {
+    try {
+      const response = await anthropic.messages.create({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: maxTokens,
+        messages: [{ role: "user", content: prompt }],
+      });
+      const text = response.content[0].type === "text" ? response.content[0].text : "";
+      if (text) {
+        console.log("   🤖 Provider: Claude");
+        return text;
+      }
+    } catch (err: any) {
+      const msg = err?.message || String(err);
+      if (msg.includes("credit balance") || msg.includes("rate_limit") || msg.includes("overloaded")) {
+        console.warn(`   ⚠️ Claude unavailable: ${msg.slice(0, 100)}. Falling back to OpenAI...`);
+      } else {
+        throw err; // Re-throw unexpected errors
+      }
+    }
+  }
+
+  // Fallback to OpenAI
+  const openai = getOpenAIClient();
+  if (!openai) {
+    throw new Error(
+      "No AI provider available. Set ANTHROPIC_API_KEY or OPENAI_API_KEY."
+    );
+  }
+
+  console.log("   🤖 Provider: OpenAI GPT-4o");
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    max_tokens: maxTokens,
+    messages: [{ role: "user", content: prompt }],
+  });
+
+  return response.choices[0]?.message?.content || "";
 }
 
 export async function generateArticle(topic: string): Promise<{
@@ -18,13 +74,7 @@ export async function generateArticle(topic: string): Promise<{
   instagramCaption: string;
   instagramHook: string;
 }> {
-  const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 5000,
-    messages: [
-      {
-        role: "user",
-        content: `You are an expert AI tools writer for "Zoltai" (zoltai.org), a website that helps people discover and use AI tools effectively — no coding required.
+  const prompt = `You are an expert AI tools writer for "Zoltai" (zoltai.org), a website that helps people discover and use AI tools effectively — no coding required.
 
 Write a comprehensive, SEO-optimized blog article about: "${topic}"
 
@@ -65,13 +115,9 @@ Return your response in this exact JSON format:
   "instagramHook": "Attention-grabbing first line for Instagram post"
 }
 
-Return ONLY the JSON, no other text.`,
-      },
-    ],
-  });
+Return ONLY the JSON, no other text.`;
 
-  const text =
-    response.content[0].type === "text" ? response.content[0].text : "";
+  const text = await aiComplete(prompt, 5000);
   return JSON.parse(extractJSON(text));
 }
 
@@ -80,13 +126,7 @@ export async function researchTrendingTopics(existingTitles: string[] = []): Pro
     ? `\n\nIMPORTANT - These articles ALREADY EXIST on the site. Do NOT suggest similar topics:\n${existingTitles.map((t, i) => `${i + 1}. ${t}`).join("\n")}\n\nYour suggestions must cover COMPLETELY DIFFERENT tools, niches, or angles than the above.`
     : "";
 
-  const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 1000,
-    messages: [
-      {
-        role: "user",
-        content: `You are an SEO content strategist for "Zoltai", a website about using AI tools effectively (no coding required).
+  const prompt = `You are an SEO content strategist for "Zoltai", a website about using AI tools effectively (no coding required).
 
 Suggest 5 HIGH-CONVERSION article topics that would:
 1. Rank well in search engines (target long-tail keywords)
@@ -107,13 +147,9 @@ Cover DIVERSE niches: writing, design, video, coding, marketing, SEO, social med
 Tools to cover: ChatGPT, Claude, Midjourney, Cursor, Jasper, Copy.ai, Notion AI, Perplexity, Bolt.new, GitHub Copilot, Semrush, Leonardo AI, Runway, ElevenLabs, Canva AI, Descript, Synthesia, Pictory, Writesonic, Grammarly AI, Otter.ai, Murf AI.
 ${existingList}
 
-Return a JSON array of 5 topic strings. Each topic MUST be unique and different from the others AND from existing articles. Return ONLY the JSON array, no other text.`,
-      },
-    ],
-  });
+Return a JSON array of 5 topic strings. Each topic MUST be unique and different from the others AND from existing articles. Return ONLY the JSON array, no other text.`;
 
-  const text =
-    response.content[0].type === "text" ? response.content[0].text : "";
+  const text = await aiComplete(prompt, 1000);
   return JSON.parse(extractJSON(text));
 }
 
@@ -126,13 +162,7 @@ export async function optimizeForSEO(
   content: string;
   keywords: string[];
 }> {
-  const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 4000,
-    messages: [
-      {
-        role: "user",
-        content: `You are an SEO expert. Optimize this blog article for search engines.
+  const prompt = `You are an SEO expert. Optimize this blog article for search engines.
 
 Current title: "${currentTitle}"
 
@@ -153,12 +183,8 @@ Return in JSON format:
   "keywords": ["keyword1", "keyword2"]
 }
 
-Return ONLY the JSON.`,
-      },
-    ],
-  });
+Return ONLY the JSON.`;
 
-  const text =
-    response.content[0].type === "text" ? response.content[0].text : "";
+  const text = await aiComplete(prompt, 4000);
   return JSON.parse(extractJSON(text));
 }
