@@ -228,9 +228,9 @@
     "timestamp": "2026-04-15T06:27:36.754Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":32,\"y\":35,\"el\":\"span[Zoltai]\",\"time\":1776253839212},{\"x\":32,\"y\":35,\"el\":\"span[Zoltai]\",\"time\":1776253839428},{\"x\":32,\"y\":35,\"el\":\"span[Zoltai]\",\"time\":1776253839636},{\"x\":28,\"y\":36,\"el\":\"main.flex-1[{\\\"@context\\\":\\\"https://schema.or]\",\"time\":1776253840004},{\"x\":38,\"y\":19,\"el\":\"a.text-xs[productivity]\",\"time\":1776253841957}]",
+    "event": "cta_impression",
+    "variant": "article_mid",
     "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
-    "timestamp": "2026-04-15T11:50:42.452Z"
+    "timestamp": "2026-04-15T11:50:49.890Z"
   }
 ]
