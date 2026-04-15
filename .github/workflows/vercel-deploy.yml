@@ -1,0 +1,41 @@
+name: Vercel Domain Alias Sync
+
+# Runs after push to main — waits for Vercel to finish building,
+# then assigns zoltai.org + www.zoltai.org to the latest production deployment.
+# This fixes an issue where Vercel GitHub integration deploys but
+# doesn't auto-assign custom domain aliases.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  alias-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Wait for Vercel Build
+        run: sleep 90
+
+      - name: Get Latest Production Deployment URL
+        id: get-url
+        run: |
+          # List production deployments and get the latest ready one
+          DEPLOY_URL=$(vercel ls --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | grep "● Ready" | head -1 | awk '{print $3}')
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+          echo "Latest production deployment: $DEPLOY_URL"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Assign Domain Aliases
+        if: steps.get-url.outputs.url != ''
+        run: |
+          vercel alias set ${{ steps.get-url.outputs.url }} zoltai.org --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
+          vercel alias set ${{ steps.get-url.outputs.url }} www.zoltai.org --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
+          echo "✅ Aliases assigned to zoltai.org and www.zoltai.org"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
