@@ -169,6 +169,9 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
+      {/* Debug: affiliate links count */}
+      <div data-affiliate-count={post.affiliateLinks.length} data-affiliate-links={JSON.stringify(post.affiliateLinks.map(l => l.name))} style={{display:'none'}} />
+
       {/* === LEAD FLOW POSITION 1: Top CTA (Affiliate) === */}
       {post.affiliateLinks.length > 0 ? (
         <AffiliateCTA
