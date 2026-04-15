@@ -256,8 +256,7 @@ export async function POST(req: NextRequest) {
             await writeFile(
               githubPath,
               JSON.stringify(ghSubscribers, null, 2),
-              `Add subscriber: ${cleanEmail}`,
-              ghFile?.sha
+              `Add subscriber: ${cleanEmail}`
             );
             console.log("✅ Subscriber saved to GitHub");
           }
