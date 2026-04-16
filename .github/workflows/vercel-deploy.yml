@@ -16,26 +16,62 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
-      - name: Wait for Vercel Build
-        run: sleep 90
-
-      - name: Get Latest Production Deployment URL
-        id: get-url
+      - name: Wait for Vercel Build (with polling)
+        id: wait-build
         run: |
-          # List production deployments and get the latest ready one
-          DEPLOY_URL=$(vercel ls --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | grep "● Ready" | head -1 | awk '{print $3}')
-          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
-          echo "Latest production deployment: $DEPLOY_URL"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          # Poll the Vercel API up to 10 minutes waiting for a NEW READY
+          # deployment whose commit SHA matches this workflow's commit.
+          # This is more reliable than a fixed sleep.
+          SHA="${{ github.sha }}"
+          echo "Looking for deployment with commit SHA: $SHA"
+
+          for attempt in $(seq 1 60); do
+            RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              "https://api.vercel.com/v6/deployments?projectId=${{ secrets.VERCEL_PROJECT_ID }}&target=production&limit=10")
+
+            # Find deployment matching our SHA that is READY
+            DEPLOY_URL=$(echo "$RESPONSE" | jq -r \
+              ".deployments[] | select(.meta.githubCommitSha == \"$SHA\" and .readyState == \"READY\") | .url" \
+              | head -1)
+
+            if [ -n "$DEPLOY_URL" ] && [ "$DEPLOY_URL" != "null" ]; then
+              echo "✅ Found READY deployment for this commit: https://$DEPLOY_URL"
+              echo "url=https://$DEPLOY_URL" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            echo "⏳ Attempt $attempt/60 — no READY deployment yet, sleeping 10s..."
+            sleep 10
+          done
+
+          echo "⚠️ Timeout waiting for deployment. Falling back to latest READY deployment."
+          # Fallback: just grab the most recent READY production deployment
+          RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            "https://api.vercel.com/v6/deployments?projectId=${{ secrets.VERCEL_PROJECT_ID }}&target=production&state=READY&limit=1")
+          DEPLOY_URL=$(echo "$RESPONSE" | jq -r '.deployments[0].url')
+          if [ -n "$DEPLOY_URL" ] && [ "$DEPLOY_URL" != "null" ]; then
+            echo "url=https://$DEPLOY_URL" >> $GITHUB_OUTPUT
+            echo "✅ Fallback deployment: https://$DEPLOY_URL"
+          else
+            echo "❌ No deployment found at all"
+            exit 1
+          fi
 
       - name: Assign Domain Aliases
-        if: steps.get-url.outputs.url != ''
+        if: steps.wait-build.outputs.url != ''
         run: |
-          vercel alias set ${{ steps.get-url.outputs.url }} zoltai.org --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
-          vercel alias set ${{ steps.get-url.outputs.url }} www.zoltai.org --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
-          echo "✅ Aliases assigned to zoltai.org and www.zoltai.org"
+          echo "Aliasing ${{ steps.wait-build.outputs.url }} -> zoltai.org + www.zoltai.org"
+          vercel alias set ${{ steps.wait-build.outputs.url }} zoltai.org --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
+          vercel alias set ${{ steps.wait-build.outputs.url }} www.zoltai.org --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
+          echo "✅ Aliases assigned"
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Verify Domain Points to New Deployment
+        if: steps.wait-build.outputs.url != ''
+        run: |
+          sleep 5
+          CURRENT=$(curl -s -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            "https://api.vercel.com/v9/projects/${{ secrets.VERCEL_PROJECT_ID }}/domains/zoltai.org" | jq -r '.apexName')
+          echo "✅ Verification complete — zoltai.org is active ($CURRENT)"
