@@ -5,6 +5,10 @@ import { useLang } from "@/components/providers";
 import { BlogCard } from "@/components/blog-card";
 import { LeadMagnet } from "@/components/lead-magnet";
 import { StatsCounter, Testimonials } from "@/components/social-proof";
+import { HowItWorks } from "@/components/how-it-works";
+import { FAQAccordion } from "@/components/faq-accordion";
+import { FeaturedExperts } from "@/components/featured-experts";
+import { NewsletterHero } from "@/components/newsletter-hero";
 import type { Post } from "@/lib/blog";
 
 interface Tool {
@@ -94,6 +98,16 @@ export function HomeContent({
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Trust Stats (moved up for immediate credibility) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+        <StatsCounter />
+      </section>
+
+      {/* How It Works — 4-step journey */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <HowItWorks />
       </section>
 
       {/* Featured Tools */}
@@ -186,17 +200,22 @@ export function HomeContent({
         )}
       </section>
 
-      {/* Trust Stats */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-t border-card-border">
-        <StatsCounter />
+      {/* Featured Experts — mentor-style cards */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t border-card-border">
+        <FeaturedExperts />
       </section>
 
-      {/* Testimonials / Social Proof */}
+      {/* Testimonials Carousel */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10">
           {t("testimonials.title")}
         </h2>
         <Testimonials />
+      </section>
+
+      {/* FAQ Accordion */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 border-t border-card-border">
+        <FAQAccordion />
       </section>
 
       {/* Community Section */}
@@ -244,7 +263,12 @@ export function HomeContent({
         </div>
       </section>
 
-      {/* Lead Magnet / Newsletter Section */}
+      {/* Newsletter Hero — Scholars-inspired conversion section */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <NewsletterHero />
+      </section>
+
+      {/* Lead Magnet — secondary conversion with free guide */}
       <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
         <LeadMagnet />
       </section>

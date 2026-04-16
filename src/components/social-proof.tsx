@@ -1,85 +1,238 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLang } from "./providers";
 
-/**
- * Social Proof: Animated stats counter
- * Shows key trust metrics that build credibility
- */
-export function StatsCounter() {
-  const { t } = useLang();
+// ============================================================
+// Animated Stats Counter — counts up from 0 to target on mount
+// ============================================================
+
+function useCountUp(end: number, duration: number = 1800, startOnView: boolean = true) {
+  const [value, setValue] = useState(0);
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!startOnView) {
+      runAnimation();
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            runAnimation();
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+
+    function runAnimation() {
+      const t0 = performance.now();
+      const step = (now: number) => {
+        const p = Math.min(1, (now - t0) / duration);
+        // easeOutCubic
+        const eased = 1 - Math.pow(1 - p, 3);
+        setValue(Math.round(eased * end));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+  }, [end, duration, startOnView]);
+
+  return { value, ref };
+}
+
+function StatItem({
+  target,
+  suffix,
+  label,
+  icon,
+}: {
+  target: number;
+  suffix: string;
+  label: string;
+  icon: string;
+}) {
+  const { value, ref } = useCountUp(target);
+  const display =
+    target >= 1000 && value >= 1000
+      ? `${(value / 1000).toFixed(value >= 10000 ? 0 : 1)}K`
+      : value.toString();
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8">
-      {[
-        { value: "24+", label: t("stats.tools") },
-        { value: "13+", label: t("stats.guides") },
-        { value: "10K+", label: t("stats.readers") },
-        { value: "4.8/5", label: t("stats.rating") },
-      ].map((stat, i) => (
-        <div key={i} className="text-center">
-          <p className="text-2xl sm:text-3xl font-bold gradient-text">
-            {stat.value}
-          </p>
-          <p className="text-xs sm:text-sm text-zinc-400 mt-1">{stat.label}</p>
-        </div>
-      ))}
+    <div className="group relative overflow-hidden p-5 sm:p-6 rounded-2xl border border-card-border bg-card-bg/50 hover:bg-card-bg hover:border-accent/30 transition-all">
+      <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br from-accent/20 to-cyan-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="relative">
+        <div className="text-2xl mb-2 opacity-80">{icon}</div>
+        <p className="text-3xl sm:text-4xl font-bold">
+          <span ref={ref} className="gradient-text">
+            {display}
+          </span>
+          <span className="gradient-text">{suffix}</span>
+        </p>
+        <p className="text-xs sm:text-sm text-zinc-400 mt-2 font-medium">{label}</p>
+      </div>
     </div>
   );
 }
 
-/**
- * Testimonial cards for social proof
- */
-export function Testimonials() {
+export function StatsCounter() {
   const { t } = useLang();
+
+  return (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <StatItem target={24} suffix="+" label={t("stats.tools")} icon="🛠️" />
+      <StatItem target={19} suffix="+" label={t("stats.guides")} icon="📚" />
+      <StatItem target={10000} suffix="+" label={t("stats.readers")} icon="👥" />
+      <StatItem target={48} suffix="/50" label={t("stats.rating")} icon="⭐" />
+    </div>
+  );
+}
+
+// ============================================================
+// Testimonials Carousel — circular avatar + specialty badge
+// inspired by Scholars Academie but dark-themed
+// ============================================================
+
+const AVATAR_GRADIENTS = [
+  "from-purple-500 to-pink-500",
+  "from-cyan-500 to-blue-500",
+  "from-emerald-500 to-teal-500",
+  "from-amber-500 to-orange-500",
+  "from-fuchsia-500 to-purple-500",
+  "from-indigo-500 to-cyan-500",
+];
+
+export function Testimonials() {
+  const { t, dir } = useLang();
 
   const testimonials = [
     {
       name: t("testimonial.1.name"),
       role: t("testimonial.1.role"),
       text: t("testimonial.1.text"),
-      avatar: "S",
+      tool: "ChatGPT",
+      toolIcon: "💬",
+      initials: "S",
     },
     {
       name: t("testimonial.2.name"),
       role: t("testimonial.2.role"),
       text: t("testimonial.2.text"),
-      avatar: "A",
+      tool: "Jasper",
+      toolIcon: "✍️",
+      initials: "A",
     },
     {
       name: t("testimonial.3.name"),
       role: t("testimonial.3.role"),
       text: t("testimonial.3.text"),
-      avatar: "J",
+      tool: "Midjourney",
+      toolIcon: "🎨",
+      initials: "J",
+    },
+    {
+      name: t("testimonial.4.name"),
+      role: t("testimonial.4.role"),
+      text: t("testimonial.4.text"),
+      tool: "Claude",
+      toolIcon: "🧠",
+      initials: "M",
+    },
+    {
+      name: t("testimonial.5.name"),
+      role: t("testimonial.5.role"),
+      text: t("testimonial.5.text"),
+      tool: "Cursor",
+      toolIcon: "💻",
+      initials: "O",
     },
   ];
 
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const progressRef = useRef<HTMLDivElement | null>(null);
+  const DURATION = 6000; // 6s per slide
+
+  // Auto-advance
+  useEffect(() => {
+    if (paused) return;
+    const tick = setTimeout(() => {
+      setActive((prev) => (prev + 1) % testimonials.length);
+    }, DURATION);
+    return () => clearTimeout(tick);
+  }, [active, paused, testimonials.length]);
+
+  // Progress bar reset on slide change
+  useEffect(() => {
+    const el = progressRef.current;
+    if (!el) return;
+    el.style.transition = "none";
+    el.style.transform = "scaleX(0)";
+    // Force reflow
+    void el.offsetWidth;
+    if (!paused) {
+      el.style.transition = `transform ${DURATION}ms linear`;
+      el.style.transform = "scaleX(1)";
+    }
+  }, [active, paused]);
+
+  const current = testimonials[active];
+  const gradient = AVATAR_GRADIENTS[active % AVATAR_GRADIENTS.length];
+
   return (
-    <div className="grid sm:grid-cols-3 gap-6">
-      {testimonials.map((item, i) => (
+    <div
+      className="relative max-w-3xl mx-auto"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Main card */}
+      <div className="relative p-8 sm:p-10 rounded-3xl border border-card-border bg-gradient-to-br from-card-bg to-card-bg/50 overflow-hidden">
+        {/* Decorative quote mark */}
         <div
-          key={i}
-          className="p-6 rounded-xl border border-card-border bg-card-bg"
+          className={`absolute top-6 text-8xl font-serif text-accent/10 leading-none select-none pointer-events-none ${
+            dir === "rtl" ? "right-6" : "left-6"
+          }`}
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm">
-              {item.avatar}
+          &ldquo;
+        </div>
+
+        <div className="relative flex flex-col items-center text-center">
+          {/* Avatar with ring */}
+          <div className="relative mb-5">
+            <div
+              className={`absolute inset-0 rounded-full bg-gradient-to-br ${gradient} blur-md opacity-60`}
+            />
+            <div
+              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-bold text-2xl sm:text-3xl ring-4 ring-card-bg`}
+            >
+              {current.initials}
             </div>
-            <div>
-              <p className="text-sm font-semibold text-zinc-200">{item.name}</p>
-              <p className="text-xs text-zinc-400">{item.role}</p>
+            {/* Tool badge (bottom-right of avatar, like country flag) */}
+            <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-card-bg border-2 border-card-border flex items-center justify-center text-base shadow-lg">
+              {current.toolIcon}
             </div>
           </div>
-          <p className="text-sm text-zinc-300 leading-relaxed">
-            &ldquo;{item.text}&rdquo;
+
+          {/* Quote */}
+          <p className="text-base sm:text-lg text-zinc-200 leading-relaxed max-w-2xl mb-6 min-h-[6rem]">
+            &ldquo;{current.text}&rdquo;
           </p>
-          <div className="flex gap-0.5 mt-3">
-            {[1, 2, 3, 4, 5].map((star) => (
+
+          {/* 5-star */}
+          <div className="flex gap-1 mb-4">
+            {[1, 2, 3, 4, 5].map((s) => (
               <svg
-                key={star}
-                className="w-3.5 h-3.5 text-yellow-400"
+                key={s}
+                className="w-4 h-4 text-yellow-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -87,15 +240,50 @@ export function Testimonials() {
               </svg>
             ))}
           </div>
+
+          {/* Name + role + tool tag */}
+          <div>
+            <p className="font-semibold text-zinc-100">{current.name}</p>
+            <p className="text-sm text-zinc-400 mt-0.5">{current.role}</p>
+            <span className="inline-block mt-3 text-xs px-3 py-1 rounded-full bg-purple-500/15 text-purple-300 font-medium">
+              {current.toolIcon} {current.tool} {t("testimonial.user")}
+            </span>
+          </div>
         </div>
-      ))}
+
+        {/* Progress bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-card-border/40">
+          <div
+            ref={progressRef}
+            className="h-full bg-gradient-to-r from-accent to-cyan-500 origin-left"
+            style={{ transform: "scaleX(0)" }}
+          />
+        </div>
+      </div>
+
+      {/* Dot navigation */}
+      <div className="flex justify-center gap-2 mt-6">
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            aria-label={`Go to testimonial ${i + 1}`}
+            className={`transition-all rounded-full ${
+              i === active
+                ? "w-8 h-2 bg-accent"
+                : "w-2 h-2 bg-zinc-600 hover:bg-zinc-500"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
-/**
- * "Recently joined" notification - FOMO element
- */
+// ============================================================
+// Recently joined toast — unchanged (FOMO element)
+// ============================================================
+
 export function RecentActivity() {
   const { t } = useLang();
   const [visible, setVisible] = useState(false);
@@ -125,7 +313,7 @@ export function RecentActivity() {
       clearTimeout(initialTimer);
       clearInterval(interval);
     };
-  }, []);
+  }, [activities.length]);
 
   if (!visible) return null;
 

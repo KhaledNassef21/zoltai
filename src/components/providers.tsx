@@ -158,6 +158,181 @@ const translations: Record<string, Record<Lang, string>> = {
     ar: "أخيراً موقع بيراجع أدوات AI بصدق من غير مبالغة. الأدلة عملية وسهلة للمبتدئين. أنصح بيه جداً.",
   },
 
+  // Testimonials (extended)
+  "testimonial.user": { en: "user", ar: "مستخدم" },
+  "testimonial.4.name": { en: "Mohamed H.", ar: "محمد ح." },
+  "testimonial.4.role": { en: "Product Manager", ar: "مدير منتج" },
+  "testimonial.4.text": {
+    en: "I found Claude through Zoltai's comparison guide. The pricing breakdown and real use cases saved me weeks of trial-and-error for my team.",
+    ar: "لقيت Claude عن طريق دليل المقارنة في Zoltai. مقارنة الأسعار وحالات الاستخدام الحقيقية وفرتلي أسابيع من التجربة والخطأ لفريقي.",
+  },
+  "testimonial.5.name": { en: "Omar F.", ar: "عمر ف." },
+  "testimonial.5.role": { en: "Indie Developer", ar: "مطور مستقل" },
+  "testimonial.5.text": {
+    en: "The Cursor vs Copilot guide was exactly what I needed. Made my decision in 10 minutes and I've been shipping faster ever since.",
+    ar: "مقارنة Cursor مع Copilot كانت بالظبط اللي محتاجه. اتخذت قراري في 10 دقايق وبقى شغلي أسرع من ساعتها.",
+  },
+
+  // How It Works (Phase 2)
+  "how.badge": { en: "GET STARTED IN MINUTES", ar: "ابدأ في دقائق" },
+  "how.title": {
+    en: "How Zoltai Works",
+    ar: "كيف يعمل Zoltai",
+  },
+  "how.desc": {
+    en: "Your shortcut to the right AI tool — no coding, no overwhelm. Just practical guidance that gets you working smarter in four simple steps.",
+    ar: "اختصارك للأداة الصح — بدون برمجة أو حيرة. إرشاد عملي يخليك تشتغل بذكاء في 4 خطوات بسيطة.",
+  },
+  "how.s1.title": { en: "Discover Tools", ar: "اكتشف الأدوات" },
+  "how.s1.desc": {
+    en: "Browse 24+ curated AI tools across writing, design, code, marketing, and more — each tested and reviewed.",
+    ar: "تصفح أكثر من 24 أداة AI مختارة في الكتابة، التصميم، البرمجة، التسويق وغيرها — كلها متجربة ومُراجعة.",
+  },
+  "how.s2.title": { en: "Compare Fairly", ar: "قارن بحياد" },
+  "how.s2.desc": {
+    en: "Side-by-side comparisons with pricing, use cases, and honest pros/cons — no hype, just clarity.",
+    ar: "مقارنات جنب بعض بالأسعار وحالات الاستخدام والمميزات والعيوب — بدون مبالغة، مجرد وضوح.",
+  },
+  "how.s3.title": { en: "Pick Your Winner", ar: "اختار الأنسب" },
+  "how.s3.desc": {
+    en: "Follow our recommendations tailored to your use case — freelancer, agency, solo creator, or team.",
+    ar: "اتبع ترشيحاتنا المناسبة لحالتك — فريلانسر، وكالة، صانع محتوى، أو فريق.",
+  },
+  "how.s4.title": { en: "Master & Grow", ar: "أتقن وتطور" },
+  "how.s4.desc": {
+    en: "Follow our step-by-step tutorials and weekly hacks to get 10x more done with your new toolkit.",
+    ar: "اتبع شرحنا خطوة بخطوة والحيل الأسبوعية علشان تنجز 10 أضعاف بأدواتك الجديدة.",
+  },
+  "how.cta": { en: "Explore the Tools Directory", ar: "استكشف دليل الأدوات" },
+
+  // FAQ (Phase 2)
+  "faq.badge": { en: "FREQUENTLY ASKED", ar: "أسئلة شائعة" },
+  "faq.title": {
+    en: "Questions? We've Got Answers",
+    ar: "أسئلتك... عندنا إجاباتها",
+  },
+  "faq.desc": {
+    en: "Everything you need to know before diving in. Can't find what you need? Reach out anytime.",
+    ar: "كل اللي محتاج تعرفه قبل ما تبدأ. مش لاقي سؤالك؟ تواصل معانا في أي وقت.",
+  },
+  "faq.q1": {
+    en: "Is Zoltai really free to use?",
+    ar: "هل Zoltai مجاني فعلاً؟",
+  },
+  "faq.a1": {
+    en: "Yes, 100%. All our guides, comparisons, and tool recommendations are completely free. We earn a small commission when you sign up for certain tools through our affiliate links — at no extra cost to you.",
+    ar: "أيوه، 100%. كل الأدلة والمقارنات والترشيحات مجانية تماماً. إحنا بنكسب عمولة بسيطة لما تسجل في أدوات معينة من خلال روابطنا — بدون أي تكلفة إضافية عليك.",
+  },
+  "faq.q2": {
+    en: "Do I need coding skills to use these AI tools?",
+    ar: "هل محتاج أعرف برمجة علشان أستخدم الأدوات دي؟",
+  },
+  "faq.a2": {
+    en: "Not at all. Zoltai focuses on no-code AI tools that anyone can use — from writers and designers to marketers and students. Every guide is written for beginners.",
+    ar: "مش محتاج خالص. Zoltai بيركز على أدوات بدون برمجة يقدر أي حد يستخدمها — من الكتّاب والمصممين للمسوقين والطلاب. كل دليل مكتوب للمبتدئين.",
+  },
+  "faq.q3": {
+    en: "How often is the content updated?",
+    ar: "كل قد إيه بيتم تحديث المحتوى؟",
+  },
+  "faq.a3": {
+    en: "We publish new articles daily and re-optimize existing guides every week to keep pricing, features, and recommendations accurate as tools evolve.",
+    ar: "بنضيف مقالات جديدة كل يوم وبنحدّث الأدلة القديمة أسبوعياً علشان الأسعار والمميزات تفضل دقيقة مع تطور الأدوات.",
+  },
+  "faq.q4": {
+    en: "Which AI tool should I start with as a beginner?",
+    ar: "أي أداة AI أبدأ بيها كمبتدئ؟",
+  },
+  "faq.a4": {
+    en: "For most beginners, we recommend starting with ChatGPT (free tier) for general tasks and Canva AI for visual work. Both are free, intuitive, and great for learning how AI can help you. See our Beginner's Guide for a complete roadmap.",
+    ar: "لمعظم المبتدئين، بننصح بـ ChatGPT (الإصدار المجاني) للمهام العامة و Canva AI للتصميم. الاتنين مجانيين وسهلين ومناسبين لفهم AI. شوف دليل المبتدئين علشان خريطة كاملة.",
+  },
+  "faq.q5": {
+    en: "Are your reviews really honest? You use affiliate links.",
+    ar: "مراجعاتكم صادقة فعلاً رغم استخدام روابط إحالة؟",
+  },
+  "faq.a5": {
+    en: "100%. Our reputation depends on honest reviews — misleading readers would kill the site. We call out weaknesses, skip tools that don't deliver, and recommend free alternatives whenever possible. Affiliate income never changes our opinion.",
+    ar: "100%. سمعتنا متوقفة على المصداقية — خداع القراء هيقضي على الموقع. بنوضح العيوب، وبنتجاهل الأدوات الضعيفة، وبننصح بالبدائل المجانية كل ما قدرنا. العمولات مش بتغير رأينا أبداً.",
+  },
+  "faq.q6": {
+    en: "Can I suggest a tool or topic for you to review?",
+    ar: "ممكن أقترح أداة أو موضوع لمراجعته؟",
+  },
+  "faq.a6": {
+    en: "Absolutely! Our best content comes from reader requests. Email us at info.zoltai@gmail.com or message us on Instagram — we read every suggestion.",
+    ar: "طبعاً! أحسن محتوانا بييجي من طلبات القراء. ابعتلنا على info.zoltai@gmail.com أو راسلنا على انستجرام — بنقرأ كل اقتراح.",
+  },
+
+  // Featured Experts (Phase 3)
+  "experts.badge": { en: "MEET THE POWER USERS", ar: "تعرف على المحترفين" },
+  "experts.title": {
+    en: "Real People Using AI Tools",
+    ar: "ناس حقيقيين بيستخدموا الأدوات",
+  },
+  "experts.desc": {
+    en: "Learn from creators, marketers, and developers who use these AI tools daily to 10x their output.",
+    ar: "تعلم من صُنّاع محتوى ومسوقين ومطورين بيستخدموا الأدوات دي يومياً لمضاعفة إنتاجيتهم.",
+  },
+  "experts.cta": { en: "Read Their Stories", ar: "اقرأ قصصهم" },
+  "expert.yearsExp": { en: "Years exp.", ar: "سنوات خبرة" },
+  "expert.tools": { en: "AI tools", ar: "أداة AI" },
+  "expert.1.name": { en: "Aisha M.", ar: "عائشة م." },
+  "expert.1.role": { en: "Senior Content Writer", ar: "كاتبة محتوى أولى" },
+  "expert.1.expertise": {
+    en: "Uses Jasper & Claude daily to ship 50+ articles/month for SaaS clients.",
+    ar: "بتستخدم Jasper و Claude يومياً علشان تنجز 50+ مقالة شهرياً لعملاء SaaS.",
+  },
+  "expert.2.name": { en: "Ryan K.", ar: "ريان ك." },
+  "expert.2.role": { en: "Freelance Designer", ar: "مصمم مستقل" },
+  "expert.2.expertise": {
+    en: "Midjourney + Canva AI power-user — cut client turnaround time by 60%.",
+    ar: "محترف Midjourney و Canva AI — قلّل وقت تسليم العملاء بنسبة 60%.",
+  },
+  "expert.3.name": { en: "Leo S.", ar: "ليو س." },
+  "expert.3.role": { en: "Indie SaaS Builder", ar: "مطور SaaS مستقل" },
+  "expert.3.expertise": {
+    en: "Ships full MVPs in a weekend using Cursor, Bolt.new, and Copilot together.",
+    ar: "بيطلق منتجات MVP كاملة في ويكند باستخدام Cursor و Bolt.new و Copilot مع بعض.",
+  },
+
+  // Newsletter Hero (Phase 3)
+  "newsletterHero.badge": { en: "WEEKLY AI INSIGHTS", ar: "نشرة أسبوعية" },
+  "newsletterHero.title1": { en: "Stay Ahead of the", ar: "اتقدم على" },
+  "newsletterHero.title2": { en: "AI Curve", ar: "موجة الذكاء الاصطناعي" },
+  "newsletterHero.desc": {
+    en: "Join 2,000+ readers getting the best new AI tools, honest reviews, and productivity hacks every week. No spam, unsubscribe anytime.",
+    ar: "انضم لأكثر من 2,000 قارئ بيوصلهم أحسن الأدوات الجديدة ومراجعات صادقة وحيل إنتاجية كل أسبوع. بدون سبام، اشتراكك يمكن إلغاؤه في أي وقت.",
+  },
+  "newsletterHero.benefit1": {
+    en: "Top 3 AI tool picks every Monday",
+    ar: "أفضل 3 أدوات كل يوم إثنين",
+  },
+  "newsletterHero.benefit2": {
+    en: "Free playbooks and in-depth comparisons",
+    ar: "أدلة مجانية ومقارنات متعمقة",
+  },
+  "newsletterHero.benefit3": {
+    en: "Exclusive deals + early access tips",
+    ar: "عروض حصرية + نصائح وصول مبكر",
+  },
+  "newsletterHero.formLabel": { en: "Get the newsletter", ar: "احصل على النشرة" },
+  "newsletterHero.placeholder": { en: "you@example.com", ar: "بريدك الإلكتروني" },
+  "newsletterHero.cta": { en: "Subscribe Free", ar: "اشترك مجاناً" },
+  "newsletterHero.privacy": {
+    en: "Free forever. We respect your inbox.",
+    ar: "مجاني للأبد. نحترم بريدك.",
+  },
+  "newsletterHero.error": {
+    en: "Something went wrong. Try again.",
+    ar: "حدث خطأ ما. حاول مرة أخرى.",
+  },
+  "newsletterHero.successTitle": { en: "You're in!", ar: "تم الاشتراك!" },
+  "newsletterHero.successDesc": {
+    en: "Check your inbox in the next few minutes for a welcome email.",
+    ar: "تفقد بريدك خلال دقائق للحصول على رسالة الترحيب.",
+  },
+
   // Recent Activity notifications
   "activity.1": { en: "Someone from Cairo just subscribed to the newsletter", ar: "حد من القاهرة لسه اشترك في النشرة البريدية" },
   "activity.2": { en: "A reader just downloaded the free AI tools guide", ar: "قارئ لسه حمّل دليل أدوات AI المجاني" },
