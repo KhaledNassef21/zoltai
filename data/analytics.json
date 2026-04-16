@@ -234,9 +234,9 @@
     "timestamp": "2026-04-15T11:50:49.890Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":73,\"y\":3,\"el\":\"svg.[object\",\"time\":1776320343096},{\"x\":22,\"y\":3,\"el\":\"a.text-xl[Zoltai]\",\"time\":1776320349686},{\"x\":23,\"y\":2,\"el\":\"a.text-xl[Zoltai]\",\"time\":1776320352102},{\"x\":36,\"y\":48,\"el\":\"a.inline-flex[Explore AI Tools]\",\"time\":1776320354190}]",
+    "event": "cta_click",
+    "variant": "sticky_cta",
     "page": "/",
-    "timestamp": "2026-04-16T06:19:15.916Z"
+    "timestamp": "2026-04-16T06:28:36.585Z"
   }
 ]
