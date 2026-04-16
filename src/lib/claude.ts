@@ -16,13 +16,72 @@ function getOpenAIClient(): OpenAI | null {
 
 function extractJSON(text: string): string {
   const match = text.match(/```(?:json)?\s*\n([\s\S]*?)\n```/);
-  return match ? match[1].trim() : text.trim();
+  let raw = match ? match[1].trim() : text.trim();
+
+  // Strip any content before the first { or [ and after the last } or ]
+  const firstBrace = raw.search(/[{[]/);
+  if (firstBrace > 0) raw = raw.slice(firstBrace);
+  const lastBrace = Math.max(raw.lastIndexOf("}"), raw.lastIndexOf("]"));
+  if (lastBrace >= 0 && lastBrace < raw.length - 1) raw = raw.slice(0, lastBrace + 1);
+
+  // Sanitize control characters inside string literals so JSON.parse succeeds.
+  // Walks the text char-by-char, escaping raw control chars (0x00-0x1F) inside "strings".
+  let out = "";
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < raw.length; i++) {
+    const ch = raw[i];
+    const code = ch.charCodeAt(0);
+    if (escape) {
+      out += ch;
+      escape = false;
+      continue;
+    }
+    if (ch === "\\" && inString) {
+      out += ch;
+      escape = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = !inString;
+      out += ch;
+      continue;
+    }
+    if (inString && code < 0x20) {
+      // Escape raw control chars that would break JSON.parse
+      if (ch === "\n") out += "\\n";
+      else if (ch === "\r") out += "\\r";
+      else if (ch === "\t") out += "\\t";
+      else if (ch === "\b") out += "\\b";
+      else if (ch === "\f") out += "\\f";
+      else out += "\\u" + code.toString(16).padStart(4, "0");
+      continue;
+    }
+    out += ch;
+  }
+  return out;
+}
+
+function safeParseJSON<T>(text: string): T {
+  const cleaned = extractJSON(text);
+  try {
+    return JSON.parse(cleaned) as T;
+  } catch (err: any) {
+    console.error("   ❌ JSON parse failed at:", err.message);
+    console.error("   📄 Text preview:", cleaned.slice(0, 200));
+    throw err;
+  }
 }
 
 /**
  * Send a prompt and get text back — tries Claude first, falls back to OpenAI.
+ * When jsonMode is true, OpenAI returns valid JSON (response_format json_object).
  */
-async function aiComplete(prompt: string, maxTokens: number): Promise<string> {
+async function aiComplete(
+  prompt: string,
+  maxTokens: number,
+  jsonMode: boolean = false
+): Promise<string> {
   // Try Claude first
   const anthropic = getAnthropicClient();
   if (anthropic) {
@@ -56,10 +115,17 @@ async function aiComplete(prompt: string, maxTokens: number): Promise<string> {
   }
 
   console.log("   🤖 Provider: OpenAI GPT-4o");
+  // OpenAI json_object mode requires the word "json" in the prompt — inject if missing
+  const finalPrompt =
+    jsonMode && !/json/i.test(prompt)
+      ? `${prompt}\n\nRespond in valid JSON.`
+      : prompt;
+
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
     max_tokens: maxTokens,
-    messages: [{ role: "user", content: prompt }],
+    messages: [{ role: "user", content: finalPrompt }],
+    ...(jsonMode ? { response_format: { type: "json_object" as const } } : {}),
   });
 
   return response.choices[0]?.message?.content || "";
@@ -117,8 +183,8 @@ Return your response in this exact JSON format:
 
 Return ONLY the JSON, no other text.`;
 
-  const text = await aiComplete(prompt, 5000);
-  return JSON.parse(extractJSON(text));
+  const text = await aiComplete(prompt, 5000, true);
+  return safeParseJSON(text);
 }
 
 export async function researchTrendingTopics(existingTitles: string[] = []): Promise<string[]> {
@@ -147,10 +213,12 @@ Cover DIVERSE niches: writing, design, video, coding, marketing, SEO, social med
 Tools to cover: ChatGPT, Claude, Midjourney, Cursor, Jasper, Copy.ai, Notion AI, Perplexity, Bolt.new, GitHub Copilot, Semrush, Leonardo AI, Runway, ElevenLabs, Canva AI, Descript, Synthesia, Pictory, Writesonic, Grammarly AI, Otter.ai, Murf AI.
 ${existingList}
 
-Return a JSON array of 5 topic strings. Each topic MUST be unique and different from the others AND from existing articles. Return ONLY the JSON array, no other text.`;
+Return JSON in the form: { "topics": ["topic1", "topic2", "topic3", "topic4", "topic5"] }. Each topic MUST be unique and different from the others AND from existing articles. Return ONLY the JSON object, no other text.`;
 
-  const text = await aiComplete(prompt, 1000);
-  return JSON.parse(extractJSON(text));
+  const text = await aiComplete(prompt, 1000, true);
+  const parsed = safeParseJSON<{ topics?: string[] } | string[]>(text);
+  if (Array.isArray(parsed)) return parsed;
+  return parsed.topics || [];
 }
 
 export async function optimizeForSEO(
@@ -185,6 +253,6 @@ Return in JSON format:
 
 Return ONLY the JSON.`;
 
-  const text = await aiComplete(prompt, 4000);
-  return JSON.parse(extractJSON(text));
+  const text = await aiComplete(prompt, 4000, true);
+  return safeParseJSON(text);
 }
