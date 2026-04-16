@@ -234,9 +234,9 @@
     "timestamp": "2026-04-15T11:50:49.890Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-16T06:28:49.113Z"
+    "event": "popup_dismissed",
+    "variant": "newsletter_popup",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-16T06:49:54.385Z"
   }
 ]
