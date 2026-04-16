@@ -36,4 +36,4 @@ jobs:
           git config user.name "Zoltai Bot"
           git config user.email "bot@zoltai.org"
           git add data/reddit-posted.json || true
-          git diff --staged --quiet || (git commit -m "chore: update Reddit posted log" && git push)
+          git diff --staged --quiet || (git commit -m "chore: update Reddit posted log" && git pull --rebase origin main && git push)
