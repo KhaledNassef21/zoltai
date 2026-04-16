@@ -246,9 +246,9 @@
     "timestamp": "2026-04-16T09:47:26.568Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog",
-    "timestamp": "2026-04-16T10:54:21.492Z"
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/best-ai-tools-for-video-editing-canva-ai-vs-descript-vs-runway",
+    "timestamp": "2026-04-16T14:43:09.191Z"
   }
 ]
