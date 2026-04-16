@@ -240,9 +240,9 @@
     "timestamp": "2026-04-16T06:52:17.415Z"
   },
   {
-    "event": "scroll_depth",
-    "variant": "100",
-    "page": "/",
-    "timestamp": "2026-04-16T06:59:39.936Z"
+    "event": "cta_impression",
+    "variant": "article_mid",
+    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
+    "timestamp": "2026-04-16T07:00:20.341Z"
   }
 ]
