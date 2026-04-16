@@ -234,9 +234,9 @@
     "timestamp": "2026-04-15T11:50:49.890Z"
   },
   {
-    "event": "cta_click",
-    "variant": "sticky_cta",
+    "event": "page_view",
+    "variant": "",
     "page": "/",
-    "timestamp": "2026-04-16T06:28:36.585Z"
+    "timestamp": "2026-04-16T06:28:49.113Z"
   }
 ]
