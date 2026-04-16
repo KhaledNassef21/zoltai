@@ -240,9 +240,9 @@
     "timestamp": "2026-04-16T06:52:17.415Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":54,\"y\":4,\"el\":\"a.text-zinc-400[Blog]\",\"time\":1776330414091}]",
-    "page": "/tools",
-    "timestamp": "2026-04-16T09:06:56.337Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-16T09:47:26.568Z"
   }
 ]
