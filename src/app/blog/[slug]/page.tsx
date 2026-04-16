@@ -300,20 +300,46 @@ export default async function BlogPost({ params }: Props) {
               <Link
                 key={related.slug}
                 href={`/blog/${related.slug}`}
-                className="p-4 rounded-xl border border-card-border bg-card-bg hover:border-accent/30 transition-all group"
+                className="group rounded-xl border border-card-border bg-card-bg hover:border-accent/30 transition-all overflow-hidden flex flex-col"
               >
-                <h4 className="font-semibold text-sm leading-snug group-hover:text-accent-light transition-colors line-clamp-2">
-                  {related.title}
-                </h4>
-                <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600">
-                  <time>
-                    {new Date(related.date).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </time>
-                  <span>&middot;</span>
-                  <span>{related.readingTime}</span>
+                {/* Cover image */}
+                <div className="aspect-video overflow-hidden bg-gradient-to-br from-accent/10 to-cyan-500/10 relative">
+                  {related.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={related.image}
+                      alt={related.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-4xl opacity-30">
+                      📄
+                    </div>
+                  )}
+                  {/* Tag badge overlay */}
+                  {related.tags[0] && (
+                    <span className="absolute top-2 left-2 text-[10px] px-2 py-0.5 rounded-full bg-card-bg/90 backdrop-blur text-zinc-300 font-medium">
+                      {related.tags[0]}
+                    </span>
+                  )}
+                </div>
+                {/* Content */}
+                <div className="p-4 flex-1 flex flex-col">
+                  <h4 className="font-semibold text-sm leading-snug text-zinc-100 group-hover:text-accent-light transition-colors line-clamp-2 flex-1">
+                    {related.title}
+                  </h4>
+                  <div className="mt-3 flex items-center gap-2 text-xs text-zinc-500">
+                    <time>
+                      {new Date(related.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </time>
+                    <span>&middot;</span>
+                    <span>{related.readingTime}</span>
+                  </div>
                 </div>
               </Link>
             ))}

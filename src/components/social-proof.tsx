@@ -114,6 +114,8 @@ const AVATAR_GRADIENTS = [
 export function Testimonials() {
   const { t, dir } = useLang();
 
+  // Photos: pravatar.cc (deterministic placeholder avatars — will be replaced
+  // with real customer photos once testimonials are collected)
   const testimonials = [
     {
       name: t("testimonial.1.name"),
@@ -121,6 +123,7 @@ export function Testimonials() {
       text: t("testimonial.1.text"),
       tool: "ChatGPT",
       toolIcon: "💬",
+      photo: "https://i.pravatar.cc/160?img=47",
       initials: "S",
     },
     {
@@ -129,6 +132,7 @@ export function Testimonials() {
       text: t("testimonial.2.text"),
       tool: "Jasper",
       toolIcon: "✍️",
+      photo: "https://i.pravatar.cc/160?img=12",
       initials: "A",
     },
     {
@@ -137,6 +141,7 @@ export function Testimonials() {
       text: t("testimonial.3.text"),
       tool: "Midjourney",
       toolIcon: "🎨",
+      photo: "https://i.pravatar.cc/160?img=44",
       initials: "J",
     },
     {
@@ -145,6 +150,7 @@ export function Testimonials() {
       text: t("testimonial.4.text"),
       tool: "Claude",
       toolIcon: "🧠",
+      photo: "https://i.pravatar.cc/160?img=33",
       initials: "M",
     },
     {
@@ -153,6 +159,7 @@ export function Testimonials() {
       text: t("testimonial.5.text"),
       tool: "Cursor",
       toolIcon: "💻",
+      photo: "https://i.pravatar.cc/160?img=68",
       initials: "O",
     },
   ];
@@ -211,8 +218,25 @@ export function Testimonials() {
             <div
               className={`absolute inset-0 rounded-full bg-gradient-to-br ${gradient} blur-md opacity-60`}
             />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={current.photo}
+              alt={current.name}
+              width={96}
+              height={96}
+              loading="lazy"
+              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-4 ring-card-bg bg-gradient-to-br ${gradient}`}
+              onError={(e) => {
+                // Fallback to initials avatar if photo fails
+                const img = e.currentTarget;
+                img.style.display = "none";
+                const fallback = img.nextElementSibling as HTMLElement | null;
+                if (fallback) fallback.style.display = "flex";
+              }}
+            />
             <div
-              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-bold text-2xl sm:text-3xl ring-4 ring-card-bg`}
+              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${gradient} items-center justify-center text-white font-bold text-2xl sm:text-3xl ring-4 ring-card-bg`}
+              style={{ display: "none" }}
             >
               {current.initials}
             </div>

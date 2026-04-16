@@ -10,10 +10,12 @@ import { useLang } from "./providers";
 export function FeaturedExperts() {
   const { t, dir } = useLang();
 
+  // Placeholder portraits via pravatar.cc — replace with real creator headshots later
   const experts = [
     {
       initials: "AM",
       gradient: "from-purple-500 via-fuchsia-500 to-pink-500",
+      photo: "https://i.pravatar.cc/200?img=5",
       name: t("expert.1.name"),
       role: t("expert.1.role"),
       expertise: t("expert.1.expertise"),
@@ -27,6 +29,7 @@ export function FeaturedExperts() {
     {
       initials: "RK",
       gradient: "from-cyan-500 via-blue-500 to-indigo-500",
+      photo: "https://i.pravatar.cc/200?img=60",
       name: t("expert.2.name"),
       role: t("expert.2.role"),
       expertise: t("expert.2.expertise"),
@@ -40,6 +43,7 @@ export function FeaturedExperts() {
     {
       initials: "LS",
       gradient: "from-emerald-500 via-teal-500 to-cyan-500",
+      photo: "https://i.pravatar.cc/200?img=15",
       name: t("expert.3.name"),
       role: t("expert.3.role"),
       expertise: t("expert.3.expertise"),
@@ -82,8 +86,24 @@ export function FeaturedExperts() {
               {/* Avatar + tool badge */}
               <div className="flex items-start justify-between mb-4">
                 <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={expert.photo}
+                    alt={expert.name}
+                    width={64}
+                    height={64}
+                    loading="lazy"
+                    className={`w-16 h-16 rounded-2xl object-cover shadow-lg bg-gradient-to-br ${expert.gradient}`}
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      img.style.display = "none";
+                      const fallback = img.nextElementSibling as HTMLElement | null;
+                      if (fallback) fallback.style.display = "flex";
+                    }}
+                  />
                   <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${expert.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg`}
+                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${expert.gradient} items-center justify-center text-white font-bold text-xl shadow-lg`}
+                    style={{ display: "none" }}
                   >
                     {expert.initials}
                   </div>
