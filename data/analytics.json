@@ -244,5 +244,11 @@
     "variant": "",
     "page": "/",
     "timestamp": "2026-04-16T09:47:26.568Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-16T10:06:25.646Z"
   }
 ]
