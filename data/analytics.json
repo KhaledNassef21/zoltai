@@ -256,5 +256,11 @@
     "variant": "",
     "page": "/blog/best-ai-tools-for-video-editing-canva-ai-vs-descript-vs-runway",
     "timestamp": "2026-04-17T21:13:11.609Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":50,\"y\":51,\"el\":\"span.flex[💯 Money-Back Guarantee]\",\"time\":1776461603733},{\"x\":61,\"y\":62,\"el\":\"section.max-w-6xl[GET STARTED IN MINUTESHow Zolt]\",\"time\":1776461604662},{\"x\":38,\"y\":36,\"el\":\"img.object-cover\",\"time\":1776461622954}]",
+    "page": "/",
+    "timestamp": "2026-04-17T21:33:43.691Z"
   }
 ]
