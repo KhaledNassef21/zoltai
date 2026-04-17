@@ -250,5 +250,11 @@
     "variant": "[{\"x\":0,\"y\":0,\"el\":\"button.px-5[Accept]\",\"time\":1776437743066}]",
     "page": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
     "timestamp": "2026-04-17T14:55:52.114Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/blog/best-ai-tools-for-video-editing-canva-ai-vs-descript-vs-runway",
+    "timestamp": "2026-04-17T21:13:11.609Z"
   }
 ]
