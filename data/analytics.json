@@ -246,9 +246,9 @@
     "timestamp": "2026-04-16T09:47:26.568Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":60,\"y\":60,\"el\":\"strong[Canva AI]\",\"time\":1776433907723},{\"x\":60,\"y\":60,\"el\":\"strong[Canva AI]\",\"time\":1776433907944},{\"x\":63,\"y\":59,\"el\":\"strong[Descript]\",\"time\":1776433908533},{\"x\":63,\"y\":59,\"el\":\"strong[Descript]\",\"time\":1776433908731},{\"x\":55,\"y\":54,\"el\":\"p[Are you ready to elevate your ]\",\"time\":1776433916944}]",
+    "event": "scroll_depth",
+    "variant": "80",
     "page": "/blog/best-ai-tools-for-video-editing-canva-ai-vs-descript-vs-runway",
-    "timestamp": "2026-04-17T13:53:43.514Z"
+    "timestamp": "2026-04-17T13:54:16.191Z"
   }
 ]
