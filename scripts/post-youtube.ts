@@ -47,11 +47,14 @@ function getYouTubeClient(): youtube_v3.Youtube {
     );
   }
 
-  // OAuth2 client — googleapis will auto-refresh the access token as needed
+  // OAuth2 client — googleapis will auto-refresh the access token as needed.
+  // The redirect_uri is only used for initial code exchange; for refresh-token
+  // flow it's not sent to Google, but we keep it matching the desktop client
+  // config (http://localhost) to avoid surprises.
   const oauth2 = new google.auth.OAuth2(
     clientId,
     clientSecret,
-    "urn:ietf:wg:oauth:2.0:oob" // out-of-band redirect for desktop flow
+    "http://localhost"
   );
   oauth2.setCredentials({ refresh_token: refreshToken });
 
