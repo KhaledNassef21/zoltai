@@ -58,8 +58,9 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      # Step 3: Publish reels
-      - name: Publish reels
+      # Step 3a: Publish to Instagram + Facebook Reels
+      - name: Publish to Instagram + Facebook
+        continue-on-error: true
         run: |
           if [ -n "${{ github.event.inputs.slug }}" ]; then
             npx tsx scripts/post-reel.ts "${{ github.event.inputs.slug }}" ${{ github.event.inputs.reel_id }}
@@ -72,12 +73,27 @@ jobs:
           FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
           FACEBOOK_PAGE_ACCESS_TOKEN: ${{ secrets.FACEBOOK_PAGE_ACCESS_TOKEN }}
 
+      # Step 3b: Publish to YouTube Shorts — runs independently so an IG/FB
+      # outage or rate limit doesn't stop the YouTube upload (and vice versa)
+      - name: Publish to YouTube Shorts
+        continue-on-error: true
+        run: |
+          if [ -n "${{ github.event.inputs.slug }}" ]; then
+            npx tsx scripts/post-youtube.ts "${{ github.event.inputs.slug }}" ${{ github.event.inputs.reel_id }}
+          else
+            npx tsx scripts/post-youtube.ts
+          fi
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+
       # Step 4: Save posted reels log
       - name: Save posted reels log
         run: |
           git config user.name "zoltai-bot"
           git config user.email "bot@zoltai.org"
-          git add data/posted-reels.json data/reels/ || true
+          git add data/posted-reels.json data/posted-youtube.json data/reels/ || true
           git diff --staged --quiet || git commit -m "chore: update posted reels log"
           git pull --rebase || true
           git push || true

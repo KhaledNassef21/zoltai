@@ -40,6 +40,11 @@ yarn-error.log*
 /data/comments/
 /data/analytics.json
 /data/users.json
+/data/reset-tokens.json
+
+# generated media (reels, audio) — produced by CI, not committed
+/public/videos/
+/public/audio/
 
 # typescript
 *.tsbuildinfo

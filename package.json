@@ -24,6 +24,7 @@
     "@tiptap/react": "^3.22.2",
     "@tiptap/starter-kit": "^3.22.2",
     "date-fns": "^4.1.0",
+    "googleapis": "^171.4.0",
     "gray-matter": "^4.0.3",
     "lowlight": "^3.3.0",
     "lucide-react": "^1.7.0",

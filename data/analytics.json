@@ -247,8 +247,14 @@
   },
   {
     "event": "scroll_depth",
-    "variant": "80",
+    "variant": "93",
     "page": "/blog/best-ai-tools-for-video-editing-canva-ai-vs-descript-vs-runway",
-    "timestamp": "2026-04-17T13:54:16.191Z"
+    "timestamp": "2026-04-16T10:06:55.389Z"
+  },
+  {
+    "event": "page_view",
+    "variant": "",
+    "page": "/",
+    "timestamp": "2026-04-17T13:36:09.388Z"
   }
 ]
