@@ -1,6 +1,7 @@
 // Blog post page — affiliate links from MDX frontmatter
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
@@ -14,6 +15,16 @@ import { getFeaturedTools, tools } from "@/data/tools";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FAQSchema, extractFAQsFromContent } from "@/components/faq-schema";
 import { TagLinks } from "@/components/tag-links";
+import { InlineToolLinks } from "@/components/inline-tool-links";
+import { TrustSignals } from "@/components/trust-signals";
+import { ComparisonTable } from "@/components/comparison-table";
+
+// Components available inside MDX article bodies
+const mdxComponents = {
+  ComparisonTable,
+  AffiliateCTA,
+  TrustSignals,
+};
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -157,14 +168,14 @@ export default async function BlogPost({ params }: Props) {
       </header>
 
       {post.image && (
-        <div className="aspect-video rounded-xl overflow-hidden mb-10">
-          <img
+        <div className="aspect-video rounded-xl overflow-hidden mb-10 relative bg-zinc-900">
+          <Image
             src={post.image}
             alt={post.title}
-            className="w-full h-full object-cover"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
+            fill
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="object-cover"
+            priority
           />
         </div>
       )}
@@ -200,8 +211,10 @@ export default async function BlogPost({ params }: Props) {
 
       {/* === ARTICLE CONTENT === */}
       <div className="prose">
-        <MDXRemote source={post.content} />
+        <MDXRemote source={post.content} components={mdxComponents} />
       </div>
+      {/* Auto-link tool mentions to their /tools/<slug> pages — runs client-side */}
+      <InlineToolLinks />
 
       {/* === LEAD FLOW POSITION 3: Mid-Article CTA === */}
       {post.affiliateLinks.length > 0 ? (
@@ -231,7 +244,7 @@ export default async function BlogPost({ params }: Props) {
                 key={`aff-${i}`}
                 href={link.url}
                 target="_blank"
-                rel="noopener noreferrer nofollow"
+                rel="noopener noreferrer nofollow sponsored"
                 className="flex items-center justify-between p-4 rounded-lg border border-card-border bg-card-bg hover:border-accent/30 transition-all group"
               >
                 <div className="flex-1 min-w-0">
@@ -258,7 +271,7 @@ export default async function BlogPost({ params }: Props) {
                 key={tool.slug}
                 href={tool.affiliateUrl || tool.url}
                 target="_blank"
-                rel="noopener noreferrer nofollow"
+                rel="noopener noreferrer nofollow sponsored"
                 className="flex items-center justify-between p-4 rounded-lg border border-card-border bg-card-bg hover:border-accent/30 transition-all group"
               >
                 <div className="flex-1 min-w-0">
@@ -283,6 +296,9 @@ export default async function BlogPost({ params }: Props) {
         </div>
       )}
 
+      {/* === Trust signals above bottom CTA — reduces purchase hesitation === */}
+      <TrustSignals variant="grid" />
+
       {/* === LEAD FLOW POSITION 4: Bottom Article CTA === */}
       <BottomArticleCTA slug={slug} />
 
@@ -305,13 +321,13 @@ export default async function BlogPost({ params }: Props) {
                 {/* Cover image */}
                 <div className="aspect-video overflow-hidden bg-gradient-to-br from-accent/10 to-cyan-500/10 relative">
                   {related.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <Image
                       src={related.image}
                       alt={related.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
                       loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-4xl opacity-30">

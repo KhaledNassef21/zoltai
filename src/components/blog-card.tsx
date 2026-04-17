@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Post } from "@/lib/blog";
 
 export function BlogCard({ post }: { post: Post }) {
@@ -6,13 +7,14 @@ export function BlogCard({ post }: { post: Post }) {
     <Link href={`/blog/${post.slug}`} className="group block">
       <article className="rounded-xl border border-card-border bg-card-bg overflow-hidden transition-all hover:border-accent/40 hover:glow">
         {post.image && (
-          <div className="aspect-video bg-zinc-800 overflow-hidden">
-            <img
+          <div className="aspect-video bg-zinc-800 overflow-hidden relative">
+            <Image
               src={post.image}
               alt={post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
-              decoding="async"
             />
           </div>
         )}

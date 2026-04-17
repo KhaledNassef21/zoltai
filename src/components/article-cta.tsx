@@ -43,7 +43,7 @@ export function MidArticleCTA({
         <a
           href={toolUrl}
           target="_blank"
-          rel="noopener noreferrer nofollow"
+          rel="noopener noreferrer nofollow sponsored"
           onClick={() =>
             trackFunnel({
               event: "affiliate_click",

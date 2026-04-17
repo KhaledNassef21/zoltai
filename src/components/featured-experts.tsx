@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "./providers";
 
 /**
@@ -86,26 +87,16 @@ export function FeaturedExperts() {
               {/* Avatar + tool badge */}
               <div className="flex items-start justify-between mb-4">
                 <div className="relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={expert.photo}
-                    alt={expert.name}
-                    width={64}
-                    height={64}
-                    loading="lazy"
-                    className={`w-16 h-16 rounded-2xl object-cover shadow-lg bg-gradient-to-br ${expert.gradient}`}
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      img.style.display = "none";
-                      const fallback = img.nextElementSibling as HTMLElement | null;
-                      if (fallback) fallback.style.display = "flex";
-                    }}
-                  />
                   <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${expert.gradient} items-center justify-center text-white font-bold text-xl shadow-lg`}
-                    style={{ display: "none" }}
+                    className={`relative w-16 h-16 rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br ${expert.gradient}`}
                   >
-                    {expert.initials}
+                    <Image
+                      src={expert.photo}
+                      alt={expert.name}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
                   </div>
                   <div className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-card-bg border-2 border-card-border flex items-center justify-center text-sm">
                     {expert.icon}

@@ -20,7 +20,7 @@ export function AffiliateCTA({
       <a
         href={ctaUrl}
         target="_blank"
-        rel="noopener noreferrer nofollow"
+        rel="noopener noreferrer nofollow sponsored"
         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white text-sm font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
       >
         {ctaText}
@@ -58,11 +58,23 @@ export function AffiliateCTA({
                 {description}
               </p>
             )}
+            {/* Micro trust signals under the description — low-commitment reassurance */}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 text-xs text-zinc-500">
+              <span className="flex items-center gap-1">
+                <span className="text-emerald-400">✓</span> Free trial
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="text-emerald-400">✓</span> No credit card
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="text-emerald-400">✓</span> Cancel anytime
+              </span>
+            </div>
           </div>
           <a
             href={ctaUrl}
             target="_blank"
-            rel="noopener noreferrer nofollow"
+            rel="noopener noreferrer nofollow sponsored"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent hover:bg-accent/90 text-white font-semibold transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-accent/20 whitespace-nowrap"
           >
             {ctaText}
@@ -105,7 +117,7 @@ export function AffiliateCTA({
         <a
           href={ctaUrl}
           target="_blank"
-          rel="noopener noreferrer nofollow"
+          rel="noopener noreferrer nofollow sponsored"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white font-medium transition-all hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
         >
           {ctaText}

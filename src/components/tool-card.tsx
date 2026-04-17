@@ -102,7 +102,7 @@ export function ToolCard({ tool }: ToolCardProps) {
         <a
           href={ctaUrl}
           target="_blank"
-          rel="noopener noreferrer nofollow"
+          rel="noopener noreferrer nofollow sponsored"
           className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-accent hover:bg-accent/90 text-white font-medium text-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
         >
           {ctaText}

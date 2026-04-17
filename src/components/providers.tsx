@@ -340,6 +340,32 @@ const translations: Record<string, Record<Lang, string>> = {
   "activity.4": { en: "A new reader just joined from a Google search", ar: "قارئ جديد لسه انضم من بحث جوجل" },
   "activity.5": { en: "Someone just bookmarked the ChatGPT guide", ar: "حد لسه حفظ دليل ChatGPT" },
   "activity.justNow": { en: "Just now", ar: "الآن" },
+
+  // Trust Signals (Monetization Phase 4)
+  "trust.secure.title": { en: "Secure & Private", ar: "آمن ومحمي" },
+  "trust.secure.desc": {
+    en: "SSL-encrypted. We never share your email with third parties.",
+    ar: "تشفير SSL. إيميلك مش بيتشارك مع أي طرف تاني.",
+  },
+  "trust.guarantee.title": { en: "Risk-Free Trial", ar: "تجربة بدون مخاطرة" },
+  "trust.guarantee.desc": {
+    en: "Every tool we recommend comes with a free trial or money-back guarantee.",
+    ar: "كل أداة بنرشحها ليها تجربة مجانية أو ضمان استرداد فلوسك.",
+  },
+  "trust.instant.title": { en: "Instant Access", ar: "وصول فوري" },
+  "trust.instant.desc": {
+    en: "No waitlists. Start using these AI tools in under 60 seconds.",
+    ar: "بدون قوائم انتظار. ابدأ تستخدم الأدوات في أقل من 60 ثانية.",
+  },
+  "trust.trusted.title": { en: "Trusted by 10,000+", ar: "اعتمد عليه 10,000+" },
+  "trust.trusted.desc": {
+    en: "Join thousands of creators, marketers, and developers leveling up with AI.",
+    ar: "انضم لآلاف صُنّاع المحتوى والمسوقين والمطورين اللي بيطوروا شغلهم بالذكاء الاصطناعي.",
+  },
+  "trust.badge.ssl": { en: "SSL Secured", ar: "محمي بـ SSL" },
+  "trust.badge.verified": { en: "Verified Reviews", ar: "مراجعات موثقة" },
+  "trust.badge.moneyback": { en: "Money-Back Guarantee", ar: "ضمان استرداد" },
+  "trust.badge.rated": { en: "4.8/5 Rated", ar: "تقييم 4.8/5" },
 };
 
 const LangContext = createContext<LangContextType>({

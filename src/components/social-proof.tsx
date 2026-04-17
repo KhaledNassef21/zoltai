@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useLang } from "./providers";
 
@@ -218,29 +219,18 @@ export function Testimonials() {
             <div
               className={`absolute inset-0 rounded-full bg-gradient-to-br ${gradient} blur-md opacity-60`}
             />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={current.photo}
-              alt={current.name}
-              width={96}
-              height={96}
-              loading="lazy"
-              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-4 ring-card-bg bg-gradient-to-br ${gradient}`}
-              onError={(e) => {
-                // Fallback to initials avatar if photo fails
-                const img = e.currentTarget;
-                img.style.display = "none";
-                const fallback = img.nextElementSibling as HTMLElement | null;
-                if (fallback) fallback.style.display = "flex";
-              }}
-            />
             <div
-              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${gradient} items-center justify-center text-white font-bold text-2xl sm:text-3xl ring-4 ring-card-bg`}
-              style={{ display: "none" }}
+              className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden ring-4 ring-card-bg bg-gradient-to-br ${gradient}`}
             >
-              {current.initials}
+              <Image
+                src={current.photo}
+                alt={current.name}
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
             </div>
-            {/* Tool badge (bottom-right of avatar, like country flag) */}
+            {/* Tool badge (bottom-right of avatar) */}
             <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-card-bg border-2 border-card-border flex items-center justify-center text-base shadow-lg">
               {current.toolIcon}
             </div>

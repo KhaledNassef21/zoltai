@@ -9,6 +9,7 @@ import { HowItWorks } from "@/components/how-it-works";
 import { FAQAccordion } from "@/components/faq-accordion";
 import { FeaturedExperts } from "@/components/featured-experts";
 import { NewsletterHero } from "@/components/newsletter-hero";
+import { TrustSignals } from "@/components/trust-signals";
 import type { Post } from "@/lib/blog";
 
 interface Tool {
@@ -105,6 +106,11 @@ export function HomeContent({
         <StatsCounter />
       </section>
 
+      {/* Trust badges — privacy + guarantee + instant access + social proof */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+        <TrustSignals variant="badges" />
+      </section>
+
       {/* How It Works — 4-step journey */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <HowItWorks />
@@ -133,7 +139,7 @@ export function HomeContent({
                 key={tool.slug}
                 href={tool.affiliateUrl || tool.url}
                 target="_blank"
-                rel="noopener noreferrer nofollow"
+                rel="noopener noreferrer nofollow sponsored"
                 className="group p-6 rounded-xl border border-card-border bg-card-bg hover:border-accent/40 transition-all"
               >
                 <div className="flex items-start justify-between mb-3">
