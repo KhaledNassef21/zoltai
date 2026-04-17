@@ -38,17 +38,30 @@ jobs:
       - name: Deploy Prebuilt Artifacts to Vercel
         id: deploy
         run: |
-          DEPLOY_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | tail -1)
+          # The newer Vercel CLI prints multi-line output including
+          # "Aliased: https://... [Ns]" and the project URL. We need ONLY the
+          # raw deployment URL (https://<something>.vercel.app), so grep it out.
+          RAW_OUTPUT=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1)
+          echo "--- Full CLI output ---"
+          echo "$RAW_OUTPUT"
+          echo "-----------------------"
+          # Extract the first .vercel.app URL found in the output
+          DEPLOY_URL=$(echo "$RAW_OUTPUT" | grep -oE 'https://[a-zA-Z0-9._-]+\.vercel\.app' | head -n 1)
+          if [ -z "$DEPLOY_URL" ]; then
+            echo "❌ Could not extract deployment URL from Vercel CLI output"
+            exit 1
+          fi
           echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           echo "✅ Deployed: $DEPLOY_URL"
 
       - name: Assign Domain Aliases
         run: |
-          echo "Aliasing to zoltai.org + www.zoltai.org..."
-          vercel alias set ${{ steps.deploy.outputs.url }} zoltai.org \
+          DEPLOY_URL="${{ steps.deploy.outputs.url }}"
+          echo "Aliasing $DEPLOY_URL -> zoltai.org + www.zoltai.org..."
+          vercel alias set "$DEPLOY_URL" zoltai.org \
             --token=${{ secrets.VERCEL_TOKEN }} \
             --scope=${{ secrets.VERCEL_ORG_ID }}
-          vercel alias set ${{ steps.deploy.outputs.url }} www.zoltai.org \
+          vercel alias set "$DEPLOY_URL" www.zoltai.org \
             --token=${{ secrets.VERCEL_TOKEN }} \
             --scope=${{ secrets.VERCEL_ORG_ID }}
-          echo "✅ zoltai.org + www.zoltai.org -> ${{ steps.deploy.outputs.url }}"
+          echo "✅ zoltai.org + www.zoltai.org -> $DEPLOY_URL"

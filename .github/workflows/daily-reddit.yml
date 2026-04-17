@@ -21,9 +21,28 @@ jobs:
           node-version: "20"
           cache: "npm"
 
+      # Skip the whole job cleanly when Reddit credentials aren't configured yet,
+      # instead of failing the workflow every day.
+      - name: Check Reddit credentials
+        id: creds
+        run: |
+          if [ -z "${{ secrets.REDDIT_CLIENT_ID }}" ] || \
+             [ -z "${{ secrets.REDDIT_CLIENT_SECRET }}" ] || \
+             [ -z "${{ secrets.REDDIT_USERNAME }}" ] || \
+             [ -z "${{ secrets.REDDIT_PASSWORD }}" ]; then
+            echo "⏭️  Reddit credentials not configured — skipping job."
+            echo "    Add REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET / REDDIT_USERNAME / REDDIT_PASSWORD"
+            echo "    at https://github.com/KhaledNassef21/zoltai/settings/secrets/actions"
+            echo "configured=false" >> $GITHUB_OUTPUT
+          else
+            echo "configured=true" >> $GITHUB_OUTPUT
+          fi
+
       - run: npm ci
+        if: steps.creds.outputs.configured == 'true'
 
       - name: Post to Reddit
+        if: steps.creds.outputs.configured == 'true'
         run: npx tsx scripts/post-reddit.ts
         env:
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
@@ -32,6 +51,7 @@ jobs:
           REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
 
       - name: Save Reddit post log
+        if: steps.creds.outputs.configured == 'true'
         run: |
           git config user.name "Zoltai Bot"
           git config user.email "bot@zoltai.org"

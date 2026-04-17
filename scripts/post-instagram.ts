@@ -621,6 +621,20 @@ async function main() {
 }
 
 main().catch((err) => {
+  const msg = (err as Error).message || String(err);
+  // Meta rate-limit / action-block errors aren't our bug — log and exit 0
+  // so GitHub Actions doesn't mark the run as failed every day while Meta
+  // throttles us or while App Review is pending.
+  const transient =
+    msg.includes("Application request limit reached") ||
+    msg.includes("error_subcode\":2207051") ||
+    msg.includes("#4") ||
+    msg.includes("rate limit") ||
+    msg.includes("temporarily blocked");
+  if (transient) {
+    console.warn(`⚠️  Transient Meta error — skipping today:\n   ${msg}`);
+    process.exit(0);
+  }
   console.error("❌ Error:", err);
   process.exit(1);
 });
