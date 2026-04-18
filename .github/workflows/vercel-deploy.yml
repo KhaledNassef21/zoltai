@@ -51,21 +51,28 @@ jobs:
 
       - name: Deploy Prebuilt Artifacts to Vercel
         id: deploy
+        shell: bash
         run: |
-          # The newer Vercel CLI prints multi-line output including
-          # "Aliased: https://... [Ns]" and the project URL. We need ONLY the
-          # raw deployment URL (https://<something>.vercel.app), so grep it out.
+          # Disable errexit so we can ALWAYS print the Vercel CLI output
+          # even when the deploy fails. Otherwise bash -eo pipefail exits
+          # silently on non-zero from the command substitution below.
+          set +e
           RAW_OUTPUT=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1)
-          echo "--- Full CLI output ---"
+          VERCEL_STATUS=$?
+          echo "--- Vercel CLI exit=$VERCEL_STATUS ---"
           echo "$RAW_OUTPUT"
-          echo "-----------------------"
-          # Extract the first .vercel.app URL found in the output
+          echo "---------------------------------------"
+          if [ "$VERCEL_STATUS" -ne 0 ]; then
+            echo "❌ vercel deploy exited $VERCEL_STATUS — see output above"
+            exit "$VERCEL_STATUS"
+          fi
+          # Extract the first .vercel.app URL from the CLI output.
           DEPLOY_URL=$(echo "$RAW_OUTPUT" | grep -oE 'https://[a-zA-Z0-9._-]+\.vercel\.app' | head -n 1)
           if [ -z "$DEPLOY_URL" ]; then
             echo "❌ Could not extract deployment URL from Vercel CLI output"
             exit 1
           fi
-          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+          echo "url=$DEPLOY_URL" >> "$GITHUB_OUTPUT"
           echo "✅ Deployed: $DEPLOY_URL"
 
       - name: Assign Domain Aliases
