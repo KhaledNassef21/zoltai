@@ -276,9 +276,9 @@
     "timestamp": "2026-04-18T06:01:34.053Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog",
-    "timestamp": "2026-04-18T06:59:53.840Z"
+    "event": "scroll_depth",
+    "variant": "46",
+    "page": "/",
+    "timestamp": "2026-04-18T07:00:20.789Z"
   }
 ]
