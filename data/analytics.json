@@ -270,9 +270,9 @@
     "timestamp": "2026-04-18T05:37:55.658Z"
   },
   {
-    "event": "page_view",
-    "variant": "",
-    "page": "/blog/how-to-use-ai-tools-for-productivity-in-2026",
-    "timestamp": "2026-04-18T06:10:23.428Z"
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":44,\"y\":24,\"el\":\"span[✓]\",\"time\":1776492725035},{\"x\":54,\"y\":24,\"el\":\"span.flex[💯 Money-Back Guarantee]\",\"time\":1776492725603},{\"x\":54,\"y\":24,\"el\":\"span.flex[💯 Money-Back Guarantee]\",\"time\":1776492725810},{\"x\":54,\"y\":24,\"el\":\"span.flex[💯 Money-Back Guarantee]\",\"time\":1776492726035},{\"x\":59,\"y\":24,\"el\":\"span.flex[⭐ 4.8/5 Rated]\",\"time\":1776492726715},{\"x\":59,\"y\":24,\"el\":\"span.flex[⭐ 4.8/5 Rated]\",\"time\":1776492726931},{\"x\":59,\"y\":24,\"el\":\"span.flex[⭐ 4.8/5 Rated]\",\"time\":1776492727147},{\"x\":55,\"y\":24,\"el\":\"span.flex[💯 Money-Back Guarantee]\",\"time\":1776492727667},{\"x\":60,\"y\":50,\"el\":\"svg.[object\",\"time\":1776492730043},{\"x\":52,\"y\":48,\"el\":\"div.w-12[🎯]\",\"time\":1776492730547}]",
+    "page": "/",
+    "timestamp": "2026-04-18T06:12:10.756Z"
   }
 ]
