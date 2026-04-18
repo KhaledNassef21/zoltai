@@ -222,7 +222,7 @@ export async function PUT(req: NextRequest) {
         const articleExcerpt = content.slice(0, 3000);
 
         const response = await anthropic.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: "claude-sonnet-4-5-20250929",
           max_tokens: 6000,
           messages: [
             {

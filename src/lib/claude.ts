@@ -82,12 +82,13 @@ async function aiComplete(
   maxTokens: number,
   jsonMode: boolean = false
 ): Promise<string> {
-  // Try Claude first
+  // Try Claude first. Using pinned Sonnet 4.5 snapshot (replaces the
+  // deprecated claude-sonnet-4-20250514 which reaches end-of-life 2026-06-15).
   const anthropic = getAnthropicClient();
   if (anthropic) {
     try {
       const response = await anthropic.messages.create({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-sonnet-4-5-20250929",
         max_tokens: maxTokens,
         messages: [{ role: "user", content: prompt }],
       });
