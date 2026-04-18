@@ -7,6 +7,20 @@ name: Vercel Production Deploy
 on:
   push:
     branches: [main]
+    # Don't deploy for changes that don't affect production build.
+    # This prevents analytics / posted-log / docs-only commits from
+    # burning deploy minutes and polluting history.
+    paths-ignore:
+      - "data/analytics.json"
+      - "data/analytics-*.json"
+      - "data/posted-*.json"
+      - "data/subscribers.json"
+      - "data/users.json"
+      - "data/rate-limits.json"
+      - "**/*.md"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".vscode/**"
+      - "LICENSE"
   workflow_dispatch:
 
 concurrency:

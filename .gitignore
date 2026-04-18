@@ -36,11 +36,13 @@ yarn-error.log*
 # vercel
 .vercel
 
-# data files (runtime-generated)
+# data files (runtime-generated — never commit these)
 /data/comments/
 /data/analytics.json
+/data/analytics-*.json
 /data/users.json
 /data/reset-tokens.json
+/data/rate-limits.json
 
 # generated media (reels, audio) — produced by CI, not committed
 /public/videos/
