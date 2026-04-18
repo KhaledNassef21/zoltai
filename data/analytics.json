@@ -268,5 +268,11 @@
     "variant": "",
     "page": "/contact",
     "timestamp": "2026-04-18T05:37:55.658Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":29,\"y\":2,\"el\":\"a.text-xl[Zoltai]\",\"time\":1776492093843}]",
+    "page": "/blog",
+    "timestamp": "2026-04-18T06:01:34.053Z"
   }
 ]
