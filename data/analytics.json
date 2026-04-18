@@ -271,8 +271,8 @@
   },
   {
     "event": "heatmap_clicks",
-    "variant": "[{\"x\":29,\"y\":2,\"el\":\"a.text-xl[Zoltai]\",\"time\":1776492093843}]",
-    "page": "/blog",
-    "timestamp": "2026-04-18T06:01:34.053Z"
+    "variant": "[{\"x\":60,\"y\":3,\"el\":\"a.text-zinc-400[About]\",\"time\":1776492558811}]",
+    "page": "/earn",
+    "timestamp": "2026-04-18T06:09:19.038Z"
   }
 ]
