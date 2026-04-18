@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AdminLayout } from "@/components/admin/sidebar";
-import { TrendingUp, Users, Eye, MousePointerClick, Mail, FileText } from "lucide-react";
+import { TrendingUp, MousePointerClick, Mail, FileText, Activity, Trash2 } from "lucide-react";
 
 interface Stats {
   articles: number;
@@ -11,9 +11,34 @@ interface Stats {
   subscribers: number;
 }
 
+interface LiveEvent {
+  event: string;
+  variant: string;
+  page: string;
+  ua: string;
+  ip: string;
+  ts: string;
+}
+
+interface LiveData {
+  configured: boolean;
+  count?: number;
+  events?: LiveEvent[];
+  summary?: {
+    total: number;
+    byEvent: { key: string; count: number }[];
+    byPage: { key: string; count: number }[];
+    byDay: { day: string; count: number }[];
+  };
+  error?: string;
+  message?: string;
+}
+
 export default function AdminAnalyticsPage() {
   const [stats, setStats] = useState<Stats>({ articles: 0, tools: 0, subscribers: 0 });
+  const [live, setLive] = useState<LiveData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [clearing, setClearing] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -28,21 +53,34 @@ export default function AdminAnalyticsPage() {
   async function loadStats() {
     setLoading(true);
     try {
-      const [articlesRes, toolsRes] = await Promise.all([
+      const [articlesRes, toolsRes, liveRes] = await Promise.all([
         fetch("/api/admin/articles"),
         fetch("/api/admin/tools"),
+        fetch("/api/admin/analytics?n=500"),
       ]);
 
       const articlesData = articlesRes.ok ? await articlesRes.json() : { articles: [] };
       const toolsData = toolsRes.ok ? await toolsRes.json() : { tools: [] };
+      const liveData = liveRes.ok ? await liveRes.json() : null;
 
       setStats({
         articles: articlesData.articles?.length || 0,
         tools: toolsData.tools?.length || 0,
         subscribers: 0,
       });
+      setLive(liveData);
     } catch {}
     setLoading(false);
+  }
+
+  async function clearEvents() {
+    if (!confirm("Clear all live events from Upstash? This cannot be undone.")) return;
+    setClearing(true);
+    try {
+      await fetch("/api/admin/analytics", { method: "DELETE" });
+      await loadStats();
+    } catch {}
+    setClearing(false);
   }
 
   const cards = [
@@ -79,6 +117,95 @@ export default function AdminAnalyticsPage() {
                 </div>
               );
             })}
+          </div>
+
+          {/* Live Events (Upstash) */}
+          <div className="p-6 rounded-xl border border-card-border bg-card-bg mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Activity className="w-5 h-5 text-emerald-400" />
+                <h3 className="font-semibold">Live Events</h3>
+                {live?.configured && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300">
+                    {live.count || 0} events
+                  </span>
+                )}
+              </div>
+              {live?.configured && (live.count || 0) > 0 && (
+                <button
+                  onClick={clearEvents}
+                  disabled={clearing}
+                  className="text-xs px-3 py-1.5 rounded-lg border border-red-500/30 text-red-300 hover:bg-red-500/10 flex items-center gap-1.5 disabled:opacity-50"
+                >
+                  <Trash2 className="w-3 h-3" />
+                  {clearing ? "Clearing..." : "Clear all"}
+                </button>
+              )}
+            </div>
+
+            {!live?.configured ? (
+              <div className="p-4 rounded-lg bg-amber-500/10 border border-amber-500/20 text-sm text-amber-200">
+                <p className="font-medium mb-1">Upstash Redis not configured</p>
+                <p className="text-xs text-amber-200/80">
+                  Set <code className="bg-black/30 px-1 rounded">UPSTASH_REDIS_REST_URL</code> and{" "}
+                  <code className="bg-black/30 px-1 rounded">UPSTASH_REDIS_REST_TOKEN</code> in Vercel env vars.
+                </p>
+              </div>
+            ) : live.error ? (
+              <p className="text-sm text-red-300">{live.error}</p>
+            ) : (live.count || 0) === 0 ? (
+              <p className="text-sm text-zinc-500">No events yet. They&apos;ll appear here as visitors interact with the site.</p>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wide">Top Events</p>
+                  <div className="space-y-1.5">
+                    {live.summary?.byEvent.slice(0, 8).map((e) => (
+                      <div key={e.key} className="flex justify-between text-sm">
+                        <span className="text-zinc-300 truncate mr-2">{e.key}</span>
+                        <span className="text-zinc-500 tabular-nums">{e.count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wide">Top Pages</p>
+                  <div className="space-y-1.5">
+                    {live.summary?.byPage.slice(0, 8).map((p) => (
+                      <div key={p.key} className="flex justify-between text-sm">
+                        <span className="text-zinc-300 truncate mr-2" title={p.key}>{p.key || "/"}</span>
+                        <span className="text-zinc-500 tabular-nums">{p.count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="md:col-span-2">
+                  <p className="text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wide">Recent Activity</p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="text-left text-zinc-500 border-b border-card-border">
+                          <th className="py-2 pr-4 font-medium">Time</th>
+                          <th className="py-2 pr-4 font-medium">Event</th>
+                          <th className="py-2 font-medium">Page</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(live.events || []).slice(0, 15).map((ev, i) => (
+                          <tr key={i} className="border-b border-card-border/50">
+                            <td className="py-2 pr-4 text-zinc-500 tabular-nums whitespace-nowrap">
+                              {ev.ts ? new Date(ev.ts).toLocaleString() : "—"}
+                            </td>
+                            <td className="py-2 pr-4 text-zinc-300">{ev.event}</td>
+                            <td className="py-2 text-zinc-400 truncate max-w-xs" title={ev.page}>{ev.page || "—"}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Info */}
