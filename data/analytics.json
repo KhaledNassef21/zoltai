@@ -264,9 +264,9 @@
     "timestamp": "2026-04-17T21:33:43.691Z"
   },
   {
-    "event": "heatmap_clicks",
-    "variant": "[{\"x\":62,\"y\":2,\"el\":\"a.text-zinc-400[Contact]\",\"time\":1776490669908}]",
-    "page": "/about",
-    "timestamp": "2026-04-18T05:37:50.405Z"
+    "event": "page_view",
+    "variant": "",
+    "page": "/contact",
+    "timestamp": "2026-04-18T05:37:55.658Z"
   }
 ]
