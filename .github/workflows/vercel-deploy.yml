@@ -57,7 +57,11 @@ jobs:
           # even when the deploy fails. Otherwise bash -eo pipefail exits
           # silently on non-zero from the command substitution below.
           set +e
-          RAW_OUTPUT=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} 2>&1)
+          # --archive=tgz bundles the deployment into one upload instead of
+          # thousands of individual file requests. This dodges the 5000/day
+          # API upload cap on Vercel's free tier, which the old analytics
+          # feedback loop had been burning through.
+          RAW_OUTPUT=$(vercel deploy --prebuilt --prod --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} 2>&1)
           VERCEL_STATUS=$?
           echo "--- Vercel CLI exit=$VERCEL_STATUS ---"
           echo "$RAW_OUTPUT"
