@@ -262,5 +262,11 @@
     "variant": "[{\"x\":50,\"y\":51,\"el\":\"span.flex[💯 Money-Back Guarantee]\",\"time\":1776461603733},{\"x\":61,\"y\":62,\"el\":\"section.max-w-6xl[GET STARTED IN MINUTESHow Zolt]\",\"time\":1776461604662},{\"x\":38,\"y\":36,\"el\":\"img.object-cover\",\"time\":1776461622954}]",
     "page": "/",
     "timestamp": "2026-04-17T21:33:43.691Z"
+  },
+  {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":55,\"y\":2,\"el\":\"a.text-zinc-400[Tools]\",\"time\":1776490658164}]",
+    "page": "/blog",
+    "timestamp": "2026-04-18T05:37:38.430Z"
   }
 ]
