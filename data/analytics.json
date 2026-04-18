@@ -270,9 +270,15 @@
     "timestamp": "2026-04-18T05:37:55.658Z"
   },
   {
+    "event": "heatmap_clicks",
+    "variant": "[{\"x\":29,\"y\":2,\"el\":\"a.text-xl[Zoltai]\",\"time\":1776492093843}]",
+    "page": "/blog",
+    "timestamp": "2026-04-18T06:01:34.053Z"
+  },
+  {
     "event": "page_view",
     "variant": "",
-    "page": "/",
-    "timestamp": "2026-04-18T06:12:56.636Z"
+    "page": "/blog",
+    "timestamp": "2026-04-18T06:59:53.840Z"
   }
 ]
