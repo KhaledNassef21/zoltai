@@ -41,16 +41,46 @@ const CONTENT_DIR = path.join(process.cwd(), "src/content/blog");
 // Types
 // ─────────────────────────────────────────────
 
+interface DirectorScene {
+  text: string;
+  background:
+    | "image_kenburns"
+    | "image_pan"
+    | "image_shake"
+    | "gradient_motion"
+    | "abstract_blur";
+  motion:
+    | "zoom_in"
+    | "zoom_out"
+    | "pan_left"
+    | "pan_right"
+    | "shake"
+    | "still";
+  text_style: "fade" | "slide_up" | "slide_left" | "pop" | "type" | "kinetic";
+  layout:
+    | "bottom_stack"
+    | "top_bold"
+    | "side_left"
+    | "center_explosion"
+    | "corner_tag";
+  duration: number; // seconds (2.5–6 range — pattern interrupts every 1.5–2.5s within a scene)
+  highlight?: string; // a 1-3 word keyword to color-pop
+}
+
 interface ReelScript {
   id: number;
   format: string;
   hook: string; // First 3 seconds — attention grabber
-  script: string; // Full voiceover (30-60 sec, ~80-150 words)
+  script: string; // Full voiceover (30-60 sec, ~80-150 words) — joined fallback
   onScreenText: string[]; // Text overlays shown during the reel
   cta: string; // Call to action
   caption: string; // Instagram caption with hashtags
   musicVibe: string; // Music mood suggestion
   duration: "15s" | "30s" | "60s";
+  // Director-grade fields (new)
+  directorScenes?: DirectorScene[];
+  editingNotes?: string;
+  musicStyle?: string;
 }
 
 interface ReelPack {
@@ -85,61 +115,11 @@ async function generateReelsWithClaude(
 
   const response = await anthropic.messages.create({
     model: "claude-sonnet-4-5-20250929",
-    max_tokens: 6000,
+    max_tokens: 8000,
     messages: [
       {
         role: "user",
-        content: `You are a viral short-form video scriptwriter for "Zoltai" (@zoltai.ai), a brand about discovering and using AI tools for productivity.
-
-Generate 10 Instagram Reels scripts based on this article:
-
-TITLE: "${title}"
-DESCRIPTION: "${description}"
-TOOLS MENTIONED: ${toolList}
-TAGS: ${tags.join(", ")}
-
-ARTICLE CONTENT (excerpt):
-${articleExcerpt}
-
-Each Reel must be a DIFFERENT format:
-1. 🪝 HOOK/CURIOSITY — Open with a shocking stat or question about AI productivity
-2. 🛠️ TOOL DEMO — Quick showcase of the main tool (${tools[0] || "the AI tool"}) and what it does
-3. 📋 STEP-BY-STEP — 3-5 step mini tutorial anyone can follow
-4. 🔄 BEFORE/AFTER — Contrast life without vs with the AI tool
-5. 💡 VALUE BREAKDOWN — Show what the tool costs vs time/effort saved
-6. ⚔️ COMPARISON — ${tools.length >= 2 ? `${tools[0]} vs ${tools[1]}` : "Best free vs paid option"} in 30 seconds
-7. ⚡ QUICK TIP — One specific, actionable hack from the article
-8. 🤯 MYTH BUSTER — Debunk a common misconception about this topic
-9. 📖 STORY — Mini success story of someone using these tools to level up
-10. 📊 LIST/RANKING — "Top 3 ${tags[0]?.replace(/-/g, " ") || "AI tools"} to learn now"
-
-RULES:
-- Hook MUST grab attention in first 3 seconds (question, bold claim, or pattern interrupt)
-- Script should be 80-150 words (30-60 second reel)
-- Use conversational, energetic tone — like talking to a friend
-- Include specific numbers (time saved, costs, productivity gains)
-- Every reel ends with CTA to "Follow @zoltai.ai" or "Link in bio"
-- On-screen text = 3-5 key phrases shown as text overlays
-- Caption includes 5-8 relevant hashtags
-- NO cringe. NO income promises. NO dollar amounts as earnings. Keep it educational but exciting.
-- Music vibe = mood suggestion (e.g., "upbeat electronic", "inspiring ambient")
-
-Return a JSON array of 10 objects:
-[
-  {
-    "id": 1,
-    "format": "Hook/Curiosity",
-    "hook": "First 3 seconds text (spoken + shown on screen)",
-    "script": "Full voiceover script (80-150 words)",
-    "onScreenText": ["Key phrase 1", "Key phrase 2", "Key phrase 3"],
-    "cta": "Call to action text",
-    "caption": "Instagram caption with hashtags",
-    "musicVibe": "Music mood suggestion",
-    "duration": "30s"
-  }
-]
-
-Return ONLY the JSON array.`,
+        content: buildDirectorPrompt(title, description, articleExcerpt, tags, tools, toolList),
       },
     ],
   });
@@ -147,6 +127,122 @@ Return ONLY the JSON array.`,
   const text =
     response.content[0].type === "text" ? response.content[0].text : "";
   return JSON.parse(extractJSON(text));
+}
+
+// ─────────────────────────────────────────────
+// Director Brief — single source of truth used by Claude + OpenAI
+// ─────────────────────────────────────────────
+
+function buildDirectorPrompt(
+  title: string,
+  description: string,
+  articleExcerpt: string,
+  tags: string[],
+  tools: string[],
+  toolList: string
+): string {
+  const topic = tags[0]?.replace(/-/g, " ") || "AI tools";
+  const secondTool = tools[1] || "ChatGPT";
+
+  return `You are a VIRAL SHORT-FORM VIDEO DIRECTOR for "Zoltai" (@zoltai.ai), inspired by Ali Abdaal and Iman Gadzhi — faceless, cinematic, high-retention productivity content.
+
+Generate 10 Instagram/TikTok Reels for this article. Each reel must be a complete director-ready brief — script + visual direction + pacing + music.
+
+TITLE: "${title}"
+DESCRIPTION: "${description}"
+TOOLS: ${toolList}
+TAGS: ${tags.join(", ")}
+
+ARTICLE CONTENT (excerpt):
+${articleExcerpt}
+
+═══════════════════════════════════════════════
+THE 10 REQUIRED FORMATS (one per reel, in order)
+═══════════════════════════════════════════════
+1. Hook/Curiosity      — Shocking stat or pattern-interrupt question
+2. Tool Demo           — Visual showcase of ${tools[0] || "the main tool"}
+3. Step-by-Step        — 3-5 step mini tutorial
+4. Before/After        — Life without vs with the tool
+5. Value Breakdown     — Cost vs time saved
+6. Comparison          — ${tools.length >= 2 ? `${tools[0]} vs ${tools[1]}` : "Free vs paid option"}
+7. Quick Tip           — One actionable hack
+8. Myth Buster         — Debunk a misconception
+9. Story               — Mini success narrative
+10. List/Ranking       — Top 3 ${topic} tools
+
+═══════════════════════════════════════════════
+DIRECTOR-GRADE OUTPUT — REQUIRED PER SCENE
+═══════════════════════════════════════════════
+For EVERY scene inside "directorScenes" you MUST pick from these enums:
+
+background  : "image_kenburns" | "image_pan" | "image_shake" | "gradient_motion" | "abstract_blur"
+motion      : "zoom_in" | "zoom_out" | "pan_left" | "pan_right" | "shake" | "still"
+text_style  : "fade" | "slide_up" | "slide_left" | "pop" | "type" | "kinetic"
+layout      : "bottom_stack" | "top_bold" | "side_left" | "center_explosion" | "corner_tag"
+duration    : number in seconds, between 2.5 and 6 (NEVER >6 — pattern interrupts every 1.5–2.5s)
+highlight   : 1-3 word keyword to color-pop (purple)
+
+VARIATION RULE: never repeat the same (background + layout) twice in a row. Cycle hard.
+
+═══════════════════════════════════════════════
+RETENTION & PSYCHOLOGY (mandatory)
+═══════════════════════════════════════════════
+- HOOK is 1 sentence, MAX 10 words, ends with curiosity gap
+- 5–7 scenes per reel (not more — pace it tight)
+- Each scene = 1 idea, 8–14 words MAX (faster reading on mobile)
+- Pattern interrupt every scene (background type OR layout MUST change)
+- Build → tension → twist → payoff → CTA
+- Conversational, energetic, like a friend on a coffee high
+- Specific numbers (e.g., "saves 3 hours", "costs $0", "10x faster")
+
+═══════════════════════════════════════════════
+SAFETY (HARD RULES — automatic rejection if broken)
+═══════════════════════════════════════════════
+- NO income claims, NO "make money", NO dollar earnings
+- NO get-rich language, NO "passive income", NO "side hustle"
+- NO clickbait lies — every claim must be defensible from the article
+- Educational + exciting, never sleazy
+
+═══════════════════════════════════════════════
+OUTPUT — ONLY a JSON array of 10 objects, exactly this shape
+═══════════════════════════════════════════════
+[
+  {
+    "id": 1,
+    "format": "Hook/Curiosity",
+    "hook": "Stop scrolling — this AI tool just changed everything",
+    "script": "Full continuous voiceover joining all scene texts — 80-150 words",
+    "onScreenText": ["Key 1", "Key 2", "Key 3"],
+    "cta": "Follow @zoltai.ai for more",
+    "caption": "Instagram caption with 5-8 hashtags",
+    "musicVibe": "upbeat electronic, motivational",
+    "musicStyle": "Lo-fi beat with tense build at 5s, drop at hook, mellow at CTA",
+    "editingNotes": "Cut on every scene boundary. Whoosh on transitions. Hook = full-screen explosion. CTA = brand purple.",
+    "duration": "30s",
+    "directorScenes": [
+      {
+        "text": "Most people waste 4 hours a day on this",
+        "background": "image_kenburns",
+        "motion": "zoom_in",
+        "text_style": "pop",
+        "layout": "center_explosion",
+        "duration": 3,
+        "highlight": "4 hours"
+      },
+      {
+        "text": "But there is a faster way",
+        "background": "gradient_motion",
+        "motion": "still",
+        "text_style": "slide_up",
+        "layout": "top_bold",
+        "duration": 2.5,
+        "highlight": "faster"
+      }
+    ]
+  }
+]
+
+Return ONLY the JSON array. No prose, no markdown fences, no commentary.`;
 }
 
 /**
@@ -181,51 +277,12 @@ async function generateReelsWithAI(
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const toolList = tools.length > 0 ? tools.join(", ") : "AI tools";
   const articleExcerpt = content.slice(0, 3000);
-
-  // Use same prompt as Claude
-  const prompt = `You are a viral short-form video scriptwriter for "Zoltai" (@zoltai.ai), a brand about discovering and using AI tools for productivity.
-
-Generate 10 Instagram Reels scripts based on this article:
-
-TITLE: "${title}"
-DESCRIPTION: "${description}"
-TOOLS MENTIONED: ${toolList}
-TAGS: ${tags.join(", ")}
-
-ARTICLE CONTENT (excerpt):
-${articleExcerpt}
-
-Each Reel must be a DIFFERENT format:
-1. 🪝 HOOK/CURIOSITY — Open with a shocking stat or question about AI productivity
-2. 🛠️ TOOL DEMO — Quick showcase of the main tool (${tools[0] || "the AI tool"})
-3. 📋 STEP-BY-STEP — 3-5 step mini tutorial
-4. 🔄 BEFORE/AFTER — Contrast life without vs with the AI tool
-5. 💡 VALUE BREAKDOWN — What the tool costs vs time/effort saved
-6. ⚔️ COMPARISON — ${tools.length >= 2 ? `${tools[0]} vs ${tools[1]}` : "Best free vs paid option"}
-7. ⚡ QUICK TIP — One specific, actionable hack
-8. 🤯 MYTH BUSTER — Debunk a common misconception
-9. 📖 STORY — Mini success story
-10. 📊 LIST/RANKING — "Top 3 ${tags[0]?.replace(/-/g, " ") || "AI tools"} to learn now"
-
-RULES:
-- Hook MUST grab attention in first 3 seconds
-- Script should be 80-150 words (30-60 second reel)
-- Conversational, energetic tone
-- Include specific numbers
-- Every reel ends with CTA to "Follow @zoltai.ai" or "Link in bio"
-- On-screen text = 3-5 key phrases
-- Caption includes 5-8 hashtags
-- NO income promises. Keep it educational but exciting.
-
-Return a JSON array of 10 objects:
-[{"id":1,"format":"Hook/Curiosity","hook":"...","script":"...","onScreenText":["..."],"cta":"...","caption":"...","musicVibe":"...","duration":"30s"}]
-
-Return ONLY the JSON array.`;
+  const prompt = buildDirectorPrompt(title, description, articleExcerpt, tags, tools, toolList);
 
   console.log("   🤖 Provider: OpenAI GPT-4o");
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
-    max_tokens: 6000,
+    max_tokens: 8000,
     messages: [{ role: "user", content: prompt }],
   });
 

@@ -12,10 +12,48 @@
  * - No income claims, no "make money"
  */
 
+// ─── Director-grade scene controls (new in v4) ─────────────────
+// All optional — old JSON without these still works via fallbacks.
+
+export type BackgroundType =
+  | "image_kenburns" // zoom in/out on still image
+  | "image_pan" // slow pan left or right
+  | "image_shake" // subtle handheld camera shake
+  | "gradient_motion" // animated cinematic gradient (no image)
+  | "abstract_blur"; // heavily blurred image w/ color wash
+
+export type MotionType =
+  | "zoom_in"
+  | "zoom_out"
+  | "pan_left"
+  | "pan_right"
+  | "shake"
+  | "still";
+
+export type TextLayout =
+  | "bottom_stack" // word-by-word stacked at bottom
+  | "top_bold" // big bold top-aligned
+  | "side_left" // vertical text on left third
+  | "center_explosion" // huge centered, spring scale
+  | "corner_tag"; // small accent text in corner
+
+export type TextStyle =
+  | "fade"
+  | "slide_up"
+  | "slide_left"
+  | "pop"
+  | "type" // typewriter effect
+  | "kinetic"; // word-by-word reveal
+
 export interface OptimizedScene {
   text: string;
   duration: number;
   highlight?: string; // keyword to highlight/animate
+  // Director controls (optional — fall back to defaults)
+  background?: BackgroundType;
+  motion?: MotionType;
+  layout?: TextLayout;
+  textStyle?: TextStyle;
 }
 
 export interface OptimizedReel {
@@ -29,6 +67,20 @@ export interface OptimizedReel {
   musicVibe: string;
   totalDuration: number;
   score: number;
+  // Director-level metadata (optional)
+  editingNotes?: string;
+  musicStyle?: string;
+}
+
+// AI may return scenes in this richer shape (preferred when present)
+export interface DirectorRawScene {
+  text: string;
+  background?: string;
+  motion?: string;
+  text_style?: string;
+  layout?: string;
+  duration?: number;
+  highlight?: string;
 }
 
 export interface RawReel {
@@ -41,6 +93,10 @@ export interface RawReel {
   caption: string;
   musicVibe: string;
   duration: string;
+  // New director-level fields (optional)
+  directorScenes?: DirectorRawScene[];
+  editingNotes?: string;
+  musicStyle?: string;
 }
 
 // ─────────────────────────────────────────────
@@ -252,12 +308,106 @@ function extractHashtags(caption: string): string[] {
 }
 
 // ─────────────────────────────────────────────
+// Director scene mapping (new in v4)
+// ─────────────────────────────────────────────
+
+const VALID_BG: BackgroundType[] = [
+  "image_kenburns",
+  "image_pan",
+  "image_shake",
+  "gradient_motion",
+  "abstract_blur",
+];
+const VALID_MOTION: MotionType[] = [
+  "zoom_in",
+  "zoom_out",
+  "pan_left",
+  "pan_right",
+  "shake",
+  "still",
+];
+const VALID_LAYOUT: TextLayout[] = [
+  "bottom_stack",
+  "top_bold",
+  "side_left",
+  "center_explosion",
+  "corner_tag",
+];
+const VALID_STYLE: TextStyle[] = [
+  "fade",
+  "slide_up",
+  "slide_left",
+  "pop",
+  "type",
+  "kinetic",
+];
+
+function pickEnum<T extends string>(value: string | undefined, valid: T[], fallback: T): T {
+  if (!value) return fallback;
+  const normalized = value.toLowerCase().replace(/[\s-]+/g, "_");
+  return (valid.find((v) => v === normalized) as T) || fallback;
+}
+
+/**
+ * Map a director-provided rich scene to an OptimizedScene.
+ * Cycles through layouts/backgrounds for variety when AI omits them.
+ */
+function mapDirectorScene(raw: DirectorRawScene, index: number): OptimizedScene {
+  const text = sanitizeText(raw.text || "");
+  const wordCount = text.split(/\s+/).filter(Boolean).length;
+  const fallbackDuration = Math.max(3, Math.min(7, Math.round(wordCount / 2.5)));
+
+  // Cycle defaults so consecutive scenes vary visually
+  const defaultBg = VALID_BG[index % VALID_BG.length];
+  const defaultLayout = VALID_LAYOUT[index % VALID_LAYOUT.length];
+  const defaultStyle = VALID_STYLE[index % VALID_STYLE.length];
+  const defaultMotion: MotionType =
+    index % 4 === 0 ? "zoom_in" : index % 4 === 1 ? "zoom_out" : index % 4 === 2 ? "pan_left" : "pan_right";
+
+  return {
+    text,
+    duration: typeof raw.duration === "number" && raw.duration > 0 ? raw.duration : fallbackDuration,
+    highlight: raw.highlight || extractKeyword(text),
+    background: pickEnum(raw.background, VALID_BG, defaultBg),
+    motion: pickEnum(raw.motion, VALID_MOTION, defaultMotion),
+    layout: pickEnum(raw.layout, VALID_LAYOUT, defaultLayout),
+    textStyle: pickEnum(raw.text_style, VALID_STYLE, defaultStyle),
+  };
+}
+
+/**
+ * Apply director defaults to scenes built from the legacy splitter,
+ * so even old JSON files render with cinematic variation.
+ */
+function applyDefaultsToScenes(scenes: OptimizedScene[]): OptimizedScene[] {
+  return scenes.map((s, i) => ({
+    ...s,
+    background: s.background || VALID_BG[i % VALID_BG.length],
+    motion:
+      s.motion ||
+      (i % 4 === 0 ? "zoom_in" : i % 4 === 1 ? "zoom_out" : i % 4 === 2 ? "pan_left" : "pan_right"),
+    layout: s.layout || VALID_LAYOUT[i % VALID_LAYOUT.length],
+    textStyle: s.textStyle || VALID_STYLE[i % VALID_STYLE.length],
+  }));
+}
+
+// ─────────────────────────────────────────────
 // Main Optimizer
 // ─────────────────────────────────────────────
 
 export function optimizeReel(reel: RawReel): OptimizedReel {
   const hook = sanitizeText(reel.hook);
-  const scenes = splitIntoScenes(reel.script, reel.onScreenText);
+
+  // Prefer director-provided rich scenes when present; fall back to splitter.
+  let scenes: OptimizedScene[];
+  if (Array.isArray(reel.directorScenes) && reel.directorScenes.length > 0) {
+    scenes = reel.directorScenes
+      .map((s, i) => mapDirectorScene(s, i))
+      .filter((s) => s.text.length > 0);
+  } else {
+    scenes = applyDefaultsToScenes(splitIntoScenes(reel.script, reel.onScreenText));
+  }
+
   const totalDuration = scenes.reduce((sum, s) => sum + s.duration, 0) + 3; // +3 for CTA
   const hashtags = extractHashtags(reel.caption);
   const score = scoreReel(reel);
@@ -273,6 +423,8 @@ export function optimizeReel(reel: RawReel): OptimizedReel {
     musicVibe: reel.musicVibe,
     totalDuration,
     score,
+    editingNotes: reel.editingNotes,
+    musicStyle: reel.musicStyle,
   };
 }
 

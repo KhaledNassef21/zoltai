@@ -42,7 +42,7 @@ function loadEnv() {
 loadEnv();
 
 import { pickTopReels, type OptimizedReel } from "../src/lib/reel-optimizer";
-import { generateVoice } from "./generate-voice";
+import { generateVoice, generateVoicePerSegment } from "./generate-voice";
 
 const REELS_DIR = path.join(process.cwd(), "data/reels");
 const VIDEOS_DIR = path.join(process.cwd(), "public/videos");
@@ -127,10 +127,12 @@ interface RenderInput {
   audioPath: string;
   images: string[];
   audioDuration: number;
+  hookDuration?: number; // measured TTS duration of hook (for sync)
+  ctaDuration?: number;  // measured TTS duration of cta (for sync)
 }
 
 function renderVideo(input: RenderInput): string | null {
-  const { reel, slug, audioPath, images, audioDuration } = input;
+  const { reel, slug, audioPath, images, audioDuration, hookDuration, ctaDuration } = input;
   const outputFile = path.join(VIDEOS_DIR, `${slug}-reel${reel.id}.mp4`);
 
   // Skip if already rendered
@@ -142,23 +144,28 @@ function renderVideo(input: RenderInput): string | null {
     }
   }
 
-  // Calculate total duration from audio + padding
-  const totalDuration = Math.max(
-    audioDuration + 4, // audio + 2s intro + 2s outro
-    reel.totalDuration,
-    15 // minimum 15 seconds
-  );
+  // ─── Total duration is now driven by REAL audio length, not estimates ───
+  // Each scene.duration was already overwritten by measured TTS duration upstream,
+  // so reel.totalDuration is now an accurate sum. We add 0.6s tail so audio doesn't get clipped.
+  const totalDuration = Math.max(audioDuration + 0.6, reel.totalDuration, 15);
 
   const fps = 30;
   const totalFrames = Math.round(totalDuration * fps);
 
   // Build input props
+  // whoosh.mp3 is optional — template gracefully no-ops if the asset isn't bundled.
+  const whooshAsset = path.join(process.cwd(), "public/audio/sfx/whoosh.mp3");
+  const whooshFile = fs.existsSync(whooshAsset) ? "audio/sfx/whoosh.mp3" : undefined;
+
   const props = JSON.stringify({
     hook: reel.hook,
-    scenes: reel.scenes,
+    scenes: reel.scenes, // durations now match TTS timing exactly
     cta: reel.cta,
     audioFile: audioPath ? `audio/${path.basename(audioPath)}` : undefined,
+    whooshFile,
     images,
+    hookDuration,
+    ctaDuration,
   });
 
   // Write props to temp file (avoids shell escaping issues)
@@ -298,31 +305,78 @@ async function main() {
     console.log(`   Scenes: ${reel.scenes.length}, Duration: ~${reel.totalDuration}s`);
     console.log(`   Score: ${reel.score}pts`);
 
-    // Generate voice
-    console.log(`\n   🎙️ Generating voice...`);
-    const fullScript = `${reel.hook}. ${reel.scenes.map((s) => s.text).join(". ")}`;
-    const voiceResult = await generateVoice(fullScript, slug, reel.id);
+    // ─── Generate voice PER SEGMENT for frame-perfect sync ───
+    console.log(`\n   🎙️ Generating per-segment voice (sync mode)...`);
+    const segmentTexts = [
+      reel.hook,
+      ...reel.scenes.map((s) => s.text),
+      reel.cta,
+    ];
+    const voice = await generateVoicePerSegment(segmentTexts, slug, reel.id);
 
-    if (!voiceResult.success) {
-      console.warn(`   ⚠️ Skipping video — no voice generated`);
-      results.push({ reelId: reel.id, video: null, audio: null });
+    if (!voice.success) {
+      console.warn(`   ⚠️ Per-segment voice failed — falling back to single TTS`);
+      const fullScript = segmentTexts.join(". ");
+      const fallback = await generateVoice(fullScript, slug, reel.id);
+      if (!fallback.success) {
+        console.warn(`   ⚠️ All voice generation failed — skipping reel`);
+        results.push({ reelId: reel.id, video: null, audio: null });
+        continue;
+      }
+      const videoPath = renderVideo({
+        reel,
+        slug,
+        audioPath: fallback.path,
+        images,
+        audioDuration: fallback.durationEstimate,
+      });
+      results.push({ reelId: reel.id, video: videoPath, audio: fallback.path });
       continue;
     }
+
+    // ─── REWRITE scene durations from MEASURED audio (the sync fix) ───
+    // segments[0] = hook, segments[1..N] = scenes, segments[N+1] = cta
+    const hookSeg = voice.segments[0];
+    const sceneSegs = voice.segments.slice(1, 1 + reel.scenes.length);
+    const ctaSeg = voice.segments[voice.segments.length - 1];
+    const breathSec = 0.22; // matches silenceMs in generateVoicePerSegment
+
+    reel.scenes = reel.scenes.map((s, i) => {
+      const seg = sceneSegs[i];
+      if (!seg) return s;
+      // Add breath silence into the scene's duration so transitions land
+      // exactly at the start of the next spoken word.
+      return { ...s, duration: seg.duration + breathSec };
+    });
+    const hookDuration = hookSeg ? hookSeg.duration + breathSec : 3;
+    const ctaDuration = ctaSeg ? ctaSeg.duration : 3;
+    reel.totalDuration =
+      hookDuration +
+      reel.scenes.reduce((sum, s) => sum + s.duration, 0) +
+      ctaDuration;
+
+    console.log(
+      `   🔄 Synced timeline: hook=${hookDuration.toFixed(2)}s, ` +
+        `scenes=[${reel.scenes.map((s) => s.duration.toFixed(2)).join(", ")}]s, ` +
+        `cta=${ctaDuration.toFixed(2)}s`
+    );
 
     // Render video
     console.log(`\n   🎬 Rendering video...`);
     const videoPath = renderVideo({
       reel,
       slug,
-      audioPath: voiceResult.path,
+      audioPath: voice.finalPath,
       images,
-      audioDuration: voiceResult.durationEstimate,
+      audioDuration: voice.totalDuration,
+      hookDuration,
+      ctaDuration,
     });
 
     results.push({
       reelId: reel.id,
       video: videoPath,
-      audio: voiceResult.path,
+      audio: voice.finalPath,
     });
   }
 
