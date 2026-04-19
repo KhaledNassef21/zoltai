@@ -48,8 +48,25 @@ jobs:
 
       # Step 1b: Synthesize whoosh.mp3 via bundled ffmpeg if missing.
       # Prevents 404s during Remotion render when the asset isn't committed.
+      # continue-on-error: if synthesis fails entirely, generate-video.ts will
+      # detect the missing file and render without SFX (no crash).
       - name: Ensure whoosh SFX
+        continue-on-error: true
         run: npx tsx scripts/ensure-whoosh.ts
+
+      # Step 1c: Verify whoosh state so the video step's decision is visible in the log.
+      - name: Verify whoosh state
+        run: |
+          if [ -f public/audio/sfx/whoosh.mp3 ]; then
+            size=$(stat -c%s public/audio/sfx/whoosh.mp3 2>/dev/null || stat -f%z public/audio/sfx/whoosh.mp3)
+            echo "✅ whoosh.mp3 exists: ${size} bytes"
+            if [ "$size" -lt 500 ]; then
+              echo "⚠️ File too small — removing so generate-video.ts skips it"
+              rm -f public/audio/sfx/whoosh.mp3
+            fi
+          else
+            echo "🔇 whoosh.mp3 not present — pipeline will render without SFX"
+          fi
 
       # Step 2: Generate voice + render video
       - name: Generate videos

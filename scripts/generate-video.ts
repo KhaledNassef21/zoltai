@@ -154,8 +154,21 @@ function renderVideo(input: RenderInput): string | null {
 
   // Build input props
   // whoosh.mp3 is optional — template gracefully no-ops if the asset isn't bundled.
+  // STRICT check: the file must exist AND be a valid (>500B) MP3 before we set the prop.
+  // A missing/tiny file would cause Remotion's bundler to 404 during render.
   const whooshAsset = path.join(process.cwd(), "public/audio/sfx/whoosh.mp3");
-  const whooshFile = fs.existsSync(whooshAsset) ? "audio/sfx/whoosh.mp3" : undefined;
+  let whooshFile: string | undefined = undefined;
+  if (fs.existsSync(whooshAsset)) {
+    const stat = fs.statSync(whooshAsset);
+    if (stat.size >= 500) {
+      whooshFile = "audio/sfx/whoosh.mp3";
+      console.log(`   🔊 Whoosh SFX enabled (${(stat.size / 1024).toFixed(1)}KB)`);
+    } else {
+      console.log(`   ⚠️ Whoosh SFX disabled — file too small (${stat.size}B)`);
+    }
+  } else {
+    console.log(`   🔇 Whoosh SFX disabled — file missing at ${whooshAsset}`);
+  }
 
   const props = JSON.stringify({
     hook: reel.hook,
