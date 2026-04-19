@@ -45,7 +45,8 @@ const defaultProps: ReelProps = {
     },
   ],
   cta: "Follow @zoltai.ai for more AI tips",
-  whooshFile: "audio/sfx/whoosh.mp3", // optional — falls back if missing
+  // whooshFile intentionally omitted from defaults — generate-video.ts passes it
+  // only when the asset actually exists on disk, avoiding 404s during render.
   images: [
     "https://picsum.photos/seed/zoltai1/1080/1920",
     "https://picsum.photos/seed/zoltai2/1080/1920",

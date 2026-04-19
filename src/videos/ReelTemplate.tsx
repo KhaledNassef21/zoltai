@@ -787,8 +787,8 @@ export const ReelTemplate: React.FC<ReelProps> = ({
       {audioFile && <Audio src={staticFile(audioFile)} volume={1} />}
       {backgroundMusic && <Audio src={staticFile(backgroundMusic)} volume={0.12} loop />}
 
-      {/* ─── Whoosh SFX on transitions (optional, silently skipped if file missing) ─── */}
-      {whooshFile &&
+      {/* ─── Whoosh SFX on transitions (only rendered when a valid path is provided) ─── */}
+      {whooshFile && whooshFile.trim().length > 0 &&
         transitionFrames.map((f, i) => (
           <WhooshTrigger key={`whoosh-${i}`} startFrame={f} src={whooshFile} fps={fps} />
         ))}

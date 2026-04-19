@@ -46,6 +46,11 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
+      # Step 1b: Synthesize whoosh.mp3 via bundled ffmpeg if missing.
+      # Prevents 404s during Remotion render when the asset isn't committed.
+      - name: Ensure whoosh SFX
+        run: npx tsx scripts/ensure-whoosh.ts
+
       # Step 2: Generate voice + render video
       - name: Generate videos
         run: |
