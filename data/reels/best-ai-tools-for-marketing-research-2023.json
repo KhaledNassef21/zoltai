@@ -1,0 +1,594 @@
+{
+  "slug": "best-ai-tools-for-marketing-research-2023",
+  "title": "Best AI Tools for Marketing Research 2023",
+  "generatedAt": "2026-04-22T08:50:35.071Z",
+  "reels": [
+    {
+      "id": 1,
+      "format": "Hook/Curiosity",
+      "hook": "Are you still wasting hours on research?",
+      "script": "Did you know you spend an average of 4 hours daily on marketing research? But there's a secret — AI tools can cut this time dramatically. Discover how ChatGPT, Claude, and other AI solutions enhance your productivity and put hours back into your day!",
+      "onScreenText": [
+        "Save 4 hours!",
+        "AI to the rescue",
+        "Level up efficiency"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Transform your research game in 2023! #AItools #TimeSaver #ProductivityHacks",
+      "musicVibe": "upbeat electronic, motivational",
+      "musicStyle": "Futuristic synth with a climax at 3s, softer finish for CTA",
+      "editingNotes": "Flicker effect at hook. Use fast cuts. Color pop keywords in purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Spending 4 hours on research each day?",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "Let AI handle it",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 2.5,
+          "highlight": "AI"
+        },
+        {
+          "text": "Discover ChatGPT & Claude",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "ChatGPT & Claude"
+        },
+        {
+          "text": "Save time, get insights",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "kinetic",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "Save time"
+        },
+        {
+          "text": "Get started today",
+          "background": "gradient_motion",
+          "motion": "shake",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "Get started"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "format": "Tool Demo",
+      "hook": "Meet your new research assistant: ChatGPT!",
+      "script": "Transform your marketing research with ChatGPT, the AI that analyzes data in minutes. Watch how it processes information and generates insights effortlessly. Start by feeding it your dataset, let it crunch the numbers, and get summaries that make sense of it all — in seconds!",
+      "onScreenText": [
+        "ChatGPT Demo",
+        "Data Analysis in Minutes",
+        "Generate Insights"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "A glimpse into AI-powered data analysis! #ChatGPT #DataMagic #AIRevolution",
+      "musicVibe": "techno, forward-driving",
+      "musicStyle": "Pulsing bass with a science fiction vibe, peak at tool reveal",
+      "editingNotes": "Reflective transitions. Spotlight effect on key actions. Keep tempo tight.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Fed up with slow analysis?",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "slow"
+        },
+        {
+          "text": "Meet ChatGPT",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "ChatGPT"
+        },
+        {
+          "text": "Upload your dataset",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "kinetic",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "dataset"
+        },
+        {
+          "text": "Watch it crunch numbers",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "crunch numbers"
+        },
+        {
+          "text": "Instant insights",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "Instant"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "format": "Step-by-Step",
+      "hook": "3 steps to rapid insight with AI!",
+      "script": "Here's how to leverage AI tools like ChatGPT for swift marketing insights: First, input your data into the tool. Next, ask it to identify key trends. Finally, use these insights to enhance your strategy. It's that simple to transform your workflow into a powerhouse of efficiency!",
+      "onScreenText": [
+        "Step 1: Input Data",
+        "Step 2: Analyze Trends",
+        "Step 3: Optimize Strategy"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Step up your marketing game with these AI steps! #AIMarketing #EfficiencyBoost",
+      "musicVibe": "energetic pop",
+      "musicStyle": "Bright guitar riffs with rhythmic bassline, crescendo on each step",
+      "editingNotes": "Visual countdown. Sync cuts to beat. Highlight critical action words in vibrant purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Step 1: Input Data",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Step 1"
+        },
+        {
+          "text": "Step 2: Analyze Trends",
+          "background": "image_shake",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "Step 2"
+        },
+        {
+          "text": "Step 3: Optimize Strategy",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Step 3"
+        },
+        {
+          "text": "Boost your insights today",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "Boost"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "format": "Before/After",
+      "hook": "Your marketing, revolutionized: Before vs. After AI",
+      "script": "Before AI tools, marketing research was a time-consuming monster. Day-long analysis sessions led to burnout. Enter AI: tools like ChatGPT and Midjourney offer rapid insights and creativity boosts, transforming your workflow from drudgery to efficiency. Experience the difference now!",
+      "onScreenText": [
+        "Before AI",
+        "Endless Hours",
+        "After AI",
+        "Instant Insights"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Experience the transformation #AIBeforeAfter #ProductivityBoost #MarketingRevolution",
+      "musicVibe": "uplifting orchestral",
+      "musicStyle": "Strings build tension, resolving to joyful chords post-AI",
+      "editingNotes": "Use split-screen. Transition quickly between scenes; post-AI scenes have brighter appearance.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Before AI: Endless Hours",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Endless"
+        },
+        {
+          "text": "Long, tedious sessions",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "fade",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "tedious"
+        },
+        {
+          "text": "After AI: Instant Insights",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Instant Insights"
+        },
+        {
+          "text": "Boosted efficiency overnight",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "efficiency"
+        },
+        {
+          "text": "Try AI today",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "Try AI"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "format": "Value Breakdown",
+      "hook": "AI tools: High value, low cost",
+      "script": "Revolutionize your marketing research with affordable AI tools. They save you countless hours, streamline data analysis, and enhance your creativity. Picture a setup that costs less than a daily coffee but boosts productivity tenfold. Invest smartly, save time!",
+      "onScreenText": [
+        "Affordability",
+        "Efficiency",
+        "Transformative Value"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "See the real return on AI investment! #ValueAnalysis #AIforBusiness",
+      "musicVibe": "dynamic synthwave",
+      "musicStyle": "Pulsing electronic beats with a dramatic drop at value points",
+      "editingNotes": "Each segment should hit a new layer of detail. Bullet points with visual jingles on screen.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Affordable solutions for complex problems",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Affordable"
+        },
+        {
+          "text": "Less than a coffee a day",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "coffee"
+        },
+        {
+          "text": "10x your productivity",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "10x"
+        },
+        {
+          "text": "Invest in AI tools now",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Invest"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "format": "Comparison",
+      "hook": "ChatGPT vs Claude: Which suits you?",
+      "script": "Unsure which AI tool to pick? Here's a quick comparison of ChatGPT and Claude. ChatGPT excels at generating text summaries and analyzing data trends swiftly. Claude, however, is your go-to for more nuanced data analysis. Choose the AI that matches your needs and supercharge your workflow!",
+      "onScreenText": [
+        "ChatGPT: Quick Analysis",
+        "Claude: Deep Insights",
+        "Choose Wisely"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Find your perfect AI match today! #AIComparison #SmartTools #Productivity",
+      "musicVibe": "rhythmic and balanced",
+      "musicStyle": "Steady electronic beat, surging at the reveal of each tool",
+      "editingNotes": "Toggle left-right for comparisons. Harmonize transition effects on comparison reveals.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "ChatGPT: Fast, Text-based Analysis",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "ChatGPT"
+        },
+        {
+          "text": "Claude: In-depth Data Insights",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Claude"
+        },
+        {
+          "text": "Choose based on needs",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "needs"
+        },
+        {
+          "text": "Optimize your marketing",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "Optimize"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "format": "Quick Tip",
+      "hook": "Boost productivity with this one AI hack",
+      "script": "Here's a simple tip: Use ChatGPT to summarize large datasets instantly. By doing so, you unlock massive time savings and gain crystal-clear insights faster than manual analysis. Embrace this hack and see a surge in productivity!",
+      "onScreenText": [
+        "Quick Summarizing",
+        "Clarity in Minutes",
+        "Unlock Efficiency"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "One small change, huge productivity gains. Try it! #AItips #MarketingHacks",
+      "musicVibe": "light hip-hop beat, catchy",
+      "musicStyle": "Bouncy and catchy with a sparkling synthesizer",
+      "editingNotes": "Capture attention with brisk visual effects. Use consistent branding colors in popups.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Overwhelmed by data?",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Overwhelmed"
+        },
+        {
+          "text": "Use ChatGPT to summarize",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "summarize"
+        },
+        {
+          "text": "Gain clarity in minutes",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "fade",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "clarity"
+        },
+        {
+          "text": "Boost your productivity now",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "productivity"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "format": "Myth Buster",
+      "hook": "AI is expensive? Think again!",
+      "script": "Think AI is unaffordable for marketing research? Let's bust that myth! AI tools like ChatGPT and Semrush come at minimal costs with substantial payoffs. They're designed to fit budgets while offering high-level capabilities. Don't let myths hold you back from transforming your workflow.",
+      "onScreenText": [
+        "Myth Busted",
+        "Affordable AI",
+        "High Capability"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Believe in AI potential without breaking the bank! #MythBusted #AIforAll",
+      "musicVibe": "light techno beat",
+      "musicStyle": "Optimistic build-up with light atmospheric elements",
+      "editingNotes": "Contrast scenes: use monotone for myth, bright for truth. Drastic cut to pivot point.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "AI is expensive?",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "expensive"
+        },
+        {
+          "text": "Not anymore!",
+          "background": "gradient_motion",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "anymore"
+        },
+        {
+          "text": "Affordable AI tools",
+          "background": "image_shake",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Affordable"
+        },
+        {
+          "text": "Change your strategy today",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "strategy"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "format": "Story",
+      "hook": "How AI transformed a marketer's life",
+      "script": "Angela, a seasoned marketer, struggled with data overload until she discovered ChatGPT. This AI tool streamlined her data analysis process, revealing insights she used to craft more personalized campaigns. Angela now enjoys greater success and feels less stress — all thanks to AI.",
+      "onScreenText": [
+        "Angela's Journey",
+        "Data Overload",
+        "Renewed Success"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Discover Angela's journey with AI! #SuccessStories #AItransformations",
+      "musicVibe": "inspirational piano and strings",
+      "musicStyle": "Emotionally uplifting with a gradual ascent in tension",
+      "editingNotes": "Storytelling focus. Use gentle pans and fades to invoke narrative pace.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Angela was overwhelmed by data",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "overwhelmed"
+        },
+        {
+          "text": "Discovered ChatGPT",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "ChatGPT"
+        },
+        {
+          "text": "Streamlined processes",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Streamlined"
+        },
+        {
+          "text": "Achieved greater success",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "success"
+        },
+        {
+          "text": "Transform your marketing journey",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "transform"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "format": "List/Ranking",
+      "hook": "Top 3 AI tools you need to know",
+      "script": "Upgrade your marketing research with these top AI tools: First, ChatGPT for its powerful data analysis. Second, Jasper for creative content ideation. Third, Semrush for mastering SEO strategies. Discover what these tools can do and take your business to new heights!",
+      "onScreenText": [
+        "#1: ChatGPT",
+        "#2: Jasper",
+        "#3: Semrush"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "These are the must-have AI tools in 2023! #AIToolsRanking #MarketingGamePlan",
+      "musicVibe": "celebratory and bold",
+      "musicStyle": "Peppy rhythm with expressive highs on each number reveal",
+      "editingNotes": "Countdown effect with escalating urgency. Sync list reveals to sound cues.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "#1: ChatGPT - Data Mastery",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "ChatGPT"
+        },
+        {
+          "text": "#2: Jasper - Creative Genius",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "Jasper"
+        },
+        {
+          "text": "#3: Semrush - SEO Pro",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Semrush"
+        },
+        {
+          "text": "Take your strategy to new levels",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "new levels"
+        }
+      ]
+    }
+  ]
+}
