@@ -7,9 +7,6 @@ name: Vercel Production Deploy
 on:
   push:
     branches: [main]
-    # Don't deploy for changes that don't affect production build.
-    # This prevents analytics / posted-log / docs-only commits from
-    # burning deploy minutes and polluting history.
     paths-ignore:
       - "data/analytics.json"
       - "data/analytics-*.json"
@@ -21,7 +18,21 @@ on:
       - ".github/ISSUE_TEMPLATE/**"
       - ".vscode/**"
       - "LICENSE"
+  # CRITICAL: Bot commits via GITHUB_TOKEN don't fire `push` events
+  # (GitHub security measure against workflow recursion). workflow_run
+  # catches successful bot workflows so their commits actually deploy.
+  workflow_run:
+    workflows:
+      - Daily Article Generation
+      - Daily SEO Optimization
+      - Generate Reels Scripts
+      - Daily Reels Video Pipeline
+    types: [completed]
   workflow_dispatch:
+
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
 
 concurrency:
   group: vercel-production
@@ -30,10 +41,16 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Skip if triggered by a failed upstream workflow
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # workflow_run events check out the default branch, not the
+          # triggering commit. Force latest main so we deploy the bot's work.
+          ref: main
+      # ... rest unchanged
 
       - uses: actions/setup-node@v4
         with:
