@@ -75,12 +75,16 @@ const ALL_FALLBACK_IMAGES = [
 
 /**
  * Resolve images for a specific reel.
- * reelIndex offsets the fallback pool so each reel gets different images.
+ * PREFER local paths: in CI the images live in the workspace before Vercel
+ * has deployed them, so using SITE_URL 404s. Remotion bundler reads files
+ * from public/ via relative paths like `images/instagram/slug/slide-1.jpg`.
+ * Only fall back to remote (Unsplash) URLs when no local file exists.
  */
 async function resolveImages(slug: string, count: number = 4, reelIndex: number = 0): Promise<string[]> {
   const urls: string[] = [];
 
-  // Try local Instagram slides first
+  // Try local Instagram slides first — use RELATIVE path (no SITE_URL).
+  // Remotion serves from public/ automatically when given a bare relative path.
   const instaDir = path.join(IMAGES_DIR, slug);
   if (fs.existsSync(instaDir)) {
     for (let i = 1; i <= 4; i++) {
@@ -89,23 +93,23 @@ async function resolveImages(slug: string, count: number = 4, reelIndex: number 
         if (fs.existsSync(file)) {
           const stat = fs.statSync(file);
           if (stat.size > 5000) {
-            urls.push(`${SITE_URL}/images/instagram/${slug}/slide-${i}.${ext}`);
+            urls.push(`images/instagram/${slug}/slide-${i}.${ext}`);
           }
         }
       }
     }
   }
 
-  // Try blog cover image
+  // Try blog cover image — relative path again
   for (const ext of ["jpg", "png", "jpeg"]) {
     const coverFile = path.join(process.cwd(), "public/images/blog", `${slug}.${ext}`);
     if (fs.existsSync(coverFile)) {
-      urls.push(`${SITE_URL}/images/blog/${slug}.${ext}`);
+      urls.push(`images/blog/${slug}.${ext}`);
       break;
     }
   }
 
-  // Fallback: pick from pool with offset per reel so each gets different images
+  // Fallback: remote pool with per-reel offset so each reel gets different images
   const offset = reelIndex * count;
   let fallbackIdx = offset;
   while (urls.length < count) {
@@ -113,7 +117,8 @@ async function resolveImages(slug: string, count: number = 4, reelIndex: number 
     fallbackIdx++;
   }
 
-  console.log(`   🖼️ Resolved ${urls.length} images for reel (offset=${offset})`);
+  const localCount = urls.filter(u => !u.startsWith("http")).length;
+  console.log(`   🖼️ Resolved ${urls.length} images (${localCount} local, ${urls.length - localCount} remote) offset=${offset}`);
   return urls.slice(0, count);
 }
 
