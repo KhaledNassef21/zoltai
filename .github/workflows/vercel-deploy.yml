@@ -34,10 +34,6 @@ concurrency:
   group: vercel-production
   cancel-in-progress: false
 
-concurrency:
-  group: vercel-production
-  cancel-in-progress: false
-
 jobs:
   deploy:
     runs-on: ubuntu-latest

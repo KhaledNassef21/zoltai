@@ -89,7 +89,37 @@ function main() {
 
   const ffmpeg = findFfmpeg();
 
-  // ─── Strategy 1: Brown noise (best sound, may require anoisesrc filter) ───
+  // Strategy order changed (root cause of prior CI failures):
+  // Remotion's bundled ffmpeg on Linux x64 is a MINIMAL build missing the
+  // `anoisesrc` and `sine` lavfi source filters. Previous code tried those
+  // first and all 3 real-sound strategies failed, leaving no whoosh file.
+  //
+  // New flow:
+  //   1. Produce a GUARANTEED baseline with `anullsrc` (works on every build).
+  //      This ensures the render step always finds whoosh.mp3 and never 404s.
+  //   2. ATTEMPT to upgrade to a real whoosh sound via richer filters. If any
+  //      succeeds, it overwrites the baseline (higher bitrate wins).
+  //   3. If all upgrades fail we keep the silent baseline — transitions are
+  //      silent but renders complete successfully.
+
+  // ─── Strategy 1 (baseline, always-safe): silence via anullsrc ───
+  const silenceArgs = [
+    "-y",
+    "-f", "lavfi",
+    "-i", "anullsrc=r=44100:cl=stereo",
+    "-t", "0.3",
+    "-c:a", "libmp3lame",
+    "-b:a", "64k",
+    WHOOSH_PATH,
+  ];
+  const baselineOk = trySynthesis("silence baseline (anullsrc)", silenceArgs, ffmpeg);
+  if (!baselineOk) {
+    console.warn("❌ Even anullsrc failed — ffmpeg is critically broken.");
+    try { if (fs.existsSync(WHOOSH_PATH)) fs.unlinkSync(WHOOSH_PATH); } catch {}
+    return;
+  }
+
+  // ─── Strategy 2 (upgrade): brown-noise whoosh ───
   const brownArgs = [
     "-y",
     "-f", "lavfi",
@@ -102,12 +132,12 @@ function main() {
     "-ac", "2",
     WHOOSH_PATH,
   ];
-  if (trySynthesis("brown-noise whoosh", brownArgs, ffmpeg)) return;
+  if (trySynthesis("brown-noise upgrade", brownArgs, ffmpeg)) {
+    console.log("   🎉 Upgraded to brown-noise whoosh");
+    return;
+  }
 
-  // ─── Strategy 2: Frequency sweep with sine (always available) ───
-  // Combine a descending sweep with white noise for texture. Uses only
-  // universally-available filters: sine, anoisesrc isn't used here; aevalsrc
-  // is the fallback noise source on minimal ffmpeg builds.
+  // ─── Strategy 3 (upgrade): sine frequency-sweep ───
   const sweepArgs = [
     "-y",
     "-f", "lavfi",
@@ -121,9 +151,12 @@ function main() {
     "-ac", "2",
     WHOOSH_PATH,
   ];
-  if (trySynthesis("sine-sweep whoosh", sweepArgs, ffmpeg)) return;
+  if (trySynthesis("sine-sweep upgrade", sweepArgs, ffmpeg)) {
+    console.log("   🎉 Upgraded to sine-sweep whoosh");
+    return;
+  }
 
-  // ─── Strategy 3: Plain sine burst (most minimal) ───
+  // ─── Strategy 4 (upgrade): plain sine burst ───
   const plainSineArgs = [
     "-y",
     "-f", "lavfi",
@@ -135,29 +168,14 @@ function main() {
     "-ac", "2",
     WHOOSH_PATH,
   ];
-  if (trySynthesis("plain-sine tone", plainSineArgs, ffmpeg)) return;
-
-  // ─── Strategy 4: Silence placeholder (prevents 404, no actual sound) ───
-  const silenceArgs = [
-    "-y",
-    "-f", "lavfi",
-    "-i", "anullsrc=r=44100:cl=stereo",
-    "-t", "0.3",
-    "-c:a", "libmp3lame",
-    "-b:a", "64k",
-    WHOOSH_PATH,
-  ];
-  if (trySynthesis("silence placeholder", silenceArgs, ffmpeg)) {
-    console.log("   ⚠️ Note: placeholder is silent — transitions will have no whoosh.");
+  if (trySynthesis("plain-sine upgrade", plainSineArgs, ffmpeg)) {
+    console.log("   🎉 Upgraded to plain-sine tone");
     return;
   }
 
-  // ─── Last resort: remove the file so generate-video.ts won't set whooshFile ───
-  console.warn("❌ All synthesis strategies failed. whoosh.mp3 will NOT exist.");
-  console.warn("   Pipeline will render without transition SFX (no crash).");
-  try {
-    if (fs.existsSync(WHOOSH_PATH)) fs.unlinkSync(WHOOSH_PATH);
-  } catch {}
+  // All upgrades failed — silent baseline remains. Renders still succeed.
+  console.log("   ℹ️ All audio upgrades unavailable on this ffmpeg build.");
+  console.log("   ℹ️ Keeping silent baseline — transitions will have no whoosh sound, but no 404.");
 }
 
 main();

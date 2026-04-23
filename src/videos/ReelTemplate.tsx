@@ -153,10 +153,15 @@ const ImageBackground: React.FC<{
       scale = 1.05;
   }
 
+  // Resolve src: absolute URLs (http/https) pass through; bare relative paths
+  // are treated as bundled static assets via staticFile(). This lets the
+  // pipeline use local workspace images in CI before Vercel has deployed them.
+  const resolvedSrc = src && !/^https?:\/\//i.test(src) ? staticFile(src) : src;
+
   return (
     <AbsoluteFill>
       <Img
-        src={src}
+        src={resolvedSrc}
         style={{
           width: "100%",
           height: "100%",
