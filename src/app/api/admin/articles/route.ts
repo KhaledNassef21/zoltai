@@ -14,6 +14,13 @@ import {
 const CONTENT_DIR = path.join(process.cwd(), "src/content/blog");
 const GITHUB_CONTENT_DIR = "src/content/blog";
 
+// Vercel serverless functions have an ephemeral filesystem. `fs.writeFileSync`
+// APPEARS to succeed but the write lives only inside the container and
+// disappears when the function terminates — so the UI says "updated" while
+// the repo and the live site never change. Detect the serverless env and
+// force GitHub API writes as the sole persistence path.
+const IS_SERVERLESS = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
 // GET: List all articles, or get single article content
 export async function GET(req: NextRequest) {
   if (!(await isAuthenticated())) {
@@ -152,7 +159,35 @@ affiliateLinks: ${JSON.stringify(validLinks)}
 ${content}
 `;
 
-    // Try local filesystem first
+    // On serverless (Vercel): write to GitHub only — fs writes don't persist.
+    // On local dev: write to fs for fast iteration; fall back to GitHub.
+    if (IS_SERVERLESS) {
+      if (!isGitHubAvailable()) {
+        return NextResponse.json(
+          { error: "GITHUB_TOKEN not configured on Vercel — cannot persist changes." },
+          { status: 500 }
+        );
+      }
+      const existing = await readFile(`${GITHUB_CONTENT_DIR}/${slug}.mdx`);
+      if (existing) {
+        return NextResponse.json(
+          { error: "Article with this slug already exists" },
+          { status: 409 }
+        );
+      }
+      await writeFile(
+        `${GITHUB_CONTENT_DIR}/${slug}.mdx`,
+        mdxContent,
+        `Add article: ${title}`
+      );
+      return NextResponse.json({
+        success: true,
+        slug,
+        note: "Article committed to GitHub. Site will redeploy shortly.",
+      });
+    }
+
+    // Local dev path — filesystem
     try {
       if (!fs.existsSync(CONTENT_DIR)) {
         fs.mkdirSync(CONTENT_DIR, { recursive: true });
@@ -167,11 +202,10 @@ ${content}
       fs.writeFileSync(filePath, mdxContent);
       return NextResponse.json({ success: true, slug });
     } catch {
-      // Filesystem write failed (probably Vercel), try GitHub API
+      // Filesystem write failed, try GitHub
     }
 
     if (isGitHubAvailable()) {
-      // Check if already exists on GitHub
       const existing = await readFile(`${GITHUB_CONTENT_DIR}/${slug}.mdx`);
       if (existing) {
         return NextResponse.json(
@@ -179,7 +213,6 @@ ${content}
           { status: 409 }
         );
       }
-
       await writeFile(
         `${GITHUB_CONTENT_DIR}/${slug}.mdx`,
         mdxContent,
@@ -251,7 +284,27 @@ affiliateLinks: ${JSON.stringify(finalLinks)}
 ${content !== undefined ? content : existingBody}
 `;
 
-    // Try local filesystem first
+    // On serverless: write to GitHub only (local fs writes don't persist).
+    if (IS_SERVERLESS) {
+      if (!isGitHubAvailable()) {
+        return NextResponse.json(
+          { error: "GITHUB_TOKEN not configured on Vercel — cannot persist changes." },
+          { status: 500 }
+        );
+      }
+      await writeFile(
+        `${GITHUB_CONTENT_DIR}/${slug}.mdx`,
+        mdxContent,
+        `Update article: ${title || slug}`
+      );
+      return NextResponse.json({
+        success: true,
+        slug,
+        note: "Article updated on GitHub. Site will redeploy shortly.",
+      });
+    }
+
+    // Local dev path
     try {
       fs.writeFileSync(localPath, mdxContent);
       return NextResponse.json({ success: true, slug });
@@ -297,25 +350,27 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
     }
 
-    // Try local filesystem first
     const localPath = path.join(CONTENT_DIR, `${slug}.mdx`);
     let deletedLocally = false;
 
-    try {
-      if (fs.existsSync(localPath)) {
-        fs.unlinkSync(localPath);
-        deletedLocally = true;
+    // On serverless: skip fs (writes don't persist) — go straight to GitHub.
+    if (!IS_SERVERLESS) {
+      try {
+        if (fs.existsSync(localPath)) {
+          fs.unlinkSync(localPath);
+          deletedLocally = true;
+        }
+        // Also try to delete associated image
+        const imagePath = path.join(
+          process.cwd(),
+          `public/images/blog/${slug}.png`
+        );
+        if (fs.existsSync(imagePath)) {
+          fs.unlinkSync(imagePath);
+        }
+      } catch {
+        // Filesystem failed, try GitHub
       }
-      // Also try to delete associated image
-      const imagePath = path.join(
-        process.cwd(),
-        `public/images/blog/${slug}.png`
-      );
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
-      }
-    } catch {
-      // Filesystem failed, try GitHub
     }
 
     if (!deletedLocally && isGitHubAvailable()) {
