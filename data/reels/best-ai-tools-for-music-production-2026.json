@@ -1,0 +1,655 @@
+{
+  "slug": "best-ai-tools-for-music-production-2026",
+  "title": "Best AI Tools for Music Production 2026",
+  "generatedAt": "2026-05-28T10:58:29.580Z",
+  "reels": [
+    {
+      "id": 1,
+      "format": "Hook/Curiosity",
+      "hook": "Stop scrolling — this AI tool just changed everything",
+      "script": "In 2026, AI tools like Claude are transforming music production. Imagine saving hours on melody creation, while automating sound mastering with ease. Say goodbye to creative block with Claude's AI-generated inspiration. Want to explore more? Follow @zoltai.ai for magic unravelled.",
+      "onScreenText": [
+        "Revolutionize Music",
+        "Save Time",
+        "Fuel Creativity"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Discover how AI tools are reshaping music creation! #MusicInnovation #AIRevolution #Claude #AItools #2026",
+      "musicVibe": "upbeat electronic, motivational",
+      "musicStyle": "Lo-fi beat with tense build at 5s, drop at hook, mellow at CTA",
+      "editingNotes": "Cut on every scene boundary. Whoosh on transitions. Hook = full-screen explosion. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Most people waste 4 hours a day on this",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "But there is a faster way",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "faster"
+        },
+        {
+          "text": "Meet Claude, your AI composer",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "AI composer"
+        },
+        {
+          "text": "Elevate your sound with AI",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 2.5,
+          "highlight": "Elevate"
+        },
+        {
+          "text": "Want to explore more?",
+          "background": "image_pan",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "explore more"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "format": "Tool Demo",
+      "hook": "Meet Claude: your AI music composer",
+      "script": "Imagine having a partner like Claude in your music journey. With its intuitive interface, generating melodies is no longer a challenge. Stay fresh and inspire your sound effortlessly. Claude adapts to you—perfect for breaking out of creative stalls.",
+      "onScreenText": [
+        "Compose Effortlessly",
+        "Unlock Creativity",
+        "Claude Adapts"
+      ],
+      "cta": "Explore Claude with @zoltai.ai",
+      "caption": "Discover Claude, your personal AI composer. Elevate your tunes effortlessly. #Claude #MusicTech #AItools",
+      "musicVibe": "inspirational, energizing",
+      "musicStyle": "Ambient with dynamic synth rise and soft resolution",
+      "editingNotes": "Alternating energetic pans and contrasts. Smooth transitions. Feature Claude’s interface prominently.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "Welcome to revolutionary composing",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "revolutionary"
+        },
+        {
+          "text": "Meet Claude, your AI music partner",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "AI music partner"
+        },
+        {
+          "text": "Compose melodies in minutes",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "minutes"
+        },
+        {
+          "text": "Break free from creative blocks",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "break free"
+        },
+        {
+          "text": "Claude adapts to YOUR style",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "YOUR style"
+        },
+        {
+          "text": "Ready to elevate your sound?",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "elevate"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "format": "Step-by-Step",
+      "hook": "Create songs effortlessly with Claude",
+      "script": "Creating music has never been this simple. Step one: select your genre. Step two: let Claude generate a melody. Step three: tweak to personal taste. Finally, export and share. You’re now ready to impress with AI-enhanced tunes.",
+      "onScreenText": [
+        "Step 1: Choose Genre",
+        "Step 2: Generate Melody",
+        "Step 3: Customize & Share"
+      ],
+      "cta": "Try Claude today at zoltai.ai",
+      "caption": "Your music vision, simplified. Here's how to harness Claude. #MusicProduction #AItools #Claude",
+      "musicVibe": "bright and engaging",
+      "musicStyle": "Fresh upbeat chillwave, smooth to robust",
+      "editingNotes": "Create a rhythmic pulse with smooth cuts. Balance text animation with action shots.",
+      "duration": "32s",
+      "directorScenes": [
+        {
+          "text": "Step 1: Choose your music genre",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Step 1"
+        },
+        {
+          "text": "Step 2: Generate an original melody",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Step 2"
+        },
+        {
+          "text": "Step 3: Customize your sound",
+          "background": "gradient_motion",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Step 3"
+        },
+        {
+          "text": "Step 4: Export & Share",
+          "background": "image_shake",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 2.5,
+          "highlight": "Share"
+        },
+        {
+          "text": "Impress with AI-enhanced tunes",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "AI-enhanced"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "format": "Before/After",
+      "hook": "Transform your music process with AI",
+      "script": "Without AI, music production can feel like a slog—hours refining melodies manually. Enter Claude, a game-changer. With AI tools, create unique melodies in minutes, freeing you to focus on artistry. Experience this transformation today.",
+      "onScreenText": [
+        "Before: Manual Struggle",
+        "After: AI-Assisted Ease"
+      ],
+      "cta": "Discover Claude with @zoltai.ai",
+      "caption": "From slog to symphony—transform your music workflow with Claude. #AItools #MusicMadeEasy #Claude",
+      "musicVibe": "motivational, progressive",
+      "musicStyle": "Electronic with smooth transition from tense to vibrant",
+      "editingNotes": "Juxtaposition of dim and vivid scenes—split screen effect. Transition with a snap.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "BEFORE: Music creation is a time slog",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "time slog"
+        },
+        {
+          "text": "AFTER: Claude simplifies everything",
+          "background": "gradient_motion",
+          "motion": "pan_left",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "simplifies"
+        },
+        {
+          "text": "From refining one melody for hours",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "one melody"
+        },
+        {
+          "text": "To producing unique tracks in minutes",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "minutes"
+        },
+        {
+          "text": "Experience the transformation",
+          "background": "image_pan",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "transformation"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "format": "Value Breakdown",
+      "hook": "Time saved with AI music tools: total game-changer",
+      "script": "Imagine a tool that saves 50 hours per month on music tasks. Claude lets you focus where it matters, elevating productivity at no cost to your creativity. Essential for pros and amateurs alike. Balance time and quality with Claude.",
+      "onScreenText": [
+        "Saves 50 hrs/month",
+        "Focus on Creation",
+        "Balance Time & Quality"
+      ],
+      "cta": "Check out Claude at zoltai.ai",
+      "caption": "Unleash the potential of your time with Claude—productivity meets creativity. #AItools #ProductivityHack #Claude",
+      "musicVibe": "dynamic, energetic",
+      "musicStyle": "Driving electronica with uplifting breaks",
+      "editingNotes": "Match scene cuts with music spikes. Playful animation on text. Visually contrasting scenes for impact.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Save 50 hours a month with Claude",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "50 hours"
+        },
+        {
+          "text": "Focus where your creativity shines",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "creativity"
+        },
+        {
+          "text": "No compromise on quality",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "No compromise"
+        },
+        {
+          "text": "Professionals and amateurs need this",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "need this"
+        },
+        {
+          "text": "Balance time and artistry with Claude",
+          "background": "image_pan",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "Claude"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "format": "Comparison",
+      "hook": "AI face-off: Claude vs Canva AI",
+      "script": "Claude and Canva AI—both game-changers but distinct in their scope. Claude elevates your sound with melody creation, while Canva AI excels in visual accompaniment. Combine both for a seamless music production and design harmony.",
+      "onScreenText": [
+        "Claude: Melody Maestro",
+        "Canva AI: Visual Pro",
+        "Perfect Pairing"
+      ],
+      "cta": "Combine them with @zoltai.ai",
+      "caption": "Sound vs. Visuals—Claude and Canva AI merge creation and design. #AIshowdown #ProductivityPair #ClaudeVsCanva",
+      "musicVibe": "contrasting, high-energy",
+      "musicStyle": "Tense oscillating beats resolving into harmony",
+      "editingNotes": "Bold contrasts between scenes. Graphics to highlight differences. Smooth unifying transition towards end.",
+      "duration": "32s",
+      "directorScenes": [
+        {
+          "text": "Claude: Elevating your sound",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Elevating"
+        },
+        {
+          "text": "Canva AI: Visualize your music",
+          "background": "gradient_motion",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "Visualize"
+        },
+        {
+          "text": "Claude: Master the melody",
+          "background": "image_pan",
+          "motion": "shake",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "melody"
+        },
+        {
+          "text": "Canva AI: Perfect your art",
+          "background": "image_shake",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Perfect"
+        },
+        {
+          "text": "Harness both for perfection",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "perfection"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "format": "Quick Tip",
+      "hook": "Boost creativity with this AI hack",
+      "script": "Feeling stuck? Use Claude to generate multiple melody options. Let it suggest chords until that perfect spark ignites. Experiment and save time effortlessly. Keep the creative juices flowing—turn ideas into hits.",
+      "onScreenText": [
+        "Get Unstuck",
+        "Generate Options",
+        "Save Time"
+      ],
+      "cta": "Unlock creativity @zoltai.ai",
+      "caption": "Quick tip: Claude is your melody generation genie. Fuel creativity now! #MusicHack #AItools #Claude",
+      "musicVibe": "creative, spontaneous",
+      "musicStyle": "Playful synth-pop with light rhythm shifts",
+      "editingNotes": "Short bursts of scenes to keep pace. Dynamic text movements. Fluid yet sudden transitions for rapidity.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "Feeling stuck? Here's the solution",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "stuck"
+        },
+        {
+          "text": "Generate multiple melodies with Claude",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "melodies"
+        },
+        {
+          "text": "Experiment until you find the spark",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "spark"
+        },
+        {
+          "text": "Save time and create hits",
+          "background": "image_pan",
+          "motion": "shake",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "create hits"
+        },
+        {
+          "text": "Turn ideas into sound with Claude",
+          "background": "image_shake",
+          "motion": "still",
+          "text_style": "fade",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "Claude"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "format": "Myth Buster",
+      "hook": "Think AI will replace musicians? Think again",
+      "script": "There's a misconception that AI replaces human creativity. In reality, tools like Claude enhance artistic vision, providing new inspiration paths while letting creators retain control over the music. Embrace AI as a tool, not a rival.",
+      "onScreenText": [
+        "Myth: AI Replaces",
+        "Truth: AI Enhances",
+        "Creators in Control"
+      ],
+      "cta": "Discover AI as your ally @zoltai.ai",
+      "caption": "AI myth busted: It amplifies your creativity, not replaces it. #AItools #MythBusting #Claude",
+      "musicVibe": "expository, articulate",
+      "musicStyle": "Narrative orchestral with dramatic highlights",
+      "editingNotes": "Clear factual transitions. Myth and truth contrasts in visuals. Seamless transition from misconception to reality.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Myth: AI will replace musicians",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "replace"
+        },
+        {
+          "text": "Reality: AI enhances artistry",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "enhances"
+        },
+        {
+          "text": "AI sparks new inspiration paths",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "inspiration"
+        },
+        {
+          "text": "Creator maintains control over music",
+          "background": "image_shake",
+          "motion": "zoom_in",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "control"
+        },
+        {
+          "text": "Embrace AI as a creativity booster",
+          "background": "image_pan",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "booster"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "format": "Story",
+      "hook": "How AI turned a novice into a composer",
+      "script": "Meet Alex, a music enthusiast stuck between hobby and mastery. With Claude, Alex transformed novice ideas into professional compositions. AI provided the spark needed—guiding tones and harmonies to empower Alex's unique sound. Elevate your journey like Alex.",
+      "onScreenText": [
+        "Meet Alex",
+        "From Novice to Composer",
+        "Claude: Professional Edge"
+      ],
+      "cta": "Start your story @zoltai.ai",
+      "caption": "From an enthusiast to a pro—AI elevates Alex's journey. Start yours. #MusicSuccess #Claude #AItools",
+      "musicVibe": "inspirational, smooth transition",
+      "musicStyle": "Acoustic to crescendoing orchestral wave",
+      "editingNotes": "Engage emotionally with gradual build-up. Personal touch in scenes. End on a reflective tone.",
+      "duration": "34s",
+      "directorScenes": [
+        {
+          "text": "Meet Alex, a music enthusiast",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Alex"
+        },
+        {
+          "text": "Lost between hobby and mastery",
+          "background": "image_kenburns",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "mastery"
+        },
+        {
+          "text": "Claude transformed ideas into compositions",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "compositions"
+        },
+        {
+          "text": "AI: The spark Alex needed",
+          "background": "abstract_blur",
+          "motion": "pan_left",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "spark"
+        },
+        {
+          "text": "Empower your sound with Claude",
+          "background": "image_pan",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "Empower"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "format": "List/Ranking",
+      "hook": "Top 3 AI tools for music production in 2026",
+      "script": "Curious about the best AI for music? At number one, Claude simplifies composition. ElevenLabs takes second by giving vocals a soulful touch. Canva AI rounds out the top 3 with visual aesthetics. Together, they redefine music making.",
+      "onScreenText": [
+        "#1 Claude",
+        "#2 ElevenLabs",
+        "#3 Canva AI"
+      ],
+      "cta": "Explore the top tools at zoltai.ai",
+      "caption": "2026's top AI tools for music creation unveiled—level up your craft. #TopTools #AItools #MusicTech",
+      "musicVibe": "competitive, energetic lift",
+      "musicStyle": "Pulsating rhythms with triumphant tones",
+      "editingNotes": "Highlight each tool with a distinct style. Sequential reveal with excitement buildup. Conclude with an unifying visual.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Top 3 AI tools for music 2026",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "2026"
+        },
+        {
+          "text": "#1 Claude: Simplify Compositions",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "#1"
+        },
+        {
+          "text": "#2 ElevenLabs: Soulful Vocals",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "#2"
+        },
+        {
+          "text": "#3 Canva AI: Visual Aesthetics",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "#3"
+        },
+        {
+          "text": "Redefine music making with these tools",
+          "background": "image_pan",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "Redefine"
+        }
+      ]
+    }
+  ]
+}
