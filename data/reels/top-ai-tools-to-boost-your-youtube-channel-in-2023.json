@@ -1,0 +1,737 @@
+{
+  "slug": "top-ai-tools-to-boost-your-youtube-channel-in-2023",
+  "title": "Top AI Tools to Boost Your YouTube Channel in 2023",
+  "generatedAt": "2026-06-05T10:51:07.335Z",
+  "reels": [
+    {
+      "id": 1,
+      "format": "Hook/Curiosity",
+      "hook": "Stop scrolling — this AI tool just changed everything",
+      "script": "Most people waste 4 hours a day on inefficient video editing. But there's a faster way with AI. Discover Runway, the game-changer for YouTube creators. Streamline editing, save time, and enhance quality without coding skills. Dive into the future of video production now.",
+      "onScreenText": [
+        "Save 4 hours",
+        "Streamline now",
+        "No coding needed"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Find out how AI tools like Runway are changing video editing for creators. #AIrevolution #VideoEditing #YouTubeGrowth",
+      "musicVibe": "upbeat electronic, motivational",
+      "musicStyle": "Lo-fi beat with tense build at 5s, drop at hook, mellow at CTA",
+      "editingNotes": "Cut on every scene boundary. Whoosh on transitions. Hook = full-screen explosion. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Most people waste 4 hours a day on this",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "But there is a faster way",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "faster"
+        },
+        {
+          "text": "Runway: AI-powered video editing",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "AI-powered"
+        },
+        {
+          "text": "Easy edits, no coding skills needed",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Easy"
+        },
+        {
+          "text": "Transform your YouTube game...",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "Transform"
+        },
+        {
+          "text": "With AI tools this cool",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "kinetic",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "AI tools"
+        },
+        {
+          "text": "@zoltai.ai for the latest",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "latest"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "format": "Tool Demo",
+      "hook": "Ever seen AI write a video script? Meet Jasper!",
+      "script": "Watch Jasper script AI in action! This tool writes engaging YouTube scripts in seconds. Effortlessly create compelling content that keeps viewers hooked from start to finish. Jasper adjusts its tone and style to fit your brand and message, making scriptwriting an absolute breeze. Dive into the future of AI-assisted writing now.",
+      "onScreenText": [
+        "AI Scriptwriting",
+        "Jasper in Action",
+        "Engage Effortlessly"
+      ],
+      "cta": "Get started with @zoltai.ai",
+      "caption": "Experience how Jasper transforms your scriptwriting process with AI. #ScriptWriting #AItools #ContentCreation",
+      "musicVibe": "light and playful, digital",
+      "musicStyle": "Synth-based melody with a future-driven vibe",
+      "editingNotes": "Show Jasper interface in real-time. Use zooms and highlights to focus on written text. Transition with techy sound effects. CTA = brand purple.",
+      "duration": "35s",
+      "directorScenes": [
+        {
+          "text": "Ever seen AI write a video script?",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "video script"
+        },
+        {
+          "text": "Meet Jasper!",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "Jasper"
+        },
+        {
+          "text": "Watch it craft engaging scripts...",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "engaging"
+        },
+        {
+          "text": "In just seconds!",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "side_left",
+          "duration": 2.5,
+          "highlight": "seconds"
+        },
+        {
+          "text": "Writes for your brand + tone",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "kinetic",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "brand + tone"
+        },
+        {
+          "text": "Jasper, your AI script sidekick",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "script sidekick"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "format": "Step-by-Step",
+      "hook": "Start crafting better thumbnails in 5 simple steps",
+      "script": "Here’s how to create eye-catching YouTube thumbnails with Canva AI. Step 1: Select your template. Step 2: Customize colors and fonts. Step 3: Add your image or video still. Step 4: Let AI suggest enhancements. Step 5: Download and upload. Follow these steps and watch your click-through rates soar!",
+      "onScreenText": [
+        "Step 1: Choose template",
+        "Step 2: Add your touch",
+        "Step 3: Integrate visuals"
+      ],
+      "cta": "Follow these steps with @zoltai.ai",
+      "caption": "Quick guide to designing standout thumbnails using Canva AI. #VideoThumbnails #DesignTips #ContentCreation",
+      "musicVibe": "catchy and upbeat, instructional",
+      "musicStyle": "Simple rhythmic beat with light electronic elements",
+      "editingNotes": "Quick cut scenes to match each step. Keep text overlay simple and clear. Music aligns with pace. CTA = brand purple.",
+      "duration": "40s",
+      "directorScenes": [
+        {
+          "text": "Start crafting better thumbnails",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "thumbnails"
+        },
+        {
+          "text": "Step 1: Select a template",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "template"
+        },
+        {
+          "text": "Step 2: Customize your style",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "your style"
+        },
+        {
+          "text": "Step 3: Add video stills or images",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "video stills"
+        },
+        {
+          "text": "Step 4: AI enhances automatically",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "enhances"
+        },
+        {
+          "text": "Step 5: Save and publish",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "kinetic",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "publish"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "format": "Before/After",
+      "hook": "Struggling with video editing? Watch this transformation!",
+      "script": "Life before Runway: endless hours on video details. Post-Runway life: professional edits done swiftly and effortlessly. Remove objects, enhance visuals, and add creative effects with a few clicks. Experience enhanced productivity and quality like never before. See the striking difference!",
+      "onScreenText": [
+        "Before: Time-consuming",
+        "After: Seamlessly fast",
+        "Visuals drastically improved"
+      ],
+      "cta": "Transform with @zoltai.ai",
+      "caption": "Check out the incredible change in efficiency and quality after using Runway. #BeforeAfter #VideoEditing #AItools",
+      "musicVibe": "transformative and evolving",
+      "musicStyle": "Cinematic rise with impactful moments during 'After' scenes",
+      "editingNotes": "Before scenes darker, slower music, after scenes brighter, faster and impactful music. Highlight transformative text. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Struggling with video editing?",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Struggling"
+        },
+        {
+          "text": "Before Runway: Endless editing hours",
+          "background": "image_kenburns",
+          "motion": "pan_left",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "hours"
+        },
+        {
+          "text": "After Runway: Swift and easy edits",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Swift"
+        },
+        {
+          "text": "Easily remove unwanted objects",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "unwanted"
+        },
+        {
+          "text": "Endless creative effect options",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "creative"
+        },
+        {
+          "text": "Experience the productivity boost",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "productivity"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "format": "Value Breakdown",
+      "hook": "Boost productivity and save time with AI video editing",
+      "script": "Calculate your gains with Runway: Time saved – up to 4 hours per edit. Cost – affordable pricing plans. Value – high-quality edits, easy-to-use interface. Investing in Runway isn’t just about saving time, it's about elevating your content’s quality and focus on creativity.",
+      "onScreenText": [
+        "Save: 4 hours/edit",
+        "Cost: Affordable",
+        "Value: Professional quality"
+      ],
+      "cta": "Enhance with @zoltai.ai",
+      "caption": "Understand the clear value Runway AI brings versus traditional video editing. #Efficiency #AIediting #ContentQuality",
+      "musicVibe": "analytical and tech-focused",
+      "musicStyle": "Steady beat layered with technological sound effects",
+      "editingNotes": "Graphs and numbers overlayed for visual impact. Crisp transitions correlating to pacing. CTA = brand purple.",
+      "duration": "35s",
+      "directorScenes": [
+        {
+          "text": "Boost productivity and save time",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "save time"
+        },
+        {
+          "text": "Time saved: 4 hours per edit",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "Affordable pricing options",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Affordable"
+        },
+        {
+          "text": "High-quality edits",
+          "background": "image_shake",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "High-quality"
+        },
+        {
+          "text": "Focus more on creativity",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "creativity"
+        },
+        {
+          "text": "Elevate your content’s quality",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 4,
+          "highlight": "content’s quality"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "format": "Comparison",
+      "hook": "Jasper vs Canva AI: Which tool suits you?",
+      "script": "Jasper AI excels in crafting detailed scripts and descriptions, perfect for content creators focused on storytelling and narrative. Canva AI, on the other hand, is ideal for creating stunning visuals quickly, perfect for thumbnail creation and visual branding. Choosing between them depends on your focus: scripts or visuals?",
+      "onScreenText": [
+        "Jasper: Script Master",
+        "Canva AI: Visual Genius",
+        "Which fits your needs?"
+      ],
+      "cta": "Discover more at @zoltai.ai",
+      "caption": "Which AI tool better suits your creative process: Jasper or Canva AI? Decide based on your needs. #AItools #ContentCreation #VisualDesign",
+      "musicVibe": "thought-provoking and decisive",
+      "musicStyle": "Dynamic contrast of soft and intense beats",
+      "editingNotes": "Point-counterpoint visual style, crisp back and forth transitions. Clear icons for each tool. CTA = brand purple.",
+      "duration": "40s",
+      "directorScenes": [
+        {
+          "text": "Jasper vs Canva AI",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "vs"
+        },
+        {
+          "text": "Jasper: Detailed scripts & descriptions",
+          "background": "image_kenburns",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "scripts"
+        },
+        {
+          "text": "Best for storytelling",
+          "background": "abstract_blur",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "storytelling"
+        },
+        {
+          "text": "Canva AI: Stunning visuals fast",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "visuals"
+        },
+        {
+          "text": "Perfect for thumbnails & branding",
+          "background": "image_shake",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "branding"
+        },
+        {
+          "text": "Which fits your creative focus?",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "creative focus"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "format": "Quick Tip",
+      "hook": "Instantly boost your SEO with this simple trick!",
+      "script": "Use Semrush to instantly enhance your YouTube visibility. Quick tip: Analyze your competitors' top-ranking keywords and integrate them into your titles and descriptions. Simple adjustments can massively impact video discoverability, drawing more viewers effortlessly.",
+      "onScreenText": [
+        "Semrush SEO tip",
+        "Analyze keywords",
+        "Boost visibility"
+      ],
+      "cta": "Try this with @zoltai.ai",
+      "caption": "Learn an easy trick using Semrush to enhance your SEO for better YouTube visibility. #SEOtip #YouTubeGrowth #ContentOptimization",
+      "musicVibe": "light yet informative",
+      "musicStyle": "Gentle beat with subtle digital soundscapes",
+      "editingNotes": "Focus on fast, clear text pop-ups with a concise walkthrough. Use digital effects for keyword analyses. CTA = brand purple.",
+      "duration": "25s",
+      "directorScenes": [
+        {
+          "text": "Instantly boost your SEO",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "SEO"
+        },
+        {
+          "text": "Use Semrush for insights",
+          "background": "image_kenburns",
+          "motion": "still",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Semrush"
+        },
+        {
+          "text": "Analyze top-ranking keywords",
+          "background": "abstract_blur",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "keywords"
+        },
+        {
+          "text": "Integrate for better visibility",
+          "background": "image_pan",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "visibility"
+        },
+        {
+          "text": "Simple yet powerful adjustments",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "powerful"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "format": "Myth Buster",
+      "hook": "AI tools are complicated? Think again!",
+      "script": "Many think AI tools are complex and suitable only for tech experts. Time to bust that myth! AI tools for video editing and content creation, like Runway and Jasper, are user-friendly and designed for creators of all levels. You don't need to be a tech wizard to revolutionize your process with AI.",
+      "onScreenText": [
+        "Myth: Too complex",
+        "Reality: User-friendly",
+        "Accessible to everyone"
+      ],
+      "cta": "Explore more with @zoltai.ai",
+      "caption": "Debunk the myth about AI’s complexity—experience user-friendly interfaces. #MythBuster #AItools #VideoCreation",
+      "musicVibe": "engaging and light-hearted",
+      "musicStyle": "Optimistic melody with a playful undertone",
+      "editingNotes": "Visual change from 'myth' darkness to 'reality' brightness. Calming music transitions. Clear distinction using text and color. CTA = brand purple.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "AI tools are complicated?",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "complicated"
+        },
+        {
+          "text": "Myth: For tech experts only",
+          "background": "image_kenburns",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 4,
+          "highlight": "tech experts"
+        },
+        {
+          "text": "Reality: Simple and user-friendly",
+          "background": "image_pan",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "user-friendly"
+        },
+        {
+          "text": "Tools for creators of all levels",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "all levels"
+        },
+        {
+          "text": "Revolutionize your process with AI",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "kinetic",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "Revolutionize"
+        },
+        {
+          "text": "No tech wizard skills required",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "No skills"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "format": "Story",
+      "hook": "Meet Alex: Transformed content with AI magic",
+      "script": "Meet Alex, a budding YouTube creator struggling to keep up with editing demands. Then Alex discovered AI tools like Runway and Jasper. Suddenly, editing became a breeze, scripts came alive, and Alex’s creative potential was unleashed. Now, Alex enjoys the process and sees audience engagement skyrocket. This is the power of AI.",
+      "onScreenText": [
+        "Alex’s story",
+        "Game-changer: AI tools",
+        "Enhanced creativity"
+      ],
+      "cta": "Start your journey with @zoltai.ai",
+      "caption": "Discover Alex’s transformation story with AI video tools. What could you achieve next? #AIstory #Transformation #CreativePotential",
+      "musicVibe": "uplifting and narrative-driven",
+      "musicStyle": "Soft piano intro evolving into an inspiring crescendo",
+      "editingNotes": "Blend Alex’s journey with dynamic scene changes. Strong narrative voice and music swell with reveal. CTA = brand purple.",
+      "duration": "40s",
+      "directorScenes": [
+        {
+          "text": "Meet Alex: YouTube creator",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "YouTube"
+        },
+        {
+          "text": "Struggled with editing demands",
+          "background": "image_kenburns",
+          "motion": "pan_left",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "editing demands"
+        },
+        {
+          "text": "Discovering AI: Runway & Jasper",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "kinetic",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "Discovering AI"
+        },
+        {
+          "text": "Editing turned easy; scripts came to life",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 4,
+          "highlight": "came to life"
+        },
+        {
+          "text": "Creative potential unleashed!",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "unleashed"
+        },
+        {
+          "text": "Audience engagement skyrocketed",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "engagement"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "format": "List/Ranking",
+      "hook": "Top 3 AI tools every creator needs in 2023",
+      "script": "In 2023, these are the AI tools propelling creators: 1. Runway - revolutionizes video editing with AI-driven simplicity. 2. Jasper - masterful at generating engaging scripts and descriptions. 3. Canva AI - offers unparalleled visual creativity for thumbnails. With these tools, enhance your productivity and content quality effortlessly.",
+      "onScreenText": [
+        "#1 Runway",
+        "#2 Jasper",
+        "#3 Canva AI"
+      ],
+      "cta": "Discover them all with @zoltai.ai",
+      "caption": "The must-have AI tools to elevate your YouTube content creation this year! #TopTools #AIproductivity #VideoContent",
+      "musicVibe": "upbeat and conclusive",
+      "musicStyle": "Exciting build-up with a satisfying drop for each ranking",
+      "editingNotes": "Exciting, rapid cuts between the three tools. Listicle-style animation with bold numbers. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Top 3 AI tools every creator needs",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Top 3"
+        },
+        {
+          "text": "#1 Runway: Video editing simplified",
+          "background": "image_kenburns",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Runway"
+        },
+        {
+          "text": "#2 Jasper: Master your scripts",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Jasper"
+        },
+        {
+          "text": "#3 Canva AI: Visual creativity unlocked",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Canva AI"
+        },
+        {
+          "text": "Enhance productivity & quality with AI",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "productivity"
+        },
+        {
+          "text": "Level up in 2023!",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "kinetic",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "2023"
+        }
+      ]
+    }
+  ]
+}
