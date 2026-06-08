@@ -1,0 +1,458 @@
+{
+  "slug": "best-ai-tools-for-non-designers-to-create-stunning-visuals-2023",
+  "title": "Best AI Tools for Non-Designers to Create Stunning Visuals 2023",
+  "generatedAt": "2026-06-08T12:00:38.813Z",
+  "reels": [
+    {
+      "id": 1,
+      "format": "Hook/Curiosity",
+      "hook": "Stop scrolling — this AI tool just changed everything",
+      "script": "Ever wondered how non-designers can create pro-level visuals? AI tools have made design more accessible than ever. From Canva AI's drag-and-drop simplicity to Midjourney's text-to-art magic, you can elevate your creations without formal training. Save time, enhance your creativity, and say goodbye to design barriers!",
+      "onScreenText": [
+        "Create Pro-level Visuals",
+        "No Formal Training Needed",
+        "Boost Your Creativity"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Let's revolutionize visual creation with AI! #AItools #GraphicDesign #VisualDesign",
+      "musicVibe": "upbeat electronic, motivational",
+      "musicStyle": "Lo-fi beat with tense build at 5s, drop at hook, mellow at CTA",
+      "editingNotes": "Cut on every scene boundary. Whoosh on transitions. Hook = full-screen explosion. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Most people waste 4 hours a day on this",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "But there is a faster way",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "faster"
+        },
+        {
+          "text": "AI tools simplify design for everyone",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "simplify"
+        },
+        {
+          "text": "Start creating stunning visuals now",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "type",
+          "layout": "corner_tag",
+          "duration": 2.5,
+          "highlight": "stunning"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "format": "Tool Demo",
+      "hook": "Create art in seconds! See Midjourney in action",
+      "script": "Watch as Midjourney transforms simple text prompts into breathtaking art. Want a sunset over a mountain range? Just type it and watch magic unfold. Perfect for unique, creative visuals in moments.",
+      "onScreenText": [
+        "Text to Art",
+        "Instant Creations",
+        "Unique Visuals"
+      ],
+      "cta": "Follow @zoltai.ai for more demos",
+      "caption": "Discover the power of AI with Midjourney! #Midjourney #AIart #CreativeTools",
+      "musicVibe": "ethereal, mysterious, transformative",
+      "musicStyle": "Ambient with a hint of intrigue, peaks at transformations",
+      "editingNotes": "Use fluid transitions. Emphasize transformation scenes with a glow effect. Keep viewer engaged with dynamic text movement.",
+      "duration": "35s",
+      "directorScenes": [
+        {
+          "text": "Type your vision:",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "kinetic",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "Type"
+        },
+        {
+          "text": "Watch AI bring it to life",
+          "background": "image_shake",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "life"
+        },
+        {
+          "text": "Create breathtaking art effortlessly",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "top_bold",
+          "duration": 4,
+          "highlight": "effortlessly"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "format": "Step-by-Step",
+      "hook": "Simple steps to stellar designs with Canva AI",
+      "script": "Learn how to transform basic ideas into stunning visuals with Canva AI. Choose a template, customize with AI tools, and download your masterpiece. Even without a design background, professional quality is at your fingertips!",
+      "onScreenText": [
+        "Select Template",
+        "Customize",
+        "Download"
+      ],
+      "cta": "Follow @zoltai.ai for easy guides",
+      "caption": "Turn ideas into reality using Canva AI! #DesignTools #CanvaAI #VisualCreation",
+      "musicVibe": "upbeat, instructional, clear",
+      "musicStyle": "Catchy beat, soft piano overlay, maintains focus",
+      "editingNotes": "Highlight steps visually with numbered overlays. Use sound effects for each step completion.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Step 1: Choose a template",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "slide_up",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Choose"
+        },
+        {
+          "text": "Step 2: Customize with AI suggestions",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "Customize"
+        },
+        {
+          "text": "Step 3: Download and share",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Download"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "format": "Before/After",
+      "hook": "See how AI transforms your designs like magic",
+      "script": "Struggled with design? Enter AI! View typical DIY designs transform into eye-catching visuals. Canva AI and Midjourney turn complexity into simplicity, elevating your projects instantly.",
+      "onScreenText": [
+        "Before: Struggle",
+        "After: Success",
+        "Magic Happens"
+      ],
+      "cta": "Follow @zoltai.ai for more awe-inspiration",
+      "caption": "Witness the transformation power of AI! #BeforeAfter #AIPower #VisualUpgrade",
+      "musicVibe": "transformative, dramatic, satisfying",
+      "musicStyle": "Orchestral build into satisfying crescendo at showcase",
+      "editingNotes": "Emphasize contrast with color correction before/after. Use dramatic shift effects at 'magic' moment.",
+      "duration": "32s",
+      "directorScenes": [
+        {
+          "text": "Without AI, design can be daunting",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "daunting"
+        },
+        {
+          "text": "With AI, transform complexity into simplicity",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "simplicity"
+        },
+        {
+          "text": "See your designs elevate",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "elevate"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "format": "Value Breakdown",
+      "hook": "How AI saves time and boosts your creativity",
+      "script": "Understanding the value proposition of AI tools: They save you hours on design tasks, are often cost-effective, and let you focus on creativity rather than tech hurdles. Transform how you approach design.",
+      "onScreenText": [
+        "Save Hours",
+        "Cost-Effective",
+        "Focus on Creativity"
+      ],
+      "cta": "Follow @zoltai.ai to unlock potential",
+      "caption": "Maximize your time and creativity with AI! #AIvalue #ProductivityHack #VisualCreativity",
+      "musicVibe": "optimistic, energetic, forward-thinking",
+      "musicStyle": "Uplifting synths with steady beat, energizes viewer",
+      "editingNotes": "Emphasize numbers with motion graphics. Highlight 'savings' with visual emphasis and upbeat cut.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "Saves you 3 hours per project",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "3 hours"
+        },
+        {
+          "text": "From $0, access powerful tools",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 2.5,
+          "highlight": "$0"
+        },
+        {
+          "text": "Focus on creativity, not hassle",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "slide_up",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "creativity"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "format": "Comparison",
+      "hook": "Midjourney vs Canva AI: Which is for you?",
+      "script": "Explore the strengths of Midjourney versus Canva AI. Midjourney offers boundless creative freedom with text-to-art capabilities, while Canva AI provides intuitive templates for effortless design. Discover which fits your needs.",
+      "onScreenText": [
+        "Boundless Creativity",
+        "Intuitive Design",
+        "Find Your Fit"
+      ],
+      "cta": "Follow @zoltai.ai for in-depth reviews",
+      "caption": "Decide your best AI companion! #Midjourney #CanvaAI #CreativeChoice",
+      "musicVibe": "balanced, comparative, thought-provoking",
+      "musicStyle": "Balanced mix of piano and light synths, builds curiosity",
+      "editingNotes": "Use split-screen for comparisons. Emphasize 'fit' decision moment with alternate color pop.",
+      "duration": "33s",
+      "directorScenes": [
+        {
+          "text": "Midjourney: Create art from text prompts",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "art"
+        },
+        {
+          "text": "Canva AI: Endless templates and ease",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "ease"
+        },
+        {
+          "text": "Choose your perfect match",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 2.5,
+          "highlight": "perfect"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "format": "Quick Tip",
+      "hook": "One trick to supercharge your Canva designs",
+      "script": "Leverage Canva AI's 'Magic Resize' feature! Instantly adapt designs for different platforms with a click. Save time and ensure your visuals are always platform-perfect.",
+      "onScreenText": [
+        "Magic Resize",
+        "Instant Adaptation",
+        "Platform Perfect"
+      ],
+      "cta": "Follow @zoltai.ai for quick hacks",
+      "caption": "Get the most from Canva AI with this tip! #QuickTip #CanvaTricks #DesignSmart",
+      "musicVibe": "fast-paced, energetic, insightful",
+      "musicStyle": "Quick beats with light percussion, keeps energy high",
+      "editingNotes": "Quick cuts for each step. Highlight 'Magic Resize' with a sparkle effect.",
+      "duration": "25s",
+      "directorScenes": [
+        {
+          "text": "Use 'Magic Resize' in Canva AI",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Magic Resize"
+        },
+        {
+          "text": "Adapt designs for all platforms instantly",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "instantly"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "format": "Myth Buster",
+      "hook": "Think AI design tools are complex? Think again!",
+      "script": "Many believe AI tools require design expertise. Reality? They're built for simplicity and accessibility, helping you create stunning visuals without hassle.",
+      "onScreenText": [
+        "Easy to Use",
+        "No Expertise Needed",
+        "Design for All"
+      ],
+      "cta": "Follow @zoltai.ai to dispel myths",
+      "caption": "Break free from design misconceptions! #MythBuster #AIReality #DesignSimplified",
+      "musicVibe": "reassuring, revealing, encouraging",
+      "musicStyle": "Soft piano intro, uplifting strings reveal moment",
+      "editingNotes": "Use visual overlays to dispel 'complexity'. End on a reassuring note.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "Myth: AI tools need expertise",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "expertise"
+        },
+        {
+          "text": "Reality: Built for everyone",
+          "background": "image_kenburns",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "everyone"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "format": "Story",
+      "hook": "How one creator elevated their visuals with AI",
+      "script": "Meet Jane, a blogger who transformed her content using Canva AI. Without design experience, she learned to create stunning social media graphics, saving hours each week and attracting a bigger audience.",
+      "onScreenText": [
+        "Meet Jane",
+        "Transform Content",
+        "Attract Audience"
+      ],
+      "cta": "Follow @zoltai.ai for inspiring stories",
+      "caption": "Discover how AI empowers creators like Jane! #AIstories #CreatorJourney #DesignInspiration",
+      "musicVibe": "narrative, emotional, engaging",
+      "musicStyle": "Soft background strings escalating to a joyful peak",
+      "editingNotes": "Use real-life graphics approved by legal, emotional cues through music and color.",
+      "duration": "34s",
+      "directorScenes": [
+        {
+          "text": "Jane struggled with time and design",
+          "background": "abstract_blur",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "struggled"
+        },
+        {
+          "text": "Discovered Canva AI magic",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "magic"
+        },
+        {
+          "text": "Saved hours, reached a larger audience",
+          "background": "gradient_motion",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "audience"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "format": "List/Ranking",
+      "hook": "Top 3 AI tools for non-designers in 2023",
+      "script": "Number 1: Canva AI - user-friendly, perfect for beginners. Number 2: Midjourney - for the creative soul, unique art from text. Number 3: Leonardo AI - detailed designs, ultimate precision.",
+      "onScreenText": [
+        "1: Canva AI",
+        "2: Midjourney",
+        "3: Leonardo AI"
+      ],
+      "cta": "Follow @zoltai.ai for top recommendations",
+      "caption": "Step up your design game with these AI tools! #Top3 #AItools #Design2023",
+      "musicVibe": "countdown, anticipatory, climactic",
+      "musicStyle": "Upbeat countdown theme, peak for reveal of each tool",
+      "editingNotes": "Number reels with bright overlays. Each reveal has a distinct color scheme.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "1: Canva AI – effortless design",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "effortless"
+        },
+        {
+          "text": "2: Midjourney – unleash creativity",
+          "background": "abstract_blur",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "creativity"
+        },
+        {
+          "text": "3: Leonardo AI – precision perfection",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "perfection"
+        }
+      ]
+    }
+  ]
+}
