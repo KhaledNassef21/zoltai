@@ -1,0 +1,485 @@
+{
+  "slug": "best-ai-tools-for-crafting-viral-tiktoks-2023",
+  "title": "Best AI Tools for Crafting Viral TikToks 2023",
+  "generatedAt": "2026-06-12T11:03:44.336Z",
+  "reels": [
+    {
+      "id": 1,
+      "format": "Hook/Curiosity",
+      "hook": "Stop scrolling — this AI tool just changed everything",
+      "script": "Most people spend hours trying to make viral TikToks, but what if I told you one tool can skyrocket your creativity and save you time? Dive into AI-driven productivity with tools like Runway and Canva AI. Elevate your TikToks effortlessly. Discover more! Follow @zoltai.ai for more insights.",
+      "onScreenText": [
+        "Most people waste 4 hours",
+        "But there's a faster way",
+        "AI to the rescue"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Unlock the power of AI tools ⚡😉 #AItools #ContentCreation #TikTokGrowth",
+      "musicVibe": "upbeat electronic, motivational",
+      "musicStyle": "Lo-fi beat with tense build at 5s, drop at hook, mellow at CTA",
+      "editingNotes": "Cut on every scene boundary. Whoosh on transitions. Hook = full-screen explosion. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Most people waste 4 hours a day on this",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "But there is a faster way",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "faster"
+        },
+        {
+          "text": "AI to the rescue, save time & boost creativity!",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "boost creativity"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "format": "Tool Demo",
+      "hook": "Want catchy captions in seconds? Meet ChatGPT",
+      "script": "Imagine writing TikTok captions in seconds! ChatGPT is your go-to tool for crafting engaging captions and unique content ideas. Just input your theme and watch the magic happen. It's simple, fast, and incredibly efficient. Elevate your content game today!",
+      "onScreenText": [
+        "Write in seconds",
+        "Input your theme",
+        "Magic captions"
+      ],
+      "cta": "Try ChatGPT now!",
+      "caption": "Elevate your TikTok captions with ChatGPT! 🌟 #AItools #ChatGPT #ContentCreation",
+      "musicVibe": "energetic synth pop",
+      "musicStyle": "Fast-paced with a pop beat, subtle rise, uplifting at CTA",
+      "editingNotes": "Highlight product in use, quick transitions to keep engagement.",
+      "duration": "25s",
+      "directorScenes": [
+        {
+          "text": "Write catchy TikToks captions in seconds!",
+          "background": "image_pan",
+          "motion": "shake",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "seconds"
+        },
+        {
+          "text": "Input your theme, get instant results",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "instant results"
+        },
+        {
+          "text": "Magic captions at your fingertips! ✨",
+          "background": "image_shake",
+          "motion": "pan_left",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "Magic captions"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "format": "Step-by-Step",
+      "hook": "3 steps to pro TikTok edits using Runway!",
+      "script": "Runway makes video editing hassle-free. Step 1: Import your clips. Step 2: Use AI Magic Tools to edit with ease. Step 3: Export and share. It's that simple! Professional edits at your fingertips, even if you’re a beginner.",
+      "onScreenText": [
+        "Import clips",
+        "Use AI Magic Tools",
+        "Export & share"
+      ],
+      "cta": "Explore Runway today!",
+      "caption": "Editing TikToks made easy. Level up your skills! 🎥 #VideoEditing #Runway #AItools",
+      "musicVibe": "smooth futuristic",
+      "musicStyle": "Steady beat with uplifting synths, calm at CTA",
+      "editingNotes": "Clear step breakdowns with vivid text and engaging transitions.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "Pro TikTok edits in 3 simple steps!",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "kinetic",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "3 simple steps"
+        },
+        {
+          "text": "Step 1: Import your clips",
+          "background": "image_kenburns",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "Import"
+        },
+        {
+          "text": "Step 2: Use AI Magic Tools",
+          "background": "abstract_blur",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "Magic Tools"
+        },
+        {
+          "text": "Step 3: Export and share your creation",
+          "background": "image_shake",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "Export"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "format": "Before/After",
+      "hook": "Struggling with video edits? See this transformation!",
+      "script": "Struggling with video edits? You’re not alone. Here’s what happens when you switch to AI-powered Runway: effortless edits, professional quality, all done in minutes. Experience the transformation and impress your audience.",
+      "onScreenText": [
+        "Struggling with edits?",
+        "Meet Runway",
+        "Professional transformation"
+      ],
+      "cta": "Switch to Runway now!",
+      "caption": "From chaos to clarity. Transform your video editing with Runway! 🎬 #Runway #VideoEditing #AItools",
+      "musicVibe": "dynamic orchestral",
+      "musicStyle": "Tension-filled intro, crescendo with resolution",
+      "editingNotes": "Start with a chaotic editing scene, followed by seamless AI-driven transformation.",
+      "duration": "26s",
+      "directorScenes": [
+        {
+          "text": "Struggling with video edits? 😵",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Struggling"
+        },
+        {
+          "text": "Introducing Runway: AI-powered editing",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "AI-powered"
+        },
+        {
+          "text": "Before: Chaos. 📉 After: Professional quality. 📈",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 4,
+          "highlight": "Professional"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "format": "Value Breakdown",
+      "hook": "Save hours and dollars with this AI tool!",
+      "script": "Want to save time on TikTok creation? Runway offers you AI-driven capabilities to streamline tasks and enhance quality. Enjoy a free tier with advanced paid options. It's cost-effective, time-efficient, and helps you achieve professional results.",
+      "onScreenText": [
+        "Save hours",
+        "AI-driven efficiency",
+        "Free tier access"
+      ],
+      "cta": "Check out Runway today!",
+      "caption": "Save time & elevate your TikToks with Runway! ⏳🎥 #Efficiency #AItools #SaveTime",
+      "musicVibe": "bright acoustic",
+      "musicStyle": "Happy guitar strums with light percussion, peppy at CTA",
+      "editingNotes": "Illustrate cost and time savings visually with graphs or counters.",
+      "duration": "27s",
+      "directorScenes": [
+        {
+          "text": "Save hours of editing time 💡",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "center_explosion",
+          "duration": 3.5,
+          "highlight": "Save hours"
+        },
+        {
+          "text": "AI-driven efficiency at its best",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "AI-driven"
+        },
+        {
+          "text": "Explore free tier with advanced options",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "free tier"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "format": "Comparison",
+      "hook": "ChatGPT vs. Claude — which is better for you?",
+      "script": "Curious which AI for captions delivers more punch? ChatGPT offers instant and engaging results, while Claude provides refined customization. Both have unique strengths. Try them and choose what fits your style.",
+      "onScreenText": [
+        "ChatGPT: Instant results",
+        "Claude: Custom options",
+        "What's your style?"
+      ],
+      "cta": "Try both and decide!",
+      "caption": "ChatGPT or Claude? Discover your perfect AI match! 🤔💬 #AItools #ChatGPT #Claude",
+      "musicVibe": "playful rivalry",
+      "musicStyle": "Back-and-forth melody, gentle rise at decision point",
+      "editingNotes": "Side-by-side comparison, emphasize strengths of each tool.",
+      "duration": "29s",
+      "directorScenes": [
+        {
+          "text": "ChatGPT: Quick & engaging captions",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "Quick"
+        },
+        {
+          "text": "Claude: Tailored & refined options",
+          "background": "image_shake",
+          "motion": "pan_right",
+          "text_style": "type",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "Tailored"
+        },
+        {
+          "text": "Which fits your TikTok style best?",
+          "background": "abstract_blur",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 4,
+          "highlight": "TikTok style"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "format": "Quick Tip",
+      "hook": "Simple AI hack to boost your TikTok creativity!",
+      "script": "Want a quick boost in creativity? Use Canva AI to enhance your TikTok graphics. Just select a template, apply AI effects, and you're ready to dazzle. Simple as that, and your creativity will shine.",
+      "onScreenText": [
+        "Select template",
+        "Apply AI effects",
+        "Dazzle your audience"
+      ],
+      "cta": "Use Canva AI now!",
+      "caption": "Let your creativity soar with Canva AI! 🚀✨ #GraphicDesign #AItools #Creativity",
+      "musicVibe": "cheerful pop",
+      "musicStyle": "Energetic tune, bubbly rhythm, upbeat at CTA",
+      "editingNotes": "Focus on visuals of Canva AI interface and vibrant graphics.",
+      "duration": "27s",
+      "directorScenes": [
+        {
+          "text": "Quick creativity boost with Canva AI!",
+          "background": "abstract_blur",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "creativity boost"
+        },
+        {
+          "text": "Select a stunning template 📱",
+          "background": "image_pan",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "template"
+        },
+        {
+          "text": "Add AI effects, dazzle your audience 🌟",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "dazzle"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "format": "Myth Buster",
+      "hook": "AI can't create amazing TikToks? Think again!",
+      "script": "Ever heard that AI can't match human creativity? Time to rethink! AI tools like Runway and Canva AI empower your creative process, making TikToks better and faster than ever. Myth busted!",
+      "onScreenText": [
+        "AI vs creativity",
+        "Empower your process",
+        "Myth busted!"
+      ],
+      "cta": "Unlock AI's potential today!",
+      "caption": "AI isn't replacing creativity—it's enhancing it! 💡🤖 #AItools #CreativityUnleashed #TikTok",
+      "musicVibe": "adventurous electronic",
+      "musicStyle": "Bold synths with crescendo at myth busting reveal",
+      "editingNotes": "Dramatic reveal with myth highlighting, quick AI tool demonstrations.",
+      "duration": "28s",
+      "directorScenes": [
+        {
+          "text": "AI can't create amazing TikToks? 🧐",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "type",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "AI can't"
+        },
+        {
+          "text": "Think again! AI empowers your creativity",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "empowers"
+        },
+        {
+          "text": "Myth busted, see it in action!",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 4,
+          "highlight": "Myth busted"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "format": "Story",
+      "hook": "How I went from zero to TikTok pro using AI",
+      "script": "Once upon a time, I struggled with TikToks, lacking creativity and efficiency. Enter AI tools like Runway and Canva AI, transforming my process. My videos went from zero to pro in weeks. Discover how AI can enhance your content journey too.",
+      "onScreenText": [
+        "Struggled with TikToks",
+        "Found AI partners",
+        "Zero to pro transformation"
+      ],
+      "cta": "Start your AI journey today!",
+      "caption": "Transform your TikTok journey with AI support! 🌟📈 #AItools #TikTokSuccess #ContentJourney",
+      "musicVibe": "inspirational piano",
+      "musicStyle": "Flowing piano melody with uplifting crescendos",
+      "editingNotes": "Include relatable before clips and striking after effects with AI usage.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Struggled with TikToks, felt stuck 🤦",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "stuck"
+        },
+        {
+          "text": "AI tools were my game changer",
+          "background": "gradient_motion",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "game changer"
+        },
+        {
+          "text": "Zero to TikTok pro transformation 🌟",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 4,
+          "highlight": "pro transformation"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "format": "List/Ranking",
+      "hook": "Top 3 AI tools you need for viral TikToks",
+      "script": "Looking to make an impact with TikToks? Here are the top 3 AI tools: 1. Runway for seamless video editing. 2. Canva AI for visual graphics. 3. ChatGPT for creative captions. Elevate your TikTok game today with these essential tools.",
+      "onScreenText": [
+        "Runway: Video editing",
+        "Canva AI: Visuals",
+        "ChatGPT: Captions"
+      ],
+      "cta": "Explore these tools now!",
+      "caption": "Essential AI tools for every TikTok creator! 📹🔧 #AItools #TopPicks #TikTokEssentials",
+      "musicVibe": "motivational pop",
+      "musicStyle": "Catchy pop melody with rhythmic punches",
+      "editingNotes": "Quickly cycle through tool demos with clear visuals of their benefits.",
+      "duration": "31s",
+      "directorScenes": [
+        {
+          "text": "Top 3 AI tools for viral TikToks!",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "kinetic",
+          "layout": "top_bold",
+          "duration": 3.5,
+          "highlight": "Top 3"
+        },
+        {
+          "text": "1. Runway: Seamless video editing",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "side_left",
+          "duration": 3.5,
+          "highlight": "Runway"
+        },
+        {
+          "text": "2. Canva AI: Master your visuals",
+          "background": "gradient_motion",
+          "motion": "shake",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 3.5,
+          "highlight": "Canva AI"
+        },
+        {
+          "text": "3. ChatGPT: Creative captions simplified",
+          "background": "image_shake",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "bottom_stack",
+          "duration": 3.5,
+          "highlight": "ChatGPT"
+        }
+      ]
+    }
+  ]
+}
