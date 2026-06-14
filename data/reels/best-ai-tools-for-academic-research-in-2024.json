@@ -1,0 +1,417 @@
+{
+  "slug": "best-ai-tools-for-academic-research-in-2024",
+  "title": "Best AI Tools for Academic Research in 2024",
+  "generatedAt": "2026-06-14T10:26:51.573Z",
+  "reels": [
+    {
+      "id": 1,
+      "format": "Hook/Curiosity",
+      "hook": "Stop scrolling — this AI tool just changed everything",
+      "script": "Did you know most students lose hours every day? I’ll show you an AI tool that can reclaim that time. It's not just a tool, it’s a productivity game-changer for 2024. Imagine cutting hours from your workload with just one app. That's productivity redefined. Stay ahead, stay efficient, and embrace the power of AI. Are you ready to transform your research routine? Follow for more insights.",
+      "onScreenText": [
+        "Most people waste 4 hours a day on this",
+        "But there is a faster way"
+      ],
+      "cta": "Follow @zoltai.ai for more",
+      "caption": "Unlock academic success in 2024 with AI tools. #AItools #AcademicResearch #ProductivityHacks #ChatGPT #NotionAI",
+      "musicVibe": "upbeat electronic, motivational",
+      "musicStyle": "Lo-fi beat with tense build at 5s, drop at hook, mellow at CTA",
+      "editingNotes": "Cut on every scene boundary. Whoosh on transitions. Hook = full-screen explosion. CTA = brand purple.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Most people waste 4 hours a day on this",
+          "background": "image_kenburns",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "4 hours"
+        },
+        {
+          "text": "But there is a faster way",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "faster"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "format": "Tool Demo",
+      "hook": "See how ChatGPT writes better than you",
+      "script": "Meet ChatGPT, your new writing assistant. Watch how it drafts and refines your research paper in minutes. Input your topic, and let AI do the heavy lifting. It's like magic, but real. With ChatGPT, structured outlines and polished paragraphs are just a click away. Elevate your academic writing with precision and ease.",
+      "onScreenText": [
+        "Meet ChatGPT",
+        "Drafts your paper in minutes",
+        "Magic in your hands"
+      ],
+      "cta": "Try it today",
+      "caption": "Transform your writing with ChatGPT. #AIwriting #ProductivityHacks #ChatGPT #AcademicHelp",
+      "musicVibe": "futuristic, engaging",
+      "musicStyle": "Synth wave with subtle crescendo during demo",
+      "editingNotes": "Highlight tool actions. Fast cuts with light flares for user input moments.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Meet ChatGPT",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "fade",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "ChatGPT"
+        },
+        {
+          "text": "Drafts your paper in minutes",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 4,
+          "highlight": "minutes"
+        },
+        {
+          "text": "Magic in your hands",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "Magic"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "format": "Step-by-Step",
+      "hook": "3 steps to supercharge your research with AI",
+      "script": "Transform your research process in three easy steps. Step one, choose your AI tool. Step two, input your data or task requirements. Step three, let AI streamline and optimize your workflow. Repeat these steps for maximum efficiency. Simple, effective, and game-changing.",
+      "onScreenText": [
+        "Choose your AI tool",
+        "Input your data",
+        "Streamline your workflow"
+      ],
+      "cta": "Level up your research",
+      "caption": "Streamline research tasks with these 3 steps. #ResearchTips #AItools #NotionAI #Productivity",
+      "musicVibe": "energetic and tutorial-like",
+      "musicStyle": "Percussive and rhythmic, with brief pauses at step transitions",
+      "editingNotes": "Use graphical overlay to highlight each step. Transition effects between steps with emphasis on simplicity.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Choose your AI tool",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "AI tool"
+        },
+        {
+          "text": "Input your data",
+          "background": "image_shake",
+          "motion": "still",
+          "text_style": "type",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Input"
+        },
+        {
+          "text": "Streamline your workflow",
+          "background": "image_kenburns",
+          "motion": "pan_left",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Streamline"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "format": "Before/After",
+      "hook": "Research overhaul: see the dramatic difference",
+      "script": "Before AI integration, research workflows were slow and manual. After integrating AI like Notion and ChatGPT, productivity soared and processes became seamless. Don't let labor-intensive tasks slow you down. Experience how AI can transform tedious research into efficient wins.",
+      "onScreenText": [
+        "Before: Slow, manual processes",
+        "After: Seamless efficiency"
+      ],
+      "cta": "Embrace AI today",
+      "caption": "Experience the benefits of AI in research. #BeforeAfter #AItransformation #ChatGPT #NotionAI",
+      "musicVibe": "dramatic transition, uplifting",
+      "musicStyle": "Orchestral uplift with suspenseful intro and celebratory climax",
+      "editingNotes": "Juxtapose before and after scenes with heavy emphasis. Use split screen for added effect.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Before: Slow, manual processes",
+          "background": "image_shake",
+          "motion": "shake",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 4,
+          "highlight": "Slow"
+        },
+        {
+          "text": "After: Seamless efficiency",
+          "background": "image_pan",
+          "motion": "still",
+          "text_style": "pop",
+          "layout": "corner_tag",
+          "duration": 4,
+          "highlight": "Seamless"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "format": "Value Breakdown",
+      "hook": "Incredible ROI: Time saved vs cost of AI tools",
+      "script": "Calculating the ROI on AI tools? Consider the time saved. ChatGPT, Perplexity, and Notion AI offer tools that cut hours off your workload. Most are free to begin with or offer affordable plans. Investing in AI means investing in time efficiency. Do the math, time is invaluable.",
+      "onScreenText": [
+        "ChatGPT: Free, Saves hours",
+        "Notion AI: Efficient collaboration"
+      ],
+      "cta": "Calculate your gains",
+      "caption": "Time is priceless. Gain more with AI. #TimeManagement #AIBenefits #NotionAI",
+      "musicVibe": "analytical yet upbeat",
+      "musicStyle": "Electronic with a steady rhythm, light bass",
+      "editingNotes": "Visual graphs. Animate ROI numbers growing with an emphasis on time savings.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "ChatGPT: Free, Saves hours",
+          "background": "abstract_blur",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "center_explosion",
+          "duration": 4,
+          "highlight": "Saves hours"
+        },
+        {
+          "text": "Notion AI: Efficient collaboration",
+          "background": "image_kenburns",
+          "motion": "pan_right",
+          "text_style": "slide_up",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "Efficient"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "format": "Comparison",
+      "hook": "ChatGPT vs Canva AI — which is better?",
+      "script": "Both tools are exceptional, but they serve different needs. ChatGPT excels in drafting and editing text. Canva AI shines in visual data representation. What's your priority? Text or visuals? Pick based on your project requirements.",
+      "onScreenText": [
+        "ChatGPT: Writing expert",
+        "Canva AI: Visual master"
+      ],
+      "cta": "Which one suits you?",
+      "caption": "Choose the right tool for your goals. #AIcomparison #ChatGPT #CanvaAI",
+      "musicVibe": "competitive yet informative",
+      "musicStyle": "Intense hip-hop beat, brief drop for comparison",
+      "editingNotes": "Side-by-side feature comparison. Emphasize each tool's strengths with iconography.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "ChatGPT: Writing expert",
+          "background": "gradient_motion",
+          "motion": "pan_left",
+          "text_style": "type",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Writing"
+        },
+        {
+          "text": "Canva AI: Visual master",
+          "background": "image_pan",
+          "motion": "pan_right",
+          "text_style": "slide_left",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "Visual"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "format": "Quick Tip",
+      "hook": "Redeem lost time: AI hack you need now",
+      "script": "Quick tip to boost productivity: Use ChatGPT for immediate draft improvements. Just enter your rough draft, and let AI polish it. Your writing goes from draft to superior faster than you think. Give it a try and watch your efficiency skyrocket.",
+      "onScreenText": [
+        "Draft faster",
+        "Edit smarter",
+        "Achieve more"
+      ],
+      "cta": "Unlock this tip",
+      "caption": "Turbocharge your writing process today. #AIwriting #ChatGPT #ProductivityTip",
+      "musicVibe": "quick-paced and punchy",
+      "musicStyle": "Techno with slight pause at tip reveal",
+      "editingNotes": "Focus on speed. Quick transitions and punchy typography.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Draft faster",
+          "background": "image_kenburns",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "faster"
+        },
+        {
+          "text": "Edit smarter",
+          "background": "image_shake",
+          "motion": "still",
+          "text_style": "slide_left",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "smarter"
+        },
+        {
+          "text": "Achieve more",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_up",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "Achieve"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "format": "Myth Buster",
+      "hook": "AI tools are NOT just for tech experts",
+      "script": "Think AI tools are only for tech pros? Think again. Tools like ChatGPT and Notion AI are made for everyone. They’re user-friendly and require no technical background. The world of AI is open to all. Simplify your work and boost your productivity—no expert skills needed.",
+      "onScreenText": [
+        "No tech skills needed",
+        "Accessible for everyone"
+      ],
+      "cta": "Try AI tools today",
+      "caption": "AI is for everyone. Get started today. #AIMyth #UserFriendly #NotionAI",
+      "musicVibe": "debunking, inspiring",
+      "musicStyle": "Chill hop with an uplifting melody, subtle drop at myth debunk",
+      "editingNotes": "Use playful animations to illustrate misconceptions. Smooth transitions.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "No tech skills needed",
+          "background": "gradient_motion",
+          "motion": "zoom_out",
+          "text_style": "fade",
+          "layout": "top_bold",
+          "duration": 3,
+          "highlight": "No tech"
+        },
+        {
+          "text": "Accessible for everyone",
+          "background": "image_pan",
+          "motion": "pan_left",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "everyone"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "format": "Story",
+      "hook": "See Jenny's academic breakthrough with AI",
+      "script": "Meet Jenny, a passionate researcher struggling with tedious tasks. She integrated AI tools like Perplexity and Canva AI into her routine. Result? More time for innovation, less on monotonous work. Her research quality improved, leading to impressive academic achievements. AI transformed Jenny’s approach—imagine what it can do for you.",
+      "onScreenText": [
+        "Meet Jenny",
+        "AI freed her time",
+        "Achieved more academically"
+      ],
+      "cta": "Be like Jenny",
+      "caption": "Unleash your research potential with AI. #AIstory #SuccessJourney #AcademicResearch",
+      "musicVibe": "emotional yet triumphant",
+      "musicStyle": "Acoustic rise with a triumphant climax, gentle fade",
+      "editingNotes": "Soft focus on Jenny’s before life, vibrant colors for AI transformation. Warm transitions.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "Meet Jenny",
+          "background": "image_kenburns",
+          "motion": "pan_right",
+          "text_style": "type",
+          "layout": "corner_tag",
+          "duration": 3,
+          "highlight": "Jenny"
+        },
+        {
+          "text": "AI freed her time",
+          "background": "gradient_motion",
+          "motion": "zoom_in",
+          "text_style": "slide_left",
+          "layout": "side_left",
+          "duration": 3,
+          "highlight": "freed"
+        },
+        {
+          "text": "Achieved more academically",
+          "background": "image_pan",
+          "motion": "zoom_out",
+          "text_style": "pop",
+          "layout": "bottom_stack",
+          "duration": 3,
+          "highlight": "Achieved"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "format": "List/Ranking",
+      "hook": "Top 3 AI tools you need for research efficiency",
+      "script": "Ready to boost your research efficiency? Here are the top 3 AI tools you need: ChatGPT for writing brilliance, Notion AI for organizing genius, and Perplexity for quick data facts. Transform your academic efforts with these power tools.",
+      "onScreenText": [
+        "1. ChatGPT",
+        "2. Notion AI",
+        "3. Perplexity"
+      ],
+      "cta": "Discover your tool",
+      "caption": "These AI tools redefine research productivity. #TopAItools #AcademicEfficiency #ProductivityBoost",
+      "musicVibe": "engaging and rhythmic",
+      "musicStyle": "Lively pop with brief pauses at each tool reveal",
+      "editingNotes": "Countdown with number animations. Each tool reveal matched with short sound burst.",
+      "duration": "30s",
+      "directorScenes": [
+        {
+          "text": "1. ChatGPT",
+          "background": "abstract_blur",
+          "motion": "pan_left",
+          "text_style": "pop",
+          "layout": "top_bold",
+          "duration": 2.5,
+          "highlight": "ChatGPT"
+        },
+        {
+          "text": "2. Notion AI",
+          "background": "image_shake",
+          "motion": "zoom_in",
+          "text_style": "fade",
+          "layout": "bottom_stack",
+          "duration": 2.5,
+          "highlight": "Notion AI"
+        },
+        {
+          "text": "3. Perplexity",
+          "background": "gradient_motion",
+          "motion": "still",
+          "text_style": "slide_up",
+          "layout": "center_explosion",
+          "duration": 3,
+          "highlight": "Perplexity"
+        }
+      ]
+    }
+  ]
+}
