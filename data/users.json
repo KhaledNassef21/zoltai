@@ -8,5 +8,15 @@
     "premium": false,
     "createdAt": "2026-04-07T10:40:28.440Z",
     "lastLogin": "2026-04-07T10:42:18.336Z"
+  },
+  {
+    "id": "u_1782373389626_3d435c27",
+    "name": "oscar",
+    "email": "oscar@valuefocus.io",
+    "passwordHash": "755b92d9c5aa1b9613da24c9b91b4fd96cc821d7457a622b1334fc91d07a27f609ef57b41fecd28861e5a703de8e4e2d07e3d8435ed87d68b8cef814739120b6",
+    "salt": "9eb3a590f83379f94411faaa3edad4cd098f84641826a8202f0e5c3aa22e0520",
+    "premium": false,
+    "createdAt": "2026-06-25T07:43:09.626Z",
+    "lastLogin": "2026-06-25T07:43:09.626Z"
   }
 ]
