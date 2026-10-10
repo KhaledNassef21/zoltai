@@ -18,5 +18,15 @@
     "premium": false,
     "createdAt": "2026-06-25T07:43:09.626Z",
     "lastLogin": "2026-06-25T07:43:09.626Z"
+  },
+  {
+    "id": "u_1791596083394_05526c19",
+    "name": "Sainadh reddy",
+    "email": "gsainadh809@gmail.com",
+    "passwordHash": "f4ec648a7fa310766190d08147b97187f67917cb2e5c3df2c6cc027ffd00313a6ab97e24ef2880a8648051806d8287931ee4205faec0d517322f8edd4f9af153",
+    "salt": "63b4ddefa03452ef04a55f6acc4fa77d83e0db7c87f530b94285d3e3ebc87b8b",
+    "premium": false,
+    "createdAt": "2026-10-10T01:34:43.394Z",
+    "lastLogin": "2026-10-10T01:34:43.394Z"
   }
 ]
