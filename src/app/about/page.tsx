@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About Zoltai - Learn and Master AI Tools",
   description:
     "Zoltai helps you discover the best AI tools to boost productivity, learn new skills, and work smarter. No coding required.",
