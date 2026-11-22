@@ -112,6 +112,9 @@ export async function POST(req: NextRequest) {
         subject: "Welcome to Zoltai",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ededed; padding: 32px; border-radius: 12px;">
+            <div style="margin-bottom: 24px;">
+              <a href="https://zoltai.org" style="text-decoration: none;"><img src="https://zoltai.org/icons/icon-192.png" width="48" height="48" alt="Zoltai" style="display: block; border-radius: 10px; border: 0;" /></a>
+            </div>
             <h1 style="color: #7c3aed; font-size: 28px; margin-bottom: 16px;">Welcome to Zoltai, ${firstName}!</h1>
             <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px;">
               Thanks for signing up. Zoltai publishes guides to AI tools for small businesses, with plans and prices checked against each vendor's own pages.
@@ -274,4 +277,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-          }
+}
