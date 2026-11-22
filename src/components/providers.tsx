@@ -128,8 +128,8 @@ const translations: Record<string, Record<Lang, string>> = {
     ar: "تفقد بريدك للحصول على دليل أدوات AI. أهلاً بك في مجتمع Zoltai!",
   },
   "lead.joinCount": {
-    en: "Join 2,000+ readers already learning AI skills",
-    ar: "انضم لأكثر من 2,000 قارئ يتعلمون مهارات AI",
+    en: "Free guide. No spam. Unsubscribe anytime.",
+    ar: "دليل مجاني. بدون سبام. تقدر تلغي الاشتراك في أي وقت.",
   },
 
   // Stats
@@ -301,8 +301,8 @@ const translations: Record<string, Record<Lang, string>> = {
   "newsletterHero.title1": { en: "Stay Ahead of the", ar: "اتقدم على" },
   "newsletterHero.title2": { en: "AI Curve", ar: "موجة الذكاء الاصطناعي" },
   "newsletterHero.desc": {
-    en: "Join 2,000+ readers getting the best new AI tools, honest reviews, and productivity hacks every week. No spam, unsubscribe anytime.",
-    ar: "انضم لأكثر من 2,000 قارئ بيوصلهم أحسن الأدوات الجديدة ومراجعات صادقة وحيل إنتاجية كل أسبوع. بدون سبام، اشتراكك يمكن إلغاؤه في أي وقت.",
+    en: "Get new AI tool guides and honest reviews by email. No spam, unsubscribe anytime.",
+    ar: "استقبل أدلة أدوات الذكاء الاصطناعي الجديدة ومراجعات صادقة على بريدك. بدون سبام، وتقدر تلغي الاشتراك في أي وقت.",
   },
   "newsletterHero.benefit1": {
     en: "Top 3 AI tool picks every Monday",
@@ -421,4 +421,4 @@ export function Providers({ children }: { children: ReactNode }) {
       </LangContext.Provider>
     </ThemeContext.Provider>
   );
-}
+         }
