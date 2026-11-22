@@ -234,7 +234,7 @@ function buildDraft(articles: ArticleInfo[]): WeeklyDraft {
       <p style="color: #22d3ee; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin: 0 0 10px 0;">Quick summary: ${escapeHtml(
         articles[0].title
       )}</p>
-      <ul style="color: #a1a1aa; line-height: 1.8; margin: 0; padding-left: 2x0px;">
+      <ul style="color: #a1a1aa; line-height: 1.8; margin: 0; padding-left: 20px;">
         ${tips.map((t) => `<li>${escapeHtml(t)}</li>`).join("\n        ")}
       </ul>
     </div>`
