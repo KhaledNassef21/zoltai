@@ -16,6 +16,9 @@ import { tools } from "@/data/tools";
  *
  * Runs once per mount. Safe to include on every blog post.
  */
+// Tools whose affiliateUrl is a verified real referral link. Add a slug only after verifying.
+const VERIFIED_AFFILIATE_SLUGS = new Set<string>(["elevenlabs"]);
+
 export function InlineToolLinks() {
   const done = useRef(false);
 
@@ -30,7 +33,12 @@ export function InlineToolLinks() {
     // over "ChatGPT")
     const toolList = [...tools]
       .sort((a, b) => b.name.length - a.name.length)
-      .map((t) => ({ name: t.name, slug: t.slug, url: t.url }));
+      .map((t) => ({
+        name: t.name,
+        slug: t.slug,
+        // Use the owner's verified affiliate link when one exists; otherwise the official site.
+        url: VERIFIED_AFFILIATE_SLUGS.has(t.slug) && t.affiliateUrl ? t.affiliateUrl : t.url,
+      }));
 
     const linkedSlugs = new Set<string>();
     const MAX_LINKS_PER_ARTICLE = 8;
@@ -77,7 +85,9 @@ export function InlineToolLinks() {
         const link = document.createElement("a");
         link.href = tool.url;
         link.target = "_blank";
-        link.rel = "noopener noreferrer nofollow";
+        link.rel = VERIFIED_AFFILIATE_SLUGS.has(tool.slug)
+          ? "noopener noreferrer nofollow sponsored"
+          : "noopener noreferrer nofollow";
         link.className =
           "text-accent-light font-medium underline decoration-accent/30 underline-offset-2 hover:decoration-accent";
         link.setAttribute("data-auto-link", "true");
@@ -96,4 +106,4 @@ export function InlineToolLinks() {
   }, []);
 
   return null;
-}
+                          }
