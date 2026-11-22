@@ -257,7 +257,7 @@ const dripEmails: DripEmail[] = [
     </p>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 16px 0 0 0;">
-      <strong style="color: #ededed;">P.S.</strong> — Our <a href="${link("/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2025", "drip2_writing", "jasper")}" style="color: #a78bfa;">full Jasper vs Copy.ai vs Writesonic comparison</a> shows which tool has the best ROI for your niche.
+      <strong style="color: #ededed;">P.S.</strong> — Our <a href="${link("/blog/jasper-vs-copy-ai-vs-writesonic-best-roi-ai-tools-2026", "drip2_writing", "jasper")}" style="color: #a78bfa;">full Jasper vs Copy.ai vs Writesonic comparison</a> shows which tool has the best ROI for your niche.
     </p>
     `,
       "3 freelancers. Same tools. Professional results. Here's their exact workflow.",
@@ -342,7 +342,7 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 24px 0 0 0;">
-      <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024", "drip3_art", "midjourney")}" style="color: #a78bfa;">complete AI art guide</a> for the exact prompts and workflows Sarah uses.
+      <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/sell-ai-art-online-midjourney-leonardo", "drip3_art", "midjourney")}" style="color: #a78bfa;">complete AI art guide</a> for the exact prompts and workflows Sarah uses.
     </p>
     `,
       "She built a thriving Etsy shop with AI art in 4 months.",
@@ -508,7 +508,7 @@ const dripEmails: DripEmail[] = [
     </div>
 
     <p style="color: #a1a1aa; line-height: 1.8; margin: 24px 0 0 0;">
-      <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/best-ai-coding-assistants-2025-cursor-vs-github-copilot-vs-bolt", "drip5_coding", "cursor")}" style="color: #a78bfa;">Cursor vs Copilot vs Bolt comparison</a> to pick the right tool for your situation.
+      <strong style="color: #ededed;">P.S.</strong> — Read our <a href="${link("/blog/best-ai-coding-assistants-2026-cursor-vs-github-copilot-vs-bolt", "drip5_coding", "cursor")}" style="color: #a78bfa;">Cursor vs Copilot vs Bolt comparison</a> to pick the right tool for your situation.
     </p>
     `,
       "People with zero coding experience are building real apps with AI tools.",
