@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of Service",
   description:
     "Zoltai terms of service — rules and guidelines for using our website.",
@@ -211,4 +212,4 @@ export default function TermsOfService() {
       </div>
     </div>
   );
-}
+            }
