@@ -4,6 +4,7 @@ import { ToolsDirectory } from "./tools-directory";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/tools" },
   title: "Best AI Tools Directory 2026 — Curated & Reviewed",
   description:
     "Discover the best AI tools for writing, coding, image generation, SEO, and productivity. Curated reviews with pricing and free trials.",

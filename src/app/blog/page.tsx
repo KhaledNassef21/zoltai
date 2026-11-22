@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BlogWithFilters } from "./blog-with-filters";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog" },
   title: "Blog",
   description:
     "Latest articles on AI tools, productivity tips, and artificial intelligence guides.",

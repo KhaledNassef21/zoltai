@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/earn" },
   title: "Top AI Tools — Curated Picks to Boost Your Productivity",
   description:
     "Discover our top 10 curated AI tools for productivity, creativity, and professional growth. No coding required.",
