@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://zoltai.org",
+    canonical: "/",
   },
   icons: {
     icon: [
