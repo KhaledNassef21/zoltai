@@ -2,6 +2,31 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/blog/leonardo-ai-vs-midjourney-vs-canva-ai-2025-profit-comparison",
+      "destination": "/blog/top-ai-art-generators-compare-best-platforms",
+      "permanent": true
+    },
+    {
+      "source": "/blog/make-2000-month-selling-ai-art-midjourney-leonardo-guide-2024",
+      "destination": "/blog/sell-ai-art-online-midjourney-leonardo",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-make-2000-month-with-ai-data-analysis-in-2024",
+      "destination": "/blog/top-ai-tools-for-small-biz-analytics",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-ai-music-tools-2025-earn-2000-month-creating-beats",
+      "destination": "/blog/top-ai-music-generators-reviews-buying-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-ai-writing-tools-for-freelancers-2024-earn-5000-month",
+      "destination": "/blog/top-ai-writing-tools-for-freelancers-in-2024",
+      "permanent": true
+    },
+    {
       "source": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
       "destination": "/blog/top-ai-voice-tools-elevenlabs-murf-ai",
       "permanent": true
