@@ -20,7 +20,11 @@ export function NewsletterSignup({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    if (!email) {
+      setStatus("error");
+      setMessage("Please enter your email address first.");
+      return;
+    }
 
     setStatus("loading");
     try {
@@ -83,7 +87,7 @@ export function NewsletterSignup({
             <h3 className="font-bold text-lg text-white">{title}</h3>
             <p className="text-sm text-zinc-400 mt-1">{description}</p>
           </div>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+          <form onSubmit={handleSubmit} noValidate className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
             <input
               type="text"
               value={name}
@@ -157,4 +161,4 @@ export function NewsletterSignup({
       <p className="text-xs text-zinc-700 mt-4">No spam. Unsubscribe anytime.</p>
     </div>
   );
-}
+            }
