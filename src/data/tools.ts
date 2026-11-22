@@ -222,7 +222,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free plan available. AI add-on $10/member/month.",
     url: "https://notion.so",
-    affiliateUrl: "https://affiliate.notion.so/zoltai",
+    affiliateUrl: "https://notion.so",
     rating: 5,
   },
   {
@@ -294,7 +294,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free plan available. Pro $12.99/month.",
     url: "https://canva.com",
-    affiliateUrl: "https://partner.canva.com/zoltai",
+    affiliateUrl: "https://canva.com",
     rating: 5,
   },
   {
