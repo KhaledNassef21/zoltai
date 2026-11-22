@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy Policy",
   description:
     "Zoltai privacy policy — how we collect, use, and protect your personal information.",
@@ -221,4 +222,4 @@ export default function PrivacyPolicy() {
       </div>
     </div>
   );
-}
+                }
