@@ -281,7 +281,7 @@ export const tools: Tool[] = [
     pricing: "Freemium",
     pricingDetail: "Free tier with 10K chars/month. Plans from $5/month.",
     url: "https://elevenlabs.io",
-    affiliateUrl: "https://elevenlabs.io/?ref=zoltai",
+    affiliateUrl: "https://try.elevenlabs.io/hk7vvc0c90l8",
     rating: 5,
   },
   {
