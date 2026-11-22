@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ],
   other: {
     "google-site-verification": "FSKh_zkNE5wDnpiVBiML628oT11QR2FF_2w5ejfJYF4",
-    "impact-site-verification": "9436c631-e4a2-43bb-ad89-e175d3b38758",
+    "impact-site-verification": "abfac258-20a6-4fe5-b521-0478b8579731",
   },
   openGraph: {
     title: "Zoltai - Discover the Best AI Tools",
