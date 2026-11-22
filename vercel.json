@@ -2,6 +2,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/blog/make-3000-month-with-ai-voice-services-elevenlabs-murf-guide-2024",
+      "destination": "/blog/top-ai-voice-tools-elevenlabs-murf-ai",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "https://zoltai.org/",
       "permanent": true,
