@@ -43,13 +43,5 @@
       6,
       7
     ]
-  },
-  {
-    "email": "zoltai-test-ignore@example.com",
-    "name": "Zoltai Test",
-    "subscribedAt": "2026-11-22T05:21:17.511Z",
-    "emailsSent": [
-      0
-    ]
   }
 ]
