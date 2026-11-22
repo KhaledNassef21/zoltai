@@ -79,7 +79,7 @@ function wrap(content: string, preheader: string, campaign: string): string {
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ededed; border-radius: 12px; overflow: hidden;">
   <div style="display: none; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #0a0a0a;">${preheader}</div>
   <div style="background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%); padding: 24px 32px;">
-    <a href="${SITE}" style="color: white; text-decoration: none; font-size: 20px; font-weight: 700;">Zoltai</a>
+    <a href="${SITE}" style="color: white; text-decoration: none; font-size: 20px; font-weight: 700;"><img src="${SITE}/icons/icon-192.png" width="40" height="40" alt="Zoltai" style="vertical-align: middle; border-radius: 8px; border: 0; margin-right: 10px;" /><span style="vertical-align: middle;">Zoltai</span></a>
   </div>
   <div style="padding: 32px;">
     ${content}
