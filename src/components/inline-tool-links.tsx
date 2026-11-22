@@ -10,7 +10,7 @@ import { tools } from "@/data/tools";
  * Strategy:
  *  - After MDX renders, walk through <p> / <li> text nodes inside .prose
  *  - For each tool in our catalog, replace the FIRST mention (to avoid keyword
- *    stuffing) with an <a> pointing to the tool's site, same URL as the tool card (there is no /tools/<slug> page)
+ *    stuffing) with an <a> pointing to the tool's site, official URL, since several affiliate links are unverified (there is no /tools/<slug> page)
  *  - This boosts internal linking (SEO) + affiliate CTR without manual effort
  *  - Skip nodes inside <a>, <code>, <pre>, <h1-h6> to preserve semantics
  *
@@ -30,7 +30,7 @@ export function InlineToolLinks() {
     // over "ChatGPT")
     const toolList = [...tools]
       .sort((a, b) => b.name.length - a.name.length)
-      .map((t) => ({ name: t.name, slug: t.slug, url: t.affiliateUrl || t.url }));
+      .map((t) => ({ name: t.name, slug: t.slug, url: t.url }));
 
     const linkedSlugs = new Set<string>();
     const MAX_LINKS_PER_ARTICLE = 8;
@@ -77,7 +77,7 @@ export function InlineToolLinks() {
         const link = document.createElement("a");
         link.href = tool.url;
         link.target = "_blank";
-        link.rel = "noopener noreferrer nofollow sponsored";
+        link.rel = "noopener noreferrer nofollow";
         link.className =
           "text-accent-light font-medium underline decoration-accent/30 underline-offset-2 hover:decoration-accent";
         link.setAttribute("data-auto-link", "true");
