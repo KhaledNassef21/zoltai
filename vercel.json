@@ -2,6 +2,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/blog/top-5-ai-tools-for-small-business-owners-in-2027",
+      "destination": "/blog/top-5-ai-tools-for-small-business-owners-in-2026",
+      "permanent": true
+    },
+    {
       "source": "/blog/leonardo-ai-vs-midjourney-vs-canva-ai-2025-profit-comparison",
       "destination": "/blog/top-ai-art-generators-compare-best-platforms",
       "permanent": true
