@@ -1,0 +1,56 @@
+name: Weekly Newsletter Issue
+
+on:
+  schedule:
+    - cron: "0 7 * * 0" # Every Sunday at 7:00 AM UTC (11:00 AM Dubai)
+  workflow_dispatch:
+    inputs:
+      approve:
+        description: "Type yes to send the approved draft to subscribers"
+        required: true
+        default: "no"
+
+permissions:
+  contents: write
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      # Scheduled run (and manual run without approval): build the draft only.
+      - name: Build weekly issue draft
+        if: github.event_name == 'schedule' || inputs.approve != 'yes'
+        run: npx tsx scripts/weekly-issue.ts --draft
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM_EMAIL: "Zoltai <noreply@zoltai.org>"
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
+          REPORT_EMAIL_TO: ${{ secrets.REPORT_EMAIL_TO }}
+
+      # Manual run with approve=yes: send the approved draft to subscribers.
+      - name: Send approved weekly issue
+        if: github.event_name == 'workflow_dispatch' && inputs.approve == 'yes'
+        run: npx tsx scripts/weekly-issue.ts --send
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM_EMAIL: "Zoltai <noreply@zoltai.org>"
+          RESEND_AUDIENCE_ID: ${{ secrets.RESEND_AUDIENCE_ID }}
+
+      - name: Commit draft and send log
+        run: |
+          git config user.name "Zoltai Bot"
+          git config user.email "bot@zoltai.org"
+          git add data/weekly-issue-draft.json 2>/dev/null || true
+          git add data/weekly-issue-log.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: weekly issue $(date +%Y-%m-%d)" && git pull --rebase origin main && git push)
