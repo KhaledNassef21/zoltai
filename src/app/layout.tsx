@@ -28,6 +28,35 @@ export const metadata: Metadata = {
   },
   description:
     "Discover the best AI tools to boost productivity, streamline your workflow, and learn new skills. No coding required.",
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { StickyCTA } from "@/components/sticky-cta";
+import { PWARegister } from "@/components/pwa-register";
+import { PushPrompt } from "@/components/push-prompt";
+import { HeatmapTracker } from "@/components/heatmap-tracker";
+import { CookieConsent } from "@/components/cookie-consent";
+import { Providers } from "@/components/providers";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://zoltai.org"),
+  title: {
+    default: "Zoltai - Discover the Best AI Tools (No Coding Required)",
+    template: "%s | Zoltai",
+  },
+  description:
+    "Discover the best AI tools to boost productivity, streamline your workflow, and learn new skills. No coding required.",
   keywords: [
     "AI tools",
     "best AI tools",
@@ -44,6 +73,7 @@ export const metadata: Metadata = {
   other: {
     "google-site-verification": "FSKh_zkNE5wDnpiVBiML628oT11QR2FF_2w5ejfJYF4",
     "impact-site-verification": "abfac258-20a6-4fe5-b521-0478b8579731",
+    "p:domain_verify": "29c5ff4664dcff2f49ce6a2052ef3614",
   },
   openGraph: {
     title: "Zoltai - Discover the Best AI Tools",
