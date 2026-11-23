@@ -62,6 +62,10 @@ export function CookieConsent() {
       script.async = true;
       script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
       document.head.appendChild(script);
+      // The migrated Google tag sends the initial page_view itself.
+      // Only send manual views on later client-side route changes.
+      // Automatic browser-history views are disabled in the Google tag.
+      return;
     }
     let referrer = "";
     try { referrer = document.referrer ? new URL(document.referrer).origin : ""; } catch {}
