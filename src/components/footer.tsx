@@ -35,6 +35,9 @@ export function Footer() {
                 <Link href="/privacy" className="hover:text-foreground transition-colors">
                   {t("footer.privacy")}
                 </Link>
+                <button type="button" onClick={() => window.dispatchEvent(new Event("zoltai-cookie-settings"))} className="text-left hover:text-foreground transition-colors">
+                  Cookie settings
+                </button>
                 <Link href="/terms" className="hover:text-foreground transition-colors">
                   {t("footer.terms")}
                 </Link>
@@ -60,6 +63,14 @@ export function Footer() {
                   className="hover:text-foreground transition-colors"
                 >
                   Instagram
+                </a>
+                <a
+                  href="https://www.youtube.com/@zoltaiorg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  YouTube
                 </a>
               </div>
             </div>
