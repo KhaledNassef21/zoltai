@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
       <Breadcrumbs items={[{ label: "Privacy Policy" }]} />
       <h1 className="text-3xl font-bold mb-2">Privacy Policy</h1>
       <p className="text-sm text-zinc-500 mb-10">
-        Last updated: April 7, 2026
+        Last updated: November 23, 2026
       </p>
 
       <div className="prose prose-invert prose-sm max-w-none space-y-8">
@@ -59,7 +59,7 @@ export default function PrivacyPolicy() {
             <li>Operating system</li>
             <li>Pages visited and time spent</li>
             <li>Referring website</li>
-            <li>IP address (anonymized)</li>
+            <li>Approximate country and region (derived by Google from your IP address; GA4 does not log or store individual IP addresses)</li>
             <li>Device information</li>
           </ul>
         </section>
@@ -100,8 +100,13 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
           <p className="text-zinc-400 leading-relaxed mt-2">
-            You can control cookies through your browser settings. Disabling
-            certain cookies may affect site functionality.
+            Google Analytics is off until you choose &quot;Accept analytics&quot;.
+            Declining does not prevent you from using the site. You can withdraw
+            consent using &quot;Cookie settings&quot; in the footer. This stops future
+            analytics collection and removes this site&apos;s Google Analytics cookies.
+            Your consent choice is stored locally in your browser. Analytics
+            cookies are configured to expire after 30 days; returning visits may
+            renew them. You can also control cookies in your browser settings.
           </p>
         </section>
 
@@ -117,7 +122,15 @@ export default function PrivacyPolicy() {
             </li>
             <li>
               <strong className="text-zinc-300">Vercel:</strong> Website hosting
-              and analytics
+              and infrastructure
+            </li>
+            <li>
+              <strong className="text-zinc-300">Google Analytics 4:</strong>{" "}
+              With your consent, measures page visits, referral sources, device and
+              browser information, and approximate location. We do not enable
+              advertising personalization or Google signals. We do not send account
+              details, form contents, URL query strings or URL fragments to Google.
+              Our previous site-wide click heatmap is disabled.
             </li>
             <li>
               <strong className="text-zinc-300">Google Search Console:</strong>{" "}
@@ -125,8 +138,10 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
           <p className="text-zinc-400 leading-relaxed mt-2">
-            These services may collect data in accordance with their own privacy
-            policies.
+            These services may process data on servers outside your country. See{" "}
+            <a href="https://policies.google.com/technologies/partner-sites" className="text-accent-light hover:underline">how Google uses information from sites that use its services</a>{" "}
+            and <a href="https://support.google.com/analytics/answer/12017362" className="text-accent-light hover:underline">Google Analytics data and privacy</a>.
+            Hosting and security services may process IP addresses to operate and protect the site.
           </p>
         </section>
 
@@ -222,4 +237,4 @@ export default function PrivacyPolicy() {
       </div>
     </div>
   );
-                }
+}
