@@ -100,11 +100,16 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
           <p className="text-zinc-400 leading-relaxed mt-2">
-            Google Analytics is off until you choose &quot;Accept analytics&quot;.
-            Declining does not prevent you from using the site. You can withdraw
-            consent using &quot;Cookie settings&quot; in the footer. This stops future
+            Google Analytics runs by default outside the EU/EEA, United Kingdom and
+            Switzerland. In those regions, or when we cannot determine your country,
+            it stays off until you choose &quot;Accept analytics&quot;. We use the
+            country inferred by our hosting provider from your IP address to select
+            this behavior; country estimates can be inaccurate, for example with a VPN.
+            You can decline analytics or withdraw consent using &quot;Cookie settings&quot;
+            in the footer in any region. A saved refusal is honored everywhere.
+            Declining does not prevent you from using the site. This stops future
             analytics collection and removes this site&apos;s Google Analytics cookies.
-            Your consent choice is stored locally in your browser. Analytics
+            Your choice is stored locally in your browser. Analytics
             cookies are configured to expire after 30 days; returning visits may
             renew them. You can also control cookies in your browser settings.
           </p>
@@ -126,7 +131,7 @@ export default function PrivacyPolicy() {
             </li>
             <li>
               <strong className="text-zinc-300">Google Analytics 4:</strong>{" "}
-              With your consent, measures page visits, referral sources, device and
+              Under the regional cookie choices described above, measures page visits, referral sources, device and
               browser information, and approximate location. We do not enable
               advertising personalization or Google signals. We do not send account
               details, form contents, URL query strings or URL fragments to Google.

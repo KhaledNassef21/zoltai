@@ -15,23 +15,43 @@ export function CookieConsent() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
   const [accepted, setAccepted] = useState(false);
+  const [consentRequired, setConsentRequired] = useState(true);
 
   useEffect(() => {
-    const consent = localStorage.getItem(CONSENT_KEY);
-    const timer = setTimeout(() => {
-      setAccepted(consent === "accepted");
-      setVisible(!consent);
-    }, consent ? 0 : 1500);
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout>;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    async function initialize() {
+      let required = true;
+      try {
+        const response = await fetch('/api/analytics-region', { cache: 'no-store', signal: controller.signal });
+        if (response.ok) required = (await response.json()).consentRequired !== false;
+      } catch { /* Unknown location or network failure stays opt-in. */ }
+      clearTimeout(timeout);
+      if (cancelled) return;
+      let consent: string | null = null;
+      try { consent = localStorage.getItem(CONSENT_KEY); } catch {}
+      const hasChoice = consent === 'accepted' || consent === 'declined';
+      setConsentRequired(required);
+      setAccepted(consent === 'accepted' || (!required && consent !== 'declined'));
+      timer = setTimeout(() => setVisible(required && !hasChoice), 1500);
+    }
+    void initialize();
     const openSettings = () => setVisible(true);
     window.addEventListener("zoltai-cookie-settings", openSettings);
     return () => {
+      cancelled = true;
+      controller.abort();
+      clearTimeout(timeout);
       if (timer) clearTimeout(timer);
       window.removeEventListener("zoltai-cookie-settings", openSettings);
     };
   }, []);
 
   useEffect(() => {
-    // No Google script, cookies or pings before explicit analytics consent.
+    // Opt-in regions and unknown locations wait for explicit consent.
+    // A stored refusal is honored in every region.
     // Never send signed-in or admin pages to Google.
     if (!accepted || !pathname || /^\/(admin|api|auth|login|register|account|dashboard)(\/|$)/.test(pathname)) return;
     const w = window as AnalyticsWindow;
@@ -77,7 +97,7 @@ export function CookieConsent() {
   }, [accepted, pathname]);
 
   const choose = (allow: boolean) => {
-    localStorage.setItem(CONSENT_KEY, allow ? "accepted" : "declined");
+    try { localStorage.setItem(CONSENT_KEY, allow ? "accepted" : "declined"); } catch {}
     setVisible(false);
     if (!allow) {
       const w = window as AnalyticsWindow;
@@ -104,9 +124,11 @@ export function CookieConsent() {
       <div className="max-w-4xl mx-auto rounded-xl border border-card-border bg-card-bg/95 backdrop-blur-md shadow-2xl p-4 sm:p-5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <p className="flex-1 text-sm text-zinc-300 leading-relaxed">
-            With your permission, we use Google Analytics cookies to measure visits,
-            traffic sources and approximate countries. Analytics stays off unless
-            you accept. You can change your choice in Cookie settings in the footer.{" "}
+            We use Google Analytics cookies to measure visits, traffic sources and
+            approximate countries. {consentRequired
+              ? "In the EU/EEA, UK and Switzerland, or when your location is unknown, analytics stays off until you accept."
+              : "Outside the EU/EEA, UK and Switzerland, analytics runs by default unless you decline."}
+            {" "}You can accept or decline here and change your choice in Cookie settings in the footer.{" "}
             <Link href="/privacy" className="text-purple-400 hover:text-purple-300 underline underline-offset-2">Privacy Policy</Link>
           </p>
           <div className="flex gap-3 shrink-0">
