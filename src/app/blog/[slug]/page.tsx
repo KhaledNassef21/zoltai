@@ -202,6 +202,12 @@ export default async function BlogPost({ params }: Props) {
           badge="Top Pick for This Topic"
         />
       ) : null}
+      {post.affiliateLinks.length > 0 && (
+        <p className="text-xs text-zinc-500 -mt-4 mb-6">
+          Affiliate disclosure: we may earn a commission if you sign up through
+          links on this page, at no extra cost to you.
+        </p>
+      )}
 
       {/* === LEAD FLOW POSITION 2: Top Newsletter Bar === */}
       <NewsletterSignup
@@ -238,6 +244,10 @@ export default async function BlogPost({ params }: Props) {
           <h3 className="font-bold text-lg mb-4">
             🛠️ Top Tools for This Topic
           </h3>
+          <p className="text-xs text-zinc-500 -mt-2 mb-4">
+            Affiliate disclosure: we may earn a commission if you sign up
+            through links in this section, at no extra cost to you.
+          </p>
           <div className="space-y-3">
             {/* Article-specific affiliate links first */}
             {post.affiliateLinks.map((link, i) => (
@@ -386,4 +396,4 @@ export default async function BlogPost({ params }: Props) {
       <NewsletterPopup />
     </article>
   );
-          }
+}
