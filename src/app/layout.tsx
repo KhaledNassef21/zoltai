@@ -6,7 +6,6 @@ import { Footer } from "@/components/footer";
 import { StickyCTA } from "@/components/sticky-cta";
 import { PWARegister } from "@/components/pwa-register";
 import { PushPrompt } from "@/components/push-prompt";
-import { HeatmapTracker } from "@/components/heatmap-tracker";
 import { CookieConsent } from "@/components/cookie-consent";
 import { Providers } from "@/components/providers";
 
@@ -131,7 +130,6 @@ export default function RootLayout({
           <StickyCTA />
           <PWARegister />
           <PushPrompt />
-          <HeatmapTracker />
           <CookieConsent />
         </Providers>
       </body>
