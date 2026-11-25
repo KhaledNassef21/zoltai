@@ -28,5 +28,15 @@
     "premium": false,
     "createdAt": "2026-10-10T01:34:43.394Z",
     "lastLogin": "2026-10-10T01:34:43.394Z"
+  },
+  {
+    "id": "u_1795590863994_7f0dc4da",
+    "name": "Johnson",
+    "email": "techjoejo@gmail.com",
+    "passwordHash": "cbe7d667c3b6f085145ff6bef19d7054ea2cbe99b7d7bec15585b703c4918b4d099cf9cfc168b89ec11c2399dc9ff23f78d207a61dae4747b3f810f123e16e74",
+    "salt": "545f144be47e476705e8af3772fe4defa7d4cd6c07b87804f26ea7e779c03d96",
+    "premium": false,
+    "createdAt": "2026-11-25T07:14:23.994Z",
+    "lastLogin": "2026-11-25T07:14:23.995Z"
   }
 ]
