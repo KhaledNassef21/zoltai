@@ -16,6 +16,8 @@ export function MidArticleCTA({
   toolUrl: string;
   slug: string;
 }) {
+  const isAffiliate = /try\.elevenlabs\.io|get\.murf\.ai/.test(toolUrl);
+
   useEffect(() => {
     trackFunnel({
       event: "cta_impression",
@@ -57,6 +59,12 @@ export function MidArticleCTA({
           Try {toolName} Free →
         </a>
       </div>
+      {isAffiliate && (
+        <p className="relative text-xs text-zinc-500 mt-3">
+          Affiliate link: Zoltai is an independent {toolName} affiliate and may
+          earn a commission if you sign up through it, at no extra cost to you.
+        </p>
+      )}
     </div>
   );
 }
