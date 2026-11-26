@@ -94,6 +94,13 @@ export function Footer() {
       {/* Legal Disclaimers */}
       <Disclaimer />
 
+      <div className="py-4 border-t border-card-border text-center text-xs text-zinc-500 max-w-3xl mx-auto px-4">
+        ElevenLabs and the ElevenLabs logo are registered trademarks or
+        trademarks of ElevenLabs, Inc. Used with permission. Zoltai is not
+        sponsored by, endorsed by, or affiliated with ElevenLabs except as an
+        independent participant in the ElevenLabs Creator Affiliate Program.
+      </div>
+
       <div className="py-4 border-t border-card-border text-center text-xs text-zinc-500">
         &copy; {new Date().getFullYear()} Zoltai. {t("footer.rights")}
       </div>
