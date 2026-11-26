@@ -44,6 +44,14 @@ export function ToolsDirectory() {
         {activeCategory !== "All" ? ` in ${activeCategory}` : ""}
       </p>
 
+      {sorted.some((t) => t.affiliateUrl) && (
+        <p className="text-xs text-zinc-500 -mt-4 mb-6">
+          Affiliate disclosure: the ElevenLabs link on this page is an affiliate
+          link. Zoltai is an independent ElevenLabs affiliate and may earn a
+          commission if you sign up through it, at no extra cost to you.
+        </p>
+      )}
+
       {/* Tools Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {sorted.map((tool) => (
