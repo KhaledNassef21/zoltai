@@ -202,10 +202,11 @@ export default async function BlogPost({ params }: Props) {
           badge="Top Pick for This Topic"
         />
       ) : null}
-      {post.affiliateLinks.length > 0 && (
+      {(post.affiliateLinks.length > 0 || relevantTools.some((t) => t.affiliateUrl)) && (
         <p className="text-xs text-zinc-500 -mt-4 mb-6">
-          Affiliate disclosure: we may earn a commission if you sign up through
-          links on this page, at no extra cost to you.
+          Affiliate disclosure: Zoltai is an independent affiliate of tools
+          mentioned on this page (including ElevenLabs) and may earn a
+          commission if you sign up through links here, at no extra cost to you.
         </p>
       )}
 
